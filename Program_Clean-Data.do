@@ -8,13 +8,14 @@
 gen Year=year(Closing_date)
 egen FirstYear=min(Year), by(BvD_ID_Number)
 replace FirstYear=year(IPO_date) if ((year(IPO_date)<year(FirstYear)) & ~missing(FirstYear))
-replace FirstYear=year(Date_of_incorporation) if ((year(IPO_date)<year(Date_of_incorporation)) & ~missing(Date_of_incorporation))
+replace FirstYear=year(Date_of_incorporation) if ((year(Date_of_incorporation)<year(FirstYear)) & ~missing(Date_of_incorporation))
 
 gen Age=Year-FirstYear
 drop FirstYear
 
 drop if (Year<1997)
 drop if (Year>2017)
+
 
 *---------------------------
 * Number of Employees
@@ -48,7 +49,6 @@ rename Costs_of_employees WageBill
 rename Total_assets Assets
 rename P_L_before_tax GrossProfits
 
-gen TotalCosts=COGS+WageBill
 
 drop if (Revenue<0)
 drop if (Sales<0)

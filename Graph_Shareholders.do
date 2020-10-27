@@ -1,5 +1,5 @@
 
-*preserve 
+preserve 
 drop if missing(nShareholders)
 
 histogram nShareholders , width(5)  graphregion(color(white))
@@ -18,14 +18,23 @@ replace ShareHolderCategories=7 if (nShareholders>25)
 replace ShareHolderCategories=8 if (nShareholders>50)
 replace ShareHolderCategories=9 if (nShareholders>100)
 
-gen Test=ShareHolderCategories
 
-collapse (mean) nShareholders (count) nFirms=ShareHolderCategories, by(Test)
+gen SalesPerEmployee=Sales/max(nEmployees,1)
+
+collapse (mean) nShareholders SalesPerEmployee (count) nFirms=nShareholders, by(ShareHolderCategories)
 
 
 replace nFirms=nFirms/1000
 
-twoway (bar nFirms Test) , xtitle("Number of Shareholders") ytitle("Number of Firms")  graphregion(color(white)) xlabel( 0 "0" 1 "1" 2 "2" 3 "3" 4 "4" 5 "5-10")
+twoway (bar nFirms ShareHolderCategories) , xtitle("Number of Shareholders") ytitle("Number of Firms")  graphregion(color(white)) xlabel( 0 "0" 1 "1" 2 "2" 3 "3" 4 "4" 5 "5-10" 6 "11-25" 7 "26-50" 8" 51-100" 9 "100+ ")
 	 graph export Output/$CountryID/Distribution_NoShareHolders.pdf, replace  
 
-*restore
+	
+
+
+	
+twoway (scatter SalesPerEmployee ShareHolderCategories  [w=nFirms]) , xtitle("Number of Shareholders") ytitle("Average Sales Per Employee")  graphregion(color(white)) xlabel( 0 "0" 1 "1" 2 "2" 3 "3" 4 "4" 5 "5-10" 6 "11-25" 7 "26-50" 8" 51-100" 9 "100+ ")
+	 graph export Output/$CountryID/Productivity-by-nShareholders.pdf, replace  
+
+
+restore

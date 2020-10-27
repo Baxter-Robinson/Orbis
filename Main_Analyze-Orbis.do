@@ -24,7 +24,7 @@ cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code"
 *----------------------
 local Countries IT CZ GB
 
-local Country="IT"
+local Country="GB"
 *foreach Country of local Countries {
 	clear all
 	global CountryID="`Country'"
@@ -45,9 +45,11 @@ local Country="IT"
 	*----------------
 	* Graphs
 	*----------------
+	
 	do BR/Graph_Age-Dist.do
 	do BR/Graph_Change-No-Shareholders-Dist.do
 	do BR/Graph_Lifecycle.do
 	do BR/Graph_Shareholders.do
+
 
 *}
