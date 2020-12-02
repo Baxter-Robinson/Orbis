@@ -22,19 +22,15 @@ cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code"
 *---------------------
 * Loop over countries 
 *----------------------
-local Countries IT CZ GB
+local Countries IT CZ GB HU FR US
 
-local Country="CZ"
+local Country="GB"
 *foreach Country of local Countries {
 	clear all
 	global CountryID="`Country'"
 
 	local PATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis/`Country'_merge.dta"
 	use `PATH', clear
-
-
-	* Cut Sample for test runs
-	* drop if (BvD_ID_Number>"IT00709040455") // IT
 
 
 
@@ -51,7 +47,11 @@ local Country="CZ"
 	*do BR/Graph_Change-No-Shareholders-Dist.do
 	*do BR/Graph_Lifecycle.do
 	*do BR/Graph_FirmTypes.do
-	*do BR/Regression_Shareholders.do
+	
+	*----------------
+	* Regressions
+	*----------------
+	*do BR/Regressions_FirmTypes.do
 
 
 *}

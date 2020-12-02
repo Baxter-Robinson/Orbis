@@ -16,13 +16,22 @@ drop FirstYear
 drop if (Year<1997)
 drop if (Year>2017)
 
-*---------------------------
-* Drop Duplicates
-*---------------------------
+*------------------
+* Set Panel Structure
+*------------------
+egen IDNum=group(BvD_ID_Number)
 
 * XXX Currently it just retains the first observation - need to code this to take a consistent closing date with the other years XXX
-duplicates drop BvD_ID_Number Year , force
+duplicates drop IDNum Year , force
 
+xtset IDNum Year
+
+*---------------------------
+* Sector
+*---------------------------
+destring NACE_Rev_2_Core_code_4_digits , generate(Industry_4digit)
+
+gen Industry_2digit=floor(Industry_4digit/100)
 
 *---------------------------
 * Number of Employees
@@ -31,15 +40,15 @@ rename Number_of_employees nEmployees
 
 drop if (nEmployees<=0)
 
-
+gen EmpGrowth=D.nEmployees/nEmployees
 
 *---------------------------
 * Ownership
 *---------------------------
 destring No_of_recorded_shareholders, generate(nShareholders)
 
-egen MinShareHolders=min(nShareholders), by(BvD_ID_Number)
-egen MaxShareHolders=max(nShareholders), by(BvD_ID_Number)
+egen MinShareHolders=min(nShareholders), by(IDNum)
+egen MaxShareHolders=max(nShareholders), by(IDNum)
 gen DiffShareHolders=MaxShareHolders-MinShareHolders
 
 drop MinShareHolders MaxShareHolders
