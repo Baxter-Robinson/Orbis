@@ -24,7 +24,7 @@ cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code"
 *----------------------
 local Countries IT CZ GB
 
-local Country="GB"
+local Country="CZ"
 *foreach Country of local Countries {
 	clear all
 	global CountryID="`Country'"
@@ -34,22 +34,24 @@ local Country="GB"
 
 
 	* Cut Sample for test runs
-	*drop if (BvD_ID_Number>"IT00709040455") // IT
+	* drop if (BvD_ID_Number>"IT00709040455") // IT
 
 
 
 
 	do BR/Program_Clean-Data.do
 
+	
 
 	*----------------
 	* Graphs
 	*----------------
 	
-	do BR/Graph_Age-Dist.do
-	do BR/Graph_Change-No-Shareholders-Dist.do
-	do BR/Graph_Lifecycle.do
-	do BR/Graph_Shareholders.do
+	*do BR/Graph_Age-Dist.do
+	*do BR/Graph_Change-No-Shareholders-Dist.do
+	*do BR/Graph_Lifecycle.do
+	*do BR/Graph_FirmTypes.do
+	*do BR/Regression_Shareholders.do
 
 
 *}
