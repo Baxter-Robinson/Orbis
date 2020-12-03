@@ -11,27 +11,27 @@ drop if (Age>29)
 
  
  
- replace Revenue=Revenue/1000
- replace Sales=Sales/1000
- replace WageBill=WageBill/1000
- replace Assets=Assets/1000
+ replace Revenue=Revenue/1000000
+ replace Sales=Sales/1000000
+ replace WageBill=WageBill/1000000
+ replace Assets=Assets/1000000
  replace GrossProfits=GrossProfits/1000
 
  graph twoway (scatter Assets Age if (Age<10), msymbol(0) connect(l)) ///
-	, graphregion(color(white))  ytitle("Average Assets in Thousands")
+	, graphregion(color(white))  ytitle("Average Assets in Millions")
  graph export Output/$CountryID/Lifecycle_Assets.pdf, replace  
   
 
  graph twoway (scatter Revenue Age if (Age<10), msymbol(0) connect(l)) ///
 	(scatter Sales Age if (Age<10), msymbol(S) connect(l) lpattern(dash) ) ///
-	, graphregion(color(white))  ytitle("Revenue and Sales in Thousands")  ///
+	, graphregion(color(white))  ytitle("Revenue and Sales in Millions")  ///
 	legend( order( 1 "Revenue" 2 "Sales"))
  graph export Output/$CountryID/Lifecycle_Revenue_Sales.pdf, replace  
 
  
   graph twoway (scatter Revenue Age if (Age<10), msymbol(0) connect(l)) ///
 	(scatter WageBill Age if (Age<10), msymbol(S) connect(l) lpattern(dash) ) ///
-	, graphregion(color(white))  ytitle("Revenue and Costs in Thousands") yscale(range(0(1000)10000)) ///
+	, graphregion(color(white))  ytitle("Revenue and Costs in Millions") ///
 	legend( order( 1 "Revenue" 2 "Wage Bill"))
  graph export Output/$CountryID/Lifecycle_Revenue_Costs.pdf, replace  
 
@@ -41,14 +41,13 @@ drop if (Age>29)
 
 
     graph twoway (scatter nShareholders Age if (Age<10), msymbol(0) connect(l)) ///
-	, graphregion(color(white))  ytitle("Average Number of Shareholders") ///
-	 yscale(range(0(1)5))   ylabel(0(1)5)
+	, graphregion(color(white))  ytitle("Average Number of Shareholders")
  graph export Output/$CountryID/Lifecycle_nShareholders.pdf, replace  
  
 
   
  graph twoway (scatter GrossProfits Age if (Age<10), msymbol(0) connect(l)) ///
-, graphregion(color(white))  ytitle("Average Profits")  yscale(range(0(100)100))
+, graphregion(color(white))  ytitle("Average Gross Profits in Thousands") 
  graph export Output/$CountryID/Lifecycle_GrossProfits.pdf, replace  
 
 

@@ -13,8 +13,6 @@ replace FirstYear=year(Date_of_incorporation) if ((year(Date_of_incorporation)<y
 gen Age=Year-FirstYear
 drop FirstYear
 
-drop if (Year<1997)
-drop if (Year>2017)
 
 *------------------
 * Set Panel Structure
@@ -25,6 +23,8 @@ egen IDNum=group(BvD_ID_Number)
 duplicates drop IDNum Year , force
 
 xtset IDNum Year
+
+
 
 *---------------------------
 * Sector
@@ -83,5 +83,18 @@ drop if (Sales<0)
 drop if (Assets<0)
 
 
+
 gen SalesPerEmployee=Sales/max(nEmployees,1)
+
+
+
+*------------------
+* Balanced Panel
+*------------------
+drop if (Year<2009)
+drop if (Year>2017)
+
+forval year=2009/2017{
+	drop if ((Year==`year') & (missing(nEmployees) | missing(Sales)))
+}
 
