@@ -17,6 +17,7 @@ set more off
 if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
 if `"`c(os)'"' == "Windows"   global   stem  `"D:/The-Beast-Files/Dropbox/"'
 cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
+local PATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis/`Country'_merge.dta"
 
 * Emmanuel PATH
 
@@ -34,7 +35,6 @@ local Country="CZ"
 	*----------------
 	* Clean Data
 	*----------------
-	local PATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis/`Country'_merge.dta"
 	use `PATH', clear
 
 	do Program_Clean-Data.do
