@@ -1,5 +1,5 @@
 *-----------------------------------------------------------------------------
-* Clean SCF Data
+* Clean Orbis Data and Create some Descriptive Statistics 
 *-----------------------------------------------------------------------------
 
 *----------------
@@ -7,7 +7,7 @@
 *----------------
 cls
 clear all
-version 15
+version 13
 set maxvar 10000
 set type double
 set more off
@@ -16,8 +16,9 @@ set more off
 * Baxter PATH
 if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
 if `"`c(os)'"' == "Windows"   global   stem  `"D:/The-Beast-Files/Dropbox/"'
+cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
 
-cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code"
+* Emmanuel PATH
 
 *---------------------
 * Loop over countries 
@@ -29,29 +30,34 @@ local Country="CZ"
 	clear all
 	global CountryID="`Country'"
 
+
+	*----------------
+	* Clean Data
+	*----------------
 	local PATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis/`Country'_merge.dta"
 	use `PATH', clear
 
-
-
-
-	do BR/Program_Clean-Data.do
-
+	do Program_Clean-Data.do
+	*do Program_Create-One-Percent-Sample.do
+	
+	*----------------
+	* Use One Percent Sample
+	*----------------
 	
 
 	*----------------
 	* Graphs
 	*----------------
 	
-	*do BR/Graph_Age-Dist.do
-	*do BR/Graph_Change-No-Shareholders-Dist.do
-	*do BR/Graph_Lifecycle.do
-	*do BR/Graph_FirmTypes.do
+	*do Graph_Age-Dist.do
+	*do Graph_Change-No-Shareholders-Dist.do
+	*do Graph_Lifecycle.do
+	*do Graph_FirmTypes.do
 	
 	*----------------
 	* Regressions
 	*----------------
-	*do BR/Regressions_FirmTypes.do
+	*do Regressions_FirmTypes.do
 
 
 *}

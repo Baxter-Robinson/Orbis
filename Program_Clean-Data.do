@@ -96,9 +96,9 @@ drop if (Year<2009)
 drop if (Year>2017)
 
 
+sort BvD_ID_Number Year
 by BvD_ID_Number: drop if (missing(nEmployees)| missing(Sales))
 
-sort BvD_ID_Number Year
 
 /*
 forval year=2009/2017{
