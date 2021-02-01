@@ -22,9 +22,9 @@ cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code"
 *---------------------
 * Loop over countries 
 *----------------------
-local Countries IT CZ GB HU FR US
+local Countries IT CZ HU FR // US GB
 
-local Country="GB"
+local Country="CZ"
 *foreach Country of local Countries {
 	clear all
 	global CountryID="`Country'"

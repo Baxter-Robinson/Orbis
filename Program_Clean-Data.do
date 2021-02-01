@@ -40,6 +40,7 @@ rename Number_of_employees nEmployees
 
 drop if (nEmployees<=0)
 
+
 gen EmpGrowth=D.nEmployees/nEmployees
 
 *---------------------------
@@ -94,6 +95,12 @@ gen SalesPerEmployee=Sales/max(nEmployees,1)
 drop if (Year<2009)
 drop if (Year>2017)
 
+
+by BvD_ID_Number: drop if (missing(nEmployees)| missing(Sales))
+
+sort BvD_ID_Number Year
+
+/*
 forval year=2009/2017{
 	drop if ((Year==`year') & (missing(nEmployees) | missing(Sales)))
 }
