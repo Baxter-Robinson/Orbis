@@ -17,7 +17,7 @@ set more off
 if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
 if `"`c(os)'"' == "Windows"   global   stem  `"D:/The-Beast-Files/Dropbox/"'
 cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
-local PATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis/`Country'_merge.dta"
+local PATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 
 * Emmanuel PATH
 
@@ -35,7 +35,7 @@ local Country="CZ"
 	*----------------
 	* Clean Data
 	*----------------
-	use `PATH', clear
+	use "`PATH'/`Country'_merge.dta", clear
 
 	do Program_Clean-Data.do
 	*do Program_Create-One-Percent-Sample.do
@@ -59,5 +59,8 @@ local Country="CZ"
 	*----------------
 	*do Regressions_FirmTypes.do
 
-
+	*----------------
+	* Tables
+	*----------------
+	do Table_Descriptive-Stats.do
 *}
