@@ -84,7 +84,6 @@ drop if (Sales<0)
 drop if (Assets<0)
 
 
-
 gen SalesPerEmployee=Sales/max(nEmployees,1)
 
 
@@ -93,15 +92,47 @@ gen SalesPerEmployee=Sales/max(nEmployees,1)
 * Balanced Panel
 *------------------
 drop if (Year<2009)
-drop if (Year>2017)
+drop if (Year>2018)
 
+sort IDNum Year
+by IDNum: drop if (missing(nEmployees)| missing(Sales))
+egen nyear = total(inrange(Year, 2009, 2018)), by(IDNum)
+keep if nyear == 10
+xtset IDNum Year // Making sure it is strongly balanced 
 
-sort BvD_ID_Number Year
-by BvD_ID_Number: drop if (missing(nEmployees)| missing(Sales))
+*------------------
+* Save clean data
+*------------------
 
-
-/*
-forval year=2009/2017{
-	drop if ((Year==`year') & (missing(nEmployees) | missing(Sales)))
+foreach a of global CountryID {
+	foreach p of global PATH_glob {
+		save `p'/Data_Cleaned/`a'_clean.dta, replace
+	}
 }
+
+
+*---------------------------
+* Create  One Percent sample
+*---------------------------
+
+* Characteristics: 
+* One sample = one firm with all its years
+preserve 
+tempfile tmps
+duplicates drop IDNum, force
+sample 1
+sort IDNum
+save `tmps'
+restore
+merge m:1 IDNum using `tmps'
+keep if _merge == 3
+drop _merge
+foreach a of global CountryID {
+	foreach p of global PATH_glob {
+		save `p'/Data_OnePercent/`a'_OnePercent.dta, replace
+	}
+}
+
+
+
 

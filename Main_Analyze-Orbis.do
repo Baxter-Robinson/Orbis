@@ -14,28 +14,32 @@ set more off
 
 
 * Baxter PATH
+/*
 if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
 if `"`c(os)'"' == "Windows"   global   stem  `"D:/The-Beast-Files/Dropbox/"'
 cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
 local PATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
+*/
 
 * Emmanuel PATH
+cd "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
+global PATH_glob = "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
+local PATH_loc =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
 
 *---------------------
 * Loop over countries 
 *----------------------
 local Countries IT CZ HU FR // US GB
 
-local Country="CZ"
-*foreach Country of local Countries {
+*local Country="CZ"
+foreach Country of local Countries {
 	clear all
 	global CountryID="`Country'"
-
 
 	*----------------
 	* Clean Data
 	*----------------
-	use "`PATH'/`Country'_merge.dta", clear
+	use "`PATH_loc'/Data_Raw/`Country'_merge.dta", clear
 
 	do Program_Clean-Data.do
 	*do Program_Create-One-Percent-Sample.do
@@ -62,5 +66,5 @@ local Country="CZ"
 	*----------------
 	* Tables
 	*----------------
-	do Table_Descriptive-Stats.do
-*}
+	*do Table_Descriptive-Stats.do
+}
