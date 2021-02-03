@@ -41,12 +41,12 @@ foreach Country of local Countries {
 	*----------------
 	use "`PATH_loc'/Data_Raw/`Country'_merge.dta", clear
 
-	do Program_Clean-Data.do
-	*do Program_Create-One-Percent-Sample.do
+	*do Program_Clean-Data.do
 	
 	*----------------
 	* Use One Percent Sample
 	*----------------
+	use "`PATH_loc'/Data_OnePercent/`Country'_OnePercent.dta",clear
 	
 
 	*----------------
@@ -66,5 +66,5 @@ foreach Country of local Countries {
 	*----------------
 	* Tables
 	*----------------
-	*do Table_Descriptive-Stats.do
+	do Table_Descriptive-Stats.do
 }
