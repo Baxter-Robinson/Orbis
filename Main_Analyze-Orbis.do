@@ -14,39 +14,37 @@ set more off
 
 
 * Baxter PATH
-/*
-if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
-if `"`c(os)'"' == "Windows"   global   stem  `"D:/The-Beast-Files/Dropbox/"'
-cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
-local PATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
-*/
+*if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
+*if `"`c(os)'"' == "Windows"   global   stem  `"D:/The-Beast-Files/Dropbox/"'
+*cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
+*local DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
+
 
 * Emmanuel PATH
 cd "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
-global PATH_glob = "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
-local PATH_loc =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
+local DATAPATH =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
 
 *---------------------
 * Loop over countries 
 *----------------------
 local Countries IT CZ HU FR // US GB
 
-*local Country="CZ"
-foreach Country of local Countries {
+local Country="CZ"
+*foreach Country of local Countries {
 	clear all
 	global CountryID="`Country'"
 
 	*----------------
 	* Clean Data
 	*----------------
-	use "`PATH_loc'/Data_Raw/`Country'_merge.dta", clear
-
-	*do Program_Clean-Data.do
+	use "`DATAPATH'/${CountryID}_merge.dta", clear
+	do Program_Clean-Data.do
 	
 	*----------------
-	* Use One Percent Sample
+	* Use Full Cleaned Data or One Percent Sample
 	*----------------
-	use "`PATH_loc'/Data_OnePercent/`Country'_OnePercent.dta",clear
+	*use "Data_Cleaned/`Country'_Clean.dta",clear
+	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 
 	*----------------
@@ -66,5 +64,5 @@ foreach Country of local Countries {
 	*----------------
 	* Tables
 	*----------------
-	do Table_Descriptive-Stats.do
-}
+	*do Table_Descriptive-Stats.do
+*}

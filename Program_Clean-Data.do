@@ -98,18 +98,15 @@ sort IDNum Year
 by IDNum: drop if (missing(nEmployees)| missing(Sales))
 egen nyear = total(inrange(Year, 2009, 2018)), by(IDNum)
 keep if nyear == 10
-xtset IDNum Year // Making sure it is strongly balanced 
+
+* Making sure it is strongly balanced 
+xtset IDNum Year 
 
 *------------------
 * Save clean data
 *------------------
 
-foreach a of global CountryID {
-	foreach p of global PATH_glob {
-		save `p'/Data_Cleaned/`a'_clean.dta, replace
-	}
-}
-
+save "Data_Cleaned/${CountryID}_Clean.dta", replace
 
 *---------------------------
 * Create  One Percent sample
@@ -127,12 +124,7 @@ restore
 merge m:1 IDNum using `tmps'
 keep if _merge == 3
 drop _merge
-foreach a of global CountryID {
-	foreach p of global PATH_glob {
-		save `p'/Data_OnePercent/`a'_OnePercent.dta, replace
-	}
-}
-
+save Data_Cleaned/${CountryID}_OnePercent.dta, replace
 
 
 
