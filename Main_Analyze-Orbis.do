@@ -29,21 +29,21 @@ local DATAPATH =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Wo
 *----------------------
 local Countries IT CZ HU FR // US GB
 
-local Country="CZ"
-*foreach Country of local Countries {
+*local Country="CZ"
+foreach Country of local Countries {
 	clear all
 	global CountryID="`Country'"
 
 	*----------------
 	* Clean Data
 	*----------------
-	use "`DATAPATH'/${CountryID}_merge.dta", clear
-	do Program_Clean-Data.do
+	*use "`DATAPATH'/${CountryID}_merge.dta", clear
+	*do Program_Clean-Data.do
 	
 	*----------------
 	* Use Full Cleaned Data or One Percent Sample
 	*----------------
-	*use "Data_Cleaned/`Country'_Clean.dta",clear
+	use "Data_Cleaned/`Country'_Clean.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 
@@ -55,6 +55,7 @@ local Country="CZ"
 	*do Graph_Change-No-Shareholders-Dist.do
 	*do Graph_Lifecycle.do
 	*do Graph_FirmTypes.do
+	do Graph_DiD-IPO.do
 	
 	*----------------
 	* Regressions
@@ -64,5 +65,6 @@ local Country="CZ"
 	*----------------
 	* Tables
 	*----------------
-	*do Table_Descriptive-Stats.do
-*}
+	do Table_Sample-Comparison.do
+	do Table_Descriptive-Stats.do
+}
