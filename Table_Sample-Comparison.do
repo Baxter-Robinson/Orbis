@@ -9,17 +9,21 @@ preserve
 	*Name of variables
 	file write TabSampleComp "& Number (\%) of firm-years & Number (\%) of unique firms \\ \midrule"_n
 	
-	local Sample 0 1 2
+	local Sample 0 1 2 3
 	foreach i of local Sample {
 		if (`i'==0) {
 			use "Data_Raw/${CountryID}_merge.dta", clear
 			file write TabSampleComp "Full Sample:                    &"
 		}
 		else if (`i'==1) {
-			use "Data_Cleaned/${CountryID}_clean.dta", clear
-			file write TabSampleComp "Main Sample - balanced panel:   &"
+			use "Data_Cleaned/${CountryID}_Unbalanced.dta", clear
+			file write TabSampleComp "Main Sample - Unbalanced panel: &"
 		}
 		else if (`i'==2) {
+			use "Data_Cleaned/${CountryID}_Balanced.dta", clear
+			file write TabSampleComp "Main Sample - Balanced panel:   &"
+		}
+		else if (`i'==3) {
 			use "Data_Cleaned/${CountryID}_OnePercent.dta", clear
 			file write TabSampleComp "One Percent Sample:             &"
 		}

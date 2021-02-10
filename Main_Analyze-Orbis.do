@@ -41,9 +41,10 @@ foreach Country of local Countries {
 	*do Program_Clean-Data.do
 	
 	*----------------
-	* Use Full Cleaned Data or One Percent Sample
+	* Use Unbalanced Data, Balanced Data or One Percent Sample
 	*----------------
-	use "Data_Cleaned/`Country'_Clean.dta",clear
+	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	*use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 
@@ -65,6 +66,6 @@ foreach Country of local Countries {
 	*----------------
 	* Tables
 	*----------------
-	do Table_Sample-Comparison.do
-	do Table_Descriptive-Stats.do
+	*do Table_Sample-Comparison.do
+	*do Table_Descriptive-Stats.do
 }

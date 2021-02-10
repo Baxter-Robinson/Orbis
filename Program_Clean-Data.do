@@ -86,7 +86,11 @@ drop if (Assets<0)
 
 gen SalesPerEmployee=Sales/max(nEmployees,1)
 
+*----------------------
+* Save unbalanced panel
+*----------------------
 
+save "Data_Cleaned/${CountryID}_Unbalanced.dta", replace
 
 *------------------
 * Balanced Panel
@@ -102,11 +106,11 @@ keep if nyear == 10
 * Making sure it is strongly balanced 
 xtset IDNum Year 
 
-*------------------
-* Save clean data
-*------------------
+*--------------------
+* Save balanced panel
+*--------------------
 
-save "Data_Cleaned/${CountryID}_Clean.dta", replace
+save "Data_Cleaned/${CountryID}_Balanced.dta", replace
 
 *---------------------------
 * Create  One Percent sample
