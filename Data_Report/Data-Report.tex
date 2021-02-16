@@ -1,0 +1,250 @@
+\documentclass[12pt,notitlepage]{article}
+\usepackage[margin=1in]{geometry}              
+\usepackage{placeins}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{amsmath, amsthm, amssymb, centernot}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{multirow}
+\newcommand{\sym}[1] {\ifmmode^{#1} \else\(^{#1}\) \fi}
+
+\DeclareMathOperator{\plim}{plim}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blue
+}
+\setlength\parindent{0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\pagestyle{plain}
+\title{Orbis Data for 4 Countries}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+\begin{table}[htpb]
+    \centering
+    \scalebox{0.7}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{Orbis/Output/IT/Table_Descriptive-Stats}
+        \bottomrule
+    \end{tabular}
+    }
+    \caption{Descriptive Statistics - Italy}
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[htpb]
+    \centering
+    \scalebox{0.7}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{Orbis/Output/FR/Table_Descriptive-Stats}
+        \bottomrule
+    \end{tabular}
+    }
+    \caption{Descriptive Statistics - France}
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[htpb]
+    \centering
+    \scalebox{0.7}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{Orbis/Output/HU/Table_Descriptive-Stats}
+        \bottomrule
+    \end{tabular}
+    }
+    \caption{Descriptive Statistics - Hungary}
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[htpb]
+    \centering
+    \scalebox{0.7}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{Orbis/Output/CZ/Table_Descriptive-Stats}
+        \bottomrule
+    \end{tabular}
+    }
+    \caption{Descriptive Statistics - Czech Republic}
+    \label{tab:my_label}
+\end{table}
+
+
+
+\begin{table}[htpb]
+    \centering
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{Orbis/Output/IT/Table_Sample-Comparison.tex}
+        \bottomrule
+    \end{tabular}
+    }
+    \caption{Sample Comparison - Italy}
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[htpb]
+    \centering
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{Orbis/Output/FR/Table_Sample-Comparison.tex}
+        \bottomrule
+    \end{tabular}
+    }
+    \caption{Sample Comparison - France}
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[htpb]
+    \centering
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{Orbis/Output/HU/Table_Sample-Comparison.tex}
+        \bottomrule
+    \end{tabular}
+    }
+    \caption{Sample Comparison - Hungary}
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[htpb]
+    \centering
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{Orbis/Output/CZ/Table_Sample-Comparison.tex}
+        \bottomrule
+    \end{tabular}
+    }
+    \caption{Sample Comparison - Czech Republic}
+    \label{tab:my_label}
+\end{table}
+
+
+
+\begin{figure}[htpb]
+\centering
+\caption{IPO and Number of Employees}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{Orbis/Output/IT/IPO_YearMinusIPO_Employees}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{Orbis/Output/CZ/IPO_YearMinusIPO_Employees}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{Orbis/Output/FR/IPO_YearMinusIPO_Employees}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{Orbis/Output/HU/IPO_YearMinusIPO_Employees}
+\end{subfigure}
+\end{figure}
+
+
+\begin{figure}[htpb]
+\centering
+\caption{IPO and Sales}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{Orbis/Output/IT/IPO_YearMinusIPO_Sales}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{Orbis/Output/CZ/IPO_YearMinusIPO_Sales}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{Orbis/Output/FR/IPO_YearMinusIPO_Sales}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{Orbis/Output/HU/IPO_YearMinusIPO_Sales}
+\end{subfigure}
+\end{figure}
+
+\begin{figure}[htpb]
+\centering
+\caption{IPO and Sales per Employee}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{Orbis/Output/IT/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{Orbis/Output/CZ/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{Orbis/Output/FR/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{Orbis/Output/HU/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}
+\end{figure}
+
+\begin{figure}[htpb]
+\centering
+\caption{IPO and Profitability}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{Orbis/Output/IT/IPO_YearMinusIPO_Profitability}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{Orbis/Output/CZ/IPO_YearMinusIPO_Profitability}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{Orbis/Output/FR/IPO_YearMinusIPO_Profitability}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{Orbis/Output/HU/IPO_YearMinusIPO_Profitability}
+\end{subfigure}
+\end{figure}
+
+
+
+
+
+\end{document}
+

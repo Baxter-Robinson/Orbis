@@ -16,7 +16,7 @@ preserve
 	* DiD regressions (number of employees, sales, sales per employees)
 	mat x_axis = (-3\-2\-1\0\1\2\3)
 	svmat x_axis
-	local depvar nEmployees Sales SalesPerEmployee
+	local depvar nEmployees Sales SalesPerEmployee GrossProfits
 	foreach v of local depvar {
 		mat did_`v' = J(7,3,.)
 		xtreg `v' Age i.Year D_IPO*, fe
@@ -44,20 +44,26 @@ preserve
 	*Create DiD Graphs
 	svmat did_nEmployees
 	graph twoway (connected did_nEmployees1 x_axis) (rcap did_nEmployees2 did_nEmployees3 x_axis), ///
-	xline(0, lcolor(blue) lpattern(dot)) xtitle("Number of years before/after IPO") ytitle("Number of employees") ///
-	legend(label(1 "DiD Effect of introducting IPO") label(2 "95% Confidence Intervval")) xlabel(-3[1]3)
+	xline(0, lcolor(blue) lpattern(dot)) xtitle("Number of years before/after IPO") ytitle("Change in number of employees") ///
+	legend(label(1 "DiD Effect of introducting IPO") label(2 "95% Confidence Intervval")) xlabel(-3[1]3) graphregion(color(white))
 	graph export Output/$CountryID/IPO_YearMinusIPO_Employees.pdf, replace 
 	
 	svmat did_Sales
 	graph twoway (connected did_Sales1 x_axis) (rcap did_Sales2 did_Sales3 x_axis), ///
-	xline(0, lcolor(blue) lpattern(dot)) xtitle("Number of years before/after IPO") ytitle("Sales") ///
-	legend(label(1 "DiD Effect of introducting IPO") label(2 "95% Confidence Intervval")) xlabel(-3[1]3)
-	graph export Output/$CountryID/IPO_YearMinusIPO_Sales.pdf, replace 
+	xline(0, lcolor(blue) lpattern(dot)) xtitle("Number of years before/after IPO") ytitle("Change in sales") ///
+	legend(label(1 "DiD Effect of introducting IPO") label(2 "95% Confidence Intervval")) xlabel(-3[1]3) graphregion(color(white))
+	graph export Output/$CountryID/IPO_YearMinusIPO_Sales.pdf, replace  
 	
 	svmat did_SalesPerEmployee
 	graph twoway (connected did_SalesPerEmployee1 x_axis) (rcap did_SalesPerEmployee2 did_SalesPerEmployee3 x_axis), ///
-	xline(0, lcolor(blue) lpattern(dot)) xtitle("Number of years before/after IPO") ytitle("Number of employees") ///
-	legend(label(1 "DiD Effect of introducting IPO") label(2 "95% Confidence Intervval")) xlabel(-3[1]3)
+	xline(0, lcolor(blue) lpattern(dot)) xtitle("Number of years before/after IPO") ytitle("Change in sales per employees") ///
+	legend(label(1 "DiD Effect of introducting IPO") label(2 "95% Confidence Intervval")) xlabel(-3[1]3) graphregion(color(white))
 	graph export Output/$CountryID/IPO_YearMinusIPO_SalesPerEmployee.pdf, replace 
+	
+	svmat did_GrossProfits
+	graph twoway (connected did_GrossProfits1 x_axis) (rcap did_GrossProfits2 did_GrossProfits3 x_axis), ///
+	xline(0, lcolor(blue) lpattern(dot)) xtitle("Number of years before/after IPO") ytitle("Change in gross profits") ///
+	legend(label(1 "DiD Effect of introducting IPO") label(2 "95% Confidence Intervval")) xlabel(-3[1]3) graphregion(color(white))
+	graph export Output/$CountryID/IPO_YearMinusIPO_Profitability.pdf, replace 
 	
 restore

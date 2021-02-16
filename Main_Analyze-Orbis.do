@@ -56,7 +56,7 @@ foreach Country of local Countries {
 	*do Graph_Change-No-Shareholders-Dist.do
 	*do Graph_Lifecycle.do
 	*do Graph_FirmTypes.do
-	do Graph_DiD-IPO.do
+	*do Graph_DiD-IPO.do
 	
 	*----------------
 	* Regressions
@@ -66,6 +66,6 @@ foreach Country of local Countries {
 	*----------------
 	* Tables
 	*----------------
-	*do Table_Sample-Comparison.do
-	*do Table_Descriptive-Stats.do
+	do Table_Sample-Comparison.do
+	do Table_Descriptive-Stats.do
 }

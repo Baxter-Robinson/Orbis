@@ -17,11 +17,11 @@ preserve
 		}
 		else if (`i'==1) {
 			use "Data_Cleaned/${CountryID}_Unbalanced.dta", clear
-			file write TabSampleComp "Main Sample - Unbalanced panel: &"
+			file write TabSampleComp "Main Sample (Unbalanced): &"
 		}
 		else if (`i'==2) {
 			use "Data_Cleaned/${CountryID}_Balanced.dta", clear
-			file write TabSampleComp "Main Sample - Balanced panel:   &"
+			file write TabSampleComp "Main Sample (Balanced):   &"
 		}
 		else if (`i'==3) {
 			use "Data_Cleaned/${CountryID}_OnePercent.dta", clear

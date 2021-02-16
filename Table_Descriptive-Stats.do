@@ -20,13 +20,13 @@ preserve
 			file write TabDescStats "Full Sample:                             & "
 		}
 		else if (`i'==1) {
-			file write TabDescStats "Private Firms with One Owner:            & "		
+			file write TabDescStats "Pvt Firms (One Owner):            & "		
 		}
 		else if (`i'==2) {
-			file write TabDescStats "Private Firms with Two Owners:           & "		
+			file write TabDescStats "Pvt Firms (Two Owners):           & "		
 		}
 		else if (`i'==3) {
-			file write TabDescStats "Private Firms with Three or More Owners: & "		
+			file write TabDescStats "Pvt Firms (More Owners): & "		
 		}
 		else if (`i'==6) {
 			file write TabDescStats "Public Firms:                            & "		
