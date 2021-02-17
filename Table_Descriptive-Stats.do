@@ -17,7 +17,7 @@ preserve
 	foreach i of local FirmTypes{
 	
 		if (`i'==0) { 
-			file write TabDescStats "Full Sample:                             & "
+			file write TabDescStats "Full Sample:                      & "
 		}
 		else if (`i'==1) {
 			file write TabDescStats "Pvt Firms (One Owner):            & "		
@@ -26,42 +26,43 @@ preserve
 			file write TabDescStats "Pvt Firms (Two Owners):           & "		
 		}
 		else if (`i'==3) {
-			file write TabDescStats "Pvt Firms (More Owners): & "		
+			file write TabDescStats "Pvt Firms (More Owners):          & "		
 		}
 		else if (`i'==6) {
-			file write TabDescStats "Public Firms:                            & "		
+			file write TabDescStats "Public Firms:                     & "		
 		}
 		
 		*Age
 		su Age if (FirmType==`i' | `i'==0)
-		local Moment: di %8.2fc r(mean)
+		local Moment: di %12.2fc r(mean)
 		file write TabDescStats "`Moment' &"
 		
 		*n Employees
 		su nEmployees if (FirmType==`i' | `i'==0)
-		local Moment: di %8.2fc r(mean)
+		local Moment: di %12.2fc r(mean)
 		file write TabDescStats "`Moment' & "
 
 		*Sales (Thousands)
 		su Sales if (FirmType==`i' | `i'==0)
-		local Moment: di %12.2fc r(mean)
+		local Moment: di %14.2fc r(mean)
 		file write TabDescStats "`Moment' & "
 
 		*Sales per employee 
 		su SalesPerEmployee if (FirmType==`i' | `i'==0)
-		local Moment: di %12.2fc r(mean)
+		local Moment: di %14.2fc r(mean)
 		file write TabDescStats "`Moment' & "
 		
 		*n Shareholders and n observations
 		su nShareholders if (FirmType==`i' | `i'==0)
-		local Moment: di %8.2fc r(mean)
+		local Moment: di %12.2fc r(mean)
 		file write TabDescStats "`Moment'  &"
-		local Moment: di %8.0fc r(N)
+		local Moment: di %12.0fc r(N)
 		file write TabDescStats "`Moment'  \\"_n
 		
 
 	
 	}
+	file write TabDescStats "\bottomrule"
 
 
 	file close _all
