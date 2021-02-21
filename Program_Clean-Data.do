@@ -59,7 +59,7 @@ replace Listed=0 if (Main_exchange=="Unlisted")
 
 
 ** Generate Firm Types
-drop if missing(nShareholders) & ~(Listed)
+*drop if missing(nShareholders) & ~(Listed)
 
 gen FirmType=.
 replace FirmType=1 if (nShareholders==1) & ~(Listed)
