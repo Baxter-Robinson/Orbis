@@ -40,7 +40,7 @@ drop if (Age>29)
  graph export Output/$CountryID/Lifecycle_Public.pdf, replace  
 
 
-    graph twoway (scatter nShareholders Age if (Age<10), msymbol(0) connect(l)) ///
+    graph twoway (scatter nShareholders Age if (Age<10) & (nShareholders != .), msymbol(0) connect(l)) ///
 	, graphregion(color(white))  ytitle("Average Number of Shareholders")
  graph export Output/$CountryID/Lifecycle_nShareholders.pdf, replace  
  
@@ -53,7 +53,7 @@ drop if (Age>29)
 
  
  
-graph twoway (scatter nEmployees Age if (Age<10), msymbol(0) connect(l)) ///
+graph twoway (scatter nEmployees Age if (Age<10) & (nEmployees != .), msymbol(0) connect(l)) ///
 			,graphregion(color(white))  ytitle("Average Number of Employees") 
          graph export Output/$CountryID/Lifecycle_Employment.pdf, replace  
 

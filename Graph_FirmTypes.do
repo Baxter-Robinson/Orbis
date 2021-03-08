@@ -44,6 +44,7 @@ restore
 preserve
 
 drop Closing_date Export_revenue Stock Market_capitalisation_mil Age EmpGrowth
+drop if missing(nEmployees)
 
 reshape wide nEmployees Revenue Sales COGS Assets WageBill GrossProfits EBITDA SalesPerEmployee , i(BvD_ID_Number) j(Year)
 

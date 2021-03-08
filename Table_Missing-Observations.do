@@ -18,7 +18,7 @@ file write TabMissingObs "`N_tot_di' (100 \%)  &"
 * No employees
 preserve
 	rename Number_of_employees nEmployees
-	drop if (nEmployees<=0)
+	drop if (nEmployees<=0) | (nEmployees==.)
 	su Closing_date
 	local N_emp = $N_tot - r(N)
 	local N_emp_di: di %12.0fc `N_emp'
@@ -37,7 +37,7 @@ restore
 * No Revenues
 preserve
 	rename Operating_revenue_Turnover Revenue
-	drop if (Revenue<=0)
+	drop if (Revenue<=0) | (Revenue==.)
 	su Closing_date
 	local N_rev = $N_tot - r(N)
 	local N_rev_di: di %12.0fc `N_rev'
@@ -47,7 +47,7 @@ restore
 * No Assets
 preserve
 	rename Total_assets Assets
-	drop if (Assets<=0)
+	drop if (Assets<=0) | (Assets==.)
 	su Closing_date
 	local N_asset = $N_tot - r(N)
 	local N_asset_di: di %12.0fc `N_asset'

@@ -26,7 +26,7 @@ local DATAPATH =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Wo
 
 *---------------------
 * Loop over countries 
-*----------------------
+*---------------------
 local Countries IT CZ HU FR // US GB
 
 *local Country="CZ"
@@ -47,7 +47,7 @@ foreach Country of local Countries {
 	*use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
-
+ 
 	*----------------
 	* Graphs
 	*----------------
@@ -56,11 +56,11 @@ foreach Country of local Countries {
 	*do Graph_Change-No-Shareholders-Dist.do
 	*do Graph_Lifecycle.do
 	*do Graph_FirmTypes.do
-	do Graph_DiD-IPO.do
+	do Script_DiD-IPO.do
 	*do Graph_IPOyear-Dist.do
 	
 	*----------------
-	* Regressions
+	* Regressions 
 	*----------------
 	*do Regressions_FirmTypes.do
 
@@ -69,6 +69,6 @@ foreach Country of local Countries {
 	*----------------
 	*do Table_Sample-Comparison.do
 	*do Table_Descriptive-Stats.do
-	*do Table_Missing-Observations.do
-	do Table_IPO-years.do
+	*do Table_Missing-Observations.do // (use with raw data only)
+	*do Table_IPO-years.do
 }

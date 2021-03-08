@@ -39,6 +39,7 @@ gen Industry_2digit=floor(Industry_4digit/100)
 rename Number_of_employees nEmployees
 
 drop if (nEmployees<=0)
+*drop if missing(nEmployees)
 
 
 gen EmpGrowth=D.nEmployees/nEmployees
@@ -79,12 +80,13 @@ rename Total_assets Assets
 rename P_L_before_tax GrossProfits
 
 
-drop if (Revenue<0)
-drop if (Sales<0)
+drop if (Revenue<=0)
+drop if (Sales<=0)
 drop if (Assets<0)
+*replace Sales = Revenue if (Sales == 0) & (Revenue > 0)
+*drop if Sales == .
 
-
-gen SalesPerEmployee=Sales/max(nEmployees,1)
+gen SalesPerEmployee=Sales/nEmployees
 
 *----------------------
 * Save unbalanced panel
@@ -95,13 +97,28 @@ save "Data_Cleaned/${CountryID}_Unbalanced.dta", replace
 *------------------
 * Balanced Panel
 *------------------
-drop if (Year<2009)
-drop if (Year>2018)
 
-sort IDNum Year
-by IDNum: drop if (missing(nEmployees)| missing(Sales))
-egen nyear = total(inrange(Year, 2009, 2018)), by(IDNum)
-keep if nyear == 10
+* Narrower year range for France
+if "${CountryID}" == "FR"{
+	drop if (Year<2009)
+	drop if (Year>2014)
+	sort IDNum Year
+	*by IDNum: drop if (missing(nEmployees)| missing(Sales))
+	egen nyear = total(inrange(Year, 2009, 2013)), by(IDNum)
+	keep if nyear == 5
+	drop nyear
+}
+* Regular year range for other countries
+else {
+	drop if (Year<2009)
+	drop if (Year>2018)
+	sort IDNum Year
+	*by IDNum: drop if (missing(nEmployees)| missing(Sales))
+	egen nyear = total(inrange(Year, 2009, 2018)), by(IDNum)
+	keep if nyear == 10
+	drop nyear
+}
+
 
 * Making sure it is strongly balanced 
 xtset IDNum Year 

@@ -14,6 +14,7 @@
 \usepackage{subcaption}
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage{comment}
 \newcommand{\sym}[1] {\ifmmode^{#1} \else\(^{#1}\) \fi}
 
 \DeclareMathOperator{\plim}{plim}
@@ -42,49 +43,49 @@
 
 \begin{table}[!htpb]
     \centering
+    \caption{Descriptive Statistics - Italy}
     \scalebox{0.6}{
     \begin{tabular}{@{}ccccccc@{}}
         \toprule
         \input{../Output/IT/Table_Descriptive-Stats}
     \end{tabular}
     }
-    \caption{Descriptive Statistics - Italy}
     \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
+    \caption{Descriptive Statistics - France}
     \scalebox{0.6}{
     \begin{tabular}{@{}ccccccc@{}}
         \toprule
         \input{../Output/FR/Table_Descriptive-Stats}
     \end{tabular}
     }
-    \caption{Descriptive Statistics - France}
     \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
+    \caption{Descriptive Statistics - Hungary}
     \scalebox{0.6}{
     \begin{tabular}{@{}ccccccc@{}}
         \toprule
         \input{../Output/HU/Table_Descriptive-Stats}
     \end{tabular}
     }
-    \caption{Descriptive Statistics - Hungary}
     \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
+    \caption{Descriptive Statistics - Czech Republic}
     \scalebox{0.6}{
     \begin{tabular}{@{}ccccccc@{}}
         \toprule
         \input{../Output/CZ/Table_Descriptive-Stats}
     \end{tabular}
     }
-    \caption{Descriptive Statistics - Czech Republic}
     \label{tab:my_label}
 \end{table}
 \pagebreak
@@ -94,49 +95,49 @@
 
 \begin{table}[!htpb]
     \centering
+    \caption{Missing Observations - Italy}
     \scalebox{0.9}{
     \begin{tabular}{@{}cccccc@{}}
         \toprule
         \input{../Output/IT/Table_Missing-Observations.tex}
     \end{tabular}
     }
-    \caption{Missing Observations - Italy}
     \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
+    \caption{Missing Observations - France}
     \scalebox{0.9}{
     \begin{tabular}{@{}cccccc@{}}
         \toprule
         \input{../Output/FR/Table_Missing-Observations.tex}
     \end{tabular}
     }
-    \caption{Missing Observations - France}
     \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
+    \caption{Missing Observations - Hungary}
     \scalebox{0.9}{
     \begin{tabular}{@{}cccccc@{}}
         \toprule
         \input{../Output/HU/Table_Missing-Observations.tex}
     \end{tabular}
     }
-    \caption{Missing Observations - Hungary}
     \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
+    \caption{Missing Observations - Czech Republic}
     \scalebox{0.9}{
     \begin{tabular}{@{}cccccc@{}}
         \toprule
         \input{../Output/CZ/Table_Missing-Observations.tex}
     \end{tabular}
     }
-    \caption{Missing Observations - Czech Republic}
     \label{tab:my_label}
 \end{table}
 \pagebreak
@@ -146,49 +147,49 @@
 
 \begin{table}[!htpb]
     \centering
+    \caption{Sample Comparison - Italy}
     \scalebox{0.9}{
     \begin{tabular}{@{}ccc@{}}
         \toprule
         \input{../Output/IT/Table_Sample-Comparison.tex}
     \end{tabular}
     }
-    \caption{Sample Comparison - Italy}
     \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
+    \caption{Sample Comparison - France}
     \scalebox{0.9}{
     \begin{tabular}{@{}ccc@{}}
         \toprule
         \input{../Output/FR/Table_Sample-Comparison.tex}
     \end{tabular}
     }
-    \caption{Sample Comparison - France}
     \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
+    \caption{Sample Comparison - Hungary}
     \scalebox{0.9}{
     \begin{tabular}{@{}ccc@{}}
         \toprule
         \input{../Output/HU/Table_Sample-Comparison.tex}
     \end{tabular}
     }
-    \caption{Sample Comparison - Hungary}
     \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
+    \caption{Sample Comparison - Czech Republic}
     \scalebox{0.9}{
     \begin{tabular}{@{}ccc@{}}
         \toprule
         \input{../Output/CZ/Table_Sample-Comparison.tex}
     \end{tabular}
     }
-    \caption{Sample Comparison - Czech Republic}
     \label{tab:my_label}
 \end{table}
 \pagebreak
@@ -223,57 +224,271 @@
 \pagebreak
 
 
-\subsection*{Number of IPO firms with observations before and after}
+\subsection*{Number of unique IPO firms with observations before and after}
 
 \begin{table}[!htpb]
     \centering
+    \caption{Italy}
     \scalebox{0.9}{
     \begin{tabular}{@{}ccccc@{}}
         \toprule
         \input{../Output/IT/Table_IPO-Years.tex}
     \end{tabular}
     }
-    \caption{Sample Comparison - Italy}
     \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
+    \caption{France}
     \scalebox{0.9}{
     \begin{tabular}{@{}ccccc@{}}
         \toprule
         \input{../Output/FR/Table_IPO-Years.tex}
     \end{tabular}
     }
-    \caption{Sample Comparison - France}
     \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
+    \caption{Hungary}
     \scalebox{0.9}{
     \begin{tabular}{@{}ccccc@{}}
         \toprule
         \input{../Output/HU/Table_IPO-Years.tex}
     \end{tabular}
     }
-    \caption{Sample Comparison - Hungary}
     \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
+    \caption{Czech Republic}
     \scalebox{0.9}{
     \begin{tabular}{@{}ccccc@{}}
         \toprule
         \input{../Output/CZ/Table_IPO-Years.tex}
     \end{tabular}
     }
-    \caption{Sample Comparison - Czech Republic}
     \label{tab:my_label}
 \end{table}
 \pagebreak
 
+\subsection*{Difference-in-difference Graphs}
+
+
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Sales}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_Sales}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_Sales}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_Sales}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_Sales}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Revenue}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_Revenue}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_Revenue}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_Revenue}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_Revenue}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Sales per Employee}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Revenue per Employee}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_RevenuePerEmployee}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_RevenuePerEmployee}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_RevenuePerEmployee}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_RevenuePerEmployee}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Gross Profits}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_GrossProfits}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_GrossProfits}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_GrossProfits}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_GrossProfits}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Profitability}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_Profitability}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_Profitability}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_Profitability}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_Profitability}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Number of Employees}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_nEmployees}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_nEmployees}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_nEmployees}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_nEmployees}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\subsection*{Decomposition of the effect of IPO on number of employees}
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Number of Employees- Decomposition}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_nEmployees_decomposition}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_nEmployees_decomposition}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_nEmployees_decomposition}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_nEmployees_decomposition}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+\begin{comment}
 \subsection*{Difference-in-difference Graphs for 1 year before and after}
 
 \begin{figure}[!htpb]
@@ -595,8 +810,9 @@
 \end{subfigure}
 \end{figure}
 \pagebreak
+\end{comment}
 
-\subsection*{Lifecycle graphs}
+\subsection*{Lifecycle graphs (Balanced panel)}
 
 \begin{figure}[!htpb]
 \centering
