@@ -29,7 +29,7 @@ preserve
 	replace PlusMinus_OneYear = . if (PlusMinus_OneYear == 1) & (IPO_timescale < -1)
 	replace PlusMinus_OneYear = . if (PlusMinus_OneYear == 1) & (IPO_timescale > 1)
 	
-	* Create table
+	* Create table for number of IPO firms with observations before and after
 	file close _all
 	file open TabIPOyears using Output/${CountryID}/Table_IPO-Years.tex, write replace
 	*Name of variables
@@ -57,4 +57,24 @@ preserve
 	file write TabIPOyears "\bottomrule"
 	
 	file close _all
+	
+	* Create table for proportion of IPO firms that become delisted
+	su unique_IPO
+	local N_IPO: di %4.0fc r(max)
+	egen unique_IPO_delisted = group(IDNum) if (Delisted_date !=.) & (IPO_year != .)
+	su unique_IPO_delisted
+	local N_delisted: di %4.0fc r(max)
+	local perc_delisted: di (`N_delisted'/`N_IPO')*100
+	file open TabDelistedIPO using Output/${CountryID}/Table_IPO-Delisted.tex, write replace
+	* Column names
+	file write TabDelistedIPO "number of IPO  & number IPO delisted & (\%) delisted \\ \midrule"_n
+	* Number of unique IPO firms
+	file write TabDelistedIPO "`N_IPO' &"
+	* Number of delisted IPO firms
+	file write TabDelistedIPO "`N_delisted' &"
+	* Percentage of delisted firms
+	file write TabDelistedIPO "`perc_delisted' \\"_n
+	file write TabDelistedIPO "\bottomrule"
+	file close _all
+	
 restore

@@ -1,6 +1,6 @@
 preserve
 	* Desired number of years before and after
-	local n = 2
+	*local n = 2
 	* Rescale variables
 	replace Revenue = Revenue/1000
 	gen RevenuePerEmployee = Revenue/nEmployee
@@ -13,14 +13,16 @@ preserve
 	* Generate variable that tells number of years before/after IPO
 	gen IPO_timescale = Year - IPO_year
 	* Only keep first where we have observations for the variable of interest
-	drop if missing($v)
+	if ("$CountryID" == "FR") | ("$CountryID" == "IT") {
+		drop if missing($v)
+	}
 	* Only keep IPO firms where we observe them +/- nyear relative to IPO (dealing with sample selection of IPO firms)
 	gen PlusMinus_all = 1 if IPO_timescale == 0
-	forvalues i = 1/`n'{
+	forvalues i = 1/$n{
 		replace PlusMinus_all = 1 if (IPO_timescale == -`i') | (IPO_timescale == `i')
 	}
 	egen PlusMinus = total(PlusMinus_all), by(IDNum)
-	local size = (2*`n')+1
+	local size = (2*$n)+1
 	replace PlusMinus = . if PlusMinus < `size'
 	replace PlusMinus = 1 if PlusMinus == `size'
 	* Deal with selection in France and Italy
@@ -37,14 +39,14 @@ preserve
 	* Create dummy for nyears before and after IPO
 	gen D_IPO = 0
 	replace D_IPO = 1 if IPO_timescale == 0
-	forvalues i = 1/`n' {
+	forvalues i = 1/$n {
 		gen D_IPO_minus`i' = 0
 		gen D_IPO_plus`i' = 0
 		replace D_IPO_minus`i' = 1 if IPO_timescale == -`i'
 		replace D_IPO_plus`i' = 1 if IPO_timescale == `i'
 	}
 	* DiD regressions (number of employees, sales, sales per employees, gross profits, profitability)
-	local thresh = `size'-`n'
+	local thresh = `size'-$n
 	mat x_axis = J(`size',1,1)
 	forvalues i = 1/`size' {
 		mat x_axis[`i',1] = `i'-`thresh'
@@ -76,6 +78,6 @@ preserve
 	local vname: di "$v"
 	graph twoway (connected did_`vname'1 x_axis) (rcap did_`vname'2 did_`vname'3 x_axis), ///
 	xline(0, lcolor(blue) lpattern(dot)) xtitle("Number of years before/after IPO") ytitle("Difference in `vname'") ///
-	legend(label(1 "DiD Effect of introducting IPO") label(2 "95% Confidence Intervval")) xlabel(-`n'[1]`n') graphregion(color(white)) title("Number of unique IPO firms = `N'")
+	legend(label(1 "DiD Effect of introducting IPO") label(2 "95% Confidence Intervval")) xlabel(-$n[1]$n) graphregion(color(white)) title("Number of unique IPO firms = `N'")
 	graph export Output/$CountryID/IPO_YearMinusIPO_`vname'.pdf, replace 
 restore

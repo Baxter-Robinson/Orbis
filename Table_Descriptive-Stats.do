@@ -10,7 +10,6 @@ preserve
 	*Name of variables
 	file write TabDescStats " & Age & Employment & Sales (Thousands) & Sales/employee & Number of shareholders & Number of observations  \\ \midrule"_n
 	
-	
 
 	*Loop over samples
 	local FirmTypes 0 1 2 3 6
@@ -68,4 +67,4 @@ preserve
 	file close _all
 
 
-	restore
+restore

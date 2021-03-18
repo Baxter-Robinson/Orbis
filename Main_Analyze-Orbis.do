@@ -47,7 +47,7 @@ foreach Country of local Countries {
 	*use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
- 
+	
 	*----------------
 	* Graphs
 	*----------------
@@ -56,8 +56,9 @@ foreach Country of local Countries {
 	*do Graph_Change-No-Shareholders-Dist.do
 	*do Graph_Lifecycle.do
 	*do Graph_FirmTypes.do
-	do Script_DiD-IPO.do
+	*do Script_DiD-IPO.do
 	*do Graph_IPOyear-Dist.do
+	*do Graph_Growth_IPOyear-Dist.do
 	
 	*----------------
 	* Regressions 
@@ -71,4 +72,5 @@ foreach Country of local Countries {
 	*do Table_Descriptive-Stats.do
 	*do Table_Missing-Observations.do // (use with raw data only)
 	*do Table_IPO-years.do
+	do Table_IPOyear_Descriptive-Stats.do
 }

@@ -38,7 +38,7 @@ gen Industry_2digit=floor(Industry_4digit/100)
 *---------------------------
 rename Number_of_employees nEmployees
 
-drop if (nEmployees<=0)
+drop if (nEmployees<0)
 *drop if missing(nEmployees)
 
 
@@ -80,8 +80,8 @@ rename Total_assets Assets
 rename P_L_before_tax GrossProfits
 
 
-drop if (Revenue<=0)
-drop if (Sales<=0)
+drop if (Revenue<0)
+drop if (Sales<0)
 drop if (Assets<0)
 *replace Sales = Revenue if (Sales == 0) & (Revenue > 0)
 *drop if Sales == .
@@ -102,6 +102,9 @@ save "Data_Cleaned/${CountryID}_Unbalanced.dta", replace
 if "${CountryID}" == "FR"{
 	drop if (Year<2009)
 	drop if (Year>2014)
+	drop if Sales == .
+	drop if nEmployees == .
+	drop if GrossProfits == .
 	sort IDNum Year
 	*by IDNum: drop if (missing(nEmployees)| missing(Sales))
 	egen nyear = total(inrange(Year, 2009, 2013)), by(IDNum)
@@ -112,6 +115,9 @@ if "${CountryID}" == "FR"{
 else {
 	drop if (Year<2009)
 	drop if (Year>2018)
+	drop if Sales == .
+	drop if nEmployees == .
+	drop if GrossProfits == .
 	sort IDNum Year
 	*by IDNum: drop if (missing(nEmployees)| missing(Sales))
 	egen nyear = total(inrange(Year, 2009, 2018)), by(IDNum)
@@ -146,6 +152,5 @@ merge m:1 IDNum using `tmps'
 keep if _merge == 3
 drop _merge
 save Data_Cleaned/${CountryID}_OnePercent.dta, replace
-
 
 
