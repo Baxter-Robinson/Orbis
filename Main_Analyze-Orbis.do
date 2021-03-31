@@ -21,8 +21,13 @@ set more off
 
 
 * Emmanuel PATH
-cd "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
-local DATAPATH =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
+* Desktop
+cd "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
+local DATAPATH =  "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
+
+* Laptop
+*cd "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
+*local DATAPATH =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
 
 *---------------------
 * Loop over countries 
@@ -37,15 +42,21 @@ foreach Country of local Countries {
 	*----------------
 	* Clean Data
 	*----------------
+	* Orbis
 	*use "`DATAPATH'/${CountryID}_merge.dta", clear
 	*do Program_Clean-Data.do
 	
-	*----------------
-	* Use Unbalanced Data, Balanced Data or One Percent Sample
-	*----------------
-	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	* Compustat
+	*use "`DATAPATH'/${CountryID}_compustat.dta", clear
+	*do Program_Clean-CompustatData.do
+	
+	*-----------------
+	* Use Cleaned data
+	*-----------------
+	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
+	use "Data_Cleaned/`Country'_Compustat.dta",clear
 	
 	
 	*----------------
@@ -59,6 +70,7 @@ foreach Country of local Countries {
 	*do Script_DiD-IPO.do
 	*do Graph_IPOyear-Dist.do
 	*do Graph_Growth_IPOyear-Dist.do
+	*do Graph_Employment-Compustat.do
 	
 	*----------------
 	* Regressions 
@@ -72,5 +84,6 @@ foreach Country of local Countries {
 	*do Table_Descriptive-Stats.do
 	*do Table_Missing-Observations.do // (use with raw data only)
 	*do Table_IPO-years.do
-	do Table_IPOyear_Descriptive-Stats.do
+	*do Table_IPOyear_Descriptive-Stats.do
+	do Table_CompustatOrbis-Comparison.do
 }
