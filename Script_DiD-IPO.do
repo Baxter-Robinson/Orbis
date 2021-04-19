@@ -22,8 +22,8 @@ preserve
 	do Graph_DID-IPO.do
 
 	* Create graph for decomposition of DID
-	global v nEmployees
-	do Graph_DiD-IPO_Decomposition.do
+	*global v nEmployees
+	*do Graph_DiD-IPO_Decomposition.do
 
 	* Create graph for Haltwinger measure of growth rate
 	global n = 1

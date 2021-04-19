@@ -53,9 +53,7 @@ preserve
 	su PlusMinus_ThreeYears
 	local N: di %12.0fc r(N)/7
 	file write TabIPOyears "`N' \\"_n
-	
 	file write TabIPOyears "\bottomrule"
-	
 	file close _all
 	
 	* Create table for proportion of IPO firms that become delisted
@@ -77,4 +75,28 @@ preserve
 	file write TabDelistedIPO "\bottomrule"
 	file close _all
 	
+	* Create table for Number of firms where we observe 1/2/3 years after delisted
+	gen Delisted_year = yofd(Delisted_date)
+	su unique_IPO_delisted if Year - Delisted_year == 1
+	local N_plusone: di %4.0fc r(max)
+	su unique_IPO_delisted if Year - Delisted_year == 2
+	local N_plustwo: di %4.0fc r(max)
+	su unique_IPO_delisted if Year - Delisted_year == 3
+	local N_plusthree: di %4.0fc r(max)
+	egen unique_IPO_delisted_above3 = group(IDNum) if Year - Delisted_year > 3 & (Delisted_date !=.) & (IPO_year != .)
+	su unique_IPO_delisted_above3
+	local N_abovethree: di %4.0fc r(max)
+	file open TabDelistedIPO_after using Output/${CountryID}/Table_IPO-AfterDelisted.tex, write replace
+	* Column names
+	file write TabDelistedIPO_after "1 year after & 2 years after & 3 years after & >3 years after \\ \midrule"_n
+	* One year after
+	file write TabDelistedIPO_after "`N_plusone' &"
+	* Two years after
+	file write TabDelistedIPO_after "`N_plustwo' &"
+	* Three years after
+	file write TabDelistedIPO_after "`N_plusthree' &"
+	* More than three years after
+	file write TabDelistedIPO_after "`N_abovethree' \\"_n
+	file write TabDelistedIPO_after "\bottomrule"
+	file close _all
 restore

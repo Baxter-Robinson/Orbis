@@ -24,7 +24,6 @@ set more off
 * Desktop
 cd "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
 local DATAPATH =  "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
-
 * Laptop
 *cd "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
 *local DATAPATH =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
@@ -53,10 +52,11 @@ foreach Country of local Countries {
 	*-----------------
 	* Use Cleaned data
 	*-----------------
-	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
-	use "Data_Cleaned/`Country'_Compustat.dta",clear
+	*use "Data_Cleaned/`Country'_CompustatUnbalanced.dta",clear
+	*use "Data_Cleaned/`Country'_CompustatBalanced.dta",clear
 	
 	
 	*----------------
@@ -65,12 +65,15 @@ foreach Country of local Countries {
 	
 	*do Graph_Age-Dist.do
 	*do Graph_Change-No-Shareholders-Dist.do
-	*do Graph_Lifecycle.do
 	*do Graph_FirmTypes.do
-	*do Script_DiD-IPO.do
+	do Script_DiD-IPO.do
 	*do Graph_IPOyear-Dist.do
 	*do Graph_Growth_IPOyear-Dist.do
 	*do Graph_Employment-Compustat.do
+	*do Graph_HaltiGrowth_Employment-Dist.do
+	*do Graph_Lifecycle.do
+	*do Graph_Lifecycle-ByFirmType.do
+	*do Graph_Lifecycle-ByFirmType_Compustat.do
 	
 	*----------------
 	* Regressions 
@@ -80,10 +83,14 @@ foreach Country of local Countries {
 	*----------------
 	* Tables
 	*----------------
-	*do Table_Sample-Comparison.do
 	*do Table_Descriptive-Stats.do
 	*do Table_Missing-Observations.do // (use with raw data only)
 	*do Table_IPO-years.do
 	*do Table_IPOyear_Descriptive-Stats.do
-	do Table_CompustatOrbis-Comparison.do
+	*do Table_CompustatOrbis-Comparison.do
+	*do Table_Sample-Comparison.do
+	*do Table_CompustatOrbis-MissingObs.do
+	*do Table_IPOyear_Descriptive-Stats_Compustat.do
+	
+	
 }

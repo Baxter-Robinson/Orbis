@@ -6,19 +6,28 @@ preserve
 	*Name of variables
 	file write TabSampleComp "Year & \multicolumn{2}{c}{Number of public firms} & \multicolumn{2}{c}{Average Employment} & \multicolumn{2}{c}{Total Employment} & \multicolumn{2}{c}{Average Sales (Million)} & \multicolumn{2}{c}{Total Sales (Million)} \\ \midrule"_n
 	file write TabSampleComp  " & Orbis & Compustat & Orbis & Compustat & Orbis & Compustat & Orbis & Compustat & Orbis & Compustat \\ \cmidrule{2-11}"_n
-	* Entry
-	use "Data_Cleaned/${CountryID}_Unbalanced.dta", clear
+	* Merge both datasets
+	use "Data_Cleaned/${CountryID}_Balanced.dta", clear
+	* Only keep firms that don't become delisted
 	gen Delisted_year = yofd(Delisted_date)
 	keep if (FirmType == 6) & (Year < Delisted_year)
+	su Year, detail
+	egen nyear = total(inrange(Year, `r(min)',`r(max)')), by(IDNum)
+	egen max_nyear = max(nyear)
+	keep if nyear == max_nyear
 	keep Sales nEmployees Year IDNum
 	replace Sales = Sales/1000
-	append using "Data_Cleaned/${CountryID}_Compustat.dta", generate(dataset_id)
+	append using "Data_Cleaned/${CountryID}_CompustatBalanced.dta", generate(dataset_id)
+	drop if Sales == .
+	drop if nEmployees == .
 	replace Sales = Sales/1000 // Sales in million $
-	drop if Year < 1995
-	drop if Year > 2018
+	*drop if Year < 1995
+	*drop if Year > 2018
 	bysort Year dataset_id: egen Total_nEmployees = total(nEmployees)
 	bysort Year dataset_id: egen Total_Sales = total(Sales)
-	forvalues t = 1995(1)2018 {
+	su Year
+	* Create tables
+	forvalues t = `r(min)'/`r(max)' {
 		* Number of public firms (Orbis)
 		su Year if (Year == `t') & (dataset_id == 0)
 		global Moment = r(N)

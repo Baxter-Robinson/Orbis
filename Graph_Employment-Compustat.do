@@ -14,7 +14,7 @@ preserve
 	xlabel(1 "1-99"  2 "100-1k" 3 "1k-5k" 4 "5k-15k" 5 "15k-50k" 6 "50k-100k" 7 "100k-200k" 8 "200k+") graphregion(color(white))
 	graph export Output/$CountryID/Distribution_Employment-Compustat.pdf, replace 
 	* Distribution of employment by firm Age
-	bysort Age: egen avgemp_byage = mean(nEmployees)
-	graph twoway (connected avgemp_byage Age), ytitle("Average number of employees") graphregion(color(white))
+	collapse (mean) nEmployees, by(Age)
+	graph twoway (connected nEmployees Age), ytitle("Average number of employees") graphregion(color(white))
 	graph export Output/$CountryID/Age_Employment-Compustat.pdf, replace 
 restore

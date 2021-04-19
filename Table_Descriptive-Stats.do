@@ -27,6 +27,9 @@ preserve
 		else if (`i'==3) {
 			file write TabDescStats "Pvt Firms (More Owners):          & "		
 		}
+		else if (`i'==4) {
+			file write TabDescStats "Pvt Firms (Unkonwn Owners):          & "		
+		}
 		else if (`i'==6) {
 			file write TabDescStats "Public Firms:                     & "		
 		}

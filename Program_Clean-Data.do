@@ -66,6 +66,7 @@ gen FirmType=.
 replace FirmType=1 if (nShareholders==1) & ~(Listed)
 replace FirmType=2 if (nShareholders==2) & ~(Listed)
 replace FirmType=3 if (nShareholders>2) & ~missing(nShareholders) &  ~(Listed)
+replace FirmType=4 if FirmType==. & ~(Listed)
 replace FirmType=6 if (Listed)
 
 
@@ -100,14 +101,14 @@ save "Data_Cleaned/${CountryID}_Unbalanced.dta", replace
 
 * Narrower year range for France
 if "${CountryID}" == "FR"{
-	drop if (Year<2009)
+	drop if (Year<2010)
 	drop if (Year>2014)
 	drop if Sales == .
 	drop if nEmployees == .
 	drop if GrossProfits == .
 	sort IDNum Year
 	*by IDNum: drop if (missing(nEmployees)| missing(Sales))
-	egen nyear = total(inrange(Year, 2009, 2013)), by(IDNum)
+	egen nyear = total(inrange(Year, 2010, 2014)), by(IDNum)
 	keep if nyear == 5
 	drop nyear
 }
