@@ -52,8 +52,8 @@ foreach Country of local Countries {
 	*-----------------
 	* Use Cleaned data
 	*-----------------
-	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
-	*use "Data_Cleaned/`Country'_Balanced.dta",clear
+	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	*use "Data_Cleaned/`Country'_CompustatUnbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_CompustatBalanced.dta",clear
@@ -66,14 +66,16 @@ foreach Country of local Countries {
 	*do Graph_Age-Dist.do
 	*do Graph_Change-No-Shareholders-Dist.do
 	*do Graph_FirmTypes.do
-	do Script_DiD-IPO.do
+	*do Script_DiD-IPO.do
 	*do Graph_IPOyear-Dist.do
 	*do Graph_Growth_IPOyear-Dist.do
 	*do Graph_Employment-Compustat.do
 	*do Graph_HaltiGrowth_Employment-Dist.do
+	*do Graph_HaltiGrowth_Employment_Compustat-Dist.do
 	*do Graph_Lifecycle.do
-	*do Graph_Lifecycle-ByFirmType.do
+	do Graph_Lifecycle-ByFirmType.do
 	*do Graph_Lifecycle-ByFirmType_Compustat.do
+	
 	
 	*----------------
 	* Regressions 

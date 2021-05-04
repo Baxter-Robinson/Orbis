@@ -1,6 +1,8 @@
+* Public: Year of IPO vs other years
 preserve
-	* Haltiwanger measure of employment groweth
-	bysort IDNum: gen EmpGrowth_h = (nEmployees[_n]-nEmployees[_n-1])/((nEmployees[_n]+nEmployees[_n-1])/2)
+	keep if FirmType == 6
+	* Haltiwanger measure of employment growth
+	bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
 	* Convert IPO date from monthly to yearly
 	gen IPO_year = year(IPO_date)
 	* Distribution of plants by employment growth (Haltiwanger) - Comparing Year of IPO
@@ -9,4 +11,47 @@ preserve
 	legend(label(1 "Public Firms - Year of IPO") label(2 "Public Firms - Other years")) ///
 	xtitle("Employment growth - Haltiwanger") graphregion(color(white))
 	graph export Output/$CountryID/Distribution_EmploymentHaltiwanger-IPOyear.pdf, replace 
+	* Haltiwanger measure of Sales growth
+	bysort IDNum: gen SalesGrowth_h = (Sales-L.Sales)/((Sales+L.Sales)/2)
+	twoway (hist SalesGrowth_h if IPO_year == Year, frac lcolor(gs12) fcolor(gs12)) ///
+	(hist SalesGrowth_h if IPO_year > Year | IPO_year < Year, frac lcolor(red) fcolor(none)), ///
+	legend(label(1 "Public Firms - Year of IPO") label(2 "Public Firms - Other years")) ///
+	xtitle("Sales growth - Haltiwanger") graphregion(color(white))
+	graph export Output/$CountryID/Distribution_SalesHaltiwanger-IPOyear.pdf, replace 
+	* Haltiwanger measure of Profits growth
+	bysort IDNum: gen ProfitsGrowth_h = (GrossProfits-L.GrossProfits)/((GrossProfits+L.GrossProfits)/2)
+	twoway (hist ProfitsGrowth_h if IPO_year == Year, frac lcolor(gs12) fcolor(gs12)) ///
+	(hist ProfitsGrowth_h if IPO_year > Year | IPO_year < Year, frac lcolor(red) fcolor(none)), ///
+	legend(label(1 "Public Firms - Year of IPO") label(2 "Public Firms - Other years")) ///
+	xtitle("Profits growth - Haltiwanger") graphregion(color(white))
+	graph export Output/$CountryID/Distribution_ProfitsHaltiwanger-IPOyear.pdf, replace 
+restore
+* Public vs private
+preserve
+	bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
+	gen IPO_year = year(IPO_date)
+	gen Delisted_year = yofd(Delisted_date)
+	gen private = 1 if FirmType != 6 | (FirmType == 6 & Year >= Delisted_year)
+	gen public = 1 if FirmType == 6
+	replace public = 0 if FirmType == 6 & Delisted_year != . & Delisted_year <= Year
+	twoway (hist EmpGrowth_h if public == 1, frac lcolor(gs12) fcolor(gs12)) ///
+	(hist EmpGrowth_h if private == 1, frac lcolor(red) fcolor(none)), ///
+	legend(label(1 "Public Firms") label(2 "Private Firms")) ///
+	xtitle("Employment growth - Haltiwanger") graphregion(color(white))
+	graph export Output/$CountryID/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf, replace 
+restore
+* Delisted vs non-delisted public
+preserve
+	bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
+	gen IPO_year = year(IPO_date)
+	gen Delisted_year = yofd(Delisted_date)
+	keep if FirmType == 6
+	gen public_delisted = 1 if Delisted_year <= Year & Delisted_year != .
+	gen public = 1 if FirmType == 6
+	replace public = 0 if FirmType == 6 & Delisted_year != . & Delisted_year <= Year
+	twoway (hist EmpGrowth_h if public == 1, frac lcolor(gs12) fcolor(gs12)) ///
+	(hist EmpGrowth_h if public_delisted == 1, frac lcolor(red) fcolor(none)), ///
+	legend(label(1 "Public Firms - Not delisted") label(2 "Public Firms - Delisted")) ///
+	xtitle("Employment growth - Haltiwanger") graphregion(color(white))
+	graph export Output/$CountryID/Distribution_EmploymentHaltiwanger-PublicDelisted.pdf, replace 
 restore

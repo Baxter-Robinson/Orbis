@@ -70,7 +70,8 @@ forvalues i = 1/`N' {
 *----------------------
 * Save unbalanced panel
 *----------------------
-
+duplicates drop IDNum Year , force
+xtset IDNum Year
 keep Year gvkey IDNum IPO_year Age nEmployees Sales Assets GrossProfits nShareholders
 save "Data_Cleaned/${CountryID}_CompustatUnbalanced.dta", replace
 
