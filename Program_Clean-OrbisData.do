@@ -89,11 +89,37 @@ drop if (Assets<0)
 
 gen SalesPerEmployee=Sales/nEmployees
 
+*---------------------------
+* IPO Info
+*---------------------------
+
+
+* Convert IPO date from monthly to yearly
+gen IPO_year = year(IPO_date)
+
+
+gen Delisted_year = yofd(Delisted_date)
+
 *----------------------
 * Save unbalanced panel
 *----------------------
 
 save "Data_Cleaned/${CountryID}_Unbalanced.dta", replace
+
+*--------------------------------------------------------------
+* Create country-level-statistics for a country-level database
+*--------------------------------------------------------------
+
+preserve
+
+gen Country="${CountryID}"
+
+collapse (mean) nEmployees , by(Country)
+
+save "Data_Cleaned/${CountryID}_CountryLevel.dta", replace
+
+restore
+
 
 *------------------
 * Balanced Panel

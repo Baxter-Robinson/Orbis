@@ -1,7 +1,6 @@
 preserve
 
 	replace Sales=Sales/1000
-	gen IPO_year = year(IPO_date)
 	keep if Year == IPO_year
 	file close _all
 

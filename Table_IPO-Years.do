@@ -1,6 +1,5 @@
 preserve
-	* Convert IPO date from monthly to yearly
-	gen IPO_year = year(IPO_date)
+
 	* Generate variable that tells number of years before/after IPO
 	gen IPO_timescale = Year - IPO_year
 	* Number of firms for which we have +/- x years relative to IPO
@@ -76,7 +75,6 @@ preserve
 	file close _all
 	
 	* Create table for Number of firms where we observe 1/2/3 years after delisted
-	gen Delisted_year = yofd(Delisted_date)
 	su unique_IPO_delisted if Year - Delisted_year == 1
 	local N_plusone: di %4.0fc r(max)
 	su unique_IPO_delisted if Year - Delisted_year == 2

@@ -12,7 +12,7 @@ preserve
 	* file write TabPubPri " & Employment                   Employment Growth     Employment Volatility"
 	*file write TabPubPri " & Public & Private & Ratio  & Public & Private  & Public & Private   \\ \midrule"_n
 	
-	*file write TabPubPri " ${CountryID} "
+	file write TabPubPri " ${CountryID} "
 		
 	*Public Average Employment
 	su nEmployees if (Listed)
@@ -79,9 +79,6 @@ preserve
 	
 	* Create Haltwinger measure of growth rate
 	bysort IDNum: gen EmpGrowth_h = (nEmployees[_n]-nEmployees[_n-1])/((nEmployees[_n]+nEmployees[_n-1])/2)
-	
-	*IPO Year
-	gen IPO_year = year(IPO_date)
 	
 	* Generate variable that tells number of years before/after IPO
 	gen IPO_timescale = Year - IPO_year

@@ -1,6 +1,5 @@
 preserve
-	* Convert IPO date from monthly to yearly
-	gen IPO_year = year(IPO_date)
+
 	
 	keep IDNum Year IPO_year
 	reshape wide IPO_year, i(IDNum) j(Year)

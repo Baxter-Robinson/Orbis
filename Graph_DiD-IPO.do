@@ -8,10 +8,7 @@ preserve
 	replace SalesPerEmployee = SalesPerEmployee/1000
 	replace GrossProfits = GrossProfits/1000
 	gen Profitability = GrossProfits/Sales
-	* Convert IPO date from monthly to yearly
-	gen IPO_year = year(IPO_date)
-	* Get Delisted year
-	gen Delisted_year = yofd(Delisted_date)
+
 	* Generate variable that tells number of years before/after IPO
 	gen IPO_timescale = Year - IPO_year
 	* Only keep first where we have observations for the variable of interest
