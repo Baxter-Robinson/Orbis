@@ -15,18 +15,18 @@ set more off
 
 * Baxter PATH
 *if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
-*if `"`c(os)'"' == "Windows"   global   stem  `"D:/The-Beast-Files/Dropbox/"'
-*cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
-*local DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
+if `"`c(os)'"' == "Windows"   global   stem  `"D:/Dropbox/"'
+cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
+global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 
 
 * Emmanuel PATH
 * Desktop
-cd "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
-local DATAPATH =  "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
+*cd "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
+*global DATAPATH =  "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
 * Laptop
 *cd "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
-*local DATAPATH =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
+*global DATAPATH =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
 
 *---------------------
 * Loop over countries 
@@ -42,18 +42,18 @@ foreach Country of local Countries {
 	* Clean Data
 	*----------------
 	* Orbis
-	*use "`DATAPATH'/${CountryID}_merge.dta", clear
-	*do Program_Clean-Data.do
+	use "${DATAPATH}/${CountryID}_merge.dta", clear
+	do Program_Clean-OrbisData.do
 	
 	* Compustat
-	*use "`DATAPATH'/${CountryID}_compustat.dta", clear
-	*do Program_Clean-CompustatData.do
+	use "${DATAPATH}/${CountryID}_compustat.dta", clear
+	do Program_Clean-CompustatData.do
 	
 	*-----------------
 	* Use Cleaned data
 	*-----------------
 	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
-	use "Data_Cleaned/`Country'_Balanced.dta",clear
+	*use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	*use "Data_Cleaned/`Country'_CompustatUnbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_CompustatBalanced.dta",clear
@@ -73,7 +73,7 @@ foreach Country of local Countries {
 	*do Graph_HaltiGrowth_Employment-Dist.do
 	*do Graph_HaltiGrowth_Employment_Compustat-Dist.do
 	*do Graph_Lifecycle.do
-	do Graph_Lifecycle-ByFirmType.do
+	*do Graph_Lifecycle-ByFirmType.do
 	*do Graph_Lifecycle-ByFirmType_Compustat.do
 	
 	
