@@ -31,38 +31,58 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 *---------------------
 * Loop over countries 
 *---------------------
-local Countries IT CZ HU FR // US GB
+global Countries IT CZ HU FR // US GB
 
-*local Country="CZ"
-foreach Country of local Countries {
+local Country="IT"
+foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
 
+	*-----------------
+	* Raw Data
+	*-----------------
+	
+	*do Table_Missing-Observations.do // (use with raw data only)
+	
 	*----------------
 	* Clean Data
 	*----------------
 	* Orbis
-	use "${DATAPATH}/${CountryID}_merge.dta", clear
-	do Program_Clean-OrbisData.do
+	*use "${DATAPATH}/${CountryID}_merge.dta", clear
+	*do Program_Clean-OrbisData.do
 	
 	* Compustat
-	use "${DATAPATH}/${CountryID}_compustat.dta", clear
-	do Program_Clean-CompustatData.do
+	*use "${DATAPATH}/${CountryID}_compustat.dta", clear
+	*do Program_Clean-CompustatData.do
 	
 	*-----------------
-	* Use Cleaned data
+	* Unbalanced Panel
 	*-----------------
 	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
-	*use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	*use "Data_Cleaned/`Country'_CompustatUnbalanced.dta",clear
+	
+	
+	*Graphs
+	*------------
+	*do Graph_HaltiGrowth_Employment-Dist.do
+	
+	*Regressions
+	*------------
+	
+	*Tables
+	*------------
+	
+	
+	*-----------------
+	* Balanced Panel
+	*-----------------
+	*use "Data_Cleaned/`Country'_Balanced.dta",clear
+	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	*use "Data_Cleaned/`Country'_CompustatBalanced.dta",clear
 	
-	
-	*----------------
-	* Graphs
-	*----------------
-	
+	*Graphs
+	*------------
 	*do Graph_Age-Dist.do
 	*do Graph_Change-No-Shareholders-Dist.do
 	*do Graph_FirmTypes.do
@@ -70,29 +90,34 @@ foreach Country of local Countries {
 	*do Graph_IPOyear-Dist.do
 	*do Graph_Growth_IPOyear-Dist.do
 	*do Graph_Employment-Compustat.do
-	*do Graph_HaltiGrowth_Employment-Dist.do
 	*do Graph_HaltiGrowth_Employment_Compustat-Dist.do
 	*do Graph_Lifecycle.do
 	*do Graph_Lifecycle-ByFirmType.do
 	*do Graph_Lifecycle-ByFirmType_Compustat.do
 	
 	
-	*----------------
-	* Regressions 
-	*----------------
+	*Regressions
+	*------------
 	*do Regressions_FirmTypes.do
-
-	*----------------
-	* Tables
-	*----------------
+	
+	*Tables
+	*------------
 	*do Table_Descriptive-Stats.do
-	*do Table_Missing-Observations.do // (use with raw data only)
 	*do Table_IPO-years.do
 	*do Table_IPOyear_Descriptive-Stats.do
 	*do Table_CompustatOrbis-Comparison.do
 	*do Table_Sample-Comparison.do
 	*do Table_CompustatOrbis-MissingObs.do
 	*do Table_IPOyear_Descriptive-Stats_Compustat.do
+	*do Table_BySize.do
+	*do Table_CountryStats.do
+		
+
 	
-	
+
 }
+
+*-----------------------------
+* Cross Country Comparisons
+*-----------------------------
+	*do Program_CreateCountryLevelData.do
