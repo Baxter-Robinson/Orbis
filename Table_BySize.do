@@ -31,7 +31,7 @@ preserve
 	file write TabAgeDist " & `Moment' "
 	
 	
-	forval i=2/8{
+	forval i=2/7{
 		local prior=`i'-1
 		su nEmployees if (nEmployees<``i'') & (nEmployees>=``prior'')
 		local Moment: di %8.1fc r(sum)/`Total'*100
@@ -42,6 +42,9 @@ preserve
 		file write TabAgeDist " & `Moment' "
 		
 	}
+	su Age if (nEmployees>=`7')
+	local Moment: di %8.1fc r(mean)
+	file write TabAgeDist " & `Moment' "
 		
 		
 	file write TabEmpShares " \\ "
