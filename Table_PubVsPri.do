@@ -5,7 +5,7 @@ preserve
 
 	file close _all
 
-	file open TabPubPri using Output/${CountryID}/Table_CountryStats_PubVsPri.tex, write replace
+	file open TabPubPri using Output/${CountryID}/Table_PubVsPri.tex, write replace
 
 	
 	*Name of variables
@@ -31,15 +31,13 @@ preserve
 	*--------------------------------
 	* Employment Growth
 	*--------------------------------
-	* Create Haltwinger measure of growth rate
-	bysort IDNum: gen EmpGrowth_h = (nEmployees[_n]-nEmployees[_n-1])/((nEmployees[_n]+nEmployees[_n-1])/2)
 	
-	su EmpGrowth if (Listed)
+	su EmpGrowth_h if (Listed)
 	local Public=r(mean)
 	local PublicSD=r(sd)
 	file write TabPubPri   " & " %12.1fc (`Public')
 	
-	su EmpGrowth if (FirmType<=3)
+	su EmpGrowth_h if (FirmType<=3)
 	local Private=r(mean)
 	local PrivateSD=r(sd)
 	file write TabPubPri   " & " %12.1fc (`Private')

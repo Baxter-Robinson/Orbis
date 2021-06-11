@@ -24,8 +24,6 @@ duplicates drop IDNum Year , force
 
 xtset IDNum Year
 
-
-
 *---------------------------
 * Sector
 *---------------------------
@@ -39,10 +37,13 @@ gen Industry_2digit=floor(Industry_4digit/100)
 rename Number_of_employees nEmployees
 
 drop if (nEmployees<0)
-*drop if missing(nEmployees)
 
+* Employment Growth Rate (Regular)
+bysort IDNum: gen EmpGrowth_r=(nEmployees-L.nEmployees)/(L.nEmployees)
 
-gen EmpGrowth=D.nEmployees/nEmployees
+* Employment Growth Rate (Haltiwanger)
+bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
+	
 
 *---------------------------
 * Ownership
