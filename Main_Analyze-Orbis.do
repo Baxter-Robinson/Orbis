@@ -31,7 +31,7 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 *---------------------
 * Loop over countries 
 *---------------------
-global Countries IT CZ HU FR // US GB
+global Countries CZ HU IT HU FR // US GB
 
 local Country="CZ"
 foreach Country of global Countries {
@@ -55,7 +55,7 @@ foreach Country of global Countries {
 	*use "${DATAPATH}/${CountryID}_compustat.dta", clear
 	*do Program_Clean-CompustatData.do
 	
-	*-----------------
+	*----------------- 
 	* Orbis: Unbalanced Panel
 	*-----------------
 	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
@@ -73,6 +73,11 @@ foreach Country of global Countries {
 	*Tables
 	*------------
 	*do Table_PubVsPri.do
+	*do Table_BySize.do
+	
+	*do Table_IPOs.do
+	*do Table_IPO-years.do
+	*do Table_IPOyear_Descriptive-Stats.do
 	
 	
 	*-----------------
@@ -84,6 +89,9 @@ foreach Country of global Countries {
 	
 	*Graphs
 	*------------
+	*do Graph_Lifecycle.do
+	
+	
 	*do Graph_Age-Dist.do
 	*do Graph_Change-No-Shareholders-Dist.do
 	*do Graph_FirmTypes.do
@@ -92,7 +100,6 @@ foreach Country of global Countries {
 	*do Graph_Growth_IPOyear-Dist.do
 	*do Graph_Employment-Compustat.do
 	*do Graph_HaltiGrowth_Employment_Compustat-Dist.do
-	*do Graph_Lifecycle.do
 	*do Graph_Lifecycle-ByFirmType.do
 	*do Graph_Lifecycle-ByFirmType_Compustat.do
 	
@@ -104,18 +111,13 @@ foreach Country of global Countries {
 	*Tables
 	*------------
 	*do Table_Descriptive-Stats.do
-	*do Table_IPO-years.do
-	*do Table_IPOyear_Descriptive-Stats.do
 	*do Table_CompustatOrbis-Comparison.do
 	*do Table_Sample-Comparison.do
 	*do Table_CompustatOrbis-MissingObs.do
 	*do Table_IPOyear_Descriptive-Stats_Compustat.do
-	*do Table_BySize.do
-	*do Table_IPOs.do
 		
 
 	
-
 }
 
 *-----------------------------
