@@ -25,18 +25,39 @@ duplicates drop IDNum Year , force
 xtset IDNum Year
 
 *---------------------------
+* Number of Employees
+*---------------------------
+rename Number_of_employees nEmployees
+
+drop if (nEmployees<0)
+
+*---------------------------
+* Financials
+*---------------------------
+
+rename Operating_revenue_Turnover Revenue
+rename Costs_of_goods_sold COGS
+rename Costs_of_employees WageBill
+rename Total_assets Assets
+rename P_L_before_tax GrossProfits
+
+
+drop if (Revenue<0)
+drop if (Sales<0)
+drop if (Assets<0)
+*replace Sales = Revenue if (Sales == 0) & (Revenue > 0)
+*drop if Sales == .
+
+gen SalesPerEmployee=Sales/nEmployees
+
+
+*---------------------------
 * Sector
 *---------------------------
 destring NACE_Rev_2_Core_code_4_digits , generate(Industry_4digit)
 
 gen Industry_2digit=floor(Industry_4digit/100)
 
-*---------------------------
-* Number of Employees
-*---------------------------
-rename Number_of_employees nEmployees
-
-drop if (nEmployees<0)
 
 *---------------------------
 * Growth Rates
@@ -53,6 +74,7 @@ bysort IDNum: gen SalesGrowth_h = (Sales-L.Sales)/((Sales+L.Sales)/2)
 
 * Profit Growth Rate (Haltiwanger)
 bysort IDNum: gen ProfitsGrowth_h = (GrossProfits-L.GrossProfits)/((GrossProfits+L.GrossProfits)/2)
+
 *---------------------------
 * Ownership
 *---------------------------
@@ -78,25 +100,6 @@ replace FirmType=3 if (nShareholders>2) & ~missing(nShareholders) &  ~(Listed)
 replace FirmType=4 if FirmType==. & ~(Listed)
 replace FirmType=6 if (Listed)
 
-
-*---------------------------
-* Financials
-*---------------------------
-
-rename Operating_revenue_Turnover Revenue
-rename Costs_of_goods_sold COGS
-rename Costs_of_employees WageBill
-rename Total_assets Assets
-rename P_L_before_tax GrossProfits
-
-
-drop if (Revenue<0)
-drop if (Sales<0)
-drop if (Assets<0)
-*replace Sales = Revenue if (Sales == 0) & (Revenue > 0)
-*drop if Sales == .
-
-gen SalesPerEmployee=Sales/nEmployees
 
 *---------------------------
 * IPO Info
