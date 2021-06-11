@@ -31,7 +31,7 @@ preserve
 	file write TabAgeDist " & `Moment' "
 	
 	
-	forval i=2/7{
+	forval i=2/8{
 		local prior=`i'-1
 		su nEmployees if (nEmployees<``i'') & (nEmployees>=``prior'')
 		local Moment: di %8.1fc r(sum)/`Total'*100

@@ -35,15 +35,15 @@ preserve
 	su EmpGrowth_h if (Listed)
 	local Public=r(mean)
 	local PublicSD=r(sd)
-	file write TabPubPri   " & " %12.1fc (`Public')
+	file write TabPubPri   " & " %12.2fc (`Public')
 	
 	su EmpGrowth_h if (FirmType<=3)
 	local Private=r(mean)
 	local PrivateSD=r(sd)
-	file write TabPubPri   " & " %12.1fc (`Private')
+	file write TabPubPri   " & " %12.2fc (`Private')
 
-	file write TabPubPri   " & " %12.1fc (`PublicSD')
-	file write TabPubPri   " & " %12.1fc (`PrivateSD')
+	file write TabPubPri   " & " %12.2fc (`PublicSD')
+	file write TabPubPri   " & " %12.2fc (`PrivateSD')
 	
 	*--------------------------------
 	* N Employees

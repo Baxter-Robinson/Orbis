@@ -32,9 +32,9 @@ preserve
 	file close _all
 	file open TabIPOyears using Output/${CountryID}/Table_IPO-Years.tex, write replace
 	*Name of variables
-	file write TabIPOyears "& Total & (+/-) One year & (+/-) Two years & (+/-) Three years \\ \midrule"_n
+	*file write TabIPOyears "& Total & (+/-) One year & (+/-) Two years & (+/-) Three years \\ \midrule"_n
 	* Numer of IPO Firms
-	file write TabIPOyears "Number of IPO Firms &"
+	file write TabIPOyears " ${CountryID} &"
 	* Total
 	egen unique_IPO = group(IDNum) if IPO_year != .
 	su unique_IPO 
@@ -52,7 +52,6 @@ preserve
 	su PlusMinus_ThreeYears
 	local N: di %12.0fc r(N)/7
 	file write TabIPOyears "`N' \\"_n
-	file write TabIPOyears "\bottomrule"
 	file close _all
 	
 	* Create table for proportion of IPO firms that become delisted
