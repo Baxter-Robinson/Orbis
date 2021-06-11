@@ -1,24 +1,18 @@
 * Public: Year of IPO vs other years
 preserve
 	keep if FirmType == 6
-	* Haltiwanger measure of employment growth
-	xtset IDNum Year
-	bysort IDNum : gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
 	* Distribution of plants by employment growth (Haltiwanger) - Comparing Year of IPO
 	twoway (hist EmpGrowth_h if IPO_year == Year, frac lcolor(gs12) fcolor(gs12)) ///
 	(hist EmpGrowth_h if IPO_year > Year | IPO_year < Year, frac lcolor(red) fcolor(none)), ///
 	legend(label(1 "Public Firms - Year of IPO") label(2 "Public Firms - Other years")) ///
 	xtitle("Employment growth - Haltiwanger") graphregion(color(white))
 	graph export Output/$CountryID/Distribution_EmploymentHaltiwanger-IPOyear.pdf, replace 
-	* Haltiwanger measure of Sales growth
-	bysort IDNum: gen SalesGrowth_h = (Sales-L.Sales)/((Sales+L.Sales)/2)
 	twoway (hist SalesGrowth_h if IPO_year == Year, frac lcolor(gs12) fcolor(gs12)) ///
 	(hist SalesGrowth_h if IPO_year > Year | IPO_year < Year, frac lcolor(red) fcolor(none)), ///
 	legend(label(1 "Public Firms - Year of IPO") label(2 "Public Firms - Other years")) ///
 	xtitle("Sales growth - Haltiwanger") graphregion(color(white))
 	graph export Output/$CountryID/Distribution_SalesHaltiwanger-IPOyear.pdf, replace 
-	* Haltiwanger measure of Profits growth
-	bysort IDNum: gen ProfitsGrowth_h = (GrossProfits-L.GrossProfits)/((GrossProfits+L.GrossProfits)/2)
+
 	twoway (hist ProfitsGrowth_h if IPO_year == Year, frac lcolor(gs12) fcolor(gs12)) ///
 	(hist ProfitsGrowth_h if IPO_year > Year | IPO_year < Year, frac lcolor(red) fcolor(none)), ///
 	legend(label(1 "Public Firms - Year of IPO") label(2 "Public Firms - Other years")) ///
@@ -28,9 +22,6 @@ preserve
 restore
 * Public vs private
 preserve
-
-	xtset IDNum Year
-	bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
 	gen private = 1 if FirmType != 6 | (FirmType == 6 & Year >= Delisted_year)
 	gen public = 1 if FirmType == 6
 	replace public = 0 if FirmType == 6 & Delisted_year != . & Delisted_year <= Year
@@ -42,9 +33,6 @@ preserve
 restore
 * Delisted vs non-delisted public
 preserve
-
-	xtset IDNum Year
-	bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
 	keep if FirmType == 6
 	gen public_delisted = 1 if Delisted_year <= Year & Delisted_year != .
 	gen public = 1 if FirmType == 6

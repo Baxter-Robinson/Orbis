@@ -38,13 +38,21 @@ rename Number_of_employees nEmployees
 
 drop if (nEmployees<0)
 
+*---------------------------
+* Growth Rates
+*---------------------------
+
 * Employment Growth Rate (Regular)
 bysort IDNum: gen EmpGrowth_r=(nEmployees-L.nEmployees)/(L.nEmployees)
 
 * Employment Growth Rate (Haltiwanger)
 bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
 	
+* Sales Growth Rate (Haltiwanger)
+bysort IDNum: gen SalesGrowth_h = (Sales-L.Sales)/((Sales+L.Sales)/2)
 
+* Profit Growth Rate (Haltiwanger)
+bysort IDNum: gen ProfitsGrowth_h = (GrossProfits-L.GrossProfits)/((GrossProfits+L.GrossProfits)/2)
 *---------------------------
 * Ownership
 *---------------------------

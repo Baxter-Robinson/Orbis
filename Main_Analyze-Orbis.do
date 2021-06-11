@@ -56,7 +56,7 @@ foreach Country of global Countries {
 	*do Program_Clean-CompustatData.do
 	
 	*-----------------
-	* Unbalanced Panel
+	* Orbis: Unbalanced Panel
 	*-----------------
 	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
@@ -76,7 +76,7 @@ foreach Country of global Countries {
 	
 	
 	*-----------------
-	* Balanced Panel
+	* Orbis: Balanced Panel
 	*-----------------
 	*use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
