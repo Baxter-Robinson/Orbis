@@ -33,7 +33,7 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 *---------------------
 global Countries IT CZ HU FR // US GB
 
-local Country="IT"
+local Country="CZ"
 foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
@@ -72,6 +72,7 @@ foreach Country of global Countries {
 	
 	*Tables
 	*------------
+	*do Table_PubVsPri.do
 	
 	
 	*-----------------
@@ -110,7 +111,7 @@ foreach Country of global Countries {
 	*do Table_CompustatOrbis-MissingObs.do
 	*do Table_IPOyear_Descriptive-Stats_Compustat.do
 	*do Table_BySize.do
-	*do Table_CountryStats.do
+	*do Table_IPOs.do
 		
 
 	
