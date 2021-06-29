@@ -1,5 +1,8 @@
 file close _all
 
+* Use Raw Data
+use "${DATAPATH}/${CountryID}_merge.dta", clear
+
 file open TabMissingObs using Output/${CountryID}/Table_Missing-Observations.tex, write replace
 
 * Table format for latex (top)

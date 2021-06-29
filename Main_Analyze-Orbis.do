@@ -31,10 +31,10 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 *---------------------
 * Loop over countries 
 *---------------------
-global Countries CZ HU IT FR // US GB
+global Countries NL AT BE DE CZ FI PT HU ES IT FR // US GB
 
-local Country="CZ"
-foreach Country of global Countries {
+local Country="NL"
+*foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
 
@@ -60,16 +60,18 @@ foreach Country of global Countries {
 	*-----------------
 	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
-	*use "Data_Cleaned/`Country'_CompustatUnbalanced.dta",clear
-	
 	
 	*Graphs
 	*------------
 	*do Graph_HaltiGrowth_Employment-Dist.do
+	*do Script_DiD-IPO.do
+	*do Graph_IPOyear-Dist.do
+	*do Graph_Growth_IPOyear-Dist.do
+	
 	
 	*Regressions
 	*------------
-	
+
 	*Tables
 	*------------
 	*do Table_PubVsPri.do
@@ -84,24 +86,24 @@ foreach Country of global Countries {
 	* Orbis: Balanced Panel
 	*-----------------
 	*use "Data_Cleaned/`Country'_Balanced.dta",clear
-	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
+	use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	*use "Data_Cleaned/`Country'_CompustatBalanced.dta",clear
 	
 	*Graphs
 	*------------
 	*do Graph_Lifecycle.do
-	
+	*do Graph_Lifecycle-ByFirmType.do
+	*do Graph_Lifecycle-ByFirmType_Compustat.do	
 	
 	*do Graph_Age-Dist.do
 	*do Graph_Change-No-Shareholders-Dist.do
 	*do Graph_FirmTypes.do
-	*do Script_DiD-IPO.do
-	*do Graph_IPOyear-Dist.do
-	*do Graph_Growth_IPOyear-Dist.do
+	
+	
+	
 	*do Graph_Employment-Compustat.do
 	*do Graph_HaltiGrowth_Employment_Compustat-Dist.do
-	*do Graph_Lifecycle-ByFirmType.do
-	*do Graph_Lifecycle-ByFirmType_Compustat.do
+
 	
 	
 	*Regressions
@@ -116,9 +118,28 @@ foreach Country of global Countries {
 	*do Table_CompustatOrbis-MissingObs.do
 	*do Table_IPOyear_Descriptive-Stats_Compustat.do
 		
-
+	*----------------- 
+	* Compustat: Unbalanced Panel
+	*-----------------
+	*use "Data_Cleaned/`Country'_CompustatUnbalanced.dta",clear
 	
-}
+	*do Table_CompustatOrbis-Comparison.do
+	*do Table_IPOyear_Descriptive-Stats_Compustat.do
+	*do Table_CompustatOrbis-MissingObs.do
+	
+	*-----------------
+	* Compustat: Balanced Panel
+	*-----------------
+	*use "Data_Cleaned/`Country'_CompustatBalanced.dta",clear
+	
+	*Graphs	
+	*------------
+	*do Graph_Employment-Compustat.do
+	*do Graph_HaltiGrowth_Employment_Compustat-Dist.do
+
+
+		
+*}
 
 *-----------------------------
 * Cross Country Comparisons
