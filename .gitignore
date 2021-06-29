@@ -1,7 +1,6 @@
 Output/
 Data_Raw/
 Data_Cleaned/
-Data_Report/
 *.aux
 *.log
 *.pdf
