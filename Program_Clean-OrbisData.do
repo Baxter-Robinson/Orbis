@@ -126,7 +126,40 @@ preserve
 
 gen Country="${CountryID}"
 
-collapse (mean) nEmployees , by(Country)
+gen EmpGrowthInIPOYear=EmpGrowth_h if (IPO_year==Year)
+gen EmpGrowthAroundIPOYear=EmpGrowth_h if ((IPO_year>=Year-1) & (IPO_year<=Year+1))
+
+
+gen EmpOfIPOingFirm=nEmployees if  (IPO_year==Year)
+
+* Private Share of Employment
+su nEmployees if (Listed)
+local Public=r(sum)
+local PublicAvg=r(mean)
+
+su nEmployees if (~Listed)
+local Private=r(sum)
+local PrivateAvg=r(mean)
+
+gen PrivateShareOfEmp=`Private'/(`Public'+`Private')
+gen PublicAvg=`PublicAvg'
+gen PrivateAvg= `PrivateAvg'
+
+
+* Share of number of firms
+su nEmployees if (Listed) 
+local nPublic=r(N)
+
+su nEmployees if (~Listed) 
+local nPrivate=r(N)
+
+gen PrivateShareOfFirms=`nPrivate'/(`nPublic'+`nPrivate')
+
+
+
+
+collapse (mean) nEmployees EmpGrowthInIPOYear EmpOfIPOingFirm EmpGrowthAroundIPOYear PrivateShareOfEmp ///
+PublicAvg PrivateAvg PrivateShareOfFirms  , by(Country)
 
 save "Data_Cleaned/${CountryID}_CountryLevel.dta", replace
 

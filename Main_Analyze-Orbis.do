@@ -31,7 +31,7 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 *---------------------
 * Loop over countries 
 *---------------------
-global Countries CZ HU IT HU FR // US GB
+global Countries CZ HU IT FR // US GB
 
 local Country="CZ"
 foreach Country of global Countries {
@@ -42,7 +42,7 @@ foreach Country of global Countries {
 	* Raw Data
 	*-----------------
 	
-	*do Table_Missing-Observations.do // (use with raw data only)
+	*do Table_Missing-Observations.do //
 	
 	*----------------
 	* Clean Data
@@ -123,4 +123,7 @@ foreach Country of global Countries {
 *-----------------------------
 * Cross Country Comparisons
 *-----------------------------
-	*do Program_CreateCountryLevelData.do
+
+*do Load_Cross-Country-Dataset.do
+
+*do Table_Model-Moments.do
