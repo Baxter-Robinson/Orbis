@@ -63,8 +63,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.6]{../Output/CZ/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.6]{../Output/NL/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -89,15 +89,13 @@
           & \multicolumn{3}{c}{Avg Number of Employees} & \multicolumn{2}{c}{Mean Growth Rate} & \multicolumn{2}{c}{Std of Growth Rate}  & \multicolumn{2}{c}{n firm-year Obs} \\
          & Public & Private & Ratio  & Public & Private  & Public & Private & Public & Private   \\ \midrule
         \input{../Output/IT/Table_PubVsPri.tex}
-        \input{../Output/CZ/Table_PubVsPri.tex}
+        \input{../Output/NL/Table_PubVsPri.tex}
         \input{../Output/HU/Table_PubVsPri.tex}
         \input{../Output/FR/Table_PubVsPri.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 \pagebreak
-%\end{document}
 
 % section private_vs_public (end)
 
@@ -117,14 +115,12 @@
         \toprule
         & 1-9 & 10-99 & 100-999 & 1,000-4,999 & 5,000-14,999 & 15,000-49,999 & 50,000-99,999 & 100,000-199,999 & 200,000+  \\ \midrule
         \input{../Output/IT/Table_BySize_EmpShares.tex}
-        \input{../Output/CZ/Table_BySize_EmpShares.tex}
+        \input{../Output/NL/Table_BySize_EmpShares.tex}
         \input{../Output/HU/Table_BySize_EmpShares.tex}
         \input{../Output/FR/Table_BySize_EmpShares.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
-
 
 
 \subsection{Average ``Age'' by Size} % (fold)
@@ -136,16 +132,15 @@
         \toprule
         & 1-9 & 10-99 & 100-999 & 1,000-4,999 & 5,000-14,999 & 15,000-49,999 & 50,000-99,999 & 100,000-199,999 & 200,000+  \\ \midrule
         \input{../Output/IT/Table_BySize_AgeDist.tex}
-        \input{../Output/CZ/Table_BySize_AgeDist.tex}
+        \input{../Output/NL/Table_BySize_AgeDist.tex}
         \input{../Output/HU/Table_BySize_AgeDist.tex}
         \input{../Output/FR/Table_BySize_AgeDist.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \subsection{Number of Firm-Year Observations by Size} % (fold)
-\label{sec:age_by_size}
+\label{sec:nFirms_by_size}
 
 \begin{table}[!htpb]
     \scalebox{0.8}{
@@ -153,45 +148,44 @@
         \toprule
         & 1-9 & 10-99 & 100-999 & 1,000-4,999 & 5,000-14,999 & 15,000-49,999 & 50,000-99,999 & 100,000-199,999 & 200,000+  \\ \midrule
         \input{../Output/IT/Table_BySize_NFirms.tex}
-        \input{../Output/CZ/Table_BySize_NFirms.tex}
+        \input{../Output/NL/Table_BySize_NFirms.tex}
         \input{../Output/HU/Table_BySize_NFirms.tex}
         \input{../Output/FR/Table_BySize_NFirms.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 \pagebreak
 
 
-\subsection{Distribution of firms across employment bins}
+% \subsection{Distribution of firms across employment bins}
 
-\begin{figure}[!htpb]
-\centering
-\caption{Distribution of firms across employment bins (Compustat)}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Italy}
- \includegraphics[scale=0.60]{../Output/IT/Distribution_Employment-Compustat.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Distribution_Employment-Compustat.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{France}
- \includegraphics[scale=0.60]{../Output/FR/Distribution_Employment-Compustat.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Hungary}
- \includegraphics[scale=0.60]{../Output/HU/Distribution_Employment-Compustat.pdf}
-\end{subfigure}
-\end{figure}
-\pagebreak
+% \begin{figure}[!htpb]
+% \centering
+% \caption{Distribution of firms across employment bins (Compustat)}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.60]{../Output/IT/Distribution_Employment-Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Netherlands}
+%  \includegraphics[scale=0.60]{../Output/NL/Distribution_Employment-Compustat.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.60]{../Output/FR/Distribution_Employment-Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Hungary}
+%  \includegraphics[scale=0.60]{../Output/HU/Distribution_Employment-Compustat.pdf}
+% \end{subfigure}
+% \end{figure}
+% \pagebreak
 
-\pagebreak
+
 % subsection employment_by_size (end)
 
 
@@ -213,12 +207,11 @@
         \toprule
         & Total & (+/-) One year & (+/-) Two years & (+/-) Three years \\ \midrule
         \input{../Output/IT/Table_IPO-Years.tex}
-        \input{../Output/CZ/Table_IPO-Years.tex}
+        \input{../Output/NL/Table_IPO-Years.tex}
         \input{../Output/HU/Table_IPO-Years.tex}
         \input{../Output/FR/Table_IPO-Years.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 
@@ -232,12 +225,11 @@
           & \multicolumn{2}{c}{Employment Growth} &  \\
          & Year Before & Year After & n IPOs  \\ \midrule
         \input{../Output/IT/Table_IPOs.tex}
-        \input{../Output/CZ/Table_IPOs.tex}
+        \input{../Output/NL/Table_IPOs.tex}
         \input{../Output/HU/Table_IPOs.tex}
         \input{../Output/FR/Table_IPOs.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 
@@ -252,7 +244,7 @@
         \input{../Output/IT/Table_IPOyear_Descriptive-Stats.tex}
         \input{../Output/FR/Table_IPOyear_Descriptive-Stats.tex}
         \input{../Output/HU/Table_IPOyear_Descriptive-Stats.tex}
-        \input{../Output/CZ/Table_IPOyear_Descriptive-Stats.tex}
+        \input{../Output/NL/Table_IPOyear_Descriptive-Stats.tex}
     \end{tabular}
     }
 \end{table}
@@ -271,8 +263,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Distribution_EmploymentHaltiwanger-IPOyear.pdf}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Distribution_EmploymentHaltiwanger-IPOyear.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -287,31 +279,31 @@
 \end{figure}
 \pagebreak
 
-\subsection{Employment Growth in the year of IPO vs Other years \\(Compustat)}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Italy}
- \includegraphics[scale=0.90]{../Output/IT/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.90]{../Output/CZ/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{France}
- \includegraphics[scale=0.90]{../Output/FR/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Hungary}
- \includegraphics[scale=0.90]{../Output/HU/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
-\end{subfigure}
-\end{figure}
-\pagebreak
+% \subsection{Employment Growth in the year of IPO vs Other years \\(Compustat)}
+% \begin{figure}[!htpb]
+% \centering
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.90]{../Output/IT/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Netherlands}
+%  \includegraphics[scale=0.90]{../Output/NL/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.90]{../Output/FR/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Hungary}
+%  \includegraphics[scale=0.90]{../Output/HU/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
+% \end{subfigure}
+% \end{figure}
+% \pagebreak
 
 
 
@@ -325,8 +317,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Distribution_EmploymentHaltiwanger-PublicDelisted.pdf}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Distribution_EmploymentHaltiwanger-PublicDelisted.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -365,8 +357,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Employment}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Employment}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -381,31 +373,31 @@
 \end{figure}
 \pagebreak
 
-\begin{figure}[!htpb]
-\centering
-\caption{Average Employment by Year (Compustat)}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Italy}
- \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_Compustat.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Employment_Compustat.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{France}
- \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_Compustat.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Hungary}
- \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Employment_Compustat.pdf}
-\end{subfigure}
-\end{figure}
-\pagebreak
+% \begin{figure}[!htpb]
+% \centering
+% \caption{Average Employment by Year (Compustat)}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Netherlands}
+%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Employment_Compustat.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Hungary}
+%  \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Employment_Compustat.pdf}
+% \end{subfigure}
+% \end{figure}
+% \pagebreak
 
 
 \begin{figure}[!htpb]
@@ -418,8 +410,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Employment_byFirmType}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Employment_byFirmType}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -444,8 +436,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Employment_Private_ptile}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Employment_Private_ptile}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -470,8 +462,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Employment_Public_ptile}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Employment_Public_ptile}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -487,31 +479,31 @@
 \pagebreak
 
 
-\begin{figure}[!htpb]
-\centering
-\caption{Employment Percentiles by Year (Public Firms in Compustat)}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Italy}
- \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_ptile_Compustat.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Employment_ptile_Compustat.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{France}
- \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_ptile_Compustat.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Hungary}
- \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Employment_ptile_Compustat.pdf}
-\end{subfigure}
-\end{figure}
-\pagebreak
+% \begin{figure}[!htpb]
+% \centering
+% \caption{Employment Percentiles by Year (Public Firms in Compustat)}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_ptile_Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Netherlands}
+%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Employment_ptile_Compustat.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_ptile_Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Hungary}
+%  \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Employment_ptile_Compustat.pdf}
+% \end{subfigure}
+% \end{figure}
+% \pagebreak
 
 
 % subsection employment (end)
@@ -529,8 +521,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_EmploymentGrowth_byFirmType}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_EmploymentGrowth_byFirmType}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -557,8 +549,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_EmploymentGrowth_Private_ptile}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_EmploymentGrowth_Private_ptile}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -583,8 +575,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_EmploymentGrowth_Public_ptile}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_EmploymentGrowth_Public_ptile}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -601,31 +593,31 @@
 
 
 
-\begin{figure}[!htpb]
-\centering
-\caption{Percentiles of Employment Growth (Public Firms in Compustat)}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Italy}
- \includegraphics[scale=0.60]{../Output/IT/Lifecycle_EmploymentGrowth_Compustat.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_EmploymentGrowth_Compustat.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{France}
- \includegraphics[scale=0.60]{../Output/FR/Lifecycle_EmploymentGrowth_Compustat.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Hungary}
- \includegraphics[scale=0.60]{../Output/HU/Lifecycle_EmploymentGrowth_Compustat.pdf}
-\end{subfigure}
-\end{figure}
-\pagebreak
+% \begin{figure}[!htpb]
+% \centering
+% \caption{Percentiles of Employment Growth (Public Firms in Compustat)}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.60]{../Output/IT/Lifecycle_EmploymentGrowth_Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Netherlands}
+%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_EmploymentGrowth_Compustat.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.60]{../Output/FR/Lifecycle_EmploymentGrowth_Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Hungary}
+%  \includegraphics[scale=0.60]{../Output/HU/Lifecycle_EmploymentGrowth_Compustat.pdf}
+% \end{subfigure}
+% \end{figure}
+% \pagebreak
 
 
 % subsection employment_growth (end)
@@ -646,8 +638,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Revenue_Costs}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Revenue_Costs}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -689,7 +681,6 @@
         \input{../Output/IT/Table_Descriptive-Stats}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -701,7 +692,6 @@
         \input{../Output/FR/Table_Descriptive-Stats}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -713,19 +703,17 @@
         \input{../Output/HU/Table_Descriptive-Stats}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
-    \caption{Descriptive Statistics - Czech Republic}
+    \caption{Descriptive Statistics - Netherlands}
     \scalebox{0.6}{
     \begin{tabular}{@{}ccccccc@{}}
         \toprule
-        \input{../Output/CZ/Table_Descriptive-Stats}
+        \input{../Output/NL/Table_Descriptive-Stats}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 \pagebreak
 
@@ -740,7 +728,6 @@
         \input{../Output/IT/Table_Missing-Observations.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -752,7 +739,6 @@
         \input{../Output/FR/Table_Missing-Observations.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -764,76 +750,71 @@
         \input{../Output/HU/Table_Missing-Observations.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
-    \caption{Missing Observations - Czech Republic}
+    \caption{Missing Observations - Netherlands}
     \scalebox{0.9}{
     \begin{tabular}{@{}cccccc@{}}
         \toprule
-        \input{../Output/CZ/Table_Missing-Observations.tex}
+        \input{../Output/NL/Table_Missing-Observations.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 \pagebreak
 
 
 
-\begin{table}[!htpb]
-    \centering
-    \caption{Sample Comparison - Italy}
-    \scalebox{0.9}{
-    \begin{tabular}{@{}ccc@{}}
-        \toprule
-        \input{../Output/IT/Table_Sample-Comparison.tex}
-    \end{tabular}
-    }
-    \label{tab:my_label}
-\end{table}
+% \begin{table}[!htpb]
+%     \centering
+%     \caption{Sample Comparison - Italy}
+%     \scalebox{0.9}{
+%     \begin{tabular}{@{}ccc@{}}
+%         \toprule
+%         \input{../Output/IT/Table_Sample-Comparison.tex}
+%     \end{tabular}
+%     }
+% \end{table}
 
-\begin{table}[!htpb]
-    \centering
-    \caption{Sample Comparison - France}
-    \scalebox{0.9}{
-    \begin{tabular}{@{}ccc@{}}
-        \toprule
-        \input{../Output/FR/Table_Sample-Comparison.tex}
-    \end{tabular}
-    }
-    \label{tab:my_label}
-\end{table}
+% \begin{table}[!htpb]
+%     \centering
+%     \caption{Sample Comparison - France}
+%     \scalebox{0.9}{
+%     \begin{tabular}{@{}ccc@{}}
+%         \toprule
+%         \input{../Output/FR/Table_Sample-Comparison.tex}
+%     \end{tabular}
+%     }
+% \end{table}
 
-\begin{table}[!htpb]
-    \centering
-    \caption{Sample Comparison - Hungary}
-    \scalebox{0.9}{
-    \begin{tabular}{@{}ccc@{}}
-        \toprule
-        \input{../Output/HU/Table_Sample-Comparison.tex}
-    \end{tabular}
-    }
-    \label{tab:my_label}
-\end{table}
+% \begin{table}[!htpb]
+%     \centering
+%     \caption{Sample Comparison - Hungary}
+%     \scalebox{0.9}{
+%     \begin{tabular}{@{}ccc@{}}
+%         \toprule
+%         \input{../Output/HU/Table_Sample-Comparison.tex}
+%     \end{tabular}
+%     }
+% \end{table}
 
-\begin{table}[!htpb]
-    \centering
-    \caption{Sample Comparison - Czech Republic}
-    \scalebox{0.9}{
-    \begin{tabular}{@{}ccc@{}}
-        \toprule
-        \input{../Output/CZ/Table_Sample-Comparison.tex}
-    \end{tabular}
-    }
-    \label{tab:my_label}
-\end{table}
-\pagebreak
+% \begin{table}[!htpb]
+%     \centering
+%     \caption{Sample Comparison - Netherlands}
+%     \scalebox{0.9}{
+%     \begin{tabular}{@{}ccc@{}}
+%         \toprule
+%         \input{../Output/NL/Table_Sample-Comparison.tex}
+%     \end{tabular}
+%     }
+% \end{table}
+% \pagebreak
 
 % section data_structure (end)
 
 
+\end{document}
 %------------------------------------------------------------------------------
 \FloatBarrier
 \section{Sample Comparison Orbis and Compustat} % (fold)
@@ -853,7 +834,6 @@
         \input{../Output/IT/Table_CompustatOrbis-Comparison.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -865,7 +845,6 @@
         \input{../Output/FR/Table_CompustatOrbis-Comparison.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -877,19 +856,17 @@
         \input{../Output/HU/Table_CompustatOrbis-Comparison.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
-    \caption{Czech Republic}
+    \caption{Netherlands}
     \scalebox{0.6}{
     \begin{tabular}{@{}ccccccccccc@{}}
     \toprule
-        \input{../Output/CZ/Table_CompustatOrbis-Comparison.tex}
+        \input{../Output/NL/Table_CompustatOrbis-Comparison.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 \pagebreak
 
@@ -905,7 +882,6 @@
         \input{../Output/IT/Table_CompustatOrbis-MissingObs.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -917,7 +893,6 @@
         \input{../Output/FR/Table_CompustatOrbis-MissingObs.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -929,19 +904,17 @@
         \input{../Output/HU/Table_CompustatOrbis-MissingObs.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
-    \caption{Czech Republic}
+    \caption{Netherlands}
     \scalebox{0.6}{
     \begin{tabular}{@{}ccccccccccccc@{}}
     \toprule
-        \input{../Output/CZ/Table_CompustatOrbis-MissingObs.tex}
+        \input{../Output/NL/Table_CompustatOrbis-MissingObs.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 \pagebreak
 
@@ -978,8 +951,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/FirmTypes_Growth-Emp}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/FirmTypes_Growth-Emp}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1019,8 +992,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Distribution_IPO-Year}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Distribution_IPO-Year}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1049,7 +1022,6 @@
         \input{../Output/IT/Table_IPO-Delisted.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -1061,7 +1033,6 @@
         \input{../Output/FR/Table_IPO-Delisted.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -1073,19 +1044,17 @@
         \input{../Output/HU/Table_IPO-Delisted.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
-    \caption{Czech Republic}
+    \caption{Netherlands}
     \scalebox{0.9}{
     \begin{tabular}{@{}ccc@{}}
         \toprule
-        \input{../Output/CZ/Table_IPO-Delisted.tex}
+        \input{../Output/NL/Table_IPO-Delisted.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 \pagebreak
 
@@ -1101,7 +1070,6 @@
         \input{../Output/IT/Table_IPO-AfterDelisted.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -1113,7 +1081,6 @@
         \input{../Output/FR/Table_IPO-AfterDelisted.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -1125,19 +1092,17 @@
         \input{../Output/HU/Table_IPO-AfterDelisted.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
-    \caption{Czech Republic}
+    \caption{Netherlands}
     \scalebox{0.9}{
     \begin{tabular}{@{}cccc@{}}
         \toprule
-        \input{../Output/CZ/Table_IPO-AfterDelisted.tex}
+        \input{../Output/NL/Table_IPO-AfterDelisted.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 \pagebreak
 
@@ -1153,8 +1118,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.90]{../Output/CZ/Distribution_SalesHaltiwanger-IPOyear.pdf}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.90]{../Output/NL/Distribution_SalesHaltiwanger-IPOyear.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1179,8 +1144,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.90]{../Output/CZ/Distribution_ProfitsHaltiwanger-IPOyear.pdf}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.90]{../Output/NL/Distribution_ProfitsHaltiwanger-IPOyear.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1210,8 +1175,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_Sales}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/IPO_YearMinusIPO_Sales}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1236,8 +1201,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_SalesPerEmployee}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/IPO_YearMinusIPO_SalesPerEmployee}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1262,8 +1227,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_GrossProfits}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/IPO_YearMinusIPO_GrossProfits}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1288,8 +1253,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_Profitability}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/IPO_YearMinusIPO_Profitability}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1314,8 +1279,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_nEmployees}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/IPO_YearMinusIPO_nEmployees}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1341,8 +1306,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_nEmployees_decomposition}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/IPO_YearMinusIPO_nEmployees_decomposition}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1368,8 +1333,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_SalesGrowth_h}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/IPO_YearMinusIPO_SalesGrowth_h}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1394,8 +1359,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_EmpGrowth_h}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/IPO_YearMinusIPO_EmpGrowth_h}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1420,8 +1385,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_ProfitGrowth_h}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/IPO_YearMinusIPO_ProfitGrowth_h}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1455,8 +1420,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_nFirms}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_nFirms}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1482,8 +1447,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_nShareholders}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_nShareholders}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1510,8 +1475,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Public}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Public}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1542,8 +1507,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Revenue_Sales}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Revenue_Sales}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1570,8 +1535,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Sales_byFirmType}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Sales_byFirmType}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1596,8 +1561,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Sales_Compustat.pdf}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Sales_Compustat.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1623,8 +1588,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Sales_Private_ptile}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Sales_Private_ptile}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1649,8 +1614,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Sales_Public_ptile}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Sales_Public_ptile}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1675,8 +1640,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Sales_ptile_Compustat.pdf}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Sales_ptile_Compustat.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1702,8 +1667,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_SalesGrowth_byFirmType}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_SalesGrowth_byFirmType}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1728,8 +1693,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_SalesGrowth_Compustat.pdf}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_SalesGrowth_Compustat.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1754,8 +1719,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_SalesGrowth_Private_ptile}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_SalesGrowth_Private_ptile}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1780,8 +1745,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_SalesGrowth_Public_ptile}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_SalesGrowth_Public_ptile}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1806,8 +1771,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_SalesGrowth_ptile_Compustat.pdf}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_SalesGrowth_ptile_Compustat.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1842,8 +1807,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Assets}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Assets}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1883,8 +1848,8 @@
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Distribution_Firm-YearbyAge}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Distribution_Firm-YearbyAge}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1913,8 +1878,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Distribution_Firm-Year}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Distribution_Firm-Year}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1941,8 +1906,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Distribution_Firm-Age}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Distribution_Firm-Age}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -1969,8 +1934,8 @@
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Czech Republic}
- \includegraphics[scale=0.60]{../Output/CZ/Distribution_Change-No-Shareholders}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.60]{../Output/NL/Distribution_Change-No-Shareholders}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
@@ -2009,7 +1974,6 @@
         \input{../Output/IT/Table_IPOyear_Descriptive-Compustats.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -2021,7 +1985,6 @@
         \input{../Output/FR/Table_IPOyear_Descriptive-Compustats.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
@@ -2033,19 +1996,17 @@
         \input{../Output/HU/Table_IPOyear_Descriptive-Compustats.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 
 \begin{table}[!htpb]
     \centering
-    \caption{Descriptive Statistics - Czech Republic}
+    \caption{Descriptive Statistics - Netherlands}
     \scalebox{0.6}{
     \begin{tabular}{@{}ccccccc@{}}
         \toprule
-        \input{../Output/CZ/Table_IPOyear_Descriptive-Compustats.tex}
+        \input{../Output/NL/Table_IPOyear_Descriptive-Compustats.tex}
     \end{tabular}
     }
-    \label{tab:my_label}
 \end{table}
 \pagebreak
 
