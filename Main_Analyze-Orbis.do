@@ -38,15 +38,17 @@ local Country="NL"
 	clear all
 	global CountryID="`Country'"
 
-	*-----------------
+	*-------------------------------------------------------
 	* Raw Data
-	*-----------------
+	*-------------------------------------------------------
 	
-	*do Table_Missing-Observations.do //
+	*do Table_Missing-Observations.do
 	
-	*----------------
+	*do Table_CompustatOrbis-MissingObs.do
+	
+	*-------------------------------------------------------
 	* Clean Data
-	*----------------
+	*-------------------------------------------------------
 	* Orbis
 	*use "${DATAPATH}/${CountryID}_merge.dta", clear
 	*do Program_Clean-OrbisData.do
@@ -55,89 +57,71 @@ local Country="NL"
 	*use "${DATAPATH}/${CountryID}_compustat.dta", clear
 	*do Program_Clean-CompustatData.do
 	
-	*----------------- 
+	*-------------------------------------------------------
 	* Orbis: Unbalanced Panel
-	*-----------------
+	*-------------------------------------------------------
 	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
-	*Graphs
-	*------------
 	*do Graph_HaltiGrowth_Employment-Dist.do
 	*do Script_DiD-IPO.do
 	*do Graph_IPOyear-Dist.do
 	*do Graph_Growth_IPOyear-Dist.do
 	
-	
-	*Regressions
-	*------------
+	*do Regressions_FirmTypes.do
 
-	*Tables
-	*------------
+
+	*do Table_Descriptive-Stats.do
 	*do Table_PubVsPri.do
 	*do Table_BySize.do
 	
 	*do Table_IPOs.do
 	*do Table_IPO-years.do
 	*do Table_IPOyear_Descriptive-Stats.do
+
 	
-	
-	*-----------------
+	*-------------------------------------------------------
 	* Orbis: Balanced Panel
-	*-----------------
+	*-------------------------------------------------------
 	*use "Data_Cleaned/`Country'_Balanced.dta",clear
-	use "Data_Cleaned/`Country'_OnePercent.dta",clear
-	*use "Data_Cleaned/`Country'_CompustatBalanced.dta",clear
+	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
-	*Graphs
-	*------------
+
 	*do Graph_Lifecycle.do
 	*do Graph_Lifecycle-ByFirmType.do
-	*do Graph_Lifecycle-ByFirmType_Compustat.do	
 	
 	*do Graph_Age-Dist.do
 	*do Graph_Change-No-Shareholders-Dist.do
 	*do Graph_FirmTypes.do
 	
-	
-	
-	*do Graph_Employment-Compustat.do
-	*do Graph_HaltiGrowth_Employment_Compustat-Dist.do
-
-	
-	
-	*Regressions
-	*------------
-	*do Regressions_FirmTypes.do
-	
-	*Tables
-	*------------
-	*do Table_Descriptive-Stats.do
-	*do Table_CompustatOrbis-Comparison.do
-	*do Table_Sample-Comparison.do
-	*do Table_CompustatOrbis-MissingObs.do
-	*do Table_IPOyear_Descriptive-Stats_Compustat.do
 		
-	*----------------- 
+	*-------------------------------------------------------
 	* Compustat: Unbalanced Panel
-	*-----------------
+	*-------------------------------------------------------
 	*use "Data_Cleaned/`Country'_CompustatUnbalanced.dta",clear
 	
-	*do Table_CompustatOrbis-Comparison.do
+	*do Graph_Employment-Compustat.do
+	
 	*do Table_IPOyear_Descriptive-Stats_Compustat.do
 	*do Table_CompustatOrbis-MissingObs.do
 	
-	*-----------------
+	
+	*-------------------------------------------------------
 	* Compustat: Balanced Panel
-	*-----------------
+	*-------------------------------------------------------
 	*use "Data_Cleaned/`Country'_CompustatBalanced.dta",clear
 	
-	*Graphs	
-	*------------
 	*do Graph_Employment-Compustat.do
 	*do Graph_HaltiGrowth_Employment_Compustat-Dist.do
+	*do Graph_Lifecycle-ByFirmType_Compustat.do	
 
-
+	
+	*-------------------------------------------------------
+	* Comparison: Compustat vs. Orbis
+	*-------------------------------------------------------
+	*do Table_Sample-Comparison.do
+	*do Table_CompustatOrbis-Comparison.do
+		
 		
 *}
 

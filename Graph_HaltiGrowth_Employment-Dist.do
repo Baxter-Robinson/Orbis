@@ -4,6 +4,8 @@ local MinVal=-2
 * Public: Year of IPO vs other years
 preserve
 	keep if FirmType == 6
+	
+	
 	* Distribution of plants by employment growth (Haltiwanger) - Comparing Year of IPO
 	twoway (hist EmpGrowth_h if IPO_year == Year, frac lcolor(gs12) fcolor(gs12) width(`BinWidth') start(`MinVal')) ///
 	(hist EmpGrowth_h if IPO_year > Year | IPO_year < Year, frac lcolor(red) fcolor(none) width(`BinWidth') start(`MinVal')), ///
@@ -16,8 +18,8 @@ preserve
 	xtitle("Sales growth - Haltiwanger") graphregion(color(white))
 	graph export Output/$CountryID/Distribution_SalesHaltiwanger-IPOyear.pdf, replace 
 
-	twoway (hist ProfitsGrowth_h if IPO_year == Year, frac lcolor(gs12) fcolor(gs12) ) ///
-	(hist ProfitsGrowth_h if IPO_year > Year | IPO_year < Year, frac lcolor(red) fcolor(none) ), ///
+	twoway (hist ProfitGrowth_h if IPO_year == Year, frac lcolor(gs12) fcolor(gs12) ) ///
+	(hist ProfitGrowth_h if IPO_year > Year | IPO_year < Year, frac lcolor(red) fcolor(none) ), ///
 	legend(label(1 "Public Firms - Year of IPO") label(2 "Public Firms - Other years")) ///
 	xtitle("Profits growth - Haltiwanger") graphregion(color(white))
 	graph export Output/$CountryID/Distribution_ProfitsHaltiwanger-IPOyear.pdf, replace 
