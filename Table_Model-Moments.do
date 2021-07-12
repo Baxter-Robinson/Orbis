@@ -6,7 +6,7 @@ preserve
 	file open TabModMoments using Output/Cross-Country/Table_ModelMoments.m, write replace
 
 
-	file write  TabModMoments "Countries={"
+	file write  TabModMoments %25s  ("Countries={")
 
 	** Country Labels
 
@@ -20,7 +20,7 @@ preserve
 			file write  TabModMoments " , "	
 		}
 		
-		file write  TabModMoments "`Country' "		
+		file write  TabModMoments %13s ("`Country' ")	
 	}
 	file write  TabModMoments "};"	_n
 	
@@ -32,7 +32,7 @@ preserve
 	foreach var of local Variables{
 	
 	
-	file write  TabModMoments "`var'=["
+	file write  TabModMoments %25s ("`var' =[")
 	local First=1
 	disp `First'
 	foreach Country of global Countries{
