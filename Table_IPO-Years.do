@@ -1,6 +1,5 @@
 preserve
-	* Convert IPO date from monthly to yearly
-	gen IPO_year = year(IPO_date)
+
 	* Generate variable that tells number of years before/after IPO
 	gen IPO_timescale = Year - IPO_year
 	* Number of firms for which we have +/- x years relative to IPO
@@ -33,9 +32,9 @@ preserve
 	file close _all
 	file open TabIPOyears using Output/${CountryID}/Table_IPO-Years.tex, write replace
 	*Name of variables
-	file write TabIPOyears "& Total & (+/-) One year & (+/-) Two years & (+/-) Three years \\ \midrule"_n
+	*file write TabIPOyears "& Total & (+/-) One year & (+/-) Two years & (+/-) Three years \\ \midrule"_n
 	* Numer of IPO Firms
-	file write TabIPOyears "Number of IPO Firms &"
+	file write TabIPOyears " ${CountryID} &"
 	* Total
 	egen unique_IPO = group(IDNum) if IPO_year != .
 	su unique_IPO 
@@ -53,7 +52,6 @@ preserve
 	su PlusMinus_ThreeYears
 	local N: di %12.0fc r(N)/7
 	file write TabIPOyears "`N' \\"_n
-	file write TabIPOyears "\bottomrule"
 	file close _all
 	
 	* Create table for proportion of IPO firms that become delisted
@@ -76,7 +74,6 @@ preserve
 	file close _all
 	
 	* Create table for Number of firms where we observe 1/2/3 years after delisted
-	gen Delisted_year = yofd(Delisted_date)
 	su unique_IPO_delisted if Year - Delisted_year == 1
 	local N_plusone: di %4.0fc r(max)
 	su unique_IPO_delisted if Year - Delisted_year == 2

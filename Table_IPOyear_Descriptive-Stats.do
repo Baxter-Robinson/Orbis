@@ -1,7 +1,6 @@
 preserve
 
 	replace Sales=Sales/1000
-	gen IPO_year = year(IPO_date)
 	keep if Year == IPO_year
 	file close _all
 
@@ -10,10 +9,10 @@ preserve
 	* Table format for latex (top)
 	
 	*Name of variables
-	file write TabDescStats " & Age & Employment & Sales (Thousands) & Sales/employee & Number of shareholders & Number of observations  \\ \midrule"_n
+	*file write TabDescStats " & Age & Employment & Sales (Thousands) & Sales/employee & Number of shareholders & Number of observations  \\ \midrule"_n
 
 	*Loop over samples
-	file write TabDescStats "Public Firms (year of IPO) &"
+	file write TabDescStats " ${CountryID} &"
 	
 	*Age
 	su Age
@@ -42,7 +41,7 @@ preserve
 	local Moment: di %12.0fc r(N)
 	file write TabDescStats "`Moment'  \\"_n
 	
-	file write TabDescStats "\bottomrule"
+	*file write TabDescStats "\bottomrule"
 
 	file close _all
 

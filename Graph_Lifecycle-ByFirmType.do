@@ -1,12 +1,7 @@
 ***************************
 *** Graphs for averages ***
 ***************************
-gen Delisted_year = yofd(Delisted_date)
 preserve
-	* Generate Employment and Sales growth (Haltiwanger)
-	bysort IDNum: gen SalesGrowth_h = (Sales[_n]-Sales[_n-1])/((Sales[_n]+Sales[_n-1])/2)
-	bysort IDNum: gen EmpGrowth_h = (nEmployees[_n]-nEmployees[_n-1])/((nEmployees[_n]+nEmployees[_n-1])/2)
-
 	gen FirmType_dummy = 0
 	replace FirmType_dummy = 1 if FirmType == 6 & Delisted_year != . & Year < Delisted_year
 	replace FirmType_dummy = 1 if FirmType == 6 & Delisted_year == .
@@ -49,9 +44,6 @@ restore
 
 preserve
 	replace Sales=Sales/1000
-	* Generate Employment and Sales growth (Haltiwanger)
-	bysort IDNum: gen SalesGrowth_h = (Sales[_n]-Sales[_n-1])/((Sales[_n]+Sales[_n-1])/2)
-	bysort IDNum: gen EmpGrowth_h = (nEmployees[_n]-nEmployees[_n-1])/((nEmployees[_n]+nEmployees[_n-1])/2)
 	* Dummy for private or public
 	gen FirmType_dummy = 0
 	replace FirmType_dummy = 1 if FirmType == 6 & Delisted_year != . & Year < Delisted_year

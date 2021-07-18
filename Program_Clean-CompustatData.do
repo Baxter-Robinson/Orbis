@@ -36,7 +36,7 @@ drop if nEmployees < 0
 * Convert currency to USD
 **************************
 
-merge m:1 Year using "Data_Raw/Exchange_rate.dta"
+merge m:1 Year using "${DATAPATH}/Exchange_rate.dta"
 replace eur = ecu if eur == .
 keep if (curcd == "FRF") | (curcd == "EUR") | (curcd == "USD") | (curcd == "CHF") | (curcd == "HUF") | (curcd == "CZK") | (curcd == "ITL") | (curcd == "PLN")
 local varlists Sales Assets GrossProfits

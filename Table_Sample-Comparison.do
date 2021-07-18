@@ -11,7 +11,7 @@ preserve
 	local Sample 0 1 2 3
 	foreach i of local Sample {
 		if (`i'==0) {
-			use "Data_Raw/${CountryID}_merge.dta", clear
+			use "${DATAPATH}/${CountryID}_merge.dta", clear
 			file write TabSampleComp "Full Sample:                    &"
 		}
 		else if (`i'==1) {

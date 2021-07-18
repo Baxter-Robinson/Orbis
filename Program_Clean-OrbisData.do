@@ -24,6 +24,31 @@ duplicates drop IDNum Year , force
 
 xtset IDNum Year
 
+*---------------------------
+* Number of Employees
+*---------------------------
+rename Number_of_employees nEmployees
+
+drop if (nEmployees<0)
+
+*---------------------------
+* Financials
+*---------------------------
+
+rename Operating_revenue_Turnover Revenue
+rename Costs_of_goods_sold COGS
+rename Costs_of_employees WageBill
+rename Total_assets Assets
+rename P_L_before_tax GrossProfits
+
+
+drop if (Revenue<0)
+drop if (Sales<0)
+drop if (Assets<0)
+*replace Sales = Revenue if (Sales == 0) & (Revenue > 0)
+*drop if Sales == .
+
+gen SalesPerEmployee=Sales/nEmployees
 
 
 *---------------------------
@@ -33,16 +58,22 @@ destring NACE_Rev_2_Core_code_4_digits , generate(Industry_4digit)
 
 gen Industry_2digit=floor(Industry_4digit/100)
 
+
 *---------------------------
-* Number of Employees
+* Growth Rates
 *---------------------------
-rename Number_of_employees nEmployees
 
-drop if (nEmployees<0)
-*drop if missing(nEmployees)
+* Employment Growth Rate (Regular)
+bysort IDNum: gen EmpGrowth_r=(nEmployees-L.nEmployees)/(L.nEmployees)
 
+* Employment Growth Rate (Haltiwanger)
+bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
+	
+* Sales Growth Rate (Haltiwanger)
+bysort IDNum: gen SalesGrowth_h = (Sales-L.Sales)/((Sales+L.Sales)/2)
 
-gen EmpGrowth=D.nEmployees/nEmployees
+* Profit Growth Rate (Haltiwanger)
+bysort IDNum: gen ProfitGrowth_h = (GrossProfits-L.GrossProfits)/((GrossProfits+L.GrossProfits)/2)
 
 *---------------------------
 * Ownership
@@ -71,29 +102,69 @@ replace FirmType=6 if (Listed)
 
 
 *---------------------------
-* Financials
+* IPO Info
 *---------------------------
 
-rename Operating_revenue_Turnover Revenue
-rename Costs_of_goods_sold COGS
-rename Costs_of_employees WageBill
-rename Total_assets Assets
-rename P_L_before_tax GrossProfits
+
+* Convert IPO date from monthly to yearly
+gen IPO_year = year(IPO_date)
 
 
-drop if (Revenue<0)
-drop if (Sales<0)
-drop if (Assets<0)
-*replace Sales = Revenue if (Sales == 0) & (Revenue > 0)
-*drop if Sales == .
-
-gen SalesPerEmployee=Sales/nEmployees
+gen Delisted_year = yofd(Delisted_date)
 
 *----------------------
 * Save unbalanced panel
 *----------------------
 
 save "Data_Cleaned/${CountryID}_Unbalanced.dta", replace
+
+*--------------------------------------------------------------
+* Create country-level-statistics for a country-level database
+*--------------------------------------------------------------
+
+preserve
+
+gen Country="${CountryID}"
+
+gen EmpGrowthInIPOYear=EmpGrowth_h if (IPO_year==Year)
+gen EmpGrowthAroundIPOYear=EmpGrowth_h if ((IPO_year>=Year-1) & (IPO_year<=Year+1))
+
+
+gen EmpOfIPOingFirm=nEmployees if  (IPO_year==Year)
+
+* Private Share of Employment
+su nEmployees if (Listed)
+local Public=r(sum)
+local PublicAvg=r(mean)
+
+su nEmployees if (~Listed)
+local Private=r(sum)
+local PrivateAvg=r(mean)
+
+gen PrivateShareOfEmp=`Private'/(`Public'+`Private')
+gen PublicAvg=`PublicAvg'
+gen PrivateAvg= `PrivateAvg'
+
+
+* Share of number of firms
+su nEmployees if (Listed) 
+local nPublic=r(N)
+
+su nEmployees if (~Listed) 
+local nPrivate=r(N)
+
+gen PrivateShareOfFirms=`nPrivate'/(`nPublic'+`nPrivate')
+
+
+
+
+collapse (mean) nEmployees EmpGrowthInIPOYear EmpOfIPOingFirm EmpGrowthAroundIPOYear PrivateShareOfEmp ///
+PublicAvg PrivateAvg PrivateShareOfFirms  , by(Country)
+
+save "Data_Cleaned/${CountryID}_CountryLevel.dta", replace
+
+restore
+
 
 *------------------
 * Balanced Panel

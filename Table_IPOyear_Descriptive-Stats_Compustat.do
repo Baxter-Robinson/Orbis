@@ -2,7 +2,6 @@ preserve
 
 	replace Sales=Sales/1000
 	keep if Year == IPO_year
-	gen SalesPerEmployee = Sales/nEmployees
 	file close _all
 
 	file open TabDescStats using Output/${CountryID}/Table_IPOyear_Descriptive-Compustats.tex, write replace
