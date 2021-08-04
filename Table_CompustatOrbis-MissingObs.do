@@ -10,7 +10,7 @@ preserve
 	file write TabSampleComp  " & Orbis & Compustat & Orbis & Compustat & Orbis & Compustat & Orbis & Compustat & Orbis & Compustat & Orbis & Compustat \\ \cmidrule{2-13}"_n
 	* Merge both datasets
 	use "Data_Cleaned/${CountryID}_Unbalanced.dta", clear
-	gen Delisted_year = yofd(Delisted_date)
+	*gen Delisted_year = yofd(Delisted_date)
 	keep if (FirmType == 6) & (Year < Delisted_year)
 	keep Sales nEmployees Year IDNum
 	replace Sales = Sales/1000

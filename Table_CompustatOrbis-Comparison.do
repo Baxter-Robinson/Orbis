@@ -9,7 +9,7 @@ preserve
 	* Merge both datasets
 	use "Data_Cleaned/${CountryID}_Balanced.dta", clear
 	* Only keep firms that don't become delisted
-	gen Delisted_year = yofd(Delisted_date)
+	*gen Delisted_year = yofd(Delisted_date)
 	keep if (FirmType == 6) & (Year < Delisted_year)
 	su Year, detail
 	egen nyear = total(inrange(Year, `r(min)',`r(max)')), by(IDNum)
