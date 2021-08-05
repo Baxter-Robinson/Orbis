@@ -1,0 +1,3848 @@
+\documentclass[12pt,notitlepage]{article}
+%\usepackage[margin=1in]{geometry}
+%	\geometry{
+%	top=20mm,
+%	bottom=20mm,
+%	}
+\usepackage[margin=1in]{geometry}              
+\usepackage{placeins}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{amsmath, amsthm, amssymb, centernot}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{comment}
+\newcommand{\sym}[1] {\ifmmode^{#1} \else\(^{#1}\) \fi}
+
+\DeclareMathOperator{\plim}{plim}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blue
+}
+\setlength\parindent{0pt}
+
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+\pagestyle{plain}
+\title{Orbis Data for 4 Countries}
+\author{}
+\date{}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+
+
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Private Vs. Public} % (fold)
+\label{sec:private_vs_public}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+<<<<<<< HEAD
+
+
+\subsection{Distribution of Employment Growth Rates (Orbis)}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.6]{../Output/IT/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.6]{../Output/CZ/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.6]{../Output/FR/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.6]{../Output/HU/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}
+\end{figure}
+
+
+
+\subsection{Employment Statistics (Orbis)}
+\begin{table}[!htpb]
+    \centering
+    \scalebox{0.9}{
+    \begin{tabular}{@{} l  r r r | r r | r r | r r r @{}}
+        \toprule
+          & \multicolumn{3}{c}{Avg Number of Employees} & \multicolumn{2}{c}{Mean Growth Rate} & \multicolumn{2}{c}{Std of Growth Rate}  & \multicolumn{2}{c}{n firm-year Obs} \\
+         & Public & Private & Ratio  & Public & Private  & Public & Private & Public & Private   \\ \midrule
+        \input{../Output/IT/Table_PubVsPri.tex}
+        \input{../Output/CZ/Table_PubVsPri.tex}
+        \input{../Output/HU/Table_PubVsPri.tex}
+        \input{../Output/FR/Table_PubVsPri.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+\pagebreak
+%\end{document}
+
+% section private_vs_public (end)
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Distribution of Firms} % (fold)
+\label{sec:distribution-of-firms}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+\subsection{Share of Employment by Size} % (fold)
+\label{sec:employment_by_size}
+
+\begin{table}[!htpb]
+    \scalebox{0.8}{
+    \begin{tabular}{@{}l r r r r r r r r r @{}}
+        \toprule
+        & 1-9 & 10-99 & 100-999 & 1,000-4,999 & 5,000-14,999 & 15,000-49,999 & 50,000-99,999 & 100,000-199,999 & 200,000+  \\ \midrule
+        \input{../Output/IT/Table_BySize_EmpShares.tex}
+        \input{../Output/CZ/Table_BySize_EmpShares.tex}
+        \input{../Output/HU/Table_BySize_EmpShares.tex}
+        \input{../Output/FR/Table_BySize_EmpShares.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+
+
+\subsection{Average ``Age'' by Size} % (fold)
+\label{sec:age_by_size}
+
+\begin{table}[!htpb]
+    \scalebox{0.8}{
+    \begin{tabular}{@{}l r r r r r r r r r r @{}}
+        \toprule
+        & 1-9 & 10-99 & 100-999 & 1,000-4,999 & 5,000-14,999 & 15,000-49,999 & 50,000-99,999 & 100,000-199,999 & 200,000+  \\ \midrule
+        \input{../Output/IT/Table_BySize_AgeDist.tex}
+        \input{../Output/CZ/Table_BySize_AgeDist.tex}
+        \input{../Output/HU/Table_BySize_AgeDist.tex}
+        \input{../Output/FR/Table_BySize_AgeDist.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\subsection{Number of Firm-Year Observations by Size} % (fold)
+\label{sec:age_by_size}
+
+\begin{table}[!htpb]
+    \scalebox{0.8}{
+    \begin{tabular}{@{}l r r r r r r r r r r @{}}
+        \toprule
+        & 1-9 & 10-99 & 100-999 & 1,000-4,999 & 5,000-14,999 & 15,000-49,999 & 50,000-99,999 & 100,000-199,999 & 200,000+  \\ \midrule
+        \input{../Output/IT/Table_BySize_NFirms.tex}
+        \input{../Output/CZ/Table_BySize_NFirms.tex}
+        \input{../Output/HU/Table_BySize_NFirms.tex}
+        \input{../Output/FR/Table_BySize_NFirms.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+\pagebreak
+
+
+
+
+\pagebreak
+% subsection employment_by_size (end)
+
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{IPOs} % (fold)
+\label{sec:ipos}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+
+
+\subsection{Number of unique IPO firms with observations before and after}
+
+\begin{table}[!htpb]
+    \scalebox{1.2}{
+    \begin{tabular}{@{}ccccc@{}}
+        \toprule
+        & Total & (+/-) One year & (+/-) Two years & (+/-) Three years \\ \midrule
+        \input{../Output/IT/Table_IPO-Years.tex}
+        \input{../Output/CZ/Table_IPO-Years.tex}
+        \input{../Output/HU/Table_IPO-Years.tex}
+        \input{../Output/FR/Table_IPO-Years.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+
+
+\subsection{Employment Growth Before and After an IPO (Orbis)}
+\begin{table}[!htpb]
+    \centering
+    \scalebox{1.2}{
+    \begin{tabular}{@{}l  r r r  @{}}
+        \toprule
+          & \multicolumn{2}{c}{Employment Growth} &  \\
+         & Year Before & Year After & n IPOs  \\ \midrule
+        \input{../Output/IT/Table_IPOs.tex}
+        \input{../Output/CZ/Table_IPOs.tex}
+        \input{../Output/HU/Table_IPOs.tex}
+        \input{../Output/FR/Table_IPOs.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+
+\subsection{Descriptive Stats in the Year of IPO}
+\subsubsection{Orbis}
+\begin{table}[!htpb]
+    \centering
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+         & Age & Employment & Sales (Thousands) & Sales/employee & Number of shareholders & Number of observations  \\ \midrule
+        \input{../Output/IT/Table_IPOyear_Descriptive-Stats.tex}
+        \input{../Output/FR/Table_IPOyear_Descriptive-Stats.tex}
+        \input{../Output/HU/Table_IPOyear_Descriptive-Stats.tex}
+        \input{../Output/CZ/Table_IPOyear_Descriptive-Stats.tex}
+    \end{tabular}
+    }
+\end{table}
+\pagebreak
+
+
+
+
+\subsection{Employment Growth in the year of IPO vs Other years (Orbis)}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Distribution_EmploymentHaltiwanger-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Distribution_EmploymentHaltiwanger-IPOyear.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Distribution_EmploymentHaltiwanger-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Distribution_EmploymentHaltiwanger-IPOyear.pdf}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\subsection{Employment Growth in the year of IPO vs Other years \\(Compustat)}
+=======
+
+
+\subsection{Distribution of Employment Growth Rates (Orbis)}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+<<<<<<< HEAD
+ \includegraphics[scale=0.90]{../Output/IT/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.90]{../Output/CZ/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
+=======
+ \includegraphics[scale=0.6]{../Output/IT/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.6]{../Output/PT/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.90]{../Output/FR/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.90]{../Output/HU/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
+=======
+ \includegraphics[scale=0.6]{../Output/FR/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/ES/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+
+<<<<<<< HEAD
+
+
+\subsection{Employment Growth in Delisted vs Public (Orbis)}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Distribution_EmploymentHaltiwanger-PublicDelisted.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Distribution_EmploymentHaltiwanger-PublicDelisted.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Distribution_EmploymentHaltiwanger-PublicDelisted.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Distribution_EmploymentHaltiwanger-PublicDelisted.pdf}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+% section ipos (end)
+
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Lifecycle} % (fold)
+\label{sec:lifecycle}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+
+
+\begin{figure}[!htpb]
+\centering
+\caption{Firm age and Assets}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Assets}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Assets}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Assets}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Assets}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+\caption{Firm age and Employment}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Employment}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Employment}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+\caption{Firm age and Gross Profits}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_GrossProfits}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_GrossProfits}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_GrossProfits}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_GrossProfits}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+\caption{Firms Distribution across age}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_nFirms}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_nFirms}
+%=======
+
+
+\subsection{Employment Statistics (Orbis)}
+\begin{table}[!htpb]
+    \centering
+    \scalebox{0.9}{
+    \begin{tabular}{@{} l  r r r | r r | r r | r r r  @{}}
+        \toprule
+          & \multicolumn{3}{c}{Avg Number of Employees} & \multicolumn{2}{c}{Mean Growth Rate} & \multicolumn{2}{c}{Std of Growth Rate}  & \multicolumn{2}{c}{n firm-year Obs} \\
+         & Public & Private & Ratio  & Public & Private  & Public & Private & Public & Private   \\ \midrule
+        \input{../Output/IT/Table_PubVsPri.tex}
+        \input{../Output/PT/Table_PubVsPri.tex}
+        \input{../Output/ES/Table_PubVsPri.tex}
+        \input{../Output/FR/Table_PubVsPri.tex}
+    \end{tabular}
+    }
+\end{table}
+\pagebreak
+
+% section private_vs_public (end)
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Distribution of Firms} % (fold)
+\label{sec:distribution-of-firms}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+\subsection{Share of Employment by Size} % (fold)
+\label{sec:employment_by_size}
+
+\begin{table}[!htpb]
+    \scalebox{0.8}{
+    \begin{tabular}{@{}l r r r r r r r r @{}}
+        \toprule
+        & 10\% & 25\% & 50\% & 75\% & 90\% & 95\% & 99\% & > 99\% \\ \midrule
+        \input{../Output/IT/Table_BySize_EmpShares.tex}
+        \input{../Output/PT/Table_BySize_EmpShares.tex}
+        \input{../Output/ES/Table_BySize_EmpShares.tex}
+        \input{../Output/FR/Table_BySize_EmpShares.tex}
+    \end{tabular}
+    }
+\end{table}
+
+
+\subsection{Average ``Age'' by Size} % (fold)
+\label{sec:age_by_size}
+
+\begin{table}[!htpb]
+    \scalebox{0.8}{
+    \begin{tabular}{@{}l r r r r r r r r @{}}
+        \toprule
+        & 10\% & 25\% & 50\% & 75\% & 90\% & 95\% & 99\%  & > 99\% \\ \midrule
+        \input{../Output/IT/Table_BySize_AgeDist.tex}
+        \input{../Output/PT/Table_BySize_AgeDist.tex}
+        \input{../Output/ES/Table_BySize_AgeDist.tex}
+        \input{../Output/FR/Table_BySize_AgeDist.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\subsection{Number of Firm-Year Observations by Size} % (fold)
+\label{sec:nFirms_by_size}
+
+\begin{table}[!htpb]
+    \scalebox{0.8}{
+    \begin{tabular}{@{}l r r r r r r r r @{}}
+        \toprule
+         & 10\% & 25\% & 50\% & 75\% & 90\% & 95\% & 99\% & > 99\%  \\ \midrule
+        \input{../Output/IT/Table_BySize_NFirms.tex}
+        \input{../Output/PT/Table_BySize_NFirms.tex}
+        \input{../Output/ES/Table_BySize_NFirms.tex}
+        \input{../Output/FR/Table_BySize_NFirms.tex}
+    \end{tabular}
+    }
+\end{table}
+\pagebreak
+
+
+% \subsection{Distribution of firms across employment bins}
+
+% \begin{figure}[!htpb]
+% \centering
+% \caption{Distribution of firms across employment bins (Compustat)}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.60]{../Output/IT/Distribution_Employment-Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Portugal}
+%  \includegraphics[scale=0.60]{../Output/PT/Distribution_Employment-Compustat.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.60]{../Output/FR/Distribution_Employment-Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Spain}
+%  \includegraphics[scale=0.60]{../Output/ES/Distribution_Employment-Compustat.pdf}
+% \end{subfigure}
+% \end{figure}
+% \pagebreak
+
+
+% subsection employment_by_size (end)
+
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{IPOs} % (fold)
+\label{sec:ipos}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+
+
+\subsection{Number of unique IPO firms with observations before and after}
+
+\begin{table}[!htpb]
+    \scalebox{1.2}{
+    \begin{tabular}{@{}ccccc@{}}
+        \toprule
+        & Total & (+/-) One year & (+/-) Two years & (+/-) Three years \\ \midrule
+        \input{../Output/IT/Table_IPO-Years.tex}
+        \input{../Output/PT/Table_IPO-Years.tex}
+        \input{../Output/ES/Table_IPO-Years.tex}
+        \input{../Output/FR/Table_IPO-Years.tex}
+    \end{tabular}
+    }
+\end{table}
+
+
+
+\subsection{Employment Growth Before and After an IPO (Orbis)}
+\begin{table}[!htpb]
+    \centering
+    \scalebox{1.2}{
+    \begin{tabular}{@{}l  r r r  @{}}
+        \toprule
+          & \multicolumn{2}{c}{Employment Growth} &  \\
+         & Year Before & Year After & n IPOs  \\ \midrule
+        \input{../Output/IT/Table_IPOs.tex}
+        \input{../Output/PT/Table_IPOs.tex}
+        \input{../Output/ES/Table_IPOs.tex}
+        \input{../Output/FR/Table_IPOs.tex}
+    \end{tabular}
+    }
+\end{table}
+
+
+\subsection{Descriptive Stats in the Year of IPO}
+\subsubsection{Orbis}
+\begin{table}[!htpb]
+    \centering
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+         & Age & Employment & Sales (Thousands) & Sales/employee & Number of shareholders & Number of observations  \\ \midrule
+        \input{../Output/IT/Table_IPOyear_Descriptive-Stats.tex}
+        \input{../Output/FR/Table_IPOyear_Descriptive-Stats.tex}
+        \input{../Output/ES/Table_IPOyear_Descriptive-Stats.tex}
+        \input{../Output/PT/Table_IPOyear_Descriptive-Stats.tex}
+    \end{tabular}
+    }
+\end{table}
+\pagebreak
+
+
+
+
+\subsection{Employment Growth in the year of IPO vs Other years (Orbis)}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Distribution_EmploymentHaltiwanger-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Distribution_EmploymentHaltiwanger-IPOyear.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_nFirms}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_nFirms}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Distribution_EmploymentHaltiwanger-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Distribution_EmploymentHaltiwanger-IPOyear.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+<<<<<<< HEAD
+=======
+% \subsection{Employment Growth in the year of IPO vs Other years \\(Compustat)}
+% \begin{figure}[!htpb]
+% \centering
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.90]{../Output/IT/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Portugal}
+%  \includegraphics[scale=0.90]{../Output/PT/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.90]{../Output/FR/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Spain}
+%  \includegraphics[scale=0.90]{../Output/ES/Distribution_EmploymentHaltiwanger_Compustat-IPOyear.pdf}
+% \end{subfigure}
+% \end{figure}
+% \pagebreak
+
+
+
+\subsection{Employment Growth in Delisted vs Public (Orbis)}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\begin{figure}[!htpb]
+\centering
+\caption{Firm age and Number of Shareholders}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_nShareholders}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_nShareholders}
+=======
+ \includegraphics[scale=0.60]{../Output/IT/Distribution_EmploymentHaltiwanger-PublicDelisted.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Distribution_EmploymentHaltiwanger-PublicDelisted.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_nShareholders}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_nShareholders}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Distribution_EmploymentHaltiwanger-PublicDelisted.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Distribution_EmploymentHaltiwanger-PublicDelisted.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+<<<<<<< HEAD
+
+\begin{figure}[!htpb]
+\centering
+\caption{Distribution of Public Firms across age}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Public}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Public}
+=======
+% section ipos (end)
+
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Lifecycle (On Balanced Panel)} % (fold)
+\label{sec:lifecycle}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+\subsection{Employment} % (fold)
+\label{sec:employment}
+
+
+\begin{figure}[!htpb]
+\centering
+\caption{Average Employment by Year (Orbis)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Employment}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Employment}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+% \begin{figure}[!htpb]
+% \centering
+% \caption{Average Employment by Year (Compustat)}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Portugal}
+%  \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Employment_Compustat.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Spain}
+%  \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Employment_Compustat.pdf}
+% \end{subfigure}
+% \end{figure}
+% \pagebreak
+
+
+\begin{figure}[!htpb]
+\centering
+\caption{Average Employment by Year (Public vs. Private)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Employment_byFirmType}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Public}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Public}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Employment_byFirmType}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{Firm age and Revenue/Costs}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Revenue_Costs}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Revenue_Costs}
+=======
+\caption{Employment Percentiles by Year (Private Firms)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Employment_Private_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Revenue_Costs}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Revenue_Costs}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Employment_Private_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{Firm age and Revenue/Sales}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Revenue_Sales}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Revenue_Sales}
+=======
+\caption{Employment Percentiles by Year (Public Firms in Orbis)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Employment_Public_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Revenue_Sales}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Revenue_Sales}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Employment_Public_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+<<<<<<< HEAD
+\subsection{Lifecycle graphs (New)}
+
+\subsubsection{Employment level}
+\begin{figure}[!htpb]
+\centering
+\caption{Employment level (Average)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Employment_byFirmType}
+=======
+% \begin{figure}[!htpb]
+% \centering
+% \caption{Employment Percentiles by Year (Public Firms in Compustat)}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_ptile_Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Portugal}
+%  \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Employment_ptile_Compustat.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_ptile_Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Spain}
+%  \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Employment_ptile_Compustat.pdf}
+% \end{subfigure}
+% \end{figure}
+% \pagebreak
+
+
+% subsection employment (end)
+
+\subsection{Employment Growth} % (fold)
+\label{sec:employment_growth}
+
+\begin{figure}[!htpb]
+\centering
+\caption{Average Employment Growth by Year}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_EmploymentGrowth_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_EmploymentGrowth_byFirmType}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Employment_byFirmType}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_EmploymentGrowth_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_EmploymentGrowth_byFirmType}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{Employment level (Percentile - Private)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Employment_Private_ptile}
+=======
+\caption{Employment Growth (Percentile - Private)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_EmploymentGrowth_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_EmploymentGrowth_Private_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Employment_Private_ptile}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_EmploymentGrowth_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_EmploymentGrowth_Private_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{Employment level (Percentile - Public)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Employment_Public_ptile}
+=======
+\caption{Percentiles of Employment Growth (Public Firms in Orbis)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_EmploymentGrowth_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_EmploymentGrowth_Public_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Employment_Public_ptile}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_EmploymentGrowth_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_EmploymentGrowth_Public_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+<<<<<<< HEAD
+\subsubsection{Employment Growth}
+\begin{figure}[!htpb]
+\centering
+\caption{Employment Growth (Average)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_EmploymentGrowth_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_EmploymentGrowth_byFirmType}
+=======
+
+% \begin{figure}[!htpb]
+% \centering
+% \caption{Percentiles of Employment Growth (Public Firms in Compustat)}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.60]{../Output/IT/Lifecycle_EmploymentGrowth_Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Portugal}
+%  \includegraphics[scale=0.60]{../Output/PT/Lifecycle_EmploymentGrowth_Compustat.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.60]{../Output/FR/Lifecycle_EmploymentGrowth_Compustat.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Spain}
+%  \includegraphics[scale=0.60]{../Output/ES/Lifecycle_EmploymentGrowth_Compustat.pdf}
+% \end{subfigure}
+% \end{figure}
+% \pagebreak
+
+
+% subsection employment_growth (end)
+
+
+\subsection{Revenue} % (fold)
+\label{sec:revenue}
+
+
+
+\begin{figure}[!htpb]
+\centering
+\caption{Average Revenue and Costs by Year}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Revenue_Costs}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Revenue_Costs}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_EmploymentGrowth_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_EmploymentGrowth_byFirmType}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Revenue_Costs}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Revenue_Costs}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+<<<<<<< HEAD
+\begin{figure}[!htpb]
+\centering
+\caption{Employment Growth (Percentile - Private)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_EmploymentGrowth_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_EmploymentGrowth_Private_ptile}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_EmploymentGrowth_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_EmploymentGrowth_Private_ptile}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+\caption{Employment Growth (Percentile - Public)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_EmploymentGrowth_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_EmploymentGrowth_Public_ptile}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_EmploymentGrowth_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_EmploymentGrowth_Public_ptile}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+\subsubsection{Sales}
+\begin{figure}[!htpb]
+\centering
+\caption{Sales (Average)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Sales_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Sales_byFirmType}
+=======
+% subsection revenue (end)
+
+
+
+
+
+% section lifecycle (end)
+
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Data Structure} % (fold)
+\label{sec:data_structure}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+\subsection{Descriptive stats}
+\begin{table}[!htpb]
+    \centering
+    \caption{Descriptive Statistics - Italy}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/IT/Table_Descriptive-Stats}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Descriptive Statistics - France}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/FR/Table_Descriptive-Stats}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Descriptive Statistics - Spain}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/ES/Table_Descriptive-Stats}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Descriptive Statistics - Portugal}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/PT/Table_Descriptive-Stats}
+    \end{tabular}
+    }
+\end{table}
+\pagebreak
+
+
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Missing Observations - Italy}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccccc@{}}
+        \toprule
+        \input{../Output/IT/Table_Missing-Observations.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Missing Observations - France}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccccc@{}}
+        \toprule
+        \input{../Output/FR/Table_Missing-Observations.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Missing Observations - Spain}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccccc@{}}
+        \toprule
+        \input{../Output/ES/Table_Missing-Observations.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Missing Observations - Portugal}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccccc@{}}
+        \toprule
+        \input{../Output/PT/Table_Missing-Observations.tex}
+    \end{tabular}
+    }
+\end{table}
+\pagebreak
+
+
+
+% \begin{table}[!htpb]
+%     \centering
+%     \caption{Sample Comparison - Italy}
+%     \scalebox{0.9}{
+%     \begin{tabular}{@{}ccc@{}}
+%         \toprule
+%         \input{../Output/IT/Table_Sample-Comparison.tex}
+%     \end{tabular}
+%     }
+% \end{table}
+
+% \begin{table}[!htpb]
+%     \centering
+%     \caption{Sample Comparison - France}
+%     \scalebox{0.9}{
+%     \begin{tabular}{@{}ccc@{}}
+%         \toprule
+%         \input{../Output/FR/Table_Sample-Comparison.tex}
+%     \end{tabular}
+%     }
+% \end{table}
+
+% \begin{table}[!htpb]
+%     \centering
+%     \caption{Sample Comparison - Spain}
+%     \scalebox{0.9}{
+%     \begin{tabular}{@{}ccc@{}}
+%         \toprule
+%         \input{../Output/ES/Table_Sample-Comparison.tex}
+%     \end{tabular}
+%     }
+% \end{table}
+
+% \begin{table}[!htpb]
+%     \centering
+%     \caption{Sample Comparison - Portugal}
+%     \scalebox{0.9}{
+%     \begin{tabular}{@{}ccc@{}}
+%         \toprule
+%         \input{../Output/PT/Table_Sample-Comparison.tex}
+%     \end{tabular}
+%     }
+% \end{table}
+% \pagebreak
+
+% section data_structure (end)
+
+
+\end{document}
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Sample Comparison Orbis and Compustat} % (fold)
+\label{sec:compustat_vs_orbis}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+\subsection{Balanced Panel}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Italy}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccc@{}}
+    \toprule
+        \input{../Output/IT/Table_CompustatOrbis-Comparison.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{France}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccc@{}}
+    \toprule
+        \input{../Output/FR/Table_CompustatOrbis-Comparison.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Spain}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccc@{}}
+    \toprule
+        \input{../Output/ES/Table_CompustatOrbis-Comparison.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Portugal}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccc@{}}
+    \toprule
+        \input{../Output/PT/Table_CompustatOrbis-Comparison.tex}
+    \end{tabular}
+    }
+\end{table}
+\pagebreak
+
+
+\subsection{Unbalanced Panel}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Italy}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccccc@{}}
+    \toprule
+        \input{../Output/IT/Table_CompustatOrbis-MissingObs.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{France}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccccc@{}}
+    \toprule
+        \input{../Output/FR/Table_CompustatOrbis-MissingObs.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Spain}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccccc@{}}
+    \toprule
+        \input{../Output/ES/Table_CompustatOrbis-MissingObs.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Portugal}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccccc@{}}
+    \toprule
+        \input{../Output/PT/Table_CompustatOrbis-MissingObs.tex}
+    \end{tabular}
+    }
+\end{table}
+\pagebreak
+
+
+
+
+
+
+
+% section compustat_vs_orbis (end)
+
+%------------------------------------------------------------------------------
+\appendix
+%------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Private Vs. Public} % (fold)
+\label{sec:private_vs_public}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+
+\subsection{Firm types and growth in Employment}
+
+\begin{figure}[!htpb]
+\centering
+\caption{Firm types and growth in Employment}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/FirmTypes_Growth-Emp}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/FirmTypes_Growth-Emp}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Sales_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Sales_byFirmType}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/FirmTypes_Growth-Emp}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/FirmTypes_Growth-Emp}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+% section private_vs_public (end)
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{IPOs} % (fold)
+\label{sec:ipos}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+
+
+\subsection{Number of Unique IPO firms by year Graph}
+
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{Sales (Percentile - Private)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Sales_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Sales_Private_ptile}
+=======
+\caption{Distribution of IPO by year}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Distribution_IPO-Year}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Distribution_IPO-Year}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Sales_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Sales_Private_ptile}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Distribution_IPO-Year}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Distribution_IPO-Year}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+<<<<<<< HEAD
+\begin{figure}[!htpb]
+\centering
+\caption{Sales (Percentile - Public)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Sales_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Sales_Public_ptile}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Sales_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Sales_Public_ptile}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\subsubsection{Sales Growth}
+\begin{figure}[!htpb]
+\centering
+\caption{Sales (Average)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_SalesGrowth_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_SalesGrowth_byFirmType}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_SalesGrowth_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_SalesGrowth_byFirmType}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+\caption{Sales Growth (Percentile - Private)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_SalesGrowth_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_SalesGrowth_Private_ptile}
+=======
+
+
+
+\subsection{Proportion of IPO firms that become delisted}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Italy}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{../Output/IT/Table_IPO-Delisted.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{France}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{../Output/FR/Table_IPO-Delisted.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Spain}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{../Output/ES/Table_IPO-Delisted.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Portugal}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{../Output/PT/Table_IPO-Delisted.tex}
+    \end{tabular}
+    }
+\end{table}
+\pagebreak
+
+
+\subsection{Proportion of delisted firms that we observe after becoming delisted}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Italy}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccc@{}}
+        \toprule
+        \input{../Output/IT/Table_IPO-AfterDelisted.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{France}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccc@{}}
+        \toprule
+        \input{../Output/FR/Table_IPO-AfterDelisted.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Spain}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccc@{}}
+        \toprule
+        \input{../Output/ES/Table_IPO-AfterDelisted.tex}
+    \end{tabular}
+    }
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Portugal}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccc@{}}
+        \toprule
+        \input{../Output/PT/Table_IPO-AfterDelisted.tex}
+    \end{tabular}
+    }
+\end{table}
+\pagebreak
+
+
+
+\subsection{Haltiwanger Sales Growth: Public Firms - Year of IPO vs Other years (Orbis)}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.90]{../Output/IT/Distribution_SalesHaltiwanger-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.90]{../Output/PT/Distribution_SalesHaltiwanger-IPOyear.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_SalesGrowth_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_SalesGrowth_Private_ptile}
+=======
+ \includegraphics[scale=0.90]{../Output/FR/Distribution_SalesHaltiwanger-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.90]{../Output/ES/Distribution_SalesHaltiwanger-IPOyear.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\subsection{Haltiwanger Profit Growth: Public Firms - Year of IPO vs Other years (Orbis)}
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{Sales Growth (Percentile - Public)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_SalesGrowth_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_SalesGrowth_Public_ptile}
+=======
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.90]{../Output/IT/Distribution_ProfitsHaltiwanger-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.90]{../Output/PT/Distribution_ProfitsHaltiwanger-IPOyear.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_SalesGrowth_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_SalesGrowth_Public_ptile}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+% section lifecycle (end)
+
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Data Structure} % (fold)
+\label{sec:data_structure}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+\subsection{Descriptive stats}
+\begin{table}[!htpb]
+    \centering
+    \caption{Descriptive Statistics - Italy}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/IT/Table_Descriptive-Stats}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Descriptive Statistics - France}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/FR/Table_Descriptive-Stats}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Descriptive Statistics - Hungary}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/HU/Table_Descriptive-Stats}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Descriptive Statistics - Czech Republic}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/CZ/Table_Descriptive-Stats}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+\pagebreak
+
+
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Missing Observations - Italy}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccccc@{}}
+        \toprule
+        \input{../Output/IT/Table_Missing-Observations.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Missing Observations - France}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccccc@{}}
+        \toprule
+        \input{../Output/FR/Table_Missing-Observations.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Missing Observations - Hungary}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccccc@{}}
+        \toprule
+        \input{../Output/HU/Table_Missing-Observations.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Missing Observations - Czech Republic}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccccc@{}}
+        \toprule
+        \input{../Output/CZ/Table_Missing-Observations.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+\pagebreak
+
+
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Sample Comparison - Italy}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{../Output/IT/Table_Sample-Comparison.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Sample Comparison - France}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{../Output/FR/Table_Sample-Comparison.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Sample Comparison - Hungary}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{../Output/HU/Table_Sample-Comparison.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Sample Comparison - Czech Republic}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{../Output/CZ/Table_Sample-Comparison.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+\pagebreak
+
+% section data_structure (end)
+
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Compustat Vs. Orbis} % (fold)
+\label{sec:compustat_vs_orbis}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+\addcontentsline{toc}{section}{Compustat}
+\section{Summary Statistics}
+
+\subsection{Sample comparison with Orbis (Balanced Panel)}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Italy}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccc@{}}
+    \toprule
+        \input{../Output/IT/Table_CompustatOrbis-Comparison.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{France}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccc@{}}
+    \toprule
+        \input{../Output/FR/Table_CompustatOrbis-Comparison.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Hungary}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccc@{}}
+    \toprule
+        \input{../Output/HU/Table_CompustatOrbis-Comparison.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Czech Republic}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccc@{}}
+    \toprule
+        \input{../Output/CZ/Table_CompustatOrbis-Comparison.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+\pagebreak
+
+
+\subsection{Sample comparison with Orbis (Unbalanced Panel)}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Italy}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccccc@{}}
+    \toprule
+        \input{../Output/IT/Table_CompustatOrbis-MissingObs.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{France}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccccc@{}}
+    \toprule
+        \input{../Output/FR/Table_CompustatOrbis-MissingObs.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Hungary}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccccc@{}}
+    \toprule
+        \input{../Output/HU/Table_CompustatOrbis-MissingObs.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Czech Republic}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccccccccc@{}}
+    \toprule
+        \input{../Output/CZ/Table_CompustatOrbis-MissingObs.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+=======
+ \includegraphics[scale=0.90]{../Output/FR/Distribution_ProfitsHaltiwanger-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.90]{../Output/ES/Distribution_ProfitsHaltiwanger-IPOyear.pdf}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+
+\section{Difference-in-difference graphs: Effect of IPO}
+
+\subsection{Variables in level}
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Sales}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_Sales}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/IPO_YearMinusIPO_Sales}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_Sales}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/IPO_YearMinusIPO_Sales}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Sales per Employee}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}
+\end{figure}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\pagebreak
+
+
+
+\subsection{Distribution of firms across employment bins}
+
+\subsubsection{}
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{Distribution of firms across employment bins}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Distribution_Employment-Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Distribution_Employment-Compustat.pdf}
+=======
+\caption{IPO and Gross Profits}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_GrossProfits}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/IPO_YearMinusIPO_GrossProfits}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Distribution_Employment-Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Distribution_Employment-Compustat.pdf}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_GrossProfits}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/IPO_YearMinusIPO_GrossProfits}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+<<<<<<< HEAD
+
+
+\section{Lifecycle Graphs}
+\subsection{Lifecycle (Old)}
+\subsubsection{Employment and Age}
+\begin{figure}[!htpb]
+\centering
+\caption{Distribution of employment across firm age}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Age_Employment-Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Age_Employment-Compustat.pdf}
+=======
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Profitability}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_Profitability}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/IPO_YearMinusIPO_Profitability}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Age_Employment-Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Age_Employment-Compustat.pdf}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_Profitability}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/IPO_YearMinusIPO_Profitability}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\subsection{Lifecycle (New)}
+\subsubsection{Employment}
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{Employment (Average)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Employment_Compustat.pdf}
+=======
+\caption{IPO and Number of Employees}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_nEmployees}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/IPO_YearMinusIPO_nEmployees}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Employment_Compustat.pdf}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_nEmployees}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/IPO_YearMinusIPO_nEmployees}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\subsubsection{Decomposition of the effect of IPO on number of employees}
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{Employment (Percentile)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Employment_ptile_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Employment_ptile_Compustat.pdf}
+=======
+\caption{IPO and Number of Employees- Decomposition}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_nEmployees_decomposition}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/IPO_YearMinusIPO_nEmployees_decomposition}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Employment_ptile_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Employment_ptile_Compustat.pdf}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_nEmployees_decomposition}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/IPO_YearMinusIPO_nEmployees_decomposition}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+<<<<<<< HEAD
+\subsubsection{Employment Growth}
+\begin{figure}[!htpb]
+\centering
+\caption{Employment (Average)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_EmploymentGrowth_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_EmploymentGrowth_Compustat.pdf}
+=======
+\subsection{Variables in Growth  (Haltiwanger)}
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Sales growth (Haltiwanger)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_SalesGrowth_h}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/IPO_YearMinusIPO_SalesGrowth_h}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_EmploymentGrowth_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_EmploymentGrowth_Compustat.pdf}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_SalesGrowth_h}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/IPO_YearMinusIPO_SalesGrowth_h}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{Employment (Percentile)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_EmploymentGrowth_ptile_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_EmploymentGrowth_ptile_Compustat.pdf}
+=======
+\caption{IPO and Employment growth (Haltiwanger)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_EmpGrowth_h}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/IPO_YearMinusIPO_EmpGrowth_h}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_EmploymentGrowth_ptile_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_EmploymentGrowth_ptile_Compustat.pdf}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_EmpGrowth_h}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/IPO_YearMinusIPO_EmpGrowth_h}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+\subsubsection{Sales}
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{Sales (Average)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Sales_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Sales_Compustat.pdf}
+=======
+\caption{IPO and Profits growth (Haltiwanger)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_ProfitGrowth_h}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/IPO_YearMinusIPO_ProfitGrowth_h}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Sales_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Sales_Compustat.pdf}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_ProfitGrowth_h}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/IPO_YearMinusIPO_ProfitGrowth_h}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+<<<<<<< HEAD
+\begin{figure}[!htpb]
+\centering
+\caption{Sales (Percentile)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Sales_ptile_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_Sales_ptile_Compustat.pdf}
+=======
+% section ipos (end)
+
+\section{Lifecycle (On Balanced Panel)} % (fold)
+\label{sec:lifecycle_}
+
+
+\subsection{Checks} % (fold)
+\label{sec:checks}
+
+\begin{figure}[!htpb]
+\centering
+\caption{Firms Distribution across age}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_nFirms}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_nFirms}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Sales_ptile_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_Sales_ptile_Compustat.pdf}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_nFirms}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_nFirms}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+<<<<<<< HEAD
+\subsubsection{Sales Growth}
+\begin{figure}[!htpb]
+\centering
+\caption{Employment (Average)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_SalesGrowth_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_SalesGrowth_Compustat.pdf}
+=======
+
+\begin{figure}[!htpb]
+\centering
+\caption{Firm age and Number of Shareholders}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_nShareholders}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_nShareholders}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_SalesGrowth_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_SalesGrowth_Compustat.pdf}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_nShareholders}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_nShareholders}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{Sales Growth (Percentile)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_SalesGrowth_ptile_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Lifecycle_SalesGrowth_ptile_Compustat.pdf}
+=======
+\caption{Distribution of Public Firms across age}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Public}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Public}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_SalesGrowth_ptile_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Lifecycle_SalesGrowth_ptile_Compustat.pdf}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Public}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Public}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+% subsection checks (end)
+
+\subsection{Sales} % (fold)
+\label{sec:sales}
+
+
+<<<<<<< HEAD
+
+
+% section compustat_vs_orbis (end)
+
+%------------------------------------------------------------------------------
+\appendix
+%------------------------------------------------------------------------------
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Private Vs. Public} % (fold)
+\label{sec:private_vs_public}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+
+\subsection{Firm types and growth in Employment}
+
+\begin{figure}[!htpb]
+\centering
+\caption{Firm types and growth in Employment}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/FirmTypes_Growth-Emp}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/FirmTypes_Growth-Emp}
+=======
+\begin{figure}[!htpb]
+\centering
+\caption{Firm age and Revenue/Sales}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Revenue_Sales}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Revenue_Sales}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/FirmTypes_Growth-Emp}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/FirmTypes_Growth-Emp}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Revenue_Sales}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Revenue_Sales}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+<<<<<<< HEAD
+% section private_vs_public (end)
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{IPOs} % (fold)
+\label{sec:ipos}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+
+
+\subsection{Number of Unique IPO firms by year Graph}
+
+\begin{figure}[!htpb]
+\centering
+\caption{Distribution of IPO by year}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Distribution_IPO-Year}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Distribution_IPO-Year}
+=======
+
+\begin{figure}[!htpb]
+\centering
+\caption{Sales (Average)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Sales_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Sales_byFirmType}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/Distribution_IPO-Year}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Distribution_IPO-Year}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Sales_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Sales_byFirmType}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+
+
+\subsection{Proportion of IPO firms that become delisted}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Italy}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{../Output/IT/Table_IPO-Delisted.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{France}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{../Output/FR/Table_IPO-Delisted.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Hungary}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{../Output/HU/Table_IPO-Delisted.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Czech Republic}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}ccc@{}}
+        \toprule
+        \input{../Output/CZ/Table_IPO-Delisted.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+\pagebreak
+
+
+\subsection{Proportion of delisted firms that we observe after becoming delisted}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Italy}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccc@{}}
+        \toprule
+        \input{../Output/IT/Table_IPO-AfterDelisted.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{France}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccc@{}}
+        \toprule
+        \input{../Output/FR/Table_IPO-AfterDelisted.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Hungary}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccc@{}}
+        \toprule
+        \input{../Output/HU/Table_IPO-AfterDelisted.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Czech Republic}
+    \scalebox{0.9}{
+    \begin{tabular}{@{}cccc@{}}
+        \toprule
+        \input{../Output/CZ/Table_IPO-AfterDelisted.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+\end{table}
+\pagebreak
+
+
+
+\subsection{Haltiwanger Sales Growth: Public Firms - Year of IPO vs Other years (Orbis)}
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.90]{../Output/IT/Distribution_SalesHaltiwanger-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.90]{../Output/CZ/Distribution_SalesHaltiwanger-IPOyear.pdf}
+=======
+\caption{Sales (Average)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Sales_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Sales_Compustat.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.90]{../Output/FR/Distribution_SalesHaltiwanger-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.90]{../Output/HU/Distribution_SalesHaltiwanger-IPOyear.pdf}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Sales_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Sales_Compustat.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+<<<<<<< HEAD
+\subsection{Haltiwanger Profit Growth: Public Firms - Year of IPO vs Other years (Orbis)}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.90]{../Output/IT/Distribution_ProfitsHaltiwanger-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.90]{../Output/CZ/Distribution_ProfitsHaltiwanger-IPOyear.pdf}
+=======
+
+\begin{figure}[!htpb]
+\centering
+\caption{Sales (Percentile - Private)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Sales_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Sales_Private_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.90]{../Output/FR/Distribution_ProfitsHaltiwanger-IPOyear.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.90]{../Output/HU/Distribution_ProfitsHaltiwanger-IPOyear.pdf}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Sales_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Sales_Private_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+
+\section{Difference-in-difference graphs: Effect of IPO}
+
+\subsection{Variables in level}
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{IPO and Sales}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_Sales}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_Sales}
+=======
+\caption{Sales (Percentile - Public)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Sales_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Sales_Public_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_Sales}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_Sales}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Sales_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Sales_Public_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{IPO and Sales per Employee}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_SalesPerEmployee}
+=======
+\caption{Sales (Percentile)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Sales_ptile_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Sales_ptile_Compustat.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_SalesPerEmployee}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_SalesPerEmployee}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Sales_ptile_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Sales_ptile_Compustat.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+<<<<<<< HEAD
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Gross Profits}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_GrossProfits}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_GrossProfits}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_GrossProfits}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_GrossProfits}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Profitability}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_Profitability}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_Profitability}
+=======
+
+\begin{figure}[!htpb]
+\centering
+\caption{Sales (Average)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_SalesGrowth_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_SalesGrowth_byFirmType}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_Profitability}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_Profitability}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_SalesGrowth_byFirmType}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_SalesGrowth_byFirmType}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{IPO and Number of Employees}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_nEmployees}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_nEmployees}
+=======
+\caption{Employment (Average)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_SalesGrowth_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_SalesGrowth_Compustat.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_nEmployees}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_nEmployees}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_SalesGrowth_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_SalesGrowth_Compustat.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+<<<<<<< HEAD
+\subsubsection{Decomposition of the effect of IPO on number of employees}
+\begin{figure}[!htpb]
+\centering
+\caption{IPO and Number of Employees- Decomposition}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_nEmployees_decomposition}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_nEmployees_decomposition}
+=======
+\begin{figure}[!htpb]
+\centering
+\caption{Sales Growth (Percentile - Private)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_SalesGrowth_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_SalesGrowth_Private_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_nEmployees_decomposition}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_nEmployees_decomposition}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_SalesGrowth_Private_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_SalesGrowth_Private_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\subsection{Variables in Growth  (Haltiwanger)}
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{IPO and Sales growth (Haltiwanger)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_SalesGrowth_h}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_SalesGrowth_h}
+=======
+\caption{Sales Growth (Percentile - Public)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_SalesGrowth_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_SalesGrowth_Public_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_SalesGrowth_h}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_SalesGrowth_h}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_SalesGrowth_Public_ptile}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_SalesGrowth_Public_ptile}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{IPO and Employment growth (Haltiwanger)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_EmpGrowth_h}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_EmpGrowth_h}
+=======
+\caption{Sales Growth (Percentile)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_SalesGrowth_ptile_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_SalesGrowth_ptile_Compustat.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_EmpGrowth_h}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_EmpGrowth_h}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_SalesGrowth_ptile_Compustat.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_SalesGrowth_ptile_Compustat.pdf}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+% subsection sales (end)
+
+% section lifecycle_ (end)
+
+
+
+\subsection{Assets} % (fold)
+\label{sec:assets}
+
+\begin{figure}[!htpb]
+\centering
+<<<<<<< HEAD
+\caption{IPO and Profits growth (Haltiwanger)}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/IPO_YearMinusIPO_ProfitGrowth_h}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/IPO_YearMinusIPO_ProfitGrowth_h}
+=======
+\caption{Firm age and Assets}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Lifecycle_Assets}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Lifecycle_Assets}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+<<<<<<< HEAD
+ \includegraphics[scale=0.60]{../Output/FR/IPO_YearMinusIPO_ProfitGrowth_h}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/IPO_YearMinusIPO_ProfitGrowth_h}
+=======
+ \includegraphics[scale=0.60]{../Output/FR/Lifecycle_Assets}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Lifecycle_Assets}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+% section ipos (end)
+
+<<<<<<< HEAD
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Lifecycle} % (fold)
+\label{sec:lifecycle}
+=======
+% subsection assets (end)
+
+
+
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Data Structure} % (fold)
+\label{sec:data_structure}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+<<<<<<< HEAD
+
+=======
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\subsection{Distribution of Firms by Age and Year}
+\begin{figure}[!htpb]
+\centering
+\caption{Firm age and Assets}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Distribution_Firm-YearbyAge}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+<<<<<<< HEAD
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Distribution_Firm-YearbyAge}
+=======
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Distribution_Firm-YearbyAge}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Distribution_Firm-YearbyAge}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+<<<<<<< HEAD
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Distribution_Firm-YearbyAge}
+=======
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Distribution_Firm-YearbyAge}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+<<<<<<< HEAD
+% section lifecycle (end)
+
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Data Structure} % (fold)
+\label{sec:data_structure}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+=======
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+
+
+\subsection{Distribution of firms across years}
+
+\begin{figure}[!htpb]
+\centering
+\caption{Distribution of firms across years}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Distribution_Firm-Year}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+<<<<<<< HEAD
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Distribution_Firm-Year}
+=======
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Distribution_Firm-Year}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Distribution_Firm-Year}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+<<<<<<< HEAD
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Distribution_Firm-Year}
+=======
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Distribution_Firm-Year}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\subsection{Distribution of firms across age}
+
+\begin{figure}[!htpb]
+\centering
+\caption{Distribution of firms across age}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Distribution_Firm-Age}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+<<<<<<< HEAD
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Distribution_Firm-Age}
+=======
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Distribution_Firm-Age}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Distribution_Firm-Age}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+<<<<<<< HEAD
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Distribution_Firm-Age}
+=======
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Distribution_Firm-Age}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+\subsection{Distribution of firms conditional on change in shareholders}
+
+\begin{figure}[!htpb]
+\centering
+\caption{Distribution of firms conditional on change in shareholders}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.60]{../Output/IT/Distribution_Change-No-Shareholders}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+<<<<<<< HEAD
+    \subcaption{Czech Republic}
+ \includegraphics[scale=0.60]{../Output/CZ/Distribution_Change-No-Shareholders}
+=======
+    \subcaption{Portugal}
+ \includegraphics[scale=0.60]{../Output/PT/Distribution_Change-No-Shareholders}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.60]{../Output/FR/Distribution_Change-No-Shareholders}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+<<<<<<< HEAD
+    \subcaption{Hungary}
+ \includegraphics[scale=0.60]{../Output/HU/Distribution_Change-No-Shareholders}
+=======
+    \subcaption{Spain}
+ \includegraphics[scale=0.60]{../Output/ES/Distribution_Change-No-Shareholders}
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+% section data_structure (end)
+
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Compustat Vs. Orbis} % (fold)
+\label{sec:compustat_vs_orbis}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+
+
+
+
+\subsubsection{Compustat}
+\begin{table}[!htpb]
+    \centering
+    \caption{Descriptive Statistics - Italy}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/IT/Table_IPOyear_Descriptive-Compustats.tex}
+    \end{tabular}
+    }
+<<<<<<< HEAD
+    \label{tab:my_label}
+=======
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+    \caption{Descriptive Statistics - France}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/FR/Table_IPOyear_Descriptive-Compustats.tex}
+    \end{tabular}
+    }
+<<<<<<< HEAD
+    \label{tab:my_label}
+=======
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+<<<<<<< HEAD
+    \caption{Descriptive Statistics - Hungary}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/HU/Table_IPOyear_Descriptive-Compustats.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+=======
+    \caption{Descriptive Statistics - Spain}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/ES/Table_IPOyear_Descriptive-Compustats.tex}
+    \end{tabular}
+    }
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{table}
+
+\begin{table}[!htpb]
+    \centering
+<<<<<<< HEAD
+    \caption{Descriptive Statistics - Czech Republic}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/CZ/Table_IPOyear_Descriptive-Compustats.tex}
+    \end{tabular}
+    }
+    \label{tab:my_label}
+=======
+    \caption{Descriptive Statistics - Portugal}
+    \scalebox{0.6}{
+    \begin{tabular}{@{}ccccccc@{}}
+        \toprule
+        \input{../Output/PT/Table_IPOyear_Descriptive-Compustats.tex}
+    \end{tabular}
+    }
+>>>>>>> 09bd93d57c22a5114b845ec7337fe0e6db8f7bda
+\end{table}
+\pagebreak
+
+% section compustat_vs_orbis (end)
+
+
+\end{document}
+
