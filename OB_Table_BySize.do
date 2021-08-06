@@ -9,8 +9,7 @@ preserve
 	file open TabEmpSharesMATLAB using Output/${CountryID}/Table_BySize_EmpShares.m, write replace
 	file open TabGrowth using Output/${CountryID}/Table_BySize_EmpGrowth.m, write replace
 	
-	*Name of variables
-	*file write EmpShares " & 1-9 & 10-99 & 100-999 & 1,000-4,999 & 5,000-14,999 & 15,000-49,999 & 50,000-99,999 & 100,000-199,999 & 200,000+  \\ \midrule"_n
+
 	
 	
 	file write TabEmpShares " ${CountryID} "
@@ -22,7 +21,6 @@ preserve
 	
 	su nEmployees, detail
 	local Categories `r(p10)' `r(p25)' `r(p50)' `r(p75)' `r(p90)' `r(p95)' `r(p99)'
-	*local Categories 10 100 1000 5000 15000 50000 100000 200000
 	
 	
 	su nEmployees, detail

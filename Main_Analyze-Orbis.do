@@ -34,7 +34,7 @@ global DATAPATH =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-W
 global Countries NL AT BE DE CZ FI PT HU ES IT FR // US GB
 
 
-*local Country="FR"
+*local Country="NL"
 foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
@@ -67,6 +67,7 @@ foreach Country of global Countries {
 	*do OB_Script_DiD-IPO.do
 	*do OB_Graph_IPOyear-Dist.do
 	*do OB_Graph_Growth_IPOyear-Dist.do
+	*do OB_Graph_BySize.do
 	
 	*do OB_Regressions_FirmTypes.do
 
@@ -84,12 +85,12 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
 	*-------------------------------------------------------
-	use "Data_Cleaned/`Country'_Balanced.dta",clear
+	*use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 
 	*do OB_Graph_Lifecycle.do
-	do OB_Graph_Lifecycle-ByFirmType.do
+	*do OB_Graph_Lifecycle-ByFirmType.do
 	
 	**do OB_Table_BySize-Public.do
 	*do OB_Graph_Age-Dist.do

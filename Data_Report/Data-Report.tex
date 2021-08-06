@@ -125,7 +125,7 @@
     \scalebox{0.8}{
     \begin{tabular}{@{}l r r r r r r r r @{}}
         \toprule
-        & 10\% & 25\% & 50\% & 75\% & 90\% & 95\% & 99\% & 100\% \\ \midrule
+        & 0-10\% & 10-25\% & 25-50\% & 50-75\% & 75-90\% & 90-95\% & 95-99\% & Top 1\% \\ \midrule
         \input{../Output/IT/Table_BySize_EmpShares.tex}
         \input{../Output/PT/Table_BySize_EmpShares.tex}
         \input{../Output/ES/Table_BySize_EmpShares.tex}
@@ -137,6 +137,44 @@
 \end{table}
 
 
+
+\subsection{Share of Employment by Size Percentile (Orbis)}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_EmpShares.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_EmpShares.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_EmpShares.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_EmpShares.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Germany}
+ \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_EmpShares.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Netherland}
+ \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_EmpShares.pdf}
+\end{subfigure}
+\end{figure}
+
+
+
 \subsection{Average ``Age'' by Size Percentile} % (fold)
 \label{sec:age_by_size}
 
@@ -144,7 +182,7 @@
     \scalebox{0.8}{
     \begin{tabular}{@{}l r r r r r r r r @{}}
         \toprule
-        & 10\% & 25\% & 50\% & 75\% & 90\% & 95\% & 99\% & 100\% \\ \midrule
+        & 0-10\% & 10-25\% & 25-50\% & 50-75\% & 75-90\% & 90-95\% & 95-99\% & Top 1\% \\ \midrule
         \input{../Output/IT/Table_BySize_AgeDist.tex}
         \input{../Output/PT/Table_BySize_AgeDist.tex}
         \input{../Output/ES/Table_BySize_AgeDist.tex}
@@ -162,7 +200,7 @@
     \scalebox{0.8}{
     \begin{tabular}{@{}l r r r r r r r r @{}}
         \toprule
-        & 10\% & 25\% & 50\% & 75\% & 90\% & 95\% & 99\% & 100\% \\ \midrule
+        & 0-10\% & 10-25\% & 25-50\% & 50-75\% & 75-90\% & 90-95\% & 95-99\% & Top 1\% \\ \midrule
         \input{../Output/IT/Table_BySize_NFirms.tex}
         \input{../Output/PT/Table_BySize_NFirms.tex}
         \input{../Output/ES/Table_BySize_NFirms.tex}
