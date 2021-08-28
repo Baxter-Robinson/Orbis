@@ -29,15 +29,15 @@ preserve
 	
 
 	*--------------------------------
-	* Employment Growth
+	* Employment Growth (omit when +/- 1.85)
 	*--------------------------------
 	
-	su EmpGrowth_h if (Listed)
+	su EmpGrowth_h if (Listed) & abs(EmpGrowth_h) < 1.85
 	local Public=r(mean)
 	local PublicSD=r(sd)
 	file write TabPubPri   " & " %12.2fc (`Public')
 	
-	su EmpGrowth_h if (FirmType<=3)
+	su EmpGrowth_h if (FirmType<=3) & abs(EmpGrowth_h) < 1.85 
 	local Private=r(mean)
 	local PrivateSD=r(sd)
 	file write TabPubPri   " & " %12.2fc (`Private')

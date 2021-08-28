@@ -22,22 +22,23 @@ set more off
 
 * Emmanuel PATH
 * Desktop
-*cd "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
-*global DATAPATH =  "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
+cd "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
+global DATAPATH =  "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
 * Laptop
-cd "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
-global DATAPATH =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
+*cd "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
+*global DATAPATH =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
 
 *---------------------
 * Loop over countries 
 *---------------------
-global Countries NL AT BE DE CZ FI PT HU ES IT FR // US GB
+*global Countries IT PT ES FR DE NL
+global Countries NL AT BE DE CZ FI PT ES IT FR // HU US GB
 
 
-*local Country="NL"
-foreach Country of global Countries {
-	clear all
-	global CountryID="`Country'"
+*local Country="FR"
+*foreach Country of global Countries {
+	*clear all
+	*global CountryID="`Country'"
 
 	*-------------------------------------------------------
 	* Raw Data
@@ -126,13 +127,30 @@ foreach Country of global Countries {
 	*do Table_Sample-Comparison.do
 	*do Table_CompustatOrbis-Comparison.do
 	
+	*-------------------------------------------------------
+	* Equity Market Depth
+	*-------------------------------------------------------
+	*use "Data_Raw/`Country'_StockPrice.dta", clear
+	*do CS_EquityMarketDepth.do
+	
+	*-------------------------------------------------------
+	* Orbis (OB) Country-level Indicators
+	*-------------------------------------------------------
+	*use "Data_Cleaned/`Country'_Unbalanced.dta", clear
+	*do OB_CountryIndicators.do
 		
-}
+*}
+
+*-------------------------------------------------------
+* Penn World Table (PN) Indicators
+*-------------------------------------------------------
+*use "${DATAPATH}/pwt100.dta", clear
+*do PN_Indicators.do
 
 *-----------------------------
 * Cross Country Comparisons
 *-----------------------------
-
-*do Load_Cross-Country-Dataset.do
+do Load_Cross-Country-Dataset.do
+do Graph_CrossCountry.do
 
 *do Table_Model-Moments.do

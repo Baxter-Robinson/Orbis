@@ -73,6 +73,8 @@ preserve
 	EmpGrowth_h_25_0 EmpGrowth_h_50_0 EmpGrowth_h_75_0 EmpGrowth_h_25_1 EmpGrowth_h_50_1 EmpGrowth_h_75_1, ///
 	by(Year FirmType_dummy)
 	
+	drop if Year < 2010
+	
 	* Sales 
 	graph twoway (connected Sales_25_0 Year) (connected Sales_50_0 Year) (connected Sales_75_0 Year), ///
 	legend(label(1 "25th percentile") label(2 "50th percentile") label(3 "75th percentile ")) ///
@@ -91,7 +93,7 @@ preserve
 	graph twoway (connected SalesGrowth_h_25_1 Year) (connected SalesGrowth_h_50_1 Year) (connected SalesGrowth_h_75_1 Year), ///
 	legend(label(1 "25th percentile") label(2 "50th percentile") label(3 "75th percentile ")) ///
 	graphregion(color(white)) ytitle("Growth")
-	graph export Output/$CountryID/Lifecycle_SalesGrowth_Public_ptile.pdf, replace 
+	graph export Output/$CountryID/Lifecycle_Sales_Growth_Public_ptile.pdf, replace 
 	
 	* Employment
 	graph twoway (connected nEmployees_25_0 Year) (connected nEmployees_50_0 Year) (connected nEmployees_75_0 Year), ///
@@ -102,6 +104,18 @@ preserve
 	legend(label(1 "25th percentile") label(2 "50th percentile") label(3 "75th percentile ")) ///
 	graphregion(color(white)) ytitle("Number of Employees")
 	graph export Output/$CountryID/Lifecycle_Employment_Public_ptile.pdf, replace 
+	if "$CountryID" == "ES" {
+		graph twoway (connected nEmployees_25_1 Year) (connected nEmployees_50_1 Year) (connected nEmployees_75_1 Year), ///
+		legend(label(1 "25th percentile") label(2 "50th percentile") label(3 "75th percentile ")) ///
+		graphregion(color(white)) ytitle("Number of Employees") ylabel(0[10000]100000)
+		graph export Output/$CountryID/Lifecycle_Employment_Public_ptile_SameScale.pdf, replace 
+	}
+	else {
+		graph twoway (connected nEmployees_25_1 Year) (connected nEmployees_50_1 Year) (connected nEmployees_75_1 Year), ///
+		legend(label(1 "25th percentile") label(2 "50th percentile") label(3 "75th percentile ")) ///
+		graphregion(color(white)) ytitle("Number of Employees") ylabel(0[5000]30000)
+		graph export Output/$CountryID/Lifecycle_Employment_Public_ptile_SameScale.pdf, replace 
+	}
 	
 	* Employment growth (Haltiwanger)
 	graph twoway (connected EmpGrowth_h_25_0 Year) (connected EmpGrowth_h_50_0 Year) (connected EmpGrowth_h_75_0 Year), ///

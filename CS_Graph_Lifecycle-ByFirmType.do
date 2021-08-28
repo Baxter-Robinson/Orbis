@@ -33,6 +33,8 @@ restore
 *** Graphs for percentiles ***
 ******************************
 
+drop if Year < 2010
+
 * Sales
 preserve
 	replace Sales=Sales/1000
@@ -72,10 +74,18 @@ preserve
 	graph export Output/$CountryID/Lifecycle_SalesGrowth_ptile_Compustat.pdf, replace  
 	
 	* Employment
-	graph twoway (connected nEmployees_25 Year) (connected nEmployees_50 Year) (connected nEmployees_75 Year), ///
-	legend(label(1 "25th percentile") label(2 "50th percentile") label(3 "75th percentile ")) ///
-	graphregion(color(white)) ytitle("Number of Employees")
-	graph export Output/$CountryID/Lifecycle_Employment_ptile_Compustat.pdf, replace  
+	if "$CountryID" == "ES" {
+		graph twoway (connected nEmployees_25 Year) (connected nEmployees_50 Year) (connected nEmployees_75 Year), ///
+		legend(label(1 "25th percentile") label(2 "50th percentile") label(3 "75th percentile ")) ///
+		graphregion(color(white)) ytitle("Number of Employees") ylabel(0[10000]100000)
+		graph export Output/$CountryID/Lifecycle_Employment_ptile_Compustat.pdf, replace
+	}
+	else{
+		graph twoway (connected nEmployees_25 Year) (connected nEmployees_50 Year) (connected nEmployees_75 Year), ///
+		legend(label(1 "25th percentile") label(2 "50th percentile") label(3 "75th percentile ")) ///
+		graphregion(color(white)) ytitle("Number of Employees") ylabel(0[5000]30000)
+		graph export Output/$CountryID/Lifecycle_Employment_ptile_Compustat.pdf, replace
+	}
 	
 	* Employment growth (Haltiwanger)
 	graph twoway (connected EmpGrowth_h_25 Year) (connected EmpGrowth_h_50 Year) (connected EmpGrowth_h_75 Year), ///

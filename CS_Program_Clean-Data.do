@@ -104,7 +104,7 @@ replace Sales = 0 if Sales == 0.5
 drop minE minS maxE maxS tagMaxE tagMaxS tagMinE tagMinS
 
 xtset IDNum Year
-keep Year gvkey IDNum IPO_year Age nEmployees Sales Assets GrossProfits nShareholders SalesPerEmployee
+keep Year gvkey IDNum IPO_year Age nEmployees Sales Assets GrossProfits nShareholders SalesPerEmployee cshoi
 save "Data_Cleaned/${CountryID}_CompustatUnbalanced.dta", replace
 
 *------------------

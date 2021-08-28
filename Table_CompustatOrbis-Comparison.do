@@ -26,6 +26,10 @@ preserve
 	bysort Year dataset_id: egen Total_nEmployees = total(nEmployees)
 	bysort Year dataset_id: egen Total_Sales = total(Sales)
 	su Year
+	* Drop massive outlier for the Netherland
+	if "$CountryID" == "NL" {
+		drop if IDNum == 35902
+	}
 	* Create tables
 	forvalues t = `r(min)'/`r(max)' {
 		* Number of public firms (Orbis)

@@ -29,7 +29,8 @@ preserve
 	local PostGrowth: di %12.2fc r(mean)
 	file write TabIPOs " & `PostGrowth' "
 	
-	count if (IPO_timescale==-1)
+	collapse (max) IPO_timescale, by(IDNum)
+	count if (IPO_timescale!=.)
 	local Moment: di %12.0fc r(N)
 	file write TabIPOs " & `Moment' "
 	
