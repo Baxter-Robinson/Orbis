@@ -15,15 +15,15 @@ set more off
 
 * Baxter PATH
 *if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
-*if `"`c(os)'"' == "Windows"   global   stem  `"D:/Dropbox/"'
-*cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
-*global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
+if `"`c(os)'"' == "Windows"   global   stem  `"D:/Dropbox/"'
+cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
+global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 
 
 * Emmanuel PATH
 * Desktop
-cd "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
-global DATAPATH =  "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
+*cd "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
+*global DATAPATH =  "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
 * Laptop
 *cd "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
 *global DATAPATH =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
@@ -35,10 +35,10 @@ global DATAPATH =  "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-W
 global Countries NL AT BE DE CZ FI PT ES IT FR // HU US GB
 
 
-*local Country="FR"
-*foreach Country of global Countries {
-	*clear all
-	*global CountryID="`Country'"
+local Country="NL"
+foreach Country of global Countries {
+	clear all
+	global CountryID="`Country'"
 
 	*-------------------------------------------------------
 	* Raw Data
@@ -60,7 +60,7 @@ global Countries NL AT BE DE CZ FI PT ES IT FR // HU US GB
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
@@ -68,7 +68,7 @@ global Countries NL AT BE DE CZ FI PT ES IT FR // HU US GB
 	*do OB_Script_DiD-IPO.do
 	*do OB_Graph_IPOyear-Dist.do
 	*do OB_Graph_Growth_IPOyear-Dist.do
-	*do OB_Graph_BySize.do
+	do OB_Graph_BySize.do
 	
 	*do OB_Regressions_FirmTypes.do
 
@@ -93,7 +93,7 @@ global Countries NL AT BE DE CZ FI PT ES IT FR // HU US GB
 	*do OB_Graph_Lifecycle.do
 	*do OB_Graph_Lifecycle-ByFirmType.do
 	
-	**do OB_Table_BySize-Public.do
+	*do OB_Table_BySize-Public.do
 	*do OB_Graph_Age-Dist.do
 	*do OB_Graph_Change-No-Shareholders-Dist.do
 	*do OB_Graph_FirmTypes.do
@@ -139,7 +139,12 @@ global Countries NL AT BE DE CZ FI PT ES IT FR // HU US GB
 	*use "Data_Cleaned/`Country'_Unbalanced.dta", clear
 	*do OB_CountryIndicators.do
 		
-*}
+}
+
+*-------------------------------------------------------
+* World Bank Data 
+*-------------------------------------------------------
+*do WB_CleanData.do
 
 *-------------------------------------------------------
 * Penn World Table (PN) Indicators
@@ -150,7 +155,7 @@ global Countries NL AT BE DE CZ FI PT ES IT FR // HU US GB
 *-----------------------------
 * Cross Country Comparisons
 *-----------------------------
-do Load_Cross-Country-Dataset.do
-do Graph_CrossCountry.do
+*do Load_Cross-Country-Dataset.do
+*do Graph_CrossCountry.do
 
 *do Table_Model-Moments.do

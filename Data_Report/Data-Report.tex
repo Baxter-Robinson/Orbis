@@ -51,7 +51,76 @@
 %------------------------------------------------------------------------------
 
 
+\subsection{Average Growth Rates by Size}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_GrowthRateAvg.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_GrowthRateAvg.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_GrowthRateAvg.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_GrowthRateAvg.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Germany}
+ \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_GrowthRateAvg.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Netherland}
+ \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_GrowthRateAvg.pdf}
+\end{subfigure}
+\end{figure}
 
+
+\subsection{Standard Deviation of Growth Rates by Size}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Germany}
+ \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Netherland}
+ \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+\end{subfigure}
+\end{figure}
 
 \subsection{Distribution of Employment Growth Rates (Orbis)}
 \begin{figure}[!htpb]
@@ -1268,23 +1337,45 @@
 
 \section{Cross-Country Equity Market Depth Scatter Plots}
 
-\subsection{Total Factor Productivity}
+\subsection{Valid Equity Market Depth Calculations vs. World Bank Numbers}
 \begin{figure}[!htpb]
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Compustat - Average dec31}
- \includegraphics[scale=0.6]{../Output/Cross-Country/TFP_EquityMktDepth_CSyearend.pdf}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/EquityMktDepth_CSyearendvsWB.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Compustat - Yearly average}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/TFP_EquityMktDepth_CSAnnual.pdf}
+  \includegraphics[scale=0.6]{../Output/Cross-Country/EquityMktDepth_CSAnnualvsWB.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Orbis}
+  \includegraphics[scale=0.6]{../Output/Cross-Country/EquityMktDepth_OBvsWB.pdf}
+\end{subfigure}
+\end{figure}
+\pagebreak
+
+
+\subsection{Total Factor Productivity}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{World Bank}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/TFP_EquityMktDepth_WB.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Orbis}
   \includegraphics[scale=0.6]{../Output/Cross-Country/TFP_EquityMktDepth_OB.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Compustat - Annual Average }
+  \includegraphics[scale=0.6]{../Output/Cross-Country/TFP_EquityMktDepth_CSAnnual.pdf}
 \end{subfigure}
 \end{figure}
 \pagebreak
@@ -1294,18 +1385,18 @@
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Compustat - Average dec31}
- \includegraphics[scale=0.6]{../Output/Cross-Country/OutputPerCapita_EquityMktDepth_CSyearend.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Compustat - Yearly average}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/OutputPerCapita_EquityMktDepth_CSAnnual.pdf}
+    \subcaption{World Bank}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/OutputPerCapita_EquityMktDepth_WB.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Orbis}
   \includegraphics[scale=0.6]{../Output/Cross-Country/OutputPerCapita_EquityMktDepth_OB.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Compustat - Annual Average }
+  \includegraphics[scale=0.6]{../Output/Cross-Country/OutputPerCapita_EquityMktDepth_CSAnnual.pdf}
 \end{subfigure}
 \end{figure}
 \pagebreak
@@ -1315,18 +1406,18 @@
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Compustat - Average dec31}
- \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToLabor_EquityMktDepth_CSyearend.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Compustat - Yearly average}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToLabor_EquityMktDepth_CSAnnual.pdf}
+    \subcaption{World Bank}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToLabor_EquityMktDepth_WB.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Orbis}
   \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToLabor_EquityMktDepth_OB.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Compustat - Annual Average }
+  \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToLabor_EquityMktDepth_CSAnnual.pdf}
 \end{subfigure}
 \end{figure}
 \pagebreak
@@ -1336,18 +1427,18 @@
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Compustat - Average dec31}
- \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToOutput_EquityMktDepth_CSyearend.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Compustat - Yearly average}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToOutput_EquityMktDepth_CSAnnual.pdf}
+    \subcaption{World Bank}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToOutput_EquityMktDepth_WB.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Orbis}
   \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToOutput_EquityMktDepth_OB.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Compustat - Annual Average }
+  \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToOutput_EquityMktDepth_CSAnnual.pdf}
 \end{subfigure}
 \end{figure}
 \pagebreak
@@ -1357,18 +1448,18 @@
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Compustat - Average dec31}
- \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPrivate_EquityMktDepth_CSyearend.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Compustat - Yearly average}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPrivate_EquityMktDepth_CSAnnual.pdf}
+    \subcaption{World Bank}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPrivate_EquityMktDepth_WB.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Orbis}
   \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPrivate_EquityMktDepth_OB.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Compustat - Annual Average }
+  \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPrivate_EquityMktDepth_CSAnnual.pdf}
 \end{subfigure}
 \end{figure}
 \pagebreak
@@ -1378,18 +1469,18 @@
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Compustat - Average dec31}
- \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_CSyearend.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Compustat - Yearly average}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_CSAnnual.pdf}
+    \subcaption{World Bank}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_WB.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Orbis}
   \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_OB.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Compustat - Annual Average }
+  \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_CSAnnual.pdf}
 \end{subfigure}
 \end{figure}
 \pagebreak
@@ -1399,18 +1490,18 @@
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Compustat - Average dec31}
- \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPrivate_EquityMktDepth_CSyearend.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Compustat - Yearly average}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPrivate_EquityMktDepth_CSAnnual.pdf}
+    \subcaption{World Bank}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPrivate_EquityMktDepth_WB.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Orbis}
   \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPrivate_EquityMktDepth_OB.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Compustat - Annual Average }
+  \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPrivate_EquityMktDepth_CSAnnual.pdf}
 \end{subfigure}
 \end{figure}
 \pagebreak
@@ -1420,18 +1511,18 @@
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Compustat - Average dec31}
- \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_CSyearend.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Compustat - Yearly average}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_CSAnnual.pdf}
+    \subcaption{World Bank}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_WB.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Orbis}
   \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_OB.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Compustat - Annual Average }
+  \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_CSAnnual.pdf}
 \end{subfigure}
 \end{figure}
 \pagebreak
@@ -1441,18 +1532,18 @@
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Compustat - Average dec31}
- \includegraphics[scale=0.6]{../Output/Cross-Country/empSharePublic_EquityMktDepth_CSyearend.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Compustat - Yearly average}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/empSharePublic_EquityMktDepth_CSAnnual.pdf}
+    \subcaption{World Bank}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/empSharePublic_EquityMktDepth_WB.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Orbis}
   \includegraphics[scale=0.6]{../Output/Cross-Country/empSharePublic_EquityMktDepth_OB.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Compustat - Annual Average }
+  \includegraphics[scale=0.6]{../Output/Cross-Country/empSharePublic_EquityMktDepth_CSAnnual.pdf}
 \end{subfigure}
 \end{figure}
 \pagebreak
@@ -1462,18 +1553,18 @@
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Compustat - Average dec31}
- \includegraphics[scale=0.6]{../Output/Cross-Country/empShareLargeFirms_EquityMktDepth_CSyearend.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Compustat - Yearly average}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/empShareLargeFirms_EquityMktDepth_CSAnnual.pdf}
+    \subcaption{World Bank}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/empShareLargeFirms_EquityMktDepth_WB.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Orbis}
   \includegraphics[scale=0.6]{../Output/Cross-Country/empShareLargeFirms_EquityMktDepth_OB.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Compustat - Annual Average }
+  \includegraphics[scale=0.6]{../Output/Cross-Country/empShareLargeFirms_EquityMktDepth_CSAnnual.pdf}
 \end{subfigure}
 \end{figure}
 
