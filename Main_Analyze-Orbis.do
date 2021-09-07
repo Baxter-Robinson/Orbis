@@ -30,8 +30,10 @@ set more off
 
 
 * Javier PATH
+* Home
 cd "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
 global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+*
 
 *---------------------
 * Loop over countries 
@@ -40,8 +42,8 @@ global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_R
 global Countries NL AT BE DE CZ FI PT ES IT FR // HU US GB
 
 
-local Country="NL"
-*foreach Country of global Countries {
+*local Country="NL"
+/*foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
 
@@ -49,18 +51,18 @@ local Country="NL"
 	* Raw Data
 	*-------------------------------------------------------
 	
-	*do OB_Table_Missing-Observations.do
+	do OB_Table_Missing-Observations.do
 	
 	*-------------------------------------------------------
 	* Clean Data
 	*-------------------------------------------------------
 	* Orbis
-	*use "${DATAPATH}/${CountryID}_merge.dta", clear
-	*do OB_Program_Clean-Data.do
+	use "${DATAPATH}/${CountryID}_merge.dta", clear
+	do OB_Program_Clean-Data.do
 	
 	* Compustat
-	*use "${DATAPATH}/${CountryID}_compustat.dta", clear
-	*do CS_Program_Clean-Data.do
+	use "${DATAPATH}/${CountryID}_compustat.dta", clear
+	do CS_Program_Clean-Data.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
@@ -92,11 +94,11 @@ local Country="NL"
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
 	*-------------------------------------------------------
-	use "Data_Cleaned/`Country'_Balanced.dta",clear
+	*use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
-	do OB_Graph_BySize.do
+	*do OB_Graph_BySize.do
 	*do OB_Graph_Lifecycle.do
 	*do OB_Graph_Lifecycle-ByFirmType.do
 	
@@ -146,7 +148,8 @@ local Country="NL"
 	*use "Data_Cleaned/`Country'_Unbalanced.dta", clear
 	*do OB_CountryIndicators.do
 		
-*}
+}
+*/
 
 *-------------------------------------------------------
 * World Bank Data 
