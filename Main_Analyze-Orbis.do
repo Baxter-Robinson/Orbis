@@ -15,9 +15,9 @@ set more off
 
 * Baxter PATH
 *if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
-if `"`c(os)'"' == "Windows"   global   stem  `"D:/Dropbox/"'
-cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
-global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
+*if `"`c(os)'"' == "Windows"   global   stem  `"D:/Dropbox/"'
+*cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
+*global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 
 
 * Emmanuel PATH
@@ -30,6 +30,8 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 
 
 * Javier PATH
+cd "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 *---------------------
 * Loop over countries 
