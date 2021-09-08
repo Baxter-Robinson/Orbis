@@ -33,13 +33,17 @@ set more off
 * Home
 cd "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
 global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+
+global javier_faraday "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/javier_faraday"
+mkdir $javier_faraday
+
 *
 
 *---------------------
 * Loop over countries 
 *---------------------
 *global Countries IT PT ES FR DE NL
-global Countries NL AT BE DE CZ FI PT ES IT FR // HU US GB
+*global Countries AT BE CZ DE ES FI FR IT NL PT// HU US GB
 
 
 *local Country="NL"
