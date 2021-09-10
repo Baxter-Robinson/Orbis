@@ -46,7 +46,7 @@ mkdir $javier_faraday
 * Loop over countries 
 *---------------------
 *global Countries IT PT ES FR DE NL
-*global Countries AT BE CZ DE ES FI FR IT NL PT// HU US GB
+*global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
 *local Country="NL"
