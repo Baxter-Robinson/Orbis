@@ -33,11 +33,11 @@ set more off
 
 * Javier PATH
 * Home
-*cd "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+cd "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 * School
-cd "/Volumes/MacMiniExt/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-global DATAPATH "/Volumes/MacMiniExt/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+*cd "/Volumes/MacMiniExt/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+*global DATAPATH "/Volumes/MacMiniExt/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 *global javier_faraday "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/javier_faraday"
 *mkdir $javier_faraday
@@ -66,26 +66,61 @@ gen Year = year(datadate)
 gen Month = month(datadate)
 gen Day = day(datadate)
 
-*keep if Month == 12 
-*bysort Year: egen t=max(Day)
-*keep if t==Day
-*sort gvkey iid Year
-*drop t
+keep if Month == 12 
+bysort Year: egen t=max(Day)
+keep if t==Day
+sort gvkey iid Year
+drop t
 
-keep if Month == 12 & Day == 31 // keeps only end of year values. what if you dont have the 31 for all days...
 rename prccd StockPrice // Stock price
 replace cshoc = cshoc/1000000  // So everything is per million of outstanding shares
-*gen mve_yearend = StockPrice*cshoc
+gen mve_yearend = StockPrice*cshoc
+
+
+/* Cannot employ the command written by emmanuel(?)
+
+		collapse (max) StockPrice cshoc, by(gvkey Year) 
+
+because this collapses the higher stock price and the issuance without regard to the issue id, and for the same firm at same year,
+the value for type of emmission (issuance) varies.
+See the example below:
+
+*keep  if gvkey=="015549" & Year==2010
+
+Notice that for 2010, this firm has 4 emmissions so collapsing makes a measurement error
+
+*/
+
+* This only works for Italy as I was doing the example with it.
+/*
+preserve
+keep if gvkey=="015549" & Year==2010
+scatter StockPrice cshoc  , legend(pos(3) col(1)) title("Italy - Firm 015549 Stock Prices and Quantities", box lcolor(red)) 
+restore
+*/
+
+bysort gvkey Year: egen n_Emmisions = count(iid)
+
+
+* Then the collapse of the data imposes a problem? 
+collapse (max) StockPrice cshoc, by(gvkey Year) 
+
+
+
+*keep if Month == 12 & Day == 31 // keeps only end of year values. what if you dont have the 31 for all days...
 
 collapse (max) StockPrice cshoc, by(gvkey Year) // You are collapsing over issue iD? dont this means that you lose the data that you have for the emmissions that are not the max? Shouldn't be collapsing for the sum ?
+
+
 gen mve_yearend = StockPrice*cshoc
 
 
 
 save Data_Cleaned/${CountryID}_StockPrice.dta,replace
 
+
 * Get single average over 2010-2018 (2010-2014 for France)
-merge 1:1 gvkey Year using "Data_Cleaned/${CountryID}_CompustatUnbalanced"
+merge 1:1 gvkey Year using "Data_Cleaned/${CountryID}_CompustatUnbalanced.dta"
 drop _merge
 drop if Year < 2010
 drop if Year > 2018
