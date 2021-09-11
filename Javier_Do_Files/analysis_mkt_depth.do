@@ -101,6 +101,12 @@ restore
 
 bysort gvkey Year: egen n_Emmisions = count(iid)
 
+hist n_Emmisions, freq legend(pos(3) col(1)) title("`Country' stock issuances", box lcolor(red)) xtitle("Number of different emissions") ytitle("Number of firms")
+
+egen newid = concat(gvkey iid)
+
+drop Day Month datadate n_Emmisions
+reshape wide StockPrice cshoc mve_yearend , i(newid) j(Year)
 
 * Then the collapse of the data imposes a problem? 
 collapse (max) StockPrice cshoc, by(gvkey Year) 

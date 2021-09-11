@@ -55,11 +55,11 @@ global javier_faraday "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/
 
 
 
-global Countries AT BE CZ DE ES FI FR IT NL PT   // HU US GB
+global Countries AT BE CZ DE ES FI FR IT    //  NL PT		 HU US GB 
 foreach Country of global Countries {
 
 
-	local Country = "AT"
+	*local Country = "AT"
 	clear all
 	global CountryID="`Country'"
 	
@@ -83,30 +83,33 @@ foreach Country of global Countries {
 	
 	* Difference between my measure and emmanuel's
 	preserve
-	
 	collapse (sum) mve_yearend,  by(gvkey Year) 
-	rename mve_yearend mve_yearend_J
-	
-	local Country = "AT"
+	gen  mve_yearend_J = mve_yearend
+	*local Country = "AT"
 	merge 1:1 gvkey Year using "Data_Cleaned/${CountryID}_StockPrice.dta", keepusing(mve_yearend) 
 	rename mve_yearend mve_yearend_E
-	
-	gen dif_mve = mve_yearend_J - mve_yearend_E
-	
+	ttest mve_yearend_J mve_yearend_E
+	gen dif_mve = mve_yearend_J - mve_yearend_E	
 	gen l_dif_mve =log(dif_mve)
 	graph box dif_mve, title("`Country' Boxplot of differences in market value") subtitle("New value - Old value") ytitle("Millions of euros?")
 	graph export   "$javier_faraday/`Country'_Mkt_Value_Box_Comparison.png", replace
 	graph box l_dif_mve, title("`Country' Boxplot of differences in market value") subtitle("New value - Old value") ytitle("(Log of) Millions of euros?")
 	graph export   "$javier_faraday/`Country'_Mkt_Value_Box_Log_Comparison.png", replace
-	
 	restore
 	
-	bysort gvkey Year: egen n_Emmisions = count(iid)
-
-	hist n_Emmisions, freq legend(pos(3) col(1)) title("`Country' stock issuances", box lcolor(red)) xtitle("Number of different emissions") ytitle("Number of firms")
 	
+	
+	bysort gvkey Year: egen n_Emmisions = count(iid)
+	hist n_Emmisions, freq legend(pos(3) col(1)) title("`Country' stock issuances", box lcolor(red)) xtitle("Number of different emissions") ytitle("Number of firms")
 	graph export "$javier_faraday/`Country'_Firms_and_emmissions.png", replace
+	
+	
+	
 }
+
+
+
+
 
 
 
