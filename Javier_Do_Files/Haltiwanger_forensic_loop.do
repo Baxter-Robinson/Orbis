@@ -51,7 +51,7 @@ foreach Country of global Countries {
 	tab IDNum
 	return list
 	if r(N)<800{
-		tab2xl IDNum using "$javier_faraday/`Country'_firms_to_investigate_public", col(1) row(1)
+		tab2xl IDNum using "$javier_faraday/Haltiwanger/`Country'_firms_to_investigate_public", col(1) row(1)
 	}
 	restore
 	
@@ -62,7 +62,7 @@ foreach Country of global Countries {
 	bysort IDNum: gen dup = cond(_n==1,0,_n)
 	drop if dup>1
 	if r(N)<800{
-		tab2xl IDNum using "$javier_faraday/`Country'_firms_to_investigate_private", col(1) row(1)
+		tab2xl IDNum using "$javier_faraday/Haltiwanger/`Country'_firms_to_investigate_private", col(1) row(1)
 	}	
 	restore
 		
@@ -153,7 +153,7 @@ foreach Country of global Countries {
 	levelsof(IDNum), local(idfirms)
 	foreach i of local idfirms{ // Loop to go through each firm and check if the firm has a Haltiwanger growth rate greater than 1.90
 		line nEmployees Year if IDNum==`i', legend(size(medsmall)) title("Country `Country' - Firm `i'  jumps in employment", box lcolor(red)) 
-		graph export "$javier_faraday/`Country'_firm_`i'_employment_public.png" 
+		graph export "$javier_faraday/Haltiwanger/`Country'_firm_`i'_employment_public.png" 
 		
 	}
 
@@ -167,10 +167,11 @@ foreach Country of global Countries {
 	esttab using "$javier_faraday/`Country'_employment_sum_stats_public.tex", cells("mean sd min max") nomtitle nonumber ///
 	title("Summary statistics for `Country' on changes in employment" )
 
-	separate difnEmployees, by(IDNum) veryshortlabel 
+	/*separate difnEmployees, by(IDNum) veryshortlabel 
 	local yvars `r(varlist)' 
 	scatter `yvars' Year, legend(pos(3) col(1)) title("Country `Country' - Firms' jumps in employment", box lcolor(red)) 
-	graph export "$javier_faraday/`Country'_employment_scatter_public.png" 
+	graph export "$javier_faraday/Haltiwanger/`Country'_employment_scatter_public.png" 
+	*/
 	restore
 
 
@@ -184,10 +185,13 @@ foreach Country of global Countries {
 	keep if Year>2006
 	sort IDNum Year
 	drop if period!=1 & period2!=1 // First and last period for every firm is identified with period = period2 = 1
+	/*
 	separate nEmployees, by(IDNum) veryshortlabel 
 	local yvars `r(varlist)' 
 	line `yvars' Year, legend(pos(3) col(1)) title("Country `Country' - Firms' jumps in employment", box lcolor(red)) 
-	graph export "$javier_faraday/`Country'_employment_first_last_public.png" 
+	graph export "$javier_faraday/Haltiwanger/`Country'_employment_first_last_public.png" 
+	
+	*/
 	restore
 
 	
@@ -279,7 +283,7 @@ foreach Country of global Countries {
 	levelsof(IDNum), local(idfirms)
 	foreach i of local idfirms{ // Loop to go through each firm and check if the firm has a Haltiwanger growth rate greater than 1.90
 		line nEmployees Year if IDNum==`i', legend(size(medsmall)) title("Country `Country' - Firm `i'  jumps in employment", box lcolor(red)) 
-		graph export "$javier_faraday/`Country'_firm_`i'_employment_private.png" 
+		graph export "$javier_faraday/Haltiwanger/`Country'_firm_`i'_employment_private.png" 
 		
 	}
 
@@ -293,11 +297,12 @@ foreach Country of global Countries {
 	esttab using "$javier_faraday/`Country'_employment_sum_stats_private.tex", cells("mean sd min max") nomtitle nonumber ///
 	title("Summary statistics for `Country' on changes in employment" )
 
-	
+	/*
 	separate difnEmployees, by(IDNum) veryshortlabel 
 	local yvars `r(varlist)' 
 	scatter `yvars' Year, legend(pos(3) col(1)) title("Country `Country' - Firms' jumps in employment", box lcolor(red)) 
-	graph export "$javier_faraday/`Country'_employment_scatter_private.png" 
+	graph export "$javier_faraday/Haltiwanger/`Country'_employment_scatter_private.png" 
+	*/
 	restore
 
 
@@ -311,10 +316,12 @@ foreach Country of global Countries {
 	keep if Year>2006
 	sort IDNum Year
 	drop if period!=1 & period2!=1 // First and last period for every firm is identified with period = period2 = 1
+	/*
 	separate nEmployees, by(IDNum) veryshortlabel 
 	local yvars `r(varlist)' 
 	line `yvars' Year, legend(pos(3) col(1)) title("Country `Country' - Firms' jumps in employment", box lcolor(red)) 
-	graph export "$javier_faraday/`Country'_employment_first_last_private.png" 
+	graph export "$javier_faraday/Haltiwanger/`Country'_employment_first_last_private.png" 
+	*/
 	restore
 
 	
