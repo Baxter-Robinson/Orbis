@@ -31,7 +31,22 @@ preserve
 		drop if IDNum == 35902
 	}
 	* Create tables
-	forvalues t = `r(min)'/`r(max)' {
+	
+	
+	
+	
+	
+	su Year, meanonly
+	return list
+	local ymin = r(min)
+	local ymax = r(max)
+	
+	display `ymin'
+	display `ymin'
+	
+
+		
+	forvalues t = `ymin'/`ymax' {
 		* Number of public firms (Orbis)
 		su Year if (Year == `t') & (dataset_id == 0)
 		global Moment = r(N)
