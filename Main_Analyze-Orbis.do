@@ -31,25 +31,26 @@ set more off
 
 * Javier PATH
 * Home
-*cd "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
-* School
-cd "/Volumes/MacMiniExt/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-global DATAPATH "/Volumes/MacMiniExt/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+cd "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
-global javier_faraday "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/javier_faraday"
-mkdir $javier_faraday
+* School
+*cd "/Volumes/MacMiniExt/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+*global DATAPATH "/Volumes/MacMiniExt/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+
+*global javier_faraday "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/javier_faraday"
+*mkdir $javier_faraday
 
 *
 
 *---------------------
 * Loop over countries 
 *---------------------
-*global Countries IT PT ES FR DE NL
+*global Countries IT FR ES PT DE NL
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
-*local Country="NL"
+*local Country="PT"
 /*foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
