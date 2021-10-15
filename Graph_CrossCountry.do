@@ -4,22 +4,34 @@
 twoway (scatter EquityMktDepth_OB EquityMktDepth_WB , mlabel(Country)) ///
 (line EquityMktDepth_OB EquityMktDepth_OB, sort) ///
 , legend( label(1 "Equity Market Debt") label(2 "45 Degree Line")) ///
-xtitle("World Bank Equity Market Depth") ytitle("Orbis Equity Market Depth") graphregion(color(white))
+xtitle("World Bank Equity Market Depth") ytitle("Orbis Equity Market Depth") graphregion(color(white)) ///
+xscale(range(0 1)) xlabel(#6) yscale(range(0 1)) ylabel(#6) 
 graph export Output/Cross-Country/EquityMktDepth_OBvsWB.pdf, replace
 
 
 twoway (scatter EquityMktDepth_CSyearend EquityMktDepth_WB, mlabel(Country)) ///
 (line EquityMktDepth_OB EquityMktDepth_OB, sort) ///
 , legend( label(1 "Equity Market Debt") label(2 "45 Degree Line")) ///
-xtitle("World Bank Equity Market Depth") ytitle("Compustat (year end) Equity Market Depth") graphregion(color(white))
+xtitle("World Bank Equity Market Depth") ytitle("Compustat (year end) Equity Market Depth") graphregion(color(white)) ///
+xscale(range(0 1)) xlabel(#6) yscale(range(0 6)) ylabel(#6) 
 graph export Output/Cross-Country/EquityMktDepth_CSyearendvsWB.pdf, replace
 
 
 twoway (scatter EquityMktDepth_CSAnnual EquityMktDepth_WB , mlabel(Country)) ///
 (line EquityMktDepth_OB EquityMktDepth_OB, sort) ///
 , legend( label(1 "Equity Market Debt") label(2 "45 Degree Line")) ///
-xtitle("World Bank Equity Market Depth") ytitle("Compustat (annual) Equity Market Depth") graphregion(color(white))
+xtitle("World Bank Equity Market Depth") ytitle("Compustat (annual) Equity Market Depth") graphregion(color(white))   ///
+xscale(range(0 1)) xlabel(#6) yscale(range(0 6)) ylabel(#6) 
 graph export Output/Cross-Country/EquityMktDepth_CSAnnualvsWB.pdf, replace
+
+
+twoway (scatter EquityMktDepth_OB EquityMktDepth_CSyearend , mlabel(Country)) ///
+(line EquityMktDepth_OB EquityMktDepth_OB, sort) ///
+, legend( label(1 "Equity Market Debt") label(2 "45 Degree Line")) ///
+xtitle("Compustat (year end) Equity Market Depth") ytitle("Orbis Equity Market Depth") graphregion(color(white)) ///
+xscale(range(0 12)) xlabel(#6) yscale(range(0 1)) ylabel(#6) 
+graph export Output/Cross-Country/EquityMktDepth_OBvsCS.pdf, replace
+
 
 
 * TFP

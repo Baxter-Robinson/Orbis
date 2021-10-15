@@ -30,13 +30,13 @@ set more off
 
 
 * Javier PATH
-* Home
-cd "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+* Laptop
+*cd "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+*global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
-* School
-*cd "/Volumes/MacMiniExt/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Volumes/MacMiniExt/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+* Mini
+cd "/Volumes/MacMiniExt/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+global DATAPATH "/Volumes/MacMiniExt/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 *global javier_faraday "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/javier_faraday"
 *mkdir $javier_faraday

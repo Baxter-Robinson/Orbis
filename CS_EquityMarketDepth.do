@@ -1,5 +1,6 @@
 * Get closing stock price and outstanding shares at calendar year-end (dec 31) and compute market capitalization (market value of equity)
-local Country="IT"
+*local Country="IT"
+
 
 gen Year = year(datadate)
 gen Month = month(datadate)
@@ -46,9 +47,9 @@ rename cshoc_ave cshoc
 save Data_Cleaned/${CountryID}_StockPrice.dta,replace
 
 * Get single average over 2010-2018 (2010-2014 for France)
-merge 1:1 gvkey Year using "Data_Cleaned/`Country'_CompustatUnbalanced"
+*merge 1:1 gvkey Year using "Data_Cleaned/`Country'_CompustatUnbalanced"
 
-*merge 1:1 gvkey Year using "Data_Cleaned/${CountryID}_CompustatUnbalanced"
+merge 1:1 gvkey Year using "Data_Cleaned/${CountryID}_CompustatUnbalanced"
 
 
 drop _merge
@@ -59,7 +60,7 @@ if "${CountryID}" =="FR" {
 	drop if Year > 2014
 }
 *gen mve_annual = StockPrice*cshoi
-gen mve_annual2 = StockPrice*cshoi
+gen mve_annual2 = StockPrice*cshoi 
 label var mve_annual2 "Market value - annual (from merged data)"
 
 drop if (mve_annual==.) & (mve_yearend==.) & (mve_annual2==.)
@@ -72,9 +73,9 @@ replace mve_yearend = mve_annual2 if mve_yearend == . & mve_annual != .
 
 collapse (sum) mve_yearend mve_annual mve_annual2 cshoc cshoi, by(Year)
 collapse (mean) mve_yearend mve_annual mve_annual2 cshoc cshoi
-lab var mve_yearend "Market Value of Equity - Millions (Compustat Global - Security Daily)"
-lab var mve_annual "Market Value of Equity - Millions (Compustat Global - Security Daily)"
-lab var mve_annual2 "Market Value of Equity - Millions (Compustat Global - Annual)"
+lab var mve_yearend "Market Value of Equity - Millions (Compustat Global - Security Daily)"  // mve_yearend is generated before merging
+lab var mve_annual "Market Value of Equity - Millions (Compustat Global - Security Daily)"  // mve_annual is generated before merging
+lab var mve_annual2 "Market Value of Equity - Millions (Compustat Global - Annual)" // mve_annual2 is generated after the merge
 lab var cshoc "Outstanding Shares - Dec31 (Compustat Global - Security Daily)"
 lab var cshoi "Outstanding Shares - Dec31 (Compustat Global - Annual)"
 
