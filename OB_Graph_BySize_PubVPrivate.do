@@ -44,13 +44,13 @@ preserve
 	(scatter EmpGrowth_mean SizeCategory if (Listed==0), connect(l) msymbol(Sh)) ///
 	, xlabel(`Labels')  ytitle("Average Employment Growth Rate ") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
-	 *graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateAvg.pdf, replace  
+	 graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateAvg.pdf, replace  
 	 
 	twoway (scatter EmpGrowth_sd SizeCategory if (Listed==1), connect(l)) ///
 	(scatter EmpGrowth_sd SizeCategory if (Listed==0), connect(l) msymbol(Sh)) ///
 	, xlabel(`Labels') ytitle("Standard Deviation of Employment Growth Rate ") graphregion(color(white))  ///
 	legend(label(1 "Public") label( 2 "Private" ))
-	*graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateStd.pdf, replace  
+	graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateStd.pdf, replace  
 	
 	
 	
@@ -58,7 +58,7 @@ preserve
 	replace nFirms_Private = round(nFirms_Private)
 	
 	
-	gen public = nFirms_Public
+	 gen public = nFirms_Public
 	 replace public = 0 if public==.
 	 gen private = nFirms_Private
 	 replace private = 0 if private==.
@@ -81,12 +81,27 @@ preserve
 		local nFirms`i' = round(r(mean))
 		drop nfirms`i'
 		
-		sum Nfirms
-		return list
-		local add2top = r(min)
+		if "${CountryID}" == "FR" {
+			local add2top = 15000
+		}
+		else if ("${CountryID}" == "ES") | ("${CountryID}" == "DE")  {
+			local add2top = 2000
+		}
+		else if "${CountryID}" == "PT" {
+			local add2top = 2000
+		}
+		else if "${CountryID}" == "NL" {
+			local add2top = 50
+		}
+		else {
+			sum Nfirms
+			return list
+			local add2top = r(min)
+		}
+		
 		gen endp`i' = Nfirms + `add2top' if (Listed==0) & (SizeCategory==`i')
 		su endp`i', meanonly
-		local endpoint`i' = r(mean)
+		local endpoint`i' = r(max)
 		drop endp`i'
 		
 		gen nfirmspub`i' = nFirms_Public if (Listed==1) & (SizeCategory==`i')
@@ -108,20 +123,20 @@ preserve
 		ylabel(, format(%9.0fc)) ///
 		xtitle("Size category") ///
 		xlabel(`Labels') ///
-		text(`midpoint1' 1 "`nFirms1'", color(white)) /// first number is y second is x.
-		text(`midpoint3' 3 "`nFirms3'", color(white)) /// 
-		text(`midpoint4' 4 "`nFirms4'", color(white)) /// 
-		text(`midpoint5' 5 "`nFirms5'", color(white)) /// 
-		text(`midpoint6' 6 "`nFirms6'", color(white)) /// 
-		text(`midpoint7' 7 "`nFirms7'", color(white)) /// 
-		text(`midpoint8' 8 "`nFirms8'", color(white)) /// 
-		text(`endpoint1' 1 "`nfirmspublic1'", color(red)) /// 
-		text(`endpoint3' 3 "`nfirmspublic3'", color(red)) /// 
-		text(`endpoint4' 4 "`nfirmspublic4'", color(red)) /// 
-		text(`endpoint5' 5 "`nfirmspublic5'", color(red)) /// 
-		text(`endpoint6' 6 "`nfirmspublic6'", color(red)) /// 
-		text(`endpoint7' 7 "`nfirmspublic7'", color(red)) /// 
-		text(`endpoint8' 8 "`nfirmspublic8'", color(red)) ///
+		text(`midpoint1' 1 "`nFirms1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`midpoint3' 3 "`nFirms3'", color(white) size(small)) /// 
+		text(`midpoint4' 4 "`nFirms4'", color(white) size(small)) /// 
+		text(`midpoint5' 5 "`nFirms5'", color(white) size(small)) /// 
+		text(`midpoint6' 6 "`nFirms6'", color(white) size(small)) /// 
+		text(`midpoint7' 7 "`nFirms7'", color(white) size(small)) /// 
+		text(`midpoint8' 8 "`nFirms8'", color(white) size(small)) /// 
+		text(`endpoint1' 1 "`nfirmspublic1'", color(red) size(small)) /// Begin labels for public firms
+		text(`endpoint3' 3 "`nfirmspublic3'", color(red) size(small)) /// 
+		text(`endpoint4' 4 "`nfirmspublic4'", color(red) size(small)) /// 
+		text(`endpoint5' 5 "`nfirmspublic5'", color(red) size(small)) /// 
+		text(`endpoint6' 6 "`nfirmspublic6'", color(red) size(small)) /// 
+		text(`endpoint7' 7 "`nfirmspublic7'", color(red) size(small)) /// 
+		text(`endpoint8' 8 "`nfirmspublic8'", color(red) size(small)) ///
 		title("Number of private and public firms per size")
 		graph export Output/$CountryID/Graph_BySize_PubVPrivate_NumFirms.pdf, replace  
 	 }
@@ -134,22 +149,22 @@ preserve
 		ytitle("Number of firms") ///
 		ylabel(, format(%9.0fc)) ///
 		xtitle("Size category") ///
-		text(`midpoint1' 1 "`nFirms1'", color(white)) /// first number is y second is x.
-		text(`midpoint2' 2 "`nFirms2'", color(white)) /// 
-		text(`midpoint3' 3 "`nFirms3'", color(white)) /// 
-		text(`midpoint4' 4 "`nFirms4'", color(white)) /// 
-		text(`midpoint5' 5 "`nFirms5'", color(white)) /// 
-		text(`midpoint6' 6 "`nFirms6'", color(white)) /// 
-		text(`midpoint7' 7 "`nFirms7'", color(white)) /// 
-		text(`midpoint8' 8 "`nFirms8'", color(white)) /// 
-		text(`endpoint1' 1 "`nfirmspublic1'", color(red)) /// 
-		text(`endpoint2' 2 "`nfirmspublic2'", color(red)) /// 
-		text(`endpoint3' 3 "`nfirmspublic3'", color(red)) /// 
-		text(`endpoint4' 4 "`nfirmspublic4'", color(red)) /// 
-		text(`endpoint5' 5 "`nfirmspublic5'", color(red)) /// 
-		text(`endpoint6' 6 "`nfirmspublic6'", color(red)) /// 
-		text(`endpoint7' 7 "`nfirmspublic7'", color(red)) /// 
-		text(`endpoint8' 8 "`nfirmspublic8'", color(red)) /// 
+		text(`midpoint1' 1 "`nFirms1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`midpoint2' 2 "`nFirms2'", color(white) size(small)) /// 
+		text(`midpoint3' 3 "`nFirms3'", color(white) size(small)) /// 
+		text(`midpoint4' 4 "`nFirms4'", color(white) size(small)) /// 
+		text(`midpoint5' 5 "`nFirms5'", color(white) size(small)) /// 
+		text(`midpoint6' 6 "`nFirms6'", color(white) size(small)) /// 
+		text(`midpoint7' 7 "`nFirms7'", color(white) size(small)) /// 
+		text(`midpoint8' 8 "`nFirms8'", color(white) size(small)) /// 
+		text(`endpoint1' 1 "`nfirmspublic1'", color(red) size(small)) /// Begin labels for public firms
+		text(`endpoint2' 2 "`nfirmspublic2'", color(red) size(small)) /// 
+		text(`endpoint3' 3 "`nfirmspublic3'", color(red) size(small)) /// 
+		text(`endpoint4' 4 "`nfirmspublic4'", color(red) size(small)) /// 
+		text(`endpoint5' 5 "`nfirmspublic5'", color(red) size(small)) /// 
+		text(`endpoint6' 6 "`nfirmspublic6'", color(red) size(small)) /// 
+		text(`endpoint7' 7 "`nfirmspublic7'", color(red) size(small)) /// 
+		text(`endpoint8' 8 "`nfirmspublic8'", color(red) size(small)) /// 
 		title("Number of private and public firms per size") 
 		graph export Output/$CountryID/Graph_BySize_PubVPrivate_NumFirms.pdf, replace  
 	 }
