@@ -148,7 +148,7 @@ preserve
 		text(`endpoint6' 6 "`nfirmspublic6'", color(red) size(small)) /// 
 		text(`endpoint7' 7 "`nfirmspublic7'", color(red) size(small)) /// 
 		text(`endpoint8' 8 "`nfirmspublic8'", color(red) size(small)) ///
-		title("Number of private and public firms per size")
+		 graphregion(color(white))
 		graph export Output/$CountryID/Graph_BySize_PubVPrivate_NumFirms.pdf, replace  
 	 }
 	else {
@@ -176,7 +176,7 @@ preserve
 		text(`endpoint6' 6 "`nfirmspublic6'", color(red) size(small)) /// 
 		text(`endpoint7' 7 "`nfirmspublic7'", color(red) size(small)) /// 
 		text(`endpoint8' 8 "`nfirmspublic8'", color(red) size(small)) /// 
-		title("Number of private and public firms per size") 
+		 graphregion(color(white))
 		graph export Output/$CountryID/Graph_BySize_PubVPrivate_NumFirms.pdf, replace  
 	 }
 	
