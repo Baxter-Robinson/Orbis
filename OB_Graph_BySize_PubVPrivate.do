@@ -36,21 +36,32 @@ preserve
 	
 	
 	
-	collapse (sum) nEmployees (mean) EmpGrowth_mean=EmpGrowth_h nFirms_Public nFirms_Private (sd) EmpGrowth_sd=EmpGrowth_h, by(SizeCategory Listed)
+	collapse (sum) nEmployees (mean) EmpGrowth_mean=EmpGrowth_h nFirms_Public nFirms_Private (sd) EmpGrowth_sd=EmpGrowth_h (p25) EmpGrowth_p25=EmpGrowth_h (p50) EmpGrowth_median=EmpGrowth_h (p75) EmpGrowth_p75=EmpGrowth_h, by(SizeCategory Listed)
 
 
 
 	twoway (scatter EmpGrowth_mean SizeCategory if (Listed==1), connect(l)) ///
 	(scatter EmpGrowth_mean SizeCategory if (Listed==0), connect(l) msymbol(Sh)) ///
-	, xlabel(`Labels')  ytitle("Average Employment Growth Rate ") graphregion(color(white)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Employment Growth Rate ") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	 graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateAvg.pdf, replace  
 	 
 	twoway (scatter EmpGrowth_sd SizeCategory if (Listed==1), connect(l)) ///
 	(scatter EmpGrowth_sd SizeCategory if (Listed==0), connect(l) msymbol(Sh)) ///
-	, xlabel(`Labels') ytitle("Standard Deviation of Employment Growth Rate ") graphregion(color(white))  ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Standard Deviation of Employment Growth Rate ") graphregion(color(white))  ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateStd.pdf, replace  
+	
+	* By percentiles
+	twoway (scatter EmpGrowth_p25 SizeCategory if (Listed==1), connect(l) msymbol(circle) lcolor(orange) mcolor(orange)) ///
+	(scatter EmpGrowth_median SizeCategory if (Listed==1), connect(l) msymbol(diamond) lcolor(orange_red) mcolor(orange_red) ) ///
+	(scatter EmpGrowth_p75 SizeCategory if (Listed==1), connect(l) msymbol(triangle) lcolor(red) mcolor(red) ) ///
+	(scatter EmpGrowth_p25 SizeCategory if (Listed==0), connect(l) msymbol(circle) lcolor(emidblue) mcolor(emidblue)) ///
+	(scatter EmpGrowth_median SizeCategory if (Listed==0), connect(l) msymbol(diamond) lcolor(ebblue) mcolor(ebblue) ) ///
+	(scatter EmpGrowth_p75 SizeCategory if (Listed==0), connect(l) msymbol(triangle) lcolor(navy) mcolor(navy) ) ///
+	, xlabel(`Labels')  xtitle("Size Category")  ytitle("Employment Growth Rate") graphregion(color(white)) ///
+	legend(label(1 "Public P25") label(2 "Public P50" ) label(3 "Public P75") label(4 "Private P25") label(5 "Private P50")  label(6 "Private P75")) 
+	graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRatePercentiles.pdf, replace  
 	
 	
 	
