@@ -125,8 +125,8 @@ bysort IDNum: gen COGS_h = (COGS-L.COGS)/((COGS+L.COGS)/2)
 * Revenue (Haltiwanger)
 bysort IDNum: gen Revenue_h = (Revenue - L.Revenue)/((Revenue + L.Revenue)/2)
 		
-* Export_Revenue (Haltiwanger)
-bysort IDNum: gen Export_revenue_h = (Export_Revenue - L.Export_Revenue)/((Export_Revenue+L.Export_Revenue)/2)		
+* Export_revenue (Haltiwanger)
+bysort IDNum: gen Export_revenue_h = (Export_revenue - L.Export_revenue)/((Export_revenue+L.Export_revenue)/2)		
 
 * Assets (Haltiwanger)
 bysort IDNum: gen Assets_h = (Assets - L.Assets)/((Assets + L.Assets)/2)
