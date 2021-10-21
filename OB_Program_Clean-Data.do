@@ -53,36 +53,6 @@ drop minE minS maxE maxS tagMaxE tagMaxS tagMinE tagMinS
 xtset IDNum Year
 
 
-* Loop for setting a similar structure (as Sales and Number of employees) to additional variables to check for the Haltiwanger growth rates
-
-
-foreach v in COGS Revenue Export_revenue Assets EBITDA{
-	gen `v'_fHGR = `v'
-	* Remove duplicates (updated)
-	replace `v'_fHGR = 0.5 if `v'_fHGR==0
-	replace `v'_fHGR = 0 if `v'_fHGR==.
-	sort IDNum Year
-	by IDNum Year: egen minE = min(`v'_fHGR)
-	by IDNum Year: egen maxE = max(`v'_fHGR)
-
-	* Drop the duplicate with missing number of employees 
-	duplicates tag IDNum Year, gen(dup)
-	gen tagMaxE = 1 if `v'_fHGR == maxE & `v'_fHGR > minE & dup > 0
-	gen tagMinE = 1 if `v'_fHGR == minE & `v'_fHGR < maxE & minE <= 0.5 & dup > 0
-	drop if tagMinE == 1
-	drop dup
-
-	* Drop remaining duplicates where there is no disrepancy
-	duplicates drop IDNum Year, force
-	replace `v'_fHGR = . if `v'_fHGR==0
-	replace `v'_fHGR = 0 if `v'_fHGR==0.5
-
-	drop minE minS maxE maxS tagMaxE tagMaxS tagMinE tagMinS
-
-}
-
-
-
 /*
 duplicates drop IDNum Year Sales Number_of_employees, force
 duplicates tag IDNum Year, gen(dup)
@@ -115,6 +85,36 @@ drop if (Sales<0)
 drop if (Assets<0)
 replace Sales = Revenue if (Sales == 0) & (Revenue > 0)
 *drop if Sales == .
+
+*---------------------------
+* Haltiwanger growth rates -  additional variables
+*---------------------------
+* Loop for setting a similar structure (as Sales and Number of employees) to additional variables to check for the Haltiwanger growth rates
+
+foreach v in COGS Revenue Export_revenue Assets EBITDA{
+	gen `v'_fHGR = `v'
+	* Remove duplicates (updated)
+	replace `v'_fHGR = 0.5 if `v'_fHGR==0
+	replace `v'_fHGR = 0 if `v'_fHGR==.
+	sort IDNum Year
+	by IDNum Year: egen minE = min(`v'_fHGR)
+	by IDNum Year: egen maxE = max(`v'_fHGR)
+
+	* Drop the duplicate with missing number of employees 
+	duplicates tag IDNum Year, gen(dup)
+	gen tagMaxE = 1 if `v'_fHGR == maxE & `v'_fHGR > minE & dup > 0
+	gen tagMinE = 1 if `v'_fHGR == minE & `v'_fHGR < maxE & minE <= 0.5 & dup > 0
+	drop if tagMinE == 1
+	drop dup
+
+	* Drop remaining duplicates where there is no disrepancy
+	duplicates drop IDNum Year, force
+	replace `v'_fHGR = . if `v'_fHGR==0
+	replace `v'_fHGR = 0 if `v'_fHGR==0.5
+
+	drop minE maxE tagMaxE tagMinE 
+
+}
 
 *---------------------------
 * Number of Employees
