@@ -52,6 +52,37 @@ drop minE minS maxE maxS tagMaxE tagMaxS tagMinE tagMinS
 
 xtset IDNum Year
 
+
+* Loop for setting a similar structure (as Sales and Number of employees) to additional variables to check for the Haltiwanger growth rates
+
+
+foreach v in COGS Revenue Export_revenue Assets EBITDA{
+	gen `v'_fHGR = `v'
+	* Remove duplicates (updated)
+	replace `v'_fHGR = 0.5 if `v'_fHGR==0
+	replace `v'_fHGR = 0 if `v'_fHGR==.
+	sort IDNum Year
+	by IDNum Year: egen minE = min(`v'_fHGR)
+	by IDNum Year: egen maxE = max(`v'_fHGR)
+
+	* Drop the duplicate with missing number of employees 
+	duplicates tag IDNum Year, gen(dup)
+	gen tagMaxE = 1 if `v'_fHGR == maxE & `v'_fHGR > minE & dup > 0
+	gen tagMinE = 1 if `v'_fHGR == minE & `v'_fHGR < maxE & minE <= 0.5 & dup > 0
+	drop if tagMinE == 1
+	drop dup
+
+	* Drop remaining duplicates where there is no disrepancy
+	duplicates drop IDNum Year, force
+	replace `v'_fHGR = . if `v'_fHGR==0
+	replace `v'_fHGR = 0 if `v'_fHGR==0.5
+
+	drop minE minS maxE maxS tagMaxE tagMaxS tagMinE tagMinS
+
+}
+
+
+
 /*
 duplicates drop IDNum Year Sales Number_of_employees, force
 duplicates tag IDNum Year, gen(dup)
@@ -120,19 +151,19 @@ bysort IDNum: gen SalesGrowth_h = (Sales-L.Sales)/((Sales+L.Sales)/2)
 bysort IDNum: gen ProfitGrowth_h = (GrossProfits-L.GrossProfits)/((GrossProfits+L.GrossProfits)/2)
 
 * COGS (Haltiwanger)
-bysort IDNum: gen COGS_h = (COGS-L.COGS)/((COGS+L.COGS)/2)
+bysort IDNum: gen COGS_h = (COGS_fHGR -L.COGS_fHGR )/((COGS_fHGR +L.COGS_fHGR )/2)
 		
 * Revenue (Haltiwanger)
-bysort IDNum: gen Revenue_h = (Revenue - L.Revenue)/((Revenue + L.Revenue)/2)
+bysort IDNum: gen Revenue_h = (Revenue_fHGR  - L.Revenue_fHGR )/((Revenue_fHGR  + L.Revenue_fHGR )/2)
 		
 * Export_revenue (Haltiwanger)
-bysort IDNum: gen Export_revenue_h = (Export_revenue - L.Export_revenue)/((Export_revenue+L.Export_revenue)/2)		
+bysort IDNum: gen Export_revenue_h = (Export_revenue_fHGR  - L.Export_revenue_fHGR )/((Export_revenue_fHGR +L.Export_revenue_fHGR )/2)		
 
 * Assets (Haltiwanger)
-bysort IDNum: gen Assets_h = (Assets - L.Assets)/((Assets + L.Assets)/2)
+bysort IDNum: gen Assets_h = (Assets_fHGR  - L.Assets_fHGR )/((Assets_fHGR  + L.Assets_fHGR )/2)
 		
 * EBITDA (Haltiwanger)
-bysort IDNum: gen EBITDA_h = (EBITDA - L.EBITDA)/((EBITDA + L.EBITDA)/2) 
+bysort IDNum: gen EBITDA_h = (EBITDA_fHGR  - L.EBITDA_fHGR )/((EBITDA_fHGR  + L.EBITDA_fHGR )/2) 
 
 
 *---------------------------

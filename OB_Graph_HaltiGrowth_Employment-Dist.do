@@ -36,6 +36,22 @@ preserve
 	xtitle("Employment growth - Haltiwanger") graphregion(color(white))
 	graph export Output/$CountryID/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf, replace 
 restore
+
+
+foreach v in COGS_h Revenue_h Export_revenue_h Assets_h EBITDA_h{
+		preserve
+		gen private = 1 if FirmType != 6 | (FirmType == 6 & Year >= Delisted_year)
+		gen public = 1 if FirmType == 6
+		replace public = 0 if FirmType == 6 & Delisted_year != . & Delisted_year <= Year
+		twoway (hist `v' if public == 1, frac lcolor(gs12) fcolor(gs12) width(`BinWidth') start(`MinVal')) ///
+		(hist `v' if private == 1, frac lcolor(red) fcolor(none) width(`BinWidth') start(`MinVal')), ///
+		legend(label(1 "Public Firms") label(2 "Private Firms")) ///
+		xtitle("`v' growth - Haltiwanger") graphregion(color(white))
+		graph export Output/$CountryID/Distribution_`v'_Haltiwanger-PublicPrivate.pdf, replace 
+	restore
+	
+	}
+
 * Delisted vs non-delisted public
 preserve
 	keep if FirmType == 6
