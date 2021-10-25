@@ -25,6 +25,7 @@ preserve
 	replace SizeCategory=8 if (nEmployees>`7')
 	di ``7''
 	
+	drop if nEmployees==.   //  THIS IS FOR THE STACK BAR - Lets see if it does not mess up the figures 1.1 and 1.4
 	
 	*Total Firms
 	bysort SizeCategory Year : egen nFirms = count(IDNum) 
@@ -92,10 +93,7 @@ preserve
 		local nFirms`i' = round(r(mean))
 		drop nfirms`i'
 		
-		if "${CountryID}" == "FR" {
-			local add2top = 15000
-		}
-		else if ("${CountryID}" == "ES") | ("${CountryID}" == "DE")  {
+		if ("${CountryID}" == "ES") | ("${CountryID}" == "DE")  {
 			local add2top = 2000
 		}
 		else if "${CountryID}" == "PT" {
@@ -132,7 +130,7 @@ preserve
 		legend(label(1 "Private") label( 2 "Public" ) ) ///
 		ytitle("Number of firms") ///
 		ylabel(, format(%9.0fc)) ///
-		xtitle("Size category") ///
+		xtitle("Size Category") ///
 		xlabel(`Labels') ///
 		text(`midpoint1' 1 "`nFirms1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
 		text(`midpoint3' 3 "`nFirms3'", color(white) size(small)) /// 
@@ -159,7 +157,7 @@ preserve
 		legend(label(1 "Private") label( 2 "Public" ) ) ///
 		ytitle("Number of firms") ///
 		ylabel(, format(%9.0fc)) ///
-		xtitle("Size category") ///
+		xtitle("Size Category") ///
 		text(`midpoint1' 1 "`nFirms1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
 		text(`midpoint2' 2 "`nFirms2'", color(white) size(small)) /// 
 		text(`midpoint3' 3 "`nFirms3'", color(white) size(small)) /// 
@@ -179,6 +177,34 @@ preserve
 		 graphregion(color(white))
 		graph export Output/$CountryID/Graph_BySize_PubVPrivate_NumFirms.pdf, replace  
 	 }
+	
+	egen tot_nFirms_Private = total(nFirms_Private)
+	egen tot_nFirms_Public = total(nFirms_Public)
+	
+	gen prop_nFirms_Private = nFirms_Private / tot_nFirms_Private
+	gen prop_nFirms_Public = nFirms_Public / tot_nFirms_Public
+	
+	sort prop_nFirms_Private
+	generate order_private = _n if Listed==0
+	
+	sort prop_nFirms_Public
+	generate order_public = _n if Listed==1
+	
+	
+	sort SizeCategory 
+	
+	twoway (scatter EmpGrowth_mean SizeCategory if (Listed==1) [w=order_public] , connect(l)) ///
+	(scatter EmpGrowth_mean SizeCategory if (Listed==0) [w=order_private], connect(l) msymbol(Sh)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Employment Growth Rate ") graphregion(color(white)) ///
+	legend(label(1 "Public") label( 2 "Private" ))
+	graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateAvg_Weighted.pdf, replace  
+	 
+	twoway (scatter EmpGrowth_sd SizeCategory if (Listed==1) [w=order_public] , connect(l)) ///
+	(scatter EmpGrowth_sd SizeCategory if (Listed==0) [w=order_private], connect(l) msymbol(Sh)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Standard Deviation of Employment Growth Rate ") graphregion(color(white))  ///
+	legend(label(1 "Public") label( 2 "Private" ))
+	graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateStd_Weighted.pdf, replace 
+	
 	
 	
 	 
