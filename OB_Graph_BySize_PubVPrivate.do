@@ -125,8 +125,8 @@ preserve
 	 * This is needed for the correct labeling in the graph -> 
 	 if "${CountryID}" == "PT" {   /// This distinction is done because, surprisingly, Portugal does not have firms in the size bin 2 
 	 	local Labels  1 "0-10%" 2 "10-25%"  3 "25-50%" 4 "50-75%" 5 "75-90%" 6 "90-95%" 7 "95-99%" 8 "Top 1%"
-		graph twoway (rbar floor nFirms_Private SizeCategory)  ///
-		(rbar nFirms_Private Nfirms SizeCategory), ///
+		graph twoway (rbar floor nFirms_Private SizeCategory, color(maroon))  ///
+		(rbar nFirms_Private Nfirms SizeCategory, color(navy)), ///
 		legend(label(1 "Private") label( 2 "Public" ) ) ///
 		ytitle("Number of firms") ///
 		ylabel(, format(%9.0fc)) ///
@@ -139,20 +139,20 @@ preserve
 		text(`midpoint6' 6 "`nFirms6'", color(white) size(small)) /// 
 		text(`midpoint7' 7 "`nFirms7'", color(white) size(small)) /// 
 		text(`midpoint8' 8 "`nFirms8'", color(white) size(small)) /// 
-		text(`endpoint1' 1 "`nfirmspublic1'", color(red) size(small)) /// Begin labels for public firms
-		text(`endpoint3' 3 "`nfirmspublic3'", color(red) size(small)) /// 
-		text(`endpoint4' 4 "`nfirmspublic4'", color(red) size(small)) /// 
-		text(`endpoint5' 5 "`nfirmspublic5'", color(red) size(small)) /// 
-		text(`endpoint6' 6 "`nfirmspublic6'", color(red) size(small)) /// 
-		text(`endpoint7' 7 "`nfirmspublic7'", color(red) size(small)) /// 
-		text(`endpoint8' 8 "`nfirmspublic8'", color(red) size(small)) ///
+		text(`endpoint1' 1 "`nfirmspublic1'", color(navy) size(small)) /// Begin labels for public firms
+		text(`endpoint3' 3 "`nfirmspublic3'", color(navy) size(small)) /// 
+		text(`endpoint4' 4 "`nfirmspublic4'", color(navy) size(small)) /// 
+		text(`endpoint5' 5 "`nfirmspublic5'", color(navy) size(small)) /// 
+		text(`endpoint6' 6 "`nfirmspublic6'", color(navy) size(small)) /// 
+		text(`endpoint7' 7 "`nfirmspublic7'", color(navy) size(small)) /// 
+		text(`endpoint8' 8 "`nfirmspublic8'", color(navy) size(small)) ///
 		 graphregion(color(white))
 		graph export Output/$CountryID/Graph_BySize_PubVPrivate_NumFirms.pdf, replace  
 	 }
 	else {
 	 	local Labels  1 "0-10%" 2 "10-25%"  3 "25-50%" 4 "50-75%" 5 "75-90%" 6 "90-95%" 7 "95-99%" 8 "Top 1%"
-		graph twoway (rbar floor nFirms_Private SizeCategory)  ///
-		(rbar nFirms_Private Nfirms SizeCategory), ///
+		graph twoway (rbar floor nFirms_Private SizeCategory, color(maroon))  ///
+		(rbar nFirms_Private Nfirms SizeCategory, color(navy)), ///
 		xlabel(`Labels') ///
 		legend(label(1 "Private") label( 2 "Public" ) ) ///
 		ytitle("Number of firms") ///
@@ -166,45 +166,46 @@ preserve
 		text(`midpoint6' 6 "`nFirms6'", color(white) size(small)) /// 
 		text(`midpoint7' 7 "`nFirms7'", color(white) size(small)) /// 
 		text(`midpoint8' 8 "`nFirms8'", color(white) size(small)) /// 
-		text(`endpoint1' 1 "`nfirmspublic1'", color(red) size(small)) /// Begin labels for public firms
-		text(`endpoint2' 2 "`nfirmspublic2'", color(red) size(small)) /// 
-		text(`endpoint3' 3 "`nfirmspublic3'", color(red) size(small)) /// 
-		text(`endpoint4' 4 "`nfirmspublic4'", color(red) size(small)) /// 
-		text(`endpoint5' 5 "`nfirmspublic5'", color(red) size(small)) /// 
-		text(`endpoint6' 6 "`nfirmspublic6'", color(red) size(small)) /// 
-		text(`endpoint7' 7 "`nfirmspublic7'", color(red) size(small)) /// 
-		text(`endpoint8' 8 "`nfirmspublic8'", color(red) size(small)) /// 
+		text(`endpoint1' 1 "`nfirmspublic1'", color(navy) size(small)) /// Begin labels for public firms
+		text(`endpoint2' 2 "`nfirmspublic2'", color(navy) size(small)) /// 
+		text(`endpoint3' 3 "`nfirmspublic3'", color(navy) size(small)) /// 
+		text(`endpoint4' 4 "`nfirmspublic4'", color(navy) size(small)) /// 
+		text(`endpoint5' 5 "`nfirmspublic5'", color(navy) size(small)) /// 
+		text(`endpoint6' 6 "`nfirmspublic6'", color(navy) size(small)) /// 
+		text(`endpoint7' 7 "`nfirmspublic7'", color(navy) size(small)) /// 
+		text(`endpoint8' 8 "`nfirmspublic8'", color(navy) size(small)) /// 
 		 graphregion(color(white))
 		graph export Output/$CountryID/Graph_BySize_PubVPrivate_NumFirms.pdf, replace  
 	 }
 	
-	egen tot_nFirms_Private = total(nFirms_Private)
-	egen tot_nFirms_Public = total(nFirms_Public)
 	
-	gen prop_nFirms_Private = nFirms_Private / tot_nFirms_Private
-	gen prop_nFirms_Public = nFirms_Public / tot_nFirms_Public
+	egen totFirms = total(Nfirms)
+	replace totFirms = totFirms/2
 	
-	sort prop_nFirms_Private
-	generate order_private = _n if Listed==0
+	gen prop_firms = .
 	
-	sort prop_nFirms_Public
-	generate order_public = _n if Listed==1
-	
+	replace prop_firms =  nFirms_Private / totFirms if nFirms_Private!=.
+	replace prop_firms =  nFirms_Public / totFirms if nFirms_Public!=.
 	
 	sort SizeCategory 
 	
-	twoway (scatter EmpGrowth_mean SizeCategory if (Listed==1) [w=order_public] , connect(l)) ///
-	(scatter EmpGrowth_mean SizeCategory if (Listed==0) [w=order_private], connect(l) msymbol(Sh)) ///
+	drop totFirms 
+	
+	twoway (scatter EmpGrowth_mean SizeCategory if (Listed==1) [w=prop_firms] , connect(l)) ///
+	(scatter EmpGrowth_mean SizeCategory if (Listed==0) [w=prop_firms], connect(l) msymbol(Sh)) ///
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Employment Growth Rate ") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
-	graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateAvg_Weighted.pdf, replace  
-	 
-	twoway (scatter EmpGrowth_sd SizeCategory if (Listed==1) [w=order_public] , connect(l)) ///
-	(scatter EmpGrowth_sd SizeCategory if (Listed==0) [w=order_private], connect(l) msymbol(Sh)) ///
+	 graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateAvg_Weighted.pdf, replace  
+	
+	
+	twoway (scatter EmpGrowth_sd SizeCategory if (Listed==1) [w=prop_firms] , connect(l)) ///
+	(scatter EmpGrowth_sd SizeCategory if (Listed==0) [w=prop_firms], connect(l) msymbol(Sh)) ///
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Standard Deviation of Employment Growth Rate ") graphregion(color(white))  ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateStd_Weighted.pdf, replace 
 	
+	
+	 
 	
 	
 	 
