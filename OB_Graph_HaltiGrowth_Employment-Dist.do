@@ -38,7 +38,7 @@ preserve
 restore
 
 
-foreach v in COGS_h Revenue_h Export_revenue_h Assets_h EBITDA_h{
+foreach v in COGS_h Revenue_h Export_revenue_h Assets_h EBITDA_h  SalesGrowth_h ProfitGrowth_h{
 		preserve
 		gen private = 1 if FirmType != 6 | (FirmType == 6 & Year >= Delisted_year)
 		gen public = 1 if FirmType == 6
