@@ -1,11 +1,6 @@
 * Country-level scatter plots between Eequity market depth and selected indicators
 
 * Compare Equity Market Depth
-preserve
-
-drop if Year < 2009
-drop if Year > 2016
-
 twoway (scatter EquityMktDepth_OB EquityMktDepth_WB , mlabel(Country)) ///
 (line EquityMktDepth_WB EquityMktDepth_WB, sort) ///
 , legend( label(1 "Equity Market Debt") label(2 "45 Degree Line")) ///
@@ -37,7 +32,6 @@ xtitle("Compustat (year end) Equity Market Depth") ytitle("Orbis Equity Market D
 xscale(range(0 12)) xlabel(#6) yscale(range(0 1)) ylabel(#6) 
 graph export Output/Cross-Country/EquityMktDepth_OBvsCS.pdf, replace
 
-restore
 
 * TFP
 scatter tfp EquityMktDepth_CSyearend, xtitle("Equity Market Depth") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)

@@ -1,10 +1,12 @@
 * Country-level Indicators from Orbis Database - average over 2010-2018 (2010-2014 for France)
 
-drop if Year < 2010
-drop if Year > 2018
+drop if Year < 2009
+drop if Year > 2016
+/*
 if "${CountryID}" == "FR" {
 	drop if Year > 2014
 }
+*/
 
 * Indicator for public or private
 gen FirmType_dummy = 0
