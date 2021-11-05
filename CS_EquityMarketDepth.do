@@ -8,6 +8,26 @@ gen Day = day(datadate)
 rename prccd StockPrice
 replace cshoc = cshoc/1000000
 
+
+
+
+**************************
+* Convert currency to USD
+**************************
+
+merge m:1 Year using "${DATAPATH}/Exchange_rate.dta"
+
+drop pln chf czk huf frf itl ecu _merge
+
+gen float e_rate = 1/eur
+
+drop eur
+
+replace StockPrice = StockPrice*e_rate
+
+**************************
+**************************
+
 bysort gvkey Year: egen StockPrice_ave = mean(StockPrice) // Yearly average stock price of each firm
 label var StockPrice_ave "Average stock price (all issuances)"
 
@@ -54,11 +74,15 @@ merge 1:1 gvkey Year using "Data_Cleaned/${CountryID}_CompustatUnbalanced"
 
 drop _merge
 
-drop if Year < 2010
-drop if Year > 2018
+drop if Year < 2009
+drop if Year > 2016
+
+/*
 if "${CountryID}" =="FR" {
 	drop if Year > 2014
 }
+*/
+
 *gen mve_annual = StockPrice*cshoi
 gen mve_annual2 = StockPrice*cshoi 
 label var mve_annual2 "Market value - annual (from merged data)"
