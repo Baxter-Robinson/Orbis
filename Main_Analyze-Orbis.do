@@ -99,6 +99,7 @@ global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_R
 	*do OB_Table_IPO-years.do
 	*do OB_Table_IPOyear_Descriptive-Stats.do
 	
+	*do OB_HGR_regressions.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
