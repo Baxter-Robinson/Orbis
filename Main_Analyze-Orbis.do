@@ -38,10 +38,6 @@ set more off
 cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
 global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
-
-*global javier_faraday "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/javier_faraday"
-*mkdir $javier_faraday
-
 *
 
 *---------------------

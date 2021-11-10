@@ -43,6 +43,11 @@ foreach v in COGS_h Revenue_h Export_revenue_h Assets_h EBITDA_h  SalesGrowth_h 
 		gen private = 1 if FirmType != 6 | (FirmType == 6 & Year >= Delisted_year)
 		gen public = 1 if FirmType == 6
 		replace public = 0 if FirmType == 6 & Delisted_year != . & Delisted_year <= Year
+		sum `v', detail
+		return list
+		gen range_`v' = r(max)-r(min)
+		replace `v' = `v'/range_`v'
+		drop range_`v'
 		twoway (hist `v' if public == 1, frac lcolor(gs12) fcolor(gs12) width(`BinWidth') start(`MinVal')) ///
 		(hist `v' if private == 1, frac lcolor(red) fcolor(none) width(`BinWidth') start(`MinVal')), ///
 		legend(label(1 "Public Firms") label(2 "Private Firms")) ///

@@ -1,0 +1,14 @@
+Market capitalization - Equity Depth (World Bank calculation)
+(E.g., https://data.worldbank.org/indicator/CM.MKT.LCAP.CD?locations=IT ) 
+
+
+Def: Market capitalization (also known as market value) is the share price times the number of shares outstanding (including their several classes) for listed domestic companies. Investment funds, unit trusts, and companies whose only business goal is to hold shares of other listed companies are excluded. Data are end of year values converted to U.S. dollars using corresponding year-end foreign exchange rates.
+
+
+General Comments: Stock market data were previously sourced from Standard & Poor's until they discontinued their "Global Stock Markets Factbook" and database in April 2013. Time series have been replaced in December 2015 with data from the World Federation of Exchanges and may differ from the previous S&P definitions and methodology.
+
+
+Statistical Concept and Methodology: Market capitalization figures include: shares of listed domestic companies; shares of foreign companies which are exclusively listed on an exchange (i.e., the foreign company is not listed on any other exchange); common and preferred shares of domestic companies; and shares without voting rights. Market capitalization figures exclude: collective investment funds ; rights, warrants, ETFs, convertible instruments ; options, futures ; foreign listed shares other than exclusively listed ones; companies whose only business goal is to hold shares of other listed companies, such as holding companies and investment companies, regardless of their legal status; and companies admitted to trading (i.e., companies whose shares are traded at the exchange but not listed at the exchange).
+
+
+

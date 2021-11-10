@@ -15,10 +15,22 @@ gen ftocheck = 0 // indicator for firm to check
 bysort IDNum: egen h_review = max(abs_EmpGrowth_h)
 replace ftocheck = 1 if h_review>1.90
 
+*Total public firms
+bysort IDNum: gen nvals = _n == 1  if public ==1
+replace nvals = sum(nvals)
+replace nvals = nvals[_N] 
+gen PublicFirms = nvals
+drop nvals
+*Total private firms
+bysort IDNum: gen nvals = _n == 1  if private ==1
+replace nvals = sum(nvals)
+replace nvals = nvals[_N] 
+gen PrivateFirms = nvals
+drop nvals
 
 keep if ftocheck==1  // I keep only the firms that where flagged.
 bysort IDNum: gen firmchanging = 1 if abs(halti2)>1.90  // For the firms that I keep, I write a 1 for the period in which they have the HGR>1.90
-	* replace firmchanging=0 if firmchanging==.
+replace firmchanging=0 if firmchanging==.
 * Now I want to see what is the difference in employment between the period previous to a HGR>1.90 and the period when HGR>1.90
 gen previous =.  // Indicator for the previous period
 local tot = _N
@@ -34,7 +46,19 @@ replace previous=0 if previous==.   // Set all other periods to 0 if they are no
 
 preserve
 	keep if public == 1
-
+	
+	bysort IDNum: egen Numchanges = total(firmchanging) // Gives you the number of jumps per firm
+	
+	*Percentage of firms with HGR>abs(1.90)
+	bysort IDNum: gen nvals = _n == 1  if public ==1
+	replace nvals = sum(nvals)
+	replace nvals = nvals[_N] 
+	gen PublicFirmsHGR = nvals
+	drop nvals
+	gen p_public = PublicFirmsHGR/PublicFirms
+	
+	sum nEmployees if firmchanging==1, detail
+	
 	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1) |  (EmpGrowth_h<0) & (firmchanging==1)
    
     esttab . using "Output/$CountryID/Table_Public_nEmployees_freq.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
@@ -61,7 +85,16 @@ restore
 
 preserve
 	keep if private == 1
-
+	
+	bysort IDNum: gen nvals = _n == 1  if public ==1
+	replace nvals = sum(nvals)
+	replace nvals = nvals[_N] 
+	gen PrivateFirmsHGR = nvals
+	drop nvals
+	gen p_public = PrivateFirmsHGR/PrivateFirms
+	
+	bysort IDNum: egen Numchanges = total(firmchanging)
+	
 	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1)  & (nEmployees<500) |  (EmpGrowth_h<0) & (firmchanging==1) & (nEmployees<500)
    
    esttab . using "Output/$CountryID/Table_Private_nEmployees_freq.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
