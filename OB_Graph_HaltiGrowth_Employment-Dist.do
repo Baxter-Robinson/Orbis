@@ -38,6 +38,14 @@ preserve
 restore
 
 
+label var COGS_h "COGS"
+label var Revenue_h "Revenue"
+label var Export_revenue_h "Export Revenue"
+label var Assets_h EBITDA_h "Assets"
+label var SalesGrowth_h "Sales Growth"
+label var ProfitGrowth_h "Profits"
+
+
 foreach v in COGS_h Revenue_h Export_revenue_h Assets_h EBITDA_h  SalesGrowth_h ProfitGrowth_h{
 		preserve
 		gen private = 1 if FirmType != 6 | (FirmType == 6 & Year >= Delisted_year)

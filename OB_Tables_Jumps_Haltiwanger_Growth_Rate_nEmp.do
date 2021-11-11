@@ -59,7 +59,7 @@ preserve
 	
 	sum nEmployees if firmchanging==1, detail
 	
-	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1) |  (EmpGrowth_h<0) & (firmchanging==1)
+	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1) & (nEmployees<36) |  (EmpGrowth_h<0) & (firmchanging==1) & (nEmployees<36)
    
     esttab . using "Output/$CountryID/Table_Public_nEmployees_freq.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
    varlabels(, blist(Total "{hline @width}{break}"))      ///
@@ -67,7 +67,7 @@ preserve
 	
 	*tab2xl nEmployees if (EmpGrowth_h>=0) & (previous==1)  using "Output/$CountryID/`Country'_nEmployees_up_freqs.xlsx", col(1) row(1) // These are the firms that jumped upward for a HGR>1.95 - Basically this command gives me the  number of employees before the big jump
 	
-	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1)
+	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1) & (nEmployees<36)
    
     esttab . using "Output/$CountryID/Table_Public_nEmployees_freq_upward.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
    varlabels(, blist(Total "{hline @width}{break}"))      ///
@@ -76,7 +76,7 @@ preserve
 	
 	*tab2xl nEmployees if  (EmpGrowth_h<0) & (firmchanging==1) using "Output/$CountryID/`Country'_nEmployees_down_freqs.xlsx", col(1) row(1) // These are the firms that jumped downward for a HGR < -1.95 - Basically this command gives me the number of employees after the jump down.
 	 
-	estpost tabulate  nEmployees if (EmpGrowth_h<0) & (firmchanging==1)
+	estpost tabulate  nEmployees if (EmpGrowth_h<0) & (firmchanging==1) & (nEmployees<36)
    
     esttab . using "Output/$CountryID/Table_Public_nEmployees_freq_downward.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
    varlabels(, blist(Total "{hline @width}{break}"))      ///
@@ -95,7 +95,7 @@ preserve
 	
 	bysort IDNum: egen Numchanges = total(firmchanging)
 	
-	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1)  & (nEmployees<500) |  (EmpGrowth_h<0) & (firmchanging==1) & (nEmployees<500)
+	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1)  & (nEmployees<36) |  (EmpGrowth_h<0) & (firmchanging==1) & (nEmployees<36)
    
    esttab . using "Output/$CountryID/Table_Private_nEmployees_freq.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
    varlabels(, blist(Total "{hline @width}{break}"))      ///
@@ -103,7 +103,7 @@ preserve
 	
 	*tab2xl nEmployees if (EmpGrowth_h>=0) & (previous==1)  using "Output/$CountryID/`Country'_nEmployees_up_freqs.xlsx", col(1) row(1) // These are the firms that jumped upward for a HGR>1.95 - Basically this command gives me the  number of employees before the big jump
 	
-	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1) & (nEmployees<500)
+	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1) & (nEmployees<36)
    
    esttab . using "Output/$CountryID/Table_Private_nEmployees_freq_upward.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
    varlabels(, blist(Total "{hline @width}{break}"))      ///
@@ -112,7 +112,7 @@ preserve
 	
 	*tab2xl nEmployees if  (EmpGrowth_h<0) & (firmchanging==1) using "Output/$CountryID/`Country'_nEmployees_down_freqs.xlsx", col(1) row(1) // These are the firms that jumped downward for a HGR < -1.95 - Basically this command gives me the number of employees after the jump down.
 	 
-	 estpost tabulate  nEmployees if (EmpGrowth_h<0) & (firmchanging==1) & (nEmployees<500)
+	 estpost tabulate  nEmployees if (EmpGrowth_h<0) & (firmchanging==1) & (nEmployees<36)
    
    esttab . using "Output/$CountryID/Table_Private_nEmployees_freq_downward.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
    varlabels(, blist(Total "{hline @width}{break}"))      ///
