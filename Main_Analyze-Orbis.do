@@ -7,8 +7,8 @@
 *----------------
 cls
 clear all
-version 13
-set maxvar 10000
+*version 13
+*set maxvar 10000
 set type double
 set more off
 
@@ -31,24 +31,24 @@ set more off
 
 * Javier PATH
 * Laptop
-*cd "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+cd "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 * HOME
-cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+*cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+*global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 *
 
 *---------------------
 * Loop over countries 
 *---------------------
-*global Countries IT FR ES PT DE NL
+global Countries IT FR ES PT DE NL
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
 *local Country="PT"
-/*foreach Country of global Countries {
+foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
 
@@ -56,7 +56,7 @@ global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_
 	* Raw Data
 	*-------------------------------------------------------
 	
-	do OB_Table_Missing-Observations.do
+	*do OB_Table_Missing-Observations.do
 	
 	*-------------------------------------------------------
 	* Clean Data
@@ -66,8 +66,8 @@ global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_
 	do OB_Program_Clean-Data.do
 	
 	* Compustat
-	use "${DATAPATH}/${CountryID}_compustat.dta", clear
-	do CS_Program_Clean-Data.do
+	*use "${DATAPATH}/${CountryID}_compustat.dta", clear
+	*do CS_Program_Clean-Data.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
@@ -155,7 +155,7 @@ global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_
 	*do OB_CountryIndicators.do
 		
 }
-*/
+
 
 *-------------------------------------------------------
 * World Bank Data 

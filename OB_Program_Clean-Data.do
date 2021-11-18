@@ -165,6 +165,14 @@ bysort IDNum: gen Assets_h = (Assets_fHGR  - L.Assets_fHGR )/((Assets_fHGR  + L.
 * EBITDA (Haltiwanger)
 bysort IDNum: gen EBITDA_h = (EBITDA_fHGR  - L.EBITDA_fHGR )/((EBITDA_fHGR  + L.EBITDA_fHGR )/2) 
 
+*---------------------------
+* IPO Info
+*---------------------------
+
+
+* Convert IPO date from monthly to yearly
+gen IPO_year = year(IPO_date)
+gen Delisted_year = yofd(Delisted_date)
 
 *---------------------------
 * Ownership
@@ -177,9 +185,9 @@ gen DiffShareHolders=MaxShareHolders-MinShareHolders
 
 drop MinShareHolders MaxShareHolders
 
-gen Listed=1
-replace Listed=0 if (Main_exchange=="Unlisted")
-
+gen Listed = .
+replace Listed = 1 if Main_exchange!="Unlisted" | (Main_exchange=="Delisted")  & (Year <= Delisted_year)
+replace Listed = 0 if Main_exchange=="Unlisted" | (Main_exchange=="Delisted")  & (Year >= Delisted_year)
 
 ** Generate Firm Types
 *drop if missing(nShareholders) & ~(Listed)
@@ -191,17 +199,18 @@ replace FirmType=3 if (nShareholders>2) & ~missing(nShareholders) &  ~(Listed)
 replace FirmType=4 if FirmType==. & ~(Listed)
 replace FirmType=6 if (Listed)
 
+** Generate Firm Types
+*drop if missing(nShareholders) & ~(Listed)
 
-*---------------------------
-* IPO Info
-*---------------------------
+gen FirmType=.
+replace FirmType=1 if (nShareholders==1) & ~(Listed)
+replace FirmType=2 if (nShareholders==2) & ~(Listed)
+replace FirmType=3 if (nShareholders>2) & ~missing(nShareholders) &  ~(Listed)
+replace FirmType=4 if FirmType==. & ~(Listed)
+replace FirmType=6 if (Listed)
 
-
-* Convert IPO date from monthly to yearly
-gen IPO_year = year(IPO_date)
-
-
-gen Delisted_year = yofd(Delisted_date)
+gen Private = 1 if Listed==0
+replace Private = 0 if Listed==1
 
 *----------------------
 * Save unbalanced panel
@@ -245,8 +254,6 @@ su nEmployees if (~Listed)
 local nPrivate=r(N)
 
 gen PrivateShareOfFirms=`nPrivate'/(`nPublic'+`nPrivate')
-
-
 
 
 collapse (mean) nEmployees EmpGrowthInIPOYear EmpOfIPOingFirm EmpGrowthAroundIPOYear PrivateShareOfEmp ///
