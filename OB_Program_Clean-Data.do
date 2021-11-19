@@ -186,7 +186,7 @@ gen DiffShareHolders=MaxShareHolders-MinShareHolders
 drop MinShareHolders MaxShareHolders
 
 gen Listed = .
-replace Listed = 1 if Main_exchange!="Unlisted" | (Main_exchange=="Delisted")  & (Year <= Delisted_year)
+replace Listed = 1 if Main_exchange!="Unlisted" | (Main_exchange=="Delisted")  & (Year < Delisted_year)
 replace Listed = 0 if Main_exchange=="Unlisted" | (Main_exchange=="Delisted")  & (Year >= Delisted_year)
 
 ** Generate Firm Types

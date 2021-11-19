@@ -8,19 +8,15 @@ if "${CountryID}" == "FR" {
 }
 */
 
-* Indicator for public or private
-gen FirmType_dummy = 0
-replace FirmType_dummy = 1 if FirmType == 6 & Delisted_year != . & Year < Delisted_year
-replace FirmType_dummy = 1 if FirmType == 6 & Delisted_year == .
 
 * Average Growth rate of Employment
-bysort FirmType_dummy: egen avgEmpGrowth = mean(EmpGrowth_h)
+bysort Private: egen avgEmpGrowth = mean(EmpGrowth_h)
 * Variance of Growth rate of Employment
-bysort FirmType_dummy: egen varEmpGrowth = sd(EmpGrowth_h)
+bysort Private: egen varEmpGrowth = sd(EmpGrowth_h)
 replace varEmpGrowth = varEmpGrowth^2
 * Employment shares by Firm Type
 bysort Year: egen nEmployeesTot = total(nEmployees)
-bysort Year FirmType_dummy: egen nEmployeesTot_byFirmType = total(nEmployees)
+bysort Year Private: egen nEmployeesTot_byFirmType = total(nEmployees)
 gen empShare_byFirmType = nEmployeesTot_byFirmType/nEmployeesTot
 * Employment shares by size (large firm >= 29 employees)
 gen nEmployees_LargeFirms = .
@@ -31,9 +27,9 @@ gen empShare_LargeFirms = nEmployeesTot_LargeFirm/nEmployeesTot
 bysort Year: egen MarketCap = total(Market_capitalisation_mil)
 
 * Aggregate
-collapse (mean) avgEmpGrowth varEmpGrowth empShare_byFirmType empShare_LargeFirms MarketCap, by(FirmType_dummy)
+collapse (mean) avgEmpGrowth varEmpGrowth empShare_byFirmType empShare_LargeFirms MarketCap, by(Private)
 gen Country = "${CountryID}"
-reshape wide avgEmpGrowth varEmpGrowth empShare_byFirmType empShare_LargeFirms MarketCap, i(Country) j(FirmType_dummy)
+reshape wide avgEmpGrowth varEmpGrowth empShare_byFirmType empShare_LargeFirms MarketCap, i(Country) j(Private)
 rename empShare_byFirmType0 empShare_Private
 rename empShare_byFirmType1 empShare_Public
 rename MarketCap0 MarketCap

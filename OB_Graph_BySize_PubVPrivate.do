@@ -30,34 +30,34 @@ preserve
 	*Total Firms
 	bysort SizeCategory Year : egen nFirms = count(IDNum) 
 	* Public number of firms by 
-	bysort SizeCategory Year : egen nFirms_Public = count(IDNum) if Listed==1	
+	bysort SizeCategory Year : egen nFirms_Public = count(IDNum) if Private==0 	
 	* Private number of firms by 
-	bysort SizeCategory Year: egen nFirms_Private = count(IDNum) if Listed==0
+	bysort SizeCategory Year: egen nFirms_Private = count(IDNum) if Private==1
 	
 	
 	
 	collapse (sum) nEmployees (mean) EmpGrowth_mean=EmpGrowth_h nFirms_Public nFirms_Private (sd) EmpGrowth_sd=EmpGrowth_h (p25) EmpGrowth_p25=EmpGrowth_h (p50) EmpGrowth_median=EmpGrowth_h (p75) EmpGrowth_p75=EmpGrowth_h (p90) EmpGrowth_p90=EmpGrowth_h (p95) EmpGrowth_p95=EmpGrowth_h (p99) EmpGrowth_p99=EmpGrowth_h, by(SizeCategory Listed)
 
 
-	twoway (scatter EmpGrowth_mean SizeCategory if (Listed==1), connect(l)) ///
-	(scatter EmpGrowth_mean SizeCategory if (Listed==0), connect(l) msymbol(Sh)) ///
+	twoway (scatter EmpGrowth_mean SizeCategory if (Private==0), connect(l)) ///
+	(scatter EmpGrowth_mean SizeCategory if (Private==1), connect(l) msymbol(Sh)) ///
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Employment Growth Rate ") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	 graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateAvg.pdf, replace  
 	 
-	twoway (scatter EmpGrowth_sd SizeCategory if (Listed==1), connect(l)) ///
-	(scatter EmpGrowth_sd SizeCategory if (Listed==0), connect(l) msymbol(Sh)) ///
+	twoway (scatter EmpGrowth_sd SizeCategory if (Private==0), connect(l)) ///
+	(scatter EmpGrowth_sd SizeCategory if (Private==1), connect(l) msymbol(Sh)) ///
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Standard Deviation of Employment Growth Rate ") graphregion(color(white))  ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateStd.pdf, replace  
 	
 	* By percentiles
-	twoway (scatter EmpGrowth_p90 SizeCategory if (Listed==1), connect(l) msymbol(circle) lcolor(orange) mcolor(orange)) ///
-	(scatter EmpGrowth_p95 SizeCategory if (Listed==1), connect(l) msymbol(diamond) lcolor(orange_red) mcolor(orange_red) ) ///
-	(scatter EmpGrowth_p99 SizeCategory if (Listed==1), connect(l) msymbol(triangle) lcolor(red) mcolor(red) ) ///
-	(scatter EmpGrowth_p90 SizeCategory if (Listed==0), connect(l) msymbol(circle) lcolor(emidblue) mcolor(emidblue)) ///
-	(scatter EmpGrowth_p95 SizeCategory if (Listed==0), connect(l) msymbol(diamond) lcolor(ebblue) mcolor(ebblue) ) ///
-	(scatter EmpGrowth_p99 SizeCategory if (Listed==0), connect(l) msymbol(triangle) lcolor(navy) mcolor(navy) ) ///
+	twoway (scatter EmpGrowth_p90 SizeCategory if (Private==0), connect(l) msymbol(circle) lcolor(orange) mcolor(orange)) ///
+	(scatter EmpGrowth_p95 SizeCategory if (Private==0), connect(l) msymbol(diamond) lcolor(orange_red) mcolor(orange_red) ) ///
+	(scatter EmpGrowth_p99 SizeCategory if (Private==0), connect(l) msymbol(triangle) lcolor(red) mcolor(red) ) ///
+	(scatter EmpGrowth_p90 SizeCategory if (Private==1), connect(l) msymbol(circle) lcolor(emidblue) mcolor(emidblue)) ///
+	(scatter EmpGrowth_p95 SizeCategory if (Private==1), connect(l) msymbol(diamond) lcolor(ebblue) mcolor(ebblue) ) ///
+	(scatter EmpGrowth_p99 SizeCategory if (Private==1), connect(l) msymbol(triangle) lcolor(navy) mcolor(navy) ) ///
 	, xlabel(`Labels')  xtitle("Size Category")  ytitle("Employment Growth Rate") graphregion(color(white)) ///
 	legend(label(1 "Public P90") label(2 "Public P95" ) label(3 "Public P99") label(4 "Private P90") label(5 "Private P95")  label(6 "Private P99")) 
 	graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRatePercentiles.pdf, replace  
@@ -68,25 +68,25 @@ preserve
 	replace nFirms_Private = round(nFirms_Private)
 	
 	
-	 gen public = nFirms_Public
-	 replace public = 0 if public==.
-	 gen private = nFirms_Private
-	 replace private = 0 if private==.
+	 gen public_firms = nFirms_Public
+	 replace public_firms = 0 if public_firms==. 
+	 gen private_firms = nFirms_Private
+	 replace private_firms = 0 if private_firms==.
 	 
-	 by SizeCategory: gen Totfirms = public + private
+	 by SizeCategory: gen Totfirms = public_firms + private_firms
 	 by SizeCategory: egen Nfirms = total(Totfirms)
 	 
-	 drop Totfirms public private
+	 drop Totfirms public_firms private_firms
 	 
 	 gen floor = 0
 	 
 	 forval i=1/8{
-	 	gen mid`i'=  nFirms_Private/2  if (Listed==0) & (SizeCategory==`i')
+	 	gen mid`i'=  nFirms_Private/2  if (Private==1) & (SizeCategory==`i')
 		su mid`i', meanonly
 		local midpoint`i' = r(mean)
 		drop mid`i'
 		
-		gen nfirms`i' = nFirms_Private if (Listed==0) & (SizeCategory==`i')
+		gen nfirms`i' = nFirms_Private if (Private==1) & (SizeCategory==`i')
 		su nfirms`i', meanonly
 		local nFirms`i' = round(r(mean))
 		drop nfirms`i'
@@ -106,12 +106,12 @@ preserve
 			local add2top = r(min)
 		}
 		
-		gen endp`i' = Nfirms + `add2top' if (Listed==0) & (SizeCategory==`i')
+		gen endp`i' = Nfirms + `add2top' if (Private==1) & (SizeCategory==`i')
 		su endp`i', meanonly
 		local endpoint`i' = r(max)
 		drop endp`i'
 		
-		gen nfirmspub`i' = nFirms_Public if (Listed==1) & (SizeCategory==`i')
+		gen nfirmspub`i' = nFirms_Public if (Private==0) & (SizeCategory==`i')
 		su nfirmspub`i', meanonly
 		local nfirmspublic`i' = round(r(mean))
 		drop nfirmspub`i'
@@ -189,15 +189,15 @@ preserve
 	
 	drop totFirms 
 	
-	twoway (scatter EmpGrowth_mean SizeCategory if (Listed==1) [w=prop_firms] , connect(l)) ///
-	(scatter EmpGrowth_mean SizeCategory if (Listed==0) [w=prop_firms], connect(l) msymbol(Sh)) ///
+	twoway (scatter EmpGrowth_mean SizeCategory if (Private==0) [w=prop_firms] , connect(l)) ///
+	(scatter EmpGrowth_mean SizeCategory if (Private==1) [w=prop_firms], connect(l) msymbol(Sh)) ///
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Employment Growth Rate ") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	 graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateAvg_Weighted.pdf, replace  
 	
 	
-	twoway (scatter EmpGrowth_sd SizeCategory if (Listed==1) [w=prop_firms] , connect(l)) ///
-	(scatter EmpGrowth_sd SizeCategory if (Listed==0) [w=prop_firms], connect(l) msymbol(Sh)) ///
+	twoway (scatter EmpGrowth_sd SizeCategory if (Private==0) [w=prop_firms] , connect(l)) ///
+	(scatter EmpGrowth_sd SizeCategory if (Private==1) [w=prop_firms], connect(l) msymbol(Sh)) ///
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Standard Deviation of Employment Growth Rate ") graphregion(color(white))  ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	graph export Output/$CountryID/Graph_BySize_PubVPrivate_GrowthRateStd_Weighted.pdf, replace 

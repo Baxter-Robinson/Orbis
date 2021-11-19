@@ -1,10 +1,4 @@
 
-
-
-gen private = 1 if FirmType != 6 | (FirmType == 6 & Year >= Delisted_year)
-gen public = 1 if FirmType == 6
-replace public = 0 if FirmType == 6 & Delisted_year != . & Delisted_year <= Year
-
 * Create a 2nd variable for the Haltiwanger growth rate to avoid the fact that Stata takes the . as higher than the abs()>1.90
 gen halti2 = EmpGrowth_h
 replace halti2 =0.000000000001 if halti2==.
@@ -16,13 +10,13 @@ bysort IDNum: egen h_review = max(abs_EmpGrowth_h)
 replace ftocheck = 1 if h_review>1.90
 
 *Total public firms
-bysort IDNum: gen nvals = _n == 1  if public ==1
+bysort IDNum: gen nvals = _n == 1  if Private==0
 replace nvals = sum(nvals)
 replace nvals = nvals[_N] 
 gen PublicFirms = nvals
 drop nvals
 *Total private firms
-bysort IDNum: gen nvals = _n == 1  if private ==1
+bysort IDNum: gen nvals = _n == 1  if Private==1
 replace nvals = sum(nvals)
 replace nvals = nvals[_N] 
 gen PrivateFirms = nvals
@@ -45,12 +39,12 @@ replace previous=0 if previous==.   // Set all other periods to 0 if they are no
 
 
 preserve
-	keep if public == 1
+	keep if Private==0
 	
 	bysort IDNum: egen Numchanges = total(firmchanging) // Gives you the number of jumps per firm
 	
 	*Percentage of firms with HGR>abs(1.90)
-	bysort IDNum: gen nvals = _n == 1  if public ==1
+	bysort IDNum: gen nvals = _n == 1  if Private==0
 	replace nvals = sum(nvals)
 	replace nvals = nvals[_N] 
 	gen PublicFirmsHGR = nvals
@@ -86,7 +80,7 @@ restore
 preserve
 	keep if private == 1
 	
-	bysort IDNum: gen nvals = _n == 1  if public ==1
+	bysort IDNum: gen nvals = _n == 1  if Private==0
 	replace nvals = sum(nvals)
 	replace nvals = nvals[_N] 
 	gen PrivateFirmsHGR = nvals

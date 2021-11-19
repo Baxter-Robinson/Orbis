@@ -17,23 +17,20 @@ preserve
 	*--------------------------------
 	* Growth rates around an IPO
 	*--------------------------------
-	
-	gen private = 1 if FirmType != 6 | (FirmType == 6 & Year >= Delisted_year)
-	gen public = 1 if FirmType == 6
-	replace public = 0 if FirmType == 6 & Delisted_year != . & Delisted_year <= Year
+
 	
 	* Generate variable that tells number of years before/after IPO
 	gen IPO_timescale = Year - IPO_year
 	
-	su EmpGrowth_h if (IPO_timescale==-1) & (public==1)
+	su EmpGrowth_h if (IPO_timescale==-1) & (Private==0)
 	local PreGrowth: di %12.2fc r(mean)
 	file write TabIPOs " & `PreGrowth' "
 	
-	su EmpGrowth_h if (IPO_timescale==1) & (public==1) // | (IPO_timescale==1) & (public==0) 
+	su EmpGrowth_h if (IPO_timescale==1) & (Private==0) 
 	local PostGrowth: di %12.2fc r(mean)
 	file write TabIPOs " & `PostGrowth' "
 	
-	su EmpGrowth_h if (IPO_timescale>1) & (public==1)
+	su EmpGrowth_h if (IPO_timescale>1) & (Private==0)
 	local AveGrowth: di %12.2fc r(mean)
 	file write TabIPOs " & `AveGrowth' "
 	
