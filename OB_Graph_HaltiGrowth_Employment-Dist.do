@@ -4,8 +4,6 @@ local MinVal=-2
 * Public: Year of IPO vs other years
 preserve
 	keep if FirmType == 6
-	
-	
 	* Distribution of plants by employment growth (Haltiwanger) - Comparing Year of IPO
 	twoway (hist EmpGrowth_h if IPO_year == Year, frac lcolor(gs12) fcolor(gs12) width(`BinWidth') start(`MinVal')) ///
 	(hist EmpGrowth_h if IPO_year > Year | IPO_year < Year, frac lcolor(red) fcolor(none) width(`BinWidth') start(`MinVal')), ///
@@ -26,12 +24,9 @@ preserve
 
 restore
 * Public vs private
-preserve
-	gen private = 1 if FirmType != 6 | (FirmType == 6 & Year >= Delisted_year)
-	gen public = 1 if FirmType == 6
-	replace public = 0 if FirmType == 6 & Delisted_year != . & Delisted_year <= Year
-	twoway (hist EmpGrowth_h if public == 1, frac lcolor(gs12) fcolor(gs12) width(`BinWidth') start(`MinVal')) ///
-	(hist EmpGrowth_h if private == 1, frac lcolor(red) fcolor(none) width(`BinWidth') start(`MinVal')), ///
+preserve	
+	twoway (hist EmpGrowth_h if Private == 0, frac lcolor(gs12) fcolor(gs12) width(`BinWidth') start(`MinVal')) ///
+	(hist EmpGrowth_h if Private == 1, frac lcolor(red) fcolor(none) width(`BinWidth') start(`MinVal')), ///
 	legend(label(1 "Public Firms") label(2 "Private Firms")) ///
 	xtitle("Employment growth - Haltiwanger") graphregion(color(white))
 	graph export Output/$CountryID/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf, replace 
@@ -41,23 +36,21 @@ restore
 label var COGS_h "COGS"
 label var Revenue_h "Revenue"
 label var Export_revenue_h "Export Revenue"
-label var Assets_h EBITDA_h "Assets"
+label var Assets_h  "Assets"
+label var EBITDA_h "EBITDA"
 label var SalesGrowth_h "Sales Growth"
 label var ProfitGrowth_h "Profits"
 
 
 foreach v in COGS_h Revenue_h Export_revenue_h Assets_h EBITDA_h  SalesGrowth_h ProfitGrowth_h{
 		preserve
-		gen private = 1 if FirmType != 6 | (FirmType == 6 & Year >= Delisted_year)
-		gen public = 1 if FirmType == 6
-		replace public = 0 if FirmType == 6 & Delisted_year != . & Delisted_year <= Year
 		sum `v', detail
 		return list
 		gen range_`v' = r(max)-r(min)
 		replace `v' = `v'/range_`v'
 		drop range_`v'
-		twoway (hist `v' if public == 1, frac lcolor(gs12) fcolor(gs12) width(`BinWidth') start(`MinVal')) ///
-		(hist `v' if private == 1, frac lcolor(red) fcolor(none) width(`BinWidth') start(`MinVal')), ///
+		twoway (hist `v' if Private == 0, frac lcolor(gs12) fcolor(gs12) width(`BinWidth') start(`MinVal')) ///
+		(hist `v' if Private == 1, frac lcolor(red) fcolor(none) width(`BinWidth') start(`MinVal')), ///
 		legend(label(1 "Public Firms") label(2 "Private Firms")) ///
 		xtitle("`v' growth - Haltiwanger") graphregion(color(white))
 		graph export Output/$CountryID/Distribution_`v'_Haltiwanger-PublicPrivate.pdf, replace 
@@ -69,9 +62,7 @@ foreach v in COGS_h Revenue_h Export_revenue_h Assets_h EBITDA_h  SalesGrowth_h 
 preserve
 	keep if FirmType == 6
 	gen public_delisted = 1 if Delisted_year <= Year & Delisted_year != .
-	gen public = 1 if FirmType == 6
-	replace public = 0 if FirmType == 6 & Delisted_year != . & Delisted_year <= Year
-	twoway (hist EmpGrowth_h if public == 1, frac lcolor(gs12) fcolor(gs12) width(`BinWidth') start(`MinVal')) ///
+	twoway (hist EmpGrowth_h if Private == 0, frac lcolor(gs12) fcolor(gs12) width(`BinWidth') start(`MinVal')) ///
 	(hist EmpGrowth_h if public_delisted == 1, frac lcolor(red) fcolor(none) width(`BinWidth') start(`MinVal')), ///
 	legend(label(1 "Public Firms - Not delisted") label(2 "Public Firms - Delisted")) ///
 	xtitle("Employment growth - Haltiwanger") graphregion(color(white))

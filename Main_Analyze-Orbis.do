@@ -43,12 +43,12 @@ global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_R
 *---------------------
 * Loop over countries 
 *---------------------
-global Countries IT FR ES PT DE NL
+*global Countries IT FR ES PT DE NL
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
 *local Country="PT"
-foreach Country of global Countries {
+/*foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
 
@@ -155,7 +155,7 @@ foreach Country of global Countries {
 	*do OB_CountryIndicators.do
 		
 }
-
+*/
 
 *-------------------------------------------------------
 * World Bank Data 
