@@ -199,16 +199,6 @@ replace FirmType=3 if (nShareholders>2) & ~missing(nShareholders) &  ~(Listed)
 replace FirmType=4 if FirmType==. & ~(Listed)
 replace FirmType=6 if (Listed)
 
-** Generate Firm Types
-*drop if missing(nShareholders) & ~(Listed)
-
-gen FirmType=.
-replace FirmType=1 if (nShareholders==1) & ~(Listed)
-replace FirmType=2 if (nShareholders==2) & ~(Listed)
-replace FirmType=3 if (nShareholders>2) & ~missing(nShareholders) &  ~(Listed)
-replace FirmType=4 if FirmType==. & ~(Listed)
-replace FirmType=6 if (Listed)
-
 gen Private = 1 if Listed==0
 replace Private = 0 if Listed==1
 

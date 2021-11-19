@@ -11,6 +11,7 @@ clear all
 *set maxvar 10000
 set type double
 set more off
+set rmsg on
 
 
 * Baxter PATH
