@@ -31,24 +31,24 @@ set more off
 
 * Javier PATH
 * Laptop
-cd "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+*cd "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+*global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 * HOME
-*cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 *
 
 *---------------------
 * Loop over countries 
 *---------------------
-*global Countries IT FR ES PT DE NL
+global Countries IT FR ES PT DE NL
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
 *local Country="PT"
-/*foreach Country of global Countries {
+foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
 
@@ -72,46 +72,46 @@ global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_R
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
-	*do OB_Graph_HaltiGrowth_Employment-Dist.do
-	*do OB_Script_DiD-IPO.do
-	*do OB_Graph_IPOyear-Dist.do
-	*do OB_Graph_Growth_IPOyear-Dist.do
-	*do OB_Graph_BySize.do
+	do OB_Graph_HaltiGrowth_Employment-Dist.do
+	do OB_Script_DiD-IPO.do
+	do OB_Graph_IPOyear-Dist.do
+	do OB_Graph_Growth_IPOyear-Dist.do
+	do OB_Graph_BySize.do
 	
-	*do OB_Regressions_FirmTypes.do
+	do OB_Regressions_FirmTypes.do
 
 
 
-	*do OB_Table_Descriptive-Stats.do
-	*do OB_Table_PubVsPri.do
-	*do OB_Table_BySize.do
-	*do OB_Table_BySize-Public.do
+	do OB_Table_Descriptive-Stats.do
+	do OB_Table_PubVsPri.do
+	do OB_Table_BySize.do
+	do OB_Table_BySize-Public.do
 	
-	*do OB_Table_IPOs.do
-	*do OB_Table_IPO-years.do
-	*do OB_Table_IPOyear_Descriptive-Stats.do
+	do OB_Table_IPOs.do
+	do OB_Table_IPO-years.do
+	do OB_Table_IPOyear_Descriptive-Stats.do
 	
-	*do OB_HGR_regressions.do
+	do OB_HGR_regressions.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Balanced.dta",clear
+	use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
-	*do OB_Graph_BySize.do
-	*do OB_Graph_Lifecycle.do
-	*do OB_Graph_Lifecycle-ByFirmType.do
+	do OB_Graph_BySize.do
+	do OB_Graph_Lifecycle.do
+	do OB_Graph_Lifecycle-ByFirmType.do
 	
-	*do OB_Table_BySize-Public.do
-	*do OB_Graph_Age-Dist.do
-	*do OB_Graph_Change-No-Shareholders-Dist.do
-	*do OB_Graph_FirmTypes.do
+	do OB_Table_BySize-Public.do
+	do OB_Graph_Age-Dist.do
+	do OB_Graph_Change-No-Shareholders-Dist.do
+	do OB_Graph_FirmTypes.do
 	
 	
 	*-------------------------------------------------------
@@ -151,11 +151,11 @@ global DATAPATH "/Volumes/HD710/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_R
 	*-------------------------------------------------------
 	* Orbis (OB) Country-level Indicators
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Unbalanced.dta", clear
-	*do OB_CountryIndicators.do
+	use "Data_Cleaned/`Country'_Unbalanced.dta", clear
+	do OB_CountryIndicators.do
 		
 }
-*/
+
 
 *-------------------------------------------------------
 * World Bank Data 

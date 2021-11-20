@@ -61,7 +61,7 @@ estadd local Year "Yes"
 estadd local Robust "Yes"
 
 reg EmpGrowth_h l_nEmployees l_nEmployeesSq public m1employee i.Year
-eststo m3a
+eststo m4a
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
