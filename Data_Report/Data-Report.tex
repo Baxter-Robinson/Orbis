@@ -586,14 +586,14 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right] $ represents respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/IT/HGR_OLS_regressions_lin_lin.tex}
 \clearpage
 The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right] $ represents respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 
 \input{../Output/IT/HGR_OLS_regressions_lin_log.tex}
 \clearpage
@@ -602,7 +602,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right] $ represents respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 
 \input{../Output/IT/HGR_FE_regressions_lin_lin.tex}
 \clearpage
@@ -611,7 +611,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right] $ represents respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/IT/HGR_FE_regressions_lin_log.tex}
 
 
@@ -624,7 +624,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right] $ represents respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/PT/HGR_OLS_regressions_lin_lin.tex}
 \clearpage
 
@@ -632,7 +632,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right] $ represents respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/PT/HGR_OLS_regressions_lin_log.tex}
 \clearpage
 \item \textcolor{blue}{\textbf{Portugal FE}}\\~\
@@ -640,7 +640,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right] $ represents respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/PT/HGR_FE_regressions_lin_lin.tex}
 \clearpage
 \item \textcolor{blue}{\textbf{Italy FE}}\\~\
@@ -648,7 +648,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right] $ represents respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/PT/HGR_FE_regressions_lin_log.tex}
 \clearpage
 
@@ -659,7 +659,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right] $ represents respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/FR/HGR_OLS_regressions_lin_lin.tex}
 \clearpage
 
@@ -667,7 +667,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right] $ represents respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/FR/HGR_OLS_regressions_lin_log.tex}
 \clearpage
 \item \textcolor{blue}{\textbf{France FE}}\\~\
@@ -675,14 +675,14 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right] $ represents respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/FR/HGR_FE_regressions_lin_lin.tex}\clearpage
 \item \textcolor{blue}{\textbf{Italy FE}}\\~\
 The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right] $ represents respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/FR/HGR_FE_regressions_lin_log.tex}
 \clearpage
 
@@ -694,7 +694,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right] $ represents respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/ES/HGR_OLS_regressions_lin_lin.tex}
 \clearpage
 
@@ -702,7 +702,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right] $ represents respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/ES/HGR_OLS_regressions_lin_log.tex}
 \clearpage
 \item \textcolor{blue}{\textbf{Spain FE}}\\~\
@@ -710,7 +710,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right] $ represents respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/ES/HGR_FE_regressions_lin_lin.tex}
 \clearpage
 \item \textcolor{blue}{\textbf{Italy FE}}\\~\
@@ -718,7 +718,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right] $ represents respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/ES/HGR_FE_regressions_lin_log.tex}
 \clearpage
 
@@ -730,7 +730,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right] $ represents respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/DE/HGR_OLS_regressions_lin_lin.tex}
 \clearpage
 
@@ -738,7 +738,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right] $ represents respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/DE/HGR_OLS_regressions_lin_log.tex}
 \clearpage
 \item \textcolor{blue}{\textbf{Germany FE}}\\~\
@@ -746,7 +746,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt} \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right] $ represents respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt} \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/DE/HGR_FE_regressions_lin_lin.tex}
 \clearpage
 \item \textcolor{blue}{\textbf{Italy FE}}\\~\
@@ -754,7 +754,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right] $ represents respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/DE/HGR_FE_regressions_lin_log.tex}
 \clearpage
 
@@ -766,7 +766,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right] $ represents respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/NL/HGR_OLS_regressions_lin_lin.tex}
 \clearpage
 
@@ -774,7 +774,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right] $ represents respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/NL/HGR_OLS_regressions_lin_log.tex}
 \clearpage
 \item \textcolor{blue}{\textbf{Netherlands FE}}\\~\
@@ -782,7 +782,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt} \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right] $ represents respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt} \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/NL/HGR_FE_regressions_lin_lin.tex}
 
 \clearpage
@@ -791,7 +791,7 @@ The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right] $ represents respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
 \input{../Output/NL/HGR_FE_regressions_lin_log.tex}
 \clearpage
 \end{itemize}
