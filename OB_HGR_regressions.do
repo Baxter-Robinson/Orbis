@@ -34,7 +34,7 @@ eststo m4
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
-reg EmpGrowth_h nEmployees nEmployeesSq public Revenue Age i.Year, vce(robust)
+reg EmpGrowth_h nEmployees nEmployeesSq public m1employee Revenue Age i.Year, vce(robust)
 eststo m5
 estadd local Year "Yes"
 estadd local Robust "Yes"
@@ -50,28 +50,28 @@ eststo m1a
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
-reg EmpGrowth_h l_nEmployees l_nEmployeesSq i.Year 
+reg EmpGrowth_h l_nEmployees i.Year 
 eststo m2a
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
-reg EmpGrowth_h l_nEmployees l_nEmployeesSq public i.Year
+reg EmpGrowth_h l_nEmployees public i.Year
 eststo m3a
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
-reg EmpGrowth_h l_nEmployees l_nEmployeesSq public m1employee i.Year
+reg EmpGrowth_h l_nEmployees public m1employee i.Year
 eststo m4a
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
-reg EmpGrowth_h l_nEmployees l_nEmployeesSq public l_Revenue Age i.Year
+reg EmpGrowth_h l_nEmployees public m1employee l_Revenue Age i.Year
 eststo m5a
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
 
-esttab m1a m2a m3a m4a m5a using "Output/$CountryID/HGR_OLS_regressions_lin_log.tex", se legend mtitles("1" "2" "3" "4" "5") title("Haltiwanger growth rate") s(N Year Robust, label( "N" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" l_nEmployees "(Log of) No. employees" l_nEmployeesSq "(Log of) No. employees (squared)" public "Public firm" m1employee "More than 1 employee"  l_Revenue "(Log of) Revenue"  Age "Age") nonumbers keep( _cons l_nEmployees l_nEmployeesSq public m1employee l_Revenue Age ) replace
+esttab m1a m2a m3a m4a m5a using "Output/$CountryID/HGR_OLS_regressions_lin_log.tex", se legend mtitles("1" "2" "3" "4" "5") title("Haltiwanger growth rate") s(N Year Robust, label( "N" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" l_nEmployees "(Log of) No. employees"  public "Public firm" m1employee "More than 1 employee"  l_Revenue "(Log of) Revenue"  Age "Age") nonumbers keep( _cons l_nEmployees public m1employee l_Revenue Age ) replace
 
 
 
@@ -106,7 +106,7 @@ estadd local Year "Yes"
 estadd local Robust "Yes"
 
 *xtreg EmpGrowth_h nEmployees nEmployeesSq public Revenue Age i.Year, fe vce(robust) 
-reghdfe EmpGrowth_h nEmployees nEmployeesSq public Revenue Age, absorb(Year IDNum) vce(robust)
+reghdfe EmpGrowth_h nEmployees nEmployeesSq public m1employee Revenue, absorb(Year IDNum) vce(robust)
 eststo m5fe
 estadd local Firm "Yes"
 estadd local Year "Yes"
@@ -126,34 +126,34 @@ estadd local Year "Yes"
 estadd local Robust "Yes"
 
 
-*xtreg EmpGrowth_h l_nEmployees l_nEmployeesSq i.Year, fe vce(robust) 
-reghdfe EmpGrowth_h l_nEmployees l_nEmployeesSq, absorb(Year IDNum) vce(robust)
+*xtreg EmpGrowth_h l_nEmployees i.Year, fe vce(robust) 
+reghdfe EmpGrowth_h l_nEmployees , absorb(Year IDNum) vce(robust)
 eststo m2afe
 estadd local Firm "Yes"
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
 
-*xtreg EmpGrowth_h l_nEmployees l_nEmployeesSq public i.Year, fe vce(robust) 
-reghdfe EmpGrowth_h l_nEmployees l_nEmployeesSq public, absorb(Year IDNum) vce(robust)
+*xtreg EmpGrowth_h l_nEmployees  public i.Year, fe vce(robust) 
+reghdfe EmpGrowth_h l_nEmployees  public, absorb(Year IDNum) vce(robust)
 eststo m3afe
 estadd local Firm "Yes"
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
-reghdfe EmpGrowth_h l_nEmployees l_nEmployeesSq public m1employee, absorb(Year IDNum) vce(robust)
+reghdfe EmpGrowth_h l_nEmployees public m1employee, absorb(Year IDNum) vce(robust)
 eststo m4afe
 estadd local Firm "Yes"
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
-*xtreg EmpGrowth_h l_nEmployees l_nEmployeesSq public l_Revenue Age i.Year, fe vce(robust) 
-reghdfe EmpGrowth_h l_nEmployees l_nEmployeesSq public l_Revenue Age, absorb(Year IDNum) vce(robust)
+*xtreg EmpGrowth_h l_nEmployees public l_Revenue Age i.Year, fe vce(robust) 
+reghdfe EmpGrowth_h l_nEmployees public m1employee l_Revenue Age, absorb(Year IDNum) vce(robust)
 eststo m5afe
 estadd local Firm "Yes"
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
 
-esttab m1afe m2afe m3afe m4afe m5afe using "Output/$CountryID/HGR_FE_regressions_lin_log.tex", se legend mtitles("1" "2" "3" "4" "5") title("Haltiwanger growth rate") s(N Firm Year Robust, label( "N" "Firm Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" l_nEmployees "(Log of) No. employees" l_nEmployeesSq "(Log of) No. employees (squared)" public "Public firm" m1employee "More than 1 employee" l_Revenue "(Log of) Revenue"  Age "Age") nonumbers keep( _cons l_nEmployees l_nEmployeesSq public m1employee l_Revenue Age ) replace
+esttab m1afe m2afe m3afe m4afe m5afe using "Output/$CountryID/HGR_FE_regressions_lin_log.tex", se legend mtitles("1" "2" "3" "4" "5") title("Haltiwanger growth rate") s(N Firm Year Robust, label( "N" "Firm Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" l_nEmployees "(Log of) No. employees" public "Public firm" m1employee "More than 1 employee" l_Revenue "(Log of) Revenue"  Age "Age") nonumbers keep( _cons l_nEmployees public m1employee l_Revenue Age ) replace
 
