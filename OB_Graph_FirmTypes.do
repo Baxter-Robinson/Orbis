@@ -43,7 +43,8 @@ restore
 * -------------------------------------------------------
 preserve
 
-drop Closing_date Export_revenue Stock Market_capitalisation_mil Age  EmpGrowth_* SalesGrowth_h ProfitGrowth_h COGS_fHGR Revenue_fHGR Export_revenue_fHGR Assets_fHGR EBITDA_fHGR COGS_h Revenue_h Export_revenue_h Assets_h EBITDA_h Listed FirmType Private
+drop Closing_date Export_revenue Stock Market_capitalisation_mil Age  EmpGrowth_* SalesGrowth_h ProfitGrowth_h COGS_fHGR Revenue_fHGR Export_revenue_fHGR Assets_fHGR EBITDA_fHGR COGS_h Revenue_h Export_revenue_h Assets_h EBITDA_h Listed Private 
+
 drop if missing(nEmployees)
 
 

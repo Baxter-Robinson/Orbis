@@ -185,9 +185,8 @@ gen DiffShareHolders=MaxShareHolders-MinShareHolders
 
 drop MinShareHolders MaxShareHolders
 
-gen Listed = .
-replace Listed = 1 if Main_exchange!="Unlisted" | (Main_exchange=="Delisted")  & (Year < Delisted_year)
-replace Listed = 0 if Main_exchange=="Unlisted" | (Main_exchange=="Delisted")  & (Year >= Delisted_year)
+gen Listed = 1
+replace Listed = 0 if Main_exchange=="Unlisted"
 
 ** Generate Firm Types
 *drop if missing(nShareholders) & ~(Listed)
@@ -199,8 +198,10 @@ replace FirmType=3 if (nShareholders>2) & ~missing(nShareholders) &  ~(Listed)
 replace FirmType=4 if FirmType==. & ~(Listed)
 replace FirmType=6 if (Listed)
 
-gen Private = 1 if Listed==0
-replace Private = 0 if Listed==1
+
+gen Private=0
+replace Private = 1 if Main_exchange=="Unlisted" | (Main_exchange=="Delisted")  & (Year >= Delisted_year)
+
 
 *----------------------
 * Save unbalanced panel
