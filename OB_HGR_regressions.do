@@ -113,7 +113,7 @@ estadd local Year "Yes"
 estadd local Robust "Yes"
 
 
-esttab m1fe m2fe m3fe m4fe m5fe using "Output/$CountryID/HGR_FE_regressions_lin_lin.tex", se legend mtitles("1" "2" "3" "4") title("Haltiwanger growth rate") s(N Firm Year Robust, label( "N" "Firm Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" nEmployees "No. employees" nEmployeesSq "No. employees (squared)" public "Public firm" m1employee "More than 1 employee"   Revenue "Revenue"  Age "Age") nonumbers keep( _cons nEmployees nEmployeesSq public m1employee Revenue Age ) replace
+esttab m1fe m2fe m3fe m4fe m5fe using "Output/$CountryID/HGR_FE_regressions_lin_lin.tex", se legend mtitles("1" "2" "3" "4" "5") title("Haltiwanger growth rate") s(N Firm Year Robust, label( "N" "Firm Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" nEmployees "No. employees" nEmployeesSq "No. employees (squared)" public "Public firm" m1employee "More than 1 employee"   Revenue "Revenue" ) nonumbers keep( _cons nEmployees nEmployeesSq public m1employee Revenue ) replace
 
 
 * FE Regressions, lin-log (with squared employment)
@@ -155,5 +155,5 @@ estadd local Year "Yes"
 estadd local Robust "Yes"
 
 
-esttab m1afe m2afe m3afe m4afe m5afe using "Output/$CountryID/HGR_FE_regressions_lin_log.tex", se legend mtitles("1" "2" "3" "4" "5") title("Haltiwanger growth rate") s(N Firm Year Robust, label( "N" "Firm Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" l_nEmployees "(Log of) No. employees" public "Public firm" m1employee "More than 1 employee" l_Revenue "(Log of) Revenue"  Age "Age") nonumbers keep( _cons l_nEmployees public m1employee l_Revenue Age ) replace
+esttab m1afe m2afe m3afe m4afe m5afe using "Output/$CountryID/HGR_FE_regressions_lin_log.tex", se legend mtitles("1" "2" "3" "4" "5") title("Haltiwanger growth rate") s(N Firm Year Robust, label( "N" "Firm Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" l_nEmployees "(Log of) No. employees" public "Public firm" m1employee "More than 1 employee" l_Revenue "(Log of) Revenue" ) nonumbers keep( _cons l_nEmployees public m1employee l_Revenue ) replace
 
