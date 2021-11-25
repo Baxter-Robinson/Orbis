@@ -55,7 +55,7 @@ preserve
 	
 	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1) & (nEmployees<36) |  (EmpGrowth_h<0) & (firmchanging==1) & (nEmployees<36)
    
-    esttab . using "Output/$CountryID/Table_Public_nEmployees_freq.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
+    esttab . using "Output/$CountryID/OB_Table_Public_nEmployees_freq.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
    varlabels(, blist(Total "{hline @width}{break}"))      ///
    nonumber nomtitle noobs replace
 	
@@ -63,7 +63,7 @@ preserve
 	
 	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1) & (nEmployees<36)
    
-    esttab . using "Output/$CountryID/Table_Public_nEmployees_freq_upward.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
+    esttab . using "Output/$CountryID/OB_Table_Public_nEmployees_freq_upward.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
    varlabels(, blist(Total "{hline @width}{break}"))      ///
    nonumber nomtitle noobs replace
 	
@@ -72,7 +72,7 @@ preserve
 	 
 	estpost tabulate  nEmployees if (EmpGrowth_h<0) & (firmchanging==1) & (nEmployees<36)
    
-    esttab . using "Output/$CountryID/Table_Public_nEmployees_freq_downward.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
+    esttab . using "Output/$CountryID/OB_Table_Public_nEmployees_freq_downward.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
    varlabels(, blist(Total "{hline @width}{break}"))      ///
    nonumber nomtitle noobs replace
 restore
@@ -91,7 +91,7 @@ preserve
 	
 	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1)  & (nEmployees<36) |  (EmpGrowth_h<0) & (firmchanging==1) & (nEmployees<36)
    
-   esttab . using "Output/$CountryID/Table_Private_nEmployees_freq.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
+   esttab . using "Output/$CountryID/OB_Table_Private_nEmployees_freq.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
    varlabels(, blist(Total "{hline @width}{break}"))      ///
    nonumber nomtitle noobs replace
 	
@@ -99,7 +99,7 @@ preserve
 	
 	estpost tabulate  nEmployees if (EmpGrowth_h>=0) & (previous==1) & (nEmployees<36)
    
-   esttab . using "Output/$CountryID/Table_Private_nEmployees_freq_upward.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
+   esttab . using "Output/$CountryID/OB_Table_Private_nEmployees_freq_upward.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
    varlabels(, blist(Total "{hline @width}{break}"))      ///
    nonumber nomtitle noobs replace
 	
@@ -108,7 +108,7 @@ preserve
 	 
 	 estpost tabulate  nEmployees if (EmpGrowth_h<0) & (firmchanging==1) & (nEmployees<36)
    
-   esttab . using "Output/$CountryID/Table_Private_nEmployees_freq_downward.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
+   esttab . using "Output/$CountryID/OB_Table_Private_nEmployees_freq_downward.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
    varlabels(, blist(Total "{hline @width}{break}"))      ///
    nonumber nomtitle noobs replace
 

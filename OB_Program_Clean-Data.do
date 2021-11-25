@@ -165,6 +165,7 @@ bysort IDNum: gen Assets_h = (Assets_fHGR  - L.Assets_fHGR )/((Assets_fHGR  + L.
 * EBITDA (Haltiwanger)
 bysort IDNum: gen EBITDA_h = (EBITDA_fHGR  - L.EBITDA_fHGR )/((EBITDA_fHGR  + L.EBITDA_fHGR )/2) 
 
+drop COGS_fHGR Revenue_fHGR Export_revenue_fHGR Assets_fHGR EBITDA_fHGR
 *---------------------------
 * IPO Info
 *---------------------------

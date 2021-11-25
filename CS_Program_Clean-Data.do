@@ -105,6 +105,31 @@ drop minE minS maxE maxS tagMaxE tagMaxS tagMinE tagMinS
 
 xtset IDNum Year
 keep Year gvkey IDNum IPO_year Age nEmployees Sales Assets GrossProfits nShareholders SalesPerEmployee cshoi
+
+
+*---------------------------
+* Growth Rates
+*---------------------------
+
+* Employment Growth Rate (Regular)
+bysort IDNum: gen EmpGrowth_r=(nEmployees-L.nEmployees)/(L.nEmployees)
+
+* Employment Growth Rate (Haltiwanger)
+bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
+	
+* Sales Growth Rate (Haltiwanger)
+bysort IDNum: gen SalesGrowth_h = (Sales-L.Sales)/((Sales+L.Sales)/2)
+
+* Profit Growth Rate (Haltiwanger)
+bysort IDNum: gen ProfitGrowth_h = (GrossProfits-L.GrossProfits)/((GrossProfits+L.GrossProfits)/2)
+
+* Shares outstanding (Haltiwanger)
+bysort IDNum: gen COGS_h = (cshoi -L.cshoi )/((cshoi +L.cshoi )/2)
+		
+* Assets (Haltiwanger)
+bysort IDNum: gen Assets_h = (Assets  - L.Assets )/((Assets  + L.Assets )/2)
+
+
 save "Data_Cleaned/${CountryID}_CompustatUnbalanced.dta", replace
 
 *------------------
