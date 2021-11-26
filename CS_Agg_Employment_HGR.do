@@ -1,7 +1,5 @@
 
 
-*local Country="PT"
-*use "Data_Cleaned/`Country'_CompustatUnbalanced.dta",clear
 
 *Compustat Haltiwanger Growth Rates and Employment
 if "${CountryID}" == "PT" {

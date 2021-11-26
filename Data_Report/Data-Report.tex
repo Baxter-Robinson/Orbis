@@ -797,9 +797,80 @@ where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbb
 \end{itemize}
 
 
+\subsection{Compustat: Aggregate Employment and Haltiwanger Growth rates}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.6]{../Output/IT/CS_Agg_Employment_HGR.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.6]{../Output/PT/CS_Agg_Employment_HGR.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.6]{../Output/FR/CS_Agg_Employment_HGR.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/ES/CS_Agg_Employment_HGR.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Germany}
+ \includegraphics[scale=0.6]{../Output/DE/CS_Agg_Employment_HGR.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Netherland}
+ \includegraphics[scale=0.6]{../Output/NL/CS_Agg_Employment_HGR.pdf}
+\end{subfigure}
+\end{figure}
+
+\clearpage
 
 
+\subsection{Compustat: Distribution of Employment Growth Rates}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.6]{../Output/IT/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.6]{../Output/PT/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.6]{../Output/FR/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/ES/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Germany}
+ \includegraphics[scale=0.6]{../Output/DE/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Netherland}
+ \includegraphics[scale=0.6]{../Output/NL/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}
+\end{figure}
 
+\clearpage
 % section private_vs_public (end)
 
 %------------------------------------------------------------------------------
@@ -985,6 +1056,54 @@ where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbb
     \end{tabular}
     }
 \end{table}
+\clearpage
+\subsubsection{Regressions}
+This subsection presents the following regression:
+	\begin{equation}
+	\begin{split}
+	y_{jt} &= \beta_0 + \beta_1 \mathbbm{1}\left[ \text{IPO year} = t \right]_j + \beta_2 \mathbbm{1}\left[ \text{IPO year + 1}\right]_j \\
+	&+ \beta_3 \mathbbm{1}\left[ \text{IPO year + 2} \right]_j + \beta_4 \mathbbm{1}\left[ \text{Public firm} \right]_j + \beta_5 x_{jt} + \lambda_t + \varepsilon_{jt}
+	\end{split}
+	\end{equation}
+where $y_{it}$ represents the firm x year-level Haltiwanger growth rate, $\mathbbm{1}\left[ \text{IPO year} = t \right]_j$ is an indicator variable for the year of firm $j$'s IPO, $\mathbbm{1}\left[ \text{IPO year + 1}\right]_j $ is an indicator variable for the year following firm $j$'s IPO, $\mathbbm{1}\left[ \text{IPO year + 2} \right]_j $ is an indicator variable for the the second year following firm $j$'s IPO, $ \mathbbm{1}\left[ \text{Public firm} \right]_j $ is an indicator variable for whether the firm is public, $x_{jt}$ represents the number of employees of firm $j$ in year $t$, and $\varepsilon_{jt}$ is an error term.\\~\
+
+\textcolor{blue}{Italy}\\~\
+{
+\let\oldcentering\centering
+\renewcommand\centering{\tiny\oldcentering}
+\input{../Output/IT/OB_HGR_IPO_regs.tex}}
+
+\textcolor{blue}{Portugal}\\~\
+{
+\let\oldcentering\centering
+\renewcommand\centering{\tiny\oldcentering}
+\input{../Output/PT/OB_HGR_IPO_regs.tex}}
+\clearpage
+\textcolor{blue}{Spain}\\~\
+{
+\let\oldcentering\centering
+\renewcommand\centering{\tiny\oldcentering}
+\input{../Output/IT/OB_HGR_IPO_regs.tex}}
+
+\textcolor{blue}{France}\\~\
+{
+\let\oldcentering\centering
+\renewcommand\centering{\tiny\oldcentering}
+\input{../Output/FR/OB_HGR_IPO_regs.tex}}
+
+\clearpage
+\textcolor{blue}{Germany}\\~\
+{
+\let\oldcentering\centering
+\renewcommand\centering{\tiny\oldcentering}
+\input{../Output/DE/OB_HGR_IPO_regs.tex}}
+
+\textcolor{blue}{Netherlands}\\~\
+{
+\let\oldcentering\centering
+\renewcommand\centering{\tiny\oldcentering}
+\input{../Output/NL/OB_HGR_IPO_regs.tex}}
+
 
 \clearpage
 \subsection{Descriptive Stats in the Year of IPO}
