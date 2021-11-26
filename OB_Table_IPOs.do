@@ -36,9 +36,8 @@ preserve
 	
 	
 	su EmpGrowth_h if (IPO_timescale>1) & (Private==0) & (IPO_timescale<10) 
-	local AveGrowth: di %12.2fc r(mean)
+	local AveGrowth10y: di %12.2fc r(mean)
 	file write TabIPOs " & `AveGrowth10y' "
-	
 	
 	collapse (max) IPO_timescale, by(IDNum)
 	count if (IPO_timescale!=.)
