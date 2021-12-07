@@ -60,7 +60,7 @@ restore
 * Missing Shareholders
 preserve
 	destring No_of_recorded_shareholders, generate(nShareholders)
-	gen Listed=1
+	gen Listed=1 
 	replace Listed=0 if (Main_exchange=="Unlisted")
 	drop if missing(nShareholders) & ~(Listed)
 	su Closing_date

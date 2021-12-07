@@ -2,7 +2,7 @@
 
 preserve
 
-	keep if Listed==1
+	keep if EverPublic==1
 	gen IPO_timescale = Year - IPO_year
 	gen IPOy = 0
 	replace IPOy = 1 if IPO_timescale==0

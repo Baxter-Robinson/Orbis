@@ -13,7 +13,7 @@ preserve
 	*drop if (Age > 29)
 	
 	 collapse (mean) nEmployees Revenue Sales COGS WageBill ///
-			Listed nShareholders Assets GrossProfits ///
+			EverPublic nShareholders Assets GrossProfits ///
 			(count) nFirms=nEmployees, by(Year)
 	 
 	* Lifecycle graphs
@@ -43,7 +43,7 @@ preserve
 	 graph export Output/$CountryID/Lifecycle_Revenue_Costs.pdf, replace  
 
 	* Number of public firms 
-	   graph twoway (scatter Listed Year, msymbol(0) connect(l)) ///
+	   graph twoway (scatter EverPublic Year, msymbol(0) connect(l)) ///
 		, graphregion(color(white))  ytitle("Proportion of Listed Firms") xtitle("Year (proxy for age)")
 	 graph export Output/$CountryID/Lifecycle_Public.pdf, replace  
 

@@ -186,18 +186,19 @@ gen DiffShareHolders=MaxShareHolders-MinShareHolders
 
 drop MinShareHolders MaxShareHolders
 
-gen Listed = 1
-replace Listed = 0 if Main_exchange=="Unlisted"
+
+gen EverPublic = 1
+replace EverPublic = 0 if Main_exchange=="Unlisted"
 
 ** Generate Firm Types
-*drop if missing(nShareholders) & ~(Listed)
+*drop if missing(nShareholders) & ~(EverPublic)
 
 gen FirmType=.
-replace FirmType=1 if (nShareholders==1) & ~(Listed)
-replace FirmType=2 if (nShareholders==2) & ~(Listed)
-replace FirmType=3 if (nShareholders>2) & ~missing(nShareholders) &  ~(Listed)
-replace FirmType=4 if FirmType==. & ~(Listed)
-replace FirmType=6 if (Listed)
+replace FirmType=1 if (nShareholders==1) & ~(EverPublic)
+replace FirmType=2 if (nShareholders==2) & ~(EverPublic)
+replace FirmType=3 if (nShareholders>2) & ~missing(nShareholders) &  ~(EverPublic)
+replace FirmType=4 if FirmType==. & ~(EverPublic)
+replace FirmType=6 if (EverPublic)
 
 
 gen Private=0
@@ -225,11 +226,11 @@ gen EmpGrowthAroundIPOYear=EmpGrowth_h if ((IPO_year>=Year-1) & (IPO_year<=Year+
 gen EmpOfIPOingFirm=nEmployees if  (IPO_year==Year)
 
 * Private Share of Employment
-su nEmployees if (Listed)
+su nEmployees if (EverPublic)
 local Public=r(sum)
 local PublicAvg=r(mean)
 
-su nEmployees if (~Listed)
+su nEmployees if (~EverPublic)
 local Private=r(sum)
 local PrivateAvg=r(mean)
 
@@ -239,10 +240,10 @@ gen PrivateAvg= `PrivateAvg'
 
 
 * Share of number of firms
-su nEmployees if (Listed) 
+su nEmployees if (EverPublic) 
 local nPublic=r(N)
 
-su nEmployees if (~Listed) 
+su nEmployees if (~EverPublic) 
 local nPrivate=r(N)
 
 gen PrivateShareOfFirms=`nPrivate'/(`nPublic'+`nPrivate')

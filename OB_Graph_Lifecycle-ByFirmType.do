@@ -5,7 +5,7 @@ preserve
 	
 	*drop if (Age>29)
 	collapse (mean) nEmployees Sales COGS WageBill ///
-			Listed nShareholders Assets GrossProfits SalesGrowth_h EmpGrowth_h ///
+			EverPublic nShareholders Assets GrossProfits SalesGrowth_h EmpGrowth_h ///
 			(count) nFirms=nEmployees, by(Year Private)
 	* Change units
 	 replace Sales=Sales/1000
