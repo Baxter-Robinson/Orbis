@@ -56,11 +56,18 @@ else if "${CountryID}" != "PT"  {
 		bysort IDNum: gen nvals = _n == 1 
 		replace nvals = sum(nvals)
 		replace nvals = nvals[_N] 
-		gen Firms = nvals
+		gen Firms_total = nvals
 		drop nvals
 
-		keep if ftocheck==1  // I keep only the firms that where flagged.
+		keep if ftocheck==1  // Keep only the firms that were flagged.
 		drop h_review
+		
+		* Creates the number of unique firms in the dataset with at least one year of abs(HGR)>1.90
+		bysort IDNum: gen nvals = _n == 1 
+		replace nvals = sum(nvals)
+		replace nvals = nvals[_N] 
+		gen Firms_HGR_check = nvals
+		drop nvals
 
 		gen firmchanging = .
 		bysort IDNum: replace firmchanging = 1 if abs(halti2)>1.90  // For the firms that I keep, I write a 1 for the period in which they have the HGR>1.90
