@@ -52,18 +52,22 @@ preserve
 		drop if Tfirms<3 
 		
 		
-		egen loopid = group(IDNum)
 		gen upward190 =.
 		gen downward190 =.
 		
-		
-		
-		sum loopid, detail
-		local maxloopid = r(max)
-		forvalues i = 2/`maxloopid'{
+		gen N_Firms=_N
+		sum N_Firms, detail
+		return list
+		local Nfirms=r(max)
+
+		sum IDNum if upward190 ==1 , detail
+		return list
+		local midpoint_Firms_upwards =r(p50)
+
+		forvalues i = 2/`Nfirms'{
 			di `i'
 			local j=`i'-1
-			if loopid[`i'] == loopid[`j']{
+			if IDNum[`i'] == IDNum[`j']{
 				if tfirms[`i']>=3 {
 					if EmpGrowth_h[`j']<=-1.90{
 						if EmpGrowth_h[`i']>=1.90{
@@ -79,22 +83,44 @@ preserve
 			}
 		}
 		
+		collapse (sum) upward190 downward190 (first) Firms_total Firms_HGR_check N_Firms, by(IDNum)
 		file write HGRChecks  " & `totfirms' "
 		file write HGRChecks  " & `totfirms_HGR' "
 		local percentageHGR = round(`totfirms_HGR'*100/`totfirms',.01)
 		file write HGRChecks  " & `percentageHGR' "
 		
-		tab IDNum upward190
+		
+		levelsof upward190, local(l_upward190)
+		
+		sum upward190
+		display r(sum)
+		local cases190_up = r(sum)
+		local unique190_up = 0
+		foreach x of local(l_upward190){
+			if `x'!=0{
+				tab IDNum if upward190==`x'
+				return list
+				local 
+			
+		}
+				
+		
+		bigtab IDNum upward190 if upward190!=.
 		return list
 		local cases190_up = r(N)
 		local unique190_up = r(r)
+		
+		if  (newid < `midpoint_Firms_upwards') & (upward190!=.)
+		
+		
+		
 		file write HGRChecks " & `cases190_up' "
 		file write HGRChecks " & `unique190_up' "
 		local percentage190_up = round(`unique190_up'*100/`totfirms_HGR',.01)
 		file write HGRChecks  " & `percentage190_up' "
 		
 		
-		tab IDNum downward190
+		tab IDNum downward190 if downward190!=.
 		return list
 		local cases190_down = r(N)
 		local unique190_down = r(r)
@@ -104,9 +130,14 @@ preserve
 		file write HGRChecks  " & `percentage190_down' "		
 	
 		file write HGRChecks "\\"
-
-
 		file close _all
+		
+			
+		replace upward190 = 0 if upward190==.
+		replace downward190 = 0 if downward190==.
+		
+		bysort IDNum tfirms: egen cum_upward190 = total(upward190)
+		bysort IDNum tfirms: egen cum_downward190 = total(downward190)
 		
 restore
 
@@ -164,13 +195,15 @@ preserve
 		gen upward175 =.
 		gen downward175 =.
 		
-		
-		sum loopid, detail
-		local maxloopid = r(max)
-		forvalues i = 2/`maxloopid'{
+		gen N_Firms=_N
+		sum N_Firms, detail
+		return list
+		local Nfirms=r(max)
+
+		forvalues i = 2/`Nfirms'{
 			di `i'
 			local j=`i'-1
-			if loopid[`i'] == loopid[`j']{
+			if IDNum[`i'] == IDNum[`j']{
 				if tfirms[`i']>=3 {
 					if EmpGrowth_h[`j']<=-1.75{
 						if EmpGrowth_h[`i']>=1.75{
@@ -192,7 +225,7 @@ preserve
 		file write HGRChecks  " & `percentageHGR' "
 				
 		
-		tab IDNum upward175
+		quietly tab IDNum upward175
 		return list
 		local cases175_up = r(N)
 		local unique175_up = r(r)
@@ -202,7 +235,7 @@ preserve
 		file write HGRChecks  " & `percentage175_up' "
 		
 		
-		tab IDNum downward175
+		quietly tab IDNum downward175
 		return list
 		local cases175_down = r(N)
 		local unique175_down = r(r)
@@ -215,5 +248,17 @@ preserve
 
 		file close _all
 		
+		replace upward175 = 0 if upward175==.
+		replace downward175 = 0 if downward175==.
+		
+		bysort IDNum tfirms: egen cum_upward175 = total(upward175)
+		bysort IDNum tfirms: egen cum_downward175 = total(downward175)		
 
 restore
+
+/*
+bysort upward190: gen freq = _N
+
+
+tabdisp upward190, cell(freq)
+*/
