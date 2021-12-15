@@ -471,44 +471,114 @@ preserve
 		
 		file write HGRChecks  " & `unique190_down' "
 		
-		forvalues i=1(1)3{
-			sum unique190_down_firms_`i' if downward190==`i'
-			local downward_`i' = r(mean)
-			file write HGRChecks  " & `downward_`i'' "
-		}
-		
-		
-		egen unique_190_down_3orless = rowtotal(unique190_down_firms_1-unique190_down_firms_3)
-		gen unique_190_down_4ormore = `unique190_down' - unique_190_down_3orless
-		sum unique_190_down_4ormore if downward190>=4
-		local downward_4 = r(mean)
-		file write HGRChecks  " & `downward_4' "
-		file write HGRChecks "\\ "
+		if "${CountryID}" == "PT"{
+			forvalues i=1(1)2{
+				sum unique190_down_firms_`i' if downward190==`i'
+				local downward_`i' = r(mean)
+				file write HGRChecks  " & `downward_`i'' "
+			}
+			
+			
+			egen unique_190_down_2orless = rowtotal(unique190_down_firms_1-unique190_down_firms_2)
+			gen unique_190_down_3ormore = `unique190_down' - unique_190_down_2orless
+			sum unique_190_down_3ormore if downward190>=3
+			local downward_3 = r(mean)
+			file write HGRChecks  " & `downward_3' "
+			file write HGRChecks "\\ "
 
 
-		file write HGRChecks "Upward" 
-		sum upward190 if upward190==0
-		local upward_0 = r(mean)
-		
-		
-		file write HGRChecks  " & `unique190_up' "
-		
-		forvalues i=1(1)3{
-			sum unique190_up_firms_`i' if upward190==`i'
-			local upward_`i' = r(mean)
-			file write HGRChecks  " & `upward_`i'' "
+			file write HGRChecks "Upward" 
+			sum upward190 if upward190==0
+			local upward_0 = r(mean)
+			
+			
+			file write HGRChecks  " & `unique190_up' "
+			
+			forvalues i=1(1)2{
+				sum unique190_up_firms_`i' if upward190==`i'
+				local upward_`i' = r(mean)
+				file write HGRChecks  " & `upward_`i'' "
+			}
+			
+			
+			egen unique_190_up_2orless = rowtotal(unique190_up_firms_1-unique190_up_firms_2)
+			gen unique_190_up_3ormore = `unique190_up' - unique_190_up_2orless
+			sum unique_190_up_3ormore if upward190>=2
+			local upward_3 = r(mean)
+			file write HGRChecks  " & `upward_3' "
+			file write HGRChecks "\\ "		
+			file close _all
 		}
 		
+		else if "${CountryID}" == "NL"{
+			sum unique190_down_firms_1 if downward190==1
+			local downward_1 = r(mean)
+			file write HGRChecks  " & `downward_1' "
+			
+			sum unique190_down_firms_3 if downward190==3
+			local downward_3 = r(mean)
+			file write HGRChecks  " & `downward_3' "
+			
+			file write HGRChecks "\\ "
+
+
+			file write HGRChecks "Upward" 
+			sum upward190 if upward190==0
+			local upward_0 = r(mean)
+			
+			
+			file write HGRChecks  " & `unique190_up' "
+			
+			sum unique190_up_firms_1 if upward190==1
+			local upward_1 = r(mean)
+			file write HGRChecks  " & `upward_1' "
+			
+			sum unique190_up_firms_3 if upward190==3
+			local upward_3 = r(mean)
+			file write HGRChecks  " & `upward_3' "
+			
+			file write HGRChecks "\\ "		
+			file close _all
+		}
 		
-		egen unique_190_up_3orless = rowtotal(unique190_up_firms_1-unique190_up_firms_3)
-		gen unique_190_up_4ormore = `unique190_up' - unique_190_up_3orless
-		sum unique_190_up_4ormore if upward190>=4
-		local upward_4 = r(mean)
-		file write HGRChecks  " & `upward_4' "
-		file write HGRChecks "\\ "		
-		file close _all
-		
-		
+		else{		
+			forvalues i=1(1)3{
+				sum unique190_down_firms_`i' if downward190==`i'
+				local downward_`i' = r(mean)
+				file write HGRChecks  " & `downward_`i'' "
+			}
+			
+			
+			egen unique_190_down_3orless = rowtotal(unique190_down_firms_1-unique190_down_firms_3)
+			gen unique_190_down_4ormore = `unique190_down' - unique_190_down_3orless
+			sum unique_190_down_4ormore if downward190>=4
+			local downward_4 = r(mean)
+			file write HGRChecks  " & `downward_4' "
+			file write HGRChecks "\\ "
+
+
+			file write HGRChecks "Upward" 
+			sum upward190 if upward190==0
+			local upward_0 = r(mean)
+			
+			
+			file write HGRChecks  " & `unique190_up' "
+			
+			forvalues i=1(1)3{
+				sum unique190_up_firms_`i' if upward190==`i'
+				local upward_`i' = r(mean)
+				file write HGRChecks  " & `upward_`i'' "
+			}
+			
+			
+			egen unique_190_up_3orless = rowtotal(unique190_up_firms_1-unique190_up_firms_3)
+			gen unique_190_up_4ormore = `unique190_up' - unique_190_up_3orless
+			sum unique_190_up_4ormore if upward190>=4
+			local upward_4 = r(mean)
+			file write HGRChecks  " & `upward_4' "
+			file write HGRChecks "\\ "		
+			file close _all
+		}
 restore
 
 
@@ -656,42 +726,114 @@ preserve
 		
 		file write HGRChecks  " & `unique175_down' "
 		
-		forvalues i=1(1)3{
-			sum unique175_down_firms_`i' if downward175==`i'
-			local downward_`i' = r(mean)
-			file write HGRChecks  " & `downward_`i'' "
-		}
-		
-		
-		egen unique_175_down_3orless = rowtotal(unique175_down_firms_1-unique175_down_firms_3)
-		gen unique_175_down_4ormore = `unique175_down' - unique_175_down_3orless
-		sum unique_175_down_4ormore if downward175>=4
-		local downward_4 = r(mean)
-		file write HGRChecks  " & `downward_4' "
-		file write HGRChecks "\\ "
+		if "${CountryID}" == "PT"{
+			forvalues i=1(1)2{
+				sum unique175_down_firms_`i' if downward175==`i'
+				local downward_`i' = r(mean)
+				file write HGRChecks  " & `downward_`i'' "
+			}
+			
+			
+			egen unique_175_down_2orless = rowtotal(unique175_down_firms_1-unique175_down_firms_2)
+			gen unique_175_down_3ormore = `unique175_down' - unique_175_down_2orless
+			sum unique_175_down_3ormore if downward175>=3
+			local downward_3 = r(mean)
+			file write HGRChecks  " & `downward_3' "
+			file write HGRChecks "\\ "
 
 
-		file write HGRChecks "Upward" 
-		sum upward175 if upward175==0
-		local upward_0 = r(mean)
-		
-		
-		file write HGRChecks  " & `unique175_up' "
-		
-		forvalues i=1(1)3{
-			sum unique175_up_firms_`i' if upward175==`i'
-			local upward_`i' = r(mean)
-			file write HGRChecks  " & `upward_`i'' "
+			file write HGRChecks "Upward" 
+			sum upward175 if upward175==0
+			local upward_0 = r(mean)
+			
+			
+			file write HGRChecks  " & `unique175_up' "
+			
+			forvalues i=1(1)2{
+				sum unique175_up_firms_`i' if upward175==`i'
+				local upward_`i' = r(mean)
+				file write HGRChecks  " & `upward_`i'' "
+			}
+			
+			
+			egen unique_175_up_2orless = rowtotal(unique175_up_firms_1-unique175_up_firms_2)
+			gen unique_175_up_3ormore = `unique175_up' - unique_175_up_2orless
+			sum unique_175_up_3ormore if upward175>=4
+			local upward_3 = r(mean)
+			file write HGRChecks  " & `upward_3' "
+			file write HGRChecks "\\ "		
+			file close _all
 		}
 		
+		else if "${CountryID}" == "NL"{
+			sum unique175_down_firms_1 if downward175==1
+			local downward_1 = r(mean)
+			file write HGRChecks  " & `downward_1' "
+			
+			sum unique175_down_firms_3 if downward175==3
+			local downward_3 = r(mean)
+			file write HGRChecks  " & `downward_3' "
+			
+			file write HGRChecks "\\ "
+
+
+			file write HGRChecks "Upward" 
+			sum upward175 if upward175==0
+			local upward_0 = r(mean)
+			
+			
+			file write HGRChecks  " & `unique175_up' "
+			
+			sum unique175_up_firms_1 if upward175==1
+			local upward_1 = r(mean)
+			file write HGRChecks  " & `upward_1' "
+			
+			sum unique175_up_firms_3 if upward175==3
+			local upward_3 = r(mean)
+			file write HGRChecks  " & `upward_3' "
+			
+			file write HGRChecks "\\ "		
+			file close _all
+		}
 		
-		egen unique_175_up_3orless = rowtotal(unique175_up_firms_1-unique175_up_firms_3)
-		gen unique_175_up_4ormore = `unique175_up' - unique_175_up_3orless
-		sum unique_175_up_4ormore if upward175>=4
-		local upward_4 = r(mean)
-		file write HGRChecks  " & `upward_4' "
-		file write HGRChecks "\\ "		
-		file close _all
+		else{		
+			forvalues i=1(1)3{
+				sum unique175_down_firms_`i' if downward175==`i'
+				local downward_`i' = r(mean)
+				file write HGRChecks  " & `downward_`i'' "
+			}
+			
+			
+			egen unique_175_down_3orless = rowtotal(unique175_down_firms_1-unique175_down_firms_3)
+			gen unique_175_down_4ormore = `unique175_down' - unique_175_down_3orless
+			sum unique_175_down_4ormore if downward175>=4
+			local downward_4 = r(mean)
+			file write HGRChecks  " & `downward_4' "
+			file write HGRChecks "\\ "
+
+
+			file write HGRChecks "Upward" 
+			sum upward175 if upward175==0
+			local upward_0 = r(mean)
+			
+			
+			file write HGRChecks  " & `unique175_up' "
+			
+			forvalues i=1(1)3{
+				sum unique175_up_firms_`i' if upward175==`i'
+				local upward_`i' = r(mean)
+				file write HGRChecks  " & `upward_`i'' "
+			}
+			
+			
+			egen unique_175_up_3orless = rowtotal(unique175_up_firms_1-unique175_up_firms_3)
+			gen unique_175_up_4ormore = `unique175_up' - unique_175_up_3orless
+			sum unique_175_up_4ormore if upward175>=4
+			local upward_4 = r(mean)
+			file write HGRChecks  " & `upward_4' "
+			file write HGRChecks "\\ "		
+			file close _all
+		}
 		
 		
 restore
