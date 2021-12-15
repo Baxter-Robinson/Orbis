@@ -73,48 +73,48 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
-	do OB_Graph_HaltiGrowth_Employment-Dist.do
-	do OB_Script_DiD-IPO.do
-	do OB_Graph_IPOyear-Dist.do
-	do OB_Graph_Growth_IPOyear-Dist.do
-	do OB_Graph_BySize.do
+	*do OB_Graph_HaltiGrowth_Employment-Dist.do
+	*do OB_Script_DiD-IPO.do
+	*do OB_Graph_IPOyear-Dist.do
+	*do OB_Graph_Growth_IPOyear-Dist.do
+	*do OB_Graph_BySize.do
 	
-	do OB_Regressions_FirmTypes.do
+	*do OB_Regressions_FirmTypes.do
 
 
 
-	do OB_Table_Descriptive-Stats.do
-	do OB_Table_PubVsPri.do
-	do OB_Table_BySize.do
-	do OB_Table_BySize-Public.do
+	*do OB_Table_Descriptive-Stats.do
+	*do OB_Table_PubVsPri.do
+	*do OB_Table_BySize.do
+	*do OB_Table_BySize-Public.do
 	
-	do OB_Table_IPOs.do
-	do OB_Table_IPO-years.do
-	do OB_Table_IPOyear_Descriptive-Stats.do
+	*do OB_Table_IPOs.do
+	*do OB_Table_IPO-years.do
+	*do OB_Table_IPOyear_Descriptive-Stats.do
 	
-	do OB_HGR_regressions.do
+	*do OB_HGR_regressions.do
 	
-	do OB_HGR_Pattern_Checks.do 
+	*do OB_HGR_Pattern_Checks.do 
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Balanced.dta",clear
+	use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
-	*do OB_Graph_BySize.do
-	*do OB_Graph_Lifecycle.do
-	*do OB_Graph_Lifecycle-ByFirmType.do
+	do OB_Graph_BySize.do
+	do OB_Graph_Lifecycle.do
+	do OB_Graph_Lifecycle-ByFirmType.do
 	
-	*do OB_Table_BySize-Public.do
-	*do OB_Graph_Age-Dist.do
-	*do OB_Graph_Change-No-Shareholders-Dist.do
-	*do OB_Graph_FirmTypes.do
+	do OB_Table_BySize-Public.do
+	do OB_Graph_Age-Dist.do
+	do OB_Graph_Change-No-Shareholders-Dist.do
+	do OB_Graph_FirmTypes.do
 	
 	
 	*-------------------------------------------------------
