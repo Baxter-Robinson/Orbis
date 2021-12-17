@@ -842,3 +842,54 @@ restore
 *##################################################################################################################
 *##################################################################################################################
 *##################################################################################################################
+
+
+preserve
+
+		keep nEmployees Year IDNum EmpGrowth_h Private 
+		replace EmpGrowth_h =0.000000000001 if EmpGrowth_h==.
+		gen HGRcheck = 0 // indicator for firm to check 
+		* Indicator that a firm has an abs(HGR)>1.9
+		gen h_review = abs(EmpGrowth_h)
+		replace HGRcheck = 1 if h_review>1.90
+
+		keep if HGRcheck==1  // Keep only the firms that were flagged.
+		drop h_review
+		
+		
+		collapse (sum) HGRcheck, by(IDNum)
+		sum IDNum, detail
+		return list
+		
+		
+		gen ordering = _n
+		sum ordering, detail
+		local max = r(max)
+		local no_groups=round(`max'/25,1)
+		di `no_groups'
+		
+		egen firmgroups = cut(ordering), group(`no_groups')
+		
+		levelsof firmgroups, local(groups)
+		foreach x of local groups{
+			quietly sum ordering if firmgroups==`x', detail 
+			local min = r(min)
+			local max = r(max)
+			file close _all
+			file open HGR_Tabs using Output/${CountryID}/OB_Tab_firm_HGR_`x'.tex, write replace
+			file write HGR_Tabs "Firm IDNum"
+			file write HGR_Tabs " & HGR>abs(1.90) [Frequency] \\"
+			forvalues i=`min'/`max'{
+				local firma = IDNum[`i']
+				local frequency = HGRcheck[`i']
+				file write HGR_Tabs " `firma' "
+				file write HGR_Tabs " & `frequency' "
+				file write HGR_Tabs " \\"
+			}
+			file close _all
+		}
+		
+		
+		
+		
+restore
