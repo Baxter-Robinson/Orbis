@@ -98,7 +98,7 @@ foreach Country of global Countries {
 	
 	*do OB_HGR_regressions.do
 	
-	do OB_HGR_Pattern_Checks.do 
+	*do OB_HGR_Pattern_Checks.do 
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel

@@ -587,15 +587,31 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
-\input{../Output/IT/HGR_OLS_regressions_lin_lin.tex}
+
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
+\hline\hline
+\input{../Output/NL/HGR_OLS_regressions_lin_lin.tex}
+\end{tabular}}
+\end{table}
+
 \clearpage
 The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
-
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
+\hline\hline
 \input{../Output/IT/HGR_OLS_regressions_lin_log.tex}
+\end{tabular}}
+\end{table}
+
 \clearpage
 \item \textcolor{blue}{\textbf{Italy FE}}\\~\
 The following regression is employed:
@@ -603,8 +619,13 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
-
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/IT/HGR_FE_regressions_lin_lin.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 \item \textcolor{blue}{\textbf{Italy FE}}\\~\
 The following regression is employed:
@@ -612,7 +633,13 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/IT/HGR_FE_regressions_lin_log.tex}
+\end{tabular}}
+\end{table}
 
 
 
@@ -625,7 +652,14 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
+\hline\hline
 \input{../Output/PT/HGR_OLS_regressions_lin_lin.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 
 The following regression is employed:
@@ -633,7 +667,13 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/PT/HGR_OLS_regressions_lin_log.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 \item \textcolor{blue}{\textbf{Portugal FE}}\\~\
 The following regression is employed:
@@ -641,7 +681,13 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/PT/HGR_FE_regressions_lin_lin.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 \item \textcolor{blue}{\textbf{Italy FE}}\\~\
 The following regression is employed:
@@ -649,7 +695,13 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/PT/HGR_FE_regressions_lin_log.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 
 
@@ -660,7 +712,14 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
+\hline\hline
 \input{../Output/FR/HGR_OLS_regressions_lin_lin.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 
 The following regression is employed:
@@ -668,7 +727,13 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/FR/HGR_OLS_regressions_lin_log.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 \item \textcolor{blue}{\textbf{France FE}}\\~\
 The following regression is employed:
@@ -676,14 +741,27 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
-\input{../Output/FR/HGR_FE_regressions_lin_lin.tex}\clearpage
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
+\input{../Output/FR/HGR_FE_regressions_lin_lin.tex}
+\end{tabular}}
+\end{table}
+\clearpage
 \item \textcolor{blue}{\textbf{Italy FE}}\\~\
 The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/FR/HGR_FE_regressions_lin_log.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 
 
@@ -695,7 +773,14 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
+\hline\hline
 \input{../Output/ES/HGR_OLS_regressions_lin_lin.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 
 The following regression is employed:
@@ -703,7 +788,13 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/ES/HGR_OLS_regressions_lin_log.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 \item \textcolor{blue}{\textbf{Spain FE}}\\~\
 The following regression is employed:
@@ -711,7 +802,13 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/ES/HGR_FE_regressions_lin_lin.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 \item \textcolor{blue}{\textbf{Italy FE}}\\~\
 The following regression is employed:
@@ -719,7 +816,13 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/ES/HGR_FE_regressions_lin_log.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 
 
@@ -731,7 +834,14 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
+\hline\hline
 \input{../Output/DE/HGR_OLS_regressions_lin_lin.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 
 The following regression is employed:
@@ -739,7 +849,13 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/DE/HGR_OLS_regressions_lin_log.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 \item \textcolor{blue}{\textbf{Germany FE}}\\~\
 The following regression is employed:
@@ -747,15 +863,26 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt} \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/DE/HGR_FE_regressions_lin_lin.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 \item \textcolor{blue}{\textbf{Italy FE}}\\~\
 The following regression is employed:
 	\begin{equation}
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
-where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/DE/HGR_FE_regressions_lin_log.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 
 
@@ -767,7 +894,14 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, x^{2}_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the number of employees, the number of employees squared, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
+\hline\hline
 \input{../Output/NL/HGR_OLS_regressions_lin_lin.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 
 The following regression is employed:
@@ -775,7 +909,13 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt}, x_{3jt}  \right]^{T} $ contains respectively the constant, the logarithm of the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, the logarithm of the firm's revenue, and age. A full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/NL/HGR_OLS_regressions_lin_log.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 \item \textcolor{blue}{\textbf{Netherlands FE}}\\~\
 The following regression is employed:
@@ -783,7 +923,13 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt} \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/NL/HGR_FE_regressions_lin_lin.tex}
+\end{tabular}}
+\end{table}
 
 \clearpage
 \item \textcolor{blue}{\textbf{Italy FE}}\\~\
@@ -792,7 +938,13 @@ The following regression is employed:
 	y_{jt} = x^{T}_{jt}\mathbf{\beta} + \lambda_{j}  + \lambda_{t} + \varepsilon_{jt}
 	\end{equation}
 where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbbm{1}\text{Employee}, x_{2jt} \right]^{T} $ contains respectively the constant, the number of employees, an indicator variable for public firms, an indicator variable for firms with more than 1 employee, and the firm's revenue. Firm fixed effects are captured by $\lambda_{j}$, a full set of year fixed effects is contained in $\lambda_{t}$, and $\varepsilon$ is an error term.
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}{c}}
 \input{../Output/NL/HGR_FE_regressions_lin_log.tex}
+\end{tabular}}
+\end{table}
 \clearpage
 \end{itemize}
 
@@ -1068,41 +1220,74 @@ This subsection presents the following regression:
 where $y_{it}$ represents the firm x year-level Haltiwanger growth rate, $\mathbbm{1}\left[ \text{IPO year} = t \right]_j$ is an indicator variable for the year of firm $j$'s IPO, $\mathbbm{1}\left[ \text{IPO year + 1}\right]_j $ is an indicator variable for the year following firm $j$'s IPO, $\mathbbm{1}\left[ \text{IPO year + 2} \right]_j $ is an indicator variable for the the second year following firm $j$'s IPO, $ \mathbbm{1}\left[ \text{Public firm} \right]_j $ is an indicator variable for whether the firm is public, $x_{jt}$ represents the number of employees of firm $j$ in year $t$, and $\varepsilon_{jt}$ is an error term.\\~\
 
 \textcolor{blue}{Italy}\\~\
-{
-\let\oldcentering\centering
-\renewcommand\centering{\tiny\oldcentering}
-\input{../Output/IT/OB_HGR_IPO_regs.tex}}
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{8}{c}}
+\hline\hline
+\input{../Output/IT/OB_HGR_IPO_regs.tex}
+\end{tabular}}
+\end{table}
+
 
 \textcolor{blue}{Portugal}\\~\
-{
-\let\oldcentering\centering
-\renewcommand\centering{\tiny\oldcentering}
-\input{../Output/PT/OB_HGR_IPO_regs.tex}}
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{8}{c}}
+\hline\hline
+\input{../Output/PT/OB_HGR_IPO_regs.tex}
+\end{tabular}}
+\end{table}
+
 \clearpage
+
 \textcolor{blue}{Spain}\\~\
-{
-\let\oldcentering\centering
-\renewcommand\centering{\tiny\oldcentering}
-\input{../Output/IT/OB_HGR_IPO_regs.tex}}
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{8}{c}}
+\hline\hline
+\input{../Output/IT/OB_HGR_IPO_regs.tex}
+\end{tabular}}
+\end{table}
 
 \textcolor{blue}{France}\\~\
-{
-\let\oldcentering\centering
-\renewcommand\centering{\tiny\oldcentering}
-\input{../Output/FR/OB_HGR_IPO_regs.tex}}
+
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{8}{c}}
+\hline\hline
+\input{../Output/FR/OB_HGR_IPO_regs.tex}
+\end{tabular}}
+\end{table}
+
 
 \clearpage
 \textcolor{blue}{Germany}\\~\
-{
-\let\oldcentering\centering
-\renewcommand\centering{\tiny\oldcentering}
-\input{../Output/DE/OB_HGR_IPO_regs.tex}}
+
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{8}{c}}
+\hline\hline
+\input{../Output/DE/OB_HGR_IPO_regs.tex}
+\end{tabular}}
+\end{table}
+
 
 \textcolor{blue}{Netherlands}\\~\
-{
-\let\oldcentering\centering
-\renewcommand\centering{\tiny\oldcentering}
-\input{../Output/NL/OB_HGR_IPO_regs.tex}}
+
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\caption{Haltiwanger growth rate}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{8}{c}}
+\hline\hline
+\input{../Output/NL/OB_HGR_IPO_regs.tex}
+\end{tabular}}
+\end{table}
+
 
 
 \clearpage

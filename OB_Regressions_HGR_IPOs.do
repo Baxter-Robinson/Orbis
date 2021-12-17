@@ -59,7 +59,7 @@ preserve
 	estadd local Year "Yes"
 	estadd local Robust "Yes"
 		
-	esttab m1 m2 m2a m3 m3a m4 m5 m6 using "Output/$CountryID/OB_HGR_IPO_regs.tex", se legend mtitles("1" "2" "2a" "3" "3a"  "4" "5" "6") title("Haltiwanger growth rate") s(N Year Robust, label( "N" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" nEmployees "No. employees" IPOy "IPO year indicator" public "Public firm" IPO1y "IPO year +1 indicator" IPO2y "IPO year +2 indicator") nonumbers keep( _cons nEmployees public IPOy IPO1y IPO2y) replace
+	esttab m1 m2 m2a m3 m3a m4 m5 m6 using "Output/$CountryID/OB_HGR_IPO_regs.tex", se legend mtitles("1" "2" "2a" "3" "3a"  "4" "5" "6") title("Haltiwanger growth rate") s(N Year Robust, label( "N" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" nEmployees "No. employees" IPOy "IPO year indicator" public "Public firm" IPO1y "IPO year +1 indicator" IPO2y "IPO year +2 indicator") nonumbers keep( _cons nEmployees public IPOy IPO1y IPO2y) replace fragment
 	
 restore
 
