@@ -73,7 +73,7 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
@@ -98,23 +98,23 @@ foreach Country of global Countries {
 	
 	*do OB_HGR_regressions.do
 	
-	*do OB_HGR_Pattern_Checks.do 
+	do OB_HGR_Pattern_Checks.do 
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
 	*-------------------------------------------------------
-	use "Data_Cleaned/`Country'_Balanced.dta",clear
+	*use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
-	do OB_Graph_BySize.do
-	do OB_Graph_Lifecycle.do
-	do OB_Graph_Lifecycle-ByFirmType.do
+	*do OB_Graph_BySize.do
+	*do OB_Graph_Lifecycle.do
+	*do OB_Graph_Lifecycle-ByFirmType.do
 	
-	do OB_Table_BySize-Public.do
-	do OB_Graph_Age-Dist.do
-	do OB_Graph_Change-No-Shareholders-Dist.do
-	do OB_Graph_FirmTypes.do
+	*do OB_Table_BySize-Public.do
+	*do OB_Graph_Age-Dist.do
+	*do OB_Graph_Change-No-Shareholders-Dist.do
+	*do OB_Graph_FirmTypes.do
 	
 	
 	*-------------------------------------------------------
