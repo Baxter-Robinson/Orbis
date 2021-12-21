@@ -17,6 +17,7 @@
 \usepackage{comment}
 \usepackage{bbm}
 \newcommand{\sym}[1] {\ifmmode^{#1} \else\(^{#1}\) \fi}
+\usepackage{multirow}
 
 \DeclareMathOperator{\plim}{plim}
 
@@ -945,8 +946,130 @@ where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbb
 \input{../Output/NL/HGR_FE_regressions_lin_log.tex}
 \end{tabular}}
 \end{table}
-\clearpage
 \end{itemize}
+\clearpage
+
+\subsection{Orbis: Haltiwanger Growth Rates Analysis}
+\subsubsection{Cases}
+
+\begin{table}[htbp]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{9}c}
+\multicolumn{10}{c}{\textbf{HGR patterns by country}} \\
+\multicolumn{10}{c}{HGR$>$abs(1.90)} \\
+\hline
+Country & Number of firms & Firms with  & Pctg firms  & Cases up  & Unique cases up  & Pctg up  & Cases down & Unique cases down  & Pctg down  \\
+ &  & $HGR>abs(190)$  & $HGR>abs(1.90)$  &   & &   & & & \\
+\hline \hline
+\input{../Output/IT/OB_Table_HGR_Checks_190.tex}
+\input{../Output/PT/OB_Table_HGR_Checks_190.tex}
+\input{../Output/FR/OB_Table_HGR_Checks_190.tex}
+\input{../Output/ES/OB_Table_HGR_Checks_190.tex}
+\input{../Output/DE/OB_Table_HGR_Checks_190.tex}
+\input{../Output/NL/OB_Table_HGR_Checks_190.tex}
+\end{tabular}}
+\end{table}
+
+
+
+
+\begin{table}[htbp]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{9}c}
+\multicolumn{10}{c}{\textbf{HGR patterns by country}} \\
+\multicolumn{10}{c}{HGR$>$abs(1.75)} \\
+\hline
+Country & Number of firms & Firms with  & Pctg firms  & Cases up  & Unique cases up  & Pctg up  & Cases down & Unique cases down  & Pctg down  \\
+ &  & $HGR>abs(1.75)$  & $HGR>abs(1.75)$  &   & &   & & & \\
+\hline \hline
+\input{../Output/IT/OB_Table_HGR_Checks_175.tex}
+\input{../Output/PT/OB_Table_HGR_Checks_175.tex}
+\input{../Output/FR/OB_Table_HGR_Checks_175.tex}
+\input{../Output/ES/OB_Table_HGR_Checks_175.tex}
+\input{../Output/DE/OB_Table_HGR_Checks_175.tex}
+\input{../Output/NL/OB_Table_HGR_Checks_175.tex}
+\end{tabular}}
+\end{table}
+\clearpage
+
+\subsubsection{HGR rebound patterns by country}
+\begin{table}[htbp]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{6}c}
+\multicolumn{7}{c}{Italy} \\
+\hline
+Threshold &  Direction & Unique cases & 1 rebound  & 2 rebounds  & 3 rebounds  & 4 or more   \\
+\hline \hline
+\multirow{2}{*}{1.90} & \input{../Output/IT/OB_Table_HGR_Times_190.tex}
+\hline
+\multirow{2}{*}{1.75} & \input{../Output/IT/OB_Table_HGR_Times_175.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htbp]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}c}
+\multicolumn{6}{c}{Portugal} \\
+\hline
+Threshold & Direction & Unique cases & 1 rebound  & 2 rebounds  & 3 rebounds or more   \\
+\hline \hline
+\multirow{2}{*}{1.90} &\input{../Output/PT/OB_Table_HGR_Times_190.tex}
+\hline
+\multirow{2}{*}{1.75} &\input{../Output/PT/OB_Table_HGR_Times_175.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htbp]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{6}c}
+\multicolumn{7}{c}{France} \\
+\hline
+Threshold &  Direction & Unique cases & 1 rebound  & 2 rebounds  & 3 rebounds  & 4 or more   \\
+\hline \hline
+\multirow{2}{*}{1.90} & \input{../Output/FR/OB_Table_HGR_Times_190.tex}
+\hline
+\multirow{2}{*}{1.75} & \input{../Output/FR/OB_Table_HGR_Times_175.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htbp]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{6}c}
+\multicolumn{7}{c}{Spain} \\
+\hline
+Threshold &  Direction & Unique cases & 1 rebound  & 2 rebounds  & 3 rebounds  & 4 or more   \\
+\hline \hline
+\multirow{2}{*}{1.90} & \input{../Output/ES/OB_Table_HGR_Times_190.tex}
+\hline
+\multirow{2}{*}{1.75} & \input{../Output/ES/OB_Table_HGR_Times_175.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htbp]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{6}c}
+\multicolumn{7}{c}{Germany} \\
+\hline
+Threshold &  Direction & Unique cases & 1 rebound  & 2 rebounds  & 3 rebounds  & 4 or more   \\
+\hline \hline
+\multirow{2}{*}{1.90} & \input{../Output/DE/OB_Table_HGR_Times_190.tex}
+\hline
+\multirow{2}{*}{1.75} & \input{../Output/DE/OB_Table_HGR_Times_175.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htbp]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{4}c}
+\multicolumn{5}{c}{Netherlands} \\
+\hline
+Threshold & Direction & Unique cases & 1 rebound  & 3 rebounds or more   \\
+\hline \hline
+\multirow{2}{*}{1.90} & \input{../Output/NL/OB_Table_HGR_Times_190.tex}
+\hline 
+\multirow{2}{*}{1.75} & \input{../Output/NL/OB_Table_HGR_Times_175.tex}
+\end{tabular}}
+\end{table}
+
+
+\clearpage
+
+
+
+\subsubsection{Firm Tabulations by Country}
+
 
 
 \subsection{Compustat: Aggregate Employment and Haltiwanger Growth rates}

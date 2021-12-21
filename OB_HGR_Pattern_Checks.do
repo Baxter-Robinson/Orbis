@@ -487,7 +487,7 @@ preserve
 			file write HGRChecks "\\ "
 
 
-			file write HGRChecks "Upward" 
+			file write HGRChecks " & Upward" 
 			sum upward190 if upward190==0
 			local upward_0 = r(mean)
 			
@@ -522,7 +522,7 @@ preserve
 			file write HGRChecks "\\ "
 
 
-			file write HGRChecks "Upward" 
+			file write HGRChecks " & Upward" 
 			sum upward190 if upward190==0
 			local upward_0 = r(mean)
 			
@@ -557,7 +557,7 @@ preserve
 			file write HGRChecks "\\ "
 
 
-			file write HGRChecks "Upward" 
+			file write HGRChecks " & Upward" 
 			sum upward190 if upward190==0
 			local upward_0 = r(mean)
 			
@@ -742,7 +742,7 @@ preserve
 			file write HGRChecks "\\ "
 
 
-			file write HGRChecks "Upward" 
+			file write HGRChecks " & Upward" 
 			sum upward175 if upward175==0
 			local upward_0 = r(mean)
 			
@@ -777,7 +777,7 @@ preserve
 			file write HGRChecks "\\ "
 
 
-			file write HGRChecks "Upward" 
+			file write HGRChecks " & Upward" 
 			sum upward175 if upward175==0
 			local upward_0 = r(mean)
 			
@@ -812,7 +812,7 @@ preserve
 			file write HGRChecks "\\ "
 
 
-			file write HGRChecks "Upward" 
+			file write HGRChecks " & Upward" 
 			sum upward175 if upward175==0
 			local upward_0 = r(mean)
 			
