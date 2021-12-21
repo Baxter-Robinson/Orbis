@@ -878,13 +878,21 @@ preserve
 			file close _all
 			file open HGR_Tabs using Output/${CountryID}/OB_Tab_firm_HGR_`x'.tex, write replace
 			file write HGR_Tabs "Firm IDNum"
-			file write HGR_Tabs " & HGR>abs(1.90) [Frequency] \\"
+			file write HGR_Tabs " & HGR $>$ abs(1.90) [Frequency] \\"
 			forvalues i=`min'/`max'{
-				local firma = IDNum[`i']
-				local frequency = HGRcheck[`i']
-				file write HGR_Tabs " `firma' "
-				file write HGR_Tabs " & `frequency' "
-				file write HGR_Tabs " \\"
+				if `i'<`max'{
+					local firma = IDNum[`i']
+					local frequency = HGRcheck[`i']
+					file write HGR_Tabs " `firma' "
+					file write HGR_Tabs " & `frequency' "
+					file write HGR_Tabs " \\"
+				}
+				else if `i'==`max'{
+					local firma = IDNum[`i']
+					local frequency = HGRcheck[`i']
+					file write HGR_Tabs " `firma' "
+					file write HGR_Tabs " & `frequency' "
+				}
 			}
 			file close _all
 		}
