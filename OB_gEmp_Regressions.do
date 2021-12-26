@@ -95,7 +95,7 @@ estadd local Year "Yes"
 estadd local Robust "Yes"
 
 
-esttab m1 m2 using "Output/$CountryID/OB_Emp_growth_regs_SizeCats.tex", se legend mtitles("NACE Rev2 4-digit Sectors" "US SIC 3-digit Sectors") title("Employment growth") s(N Sector Year Robust, label( "N" "Sector Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" SizeCat "Size Category" SizeCat_Private "Size Category x Private") nonumbers keep( _cons lnEmp lnEmp_Priv) replace fragment
+esttab m1 m2 using "Output/$CountryID/OB_Emp_growth_regs_SizeCats.tex", se legend mtitles("NACE Rev2 4-digit Sectors" "US SIC 3-digit Sectors") title("Employment growth") s(N Sector Year Robust, label( "N" "Sector Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" SizeCat "Size Category" SizeCat_Private "Size Category x Private") nonumbers keep( _cons SizeCat SizeCat_Private) replace fragment
 
 
 
