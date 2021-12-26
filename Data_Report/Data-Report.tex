@@ -992,6 +992,15 @@ Country & Number of firms & Firms with  & Pctg firms  & Cases up  & Unique cases
 \clearpage
 
 \subsubsection{HGR rebound patterns by country}
+
+The terms upward and downward have the following definitions:
+\begin{itemize}
+\item Upward: refers to the case where a firm has a HGR$<-$1.90 in period t, and has a HGR$>$1.90 in period t+1. That is, a firm originally has a dip in employment but recovers it in the following year. This implies that for be observed in this pattern, any firm shows at least 3 periods in the sample.
+\item Downward: refers to the case where a firm has a HGR$>$1.90 in period t, and has a HGR$<-$1.90 in period t+1. That is, a firm originally has a jump in employment but returns to a lower level it in the following year. This implies that for be observed in this pattern, any firm shows at least 3 periods in the sample.
+\end{itemize}
+
+The number of 'rebounds' refers to the case where a firm has the same of "downward"/"upward" cases. For example, in the case of Italy, where the threshold is a HGR of 1.90, 58 firms had twice a downward case. 
+
 \begin{table}[htbp]
 \resizebox{\textwidth}{!}{\begin{tabular}{l*{6}c}
 \multicolumn{7}{c}{Italy} \\
@@ -1509,11 +1518,144 @@ Threshold & Direction & Unique cases & 1 rebound  & 3 rebounds or more   \\
 \end{minipage}
 \clearpage
 
-
-
 \end{landscape}
 
+\subsection{Orbis: Employment Growth Regressions}
+
+In this subsection, the following regressions are estimated: \\~\
+
+\textbf{Model 1}
+	\begin{equation*}
+		gEmp_{jt} = \alpha + \beta_0 * lnEmp + \beta_1 lnEmp*\mathbbm{1}[Private] + \gamma_s + \gamma_t + \epsilon_{jt} 
+	\end{equation*}
+and \textbf{Model 2}
+	\begin{equation*}
+		gEmp_{jt} = \alpha + \beta_0 * SizeCat + \beta_1 SizeCat*\mathbbm{1}[Private] + \gamma_s + \gamma_t + \epsilon_{jt} 
+	\end{equation*}
+
+where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ represents the Haltiwanger growth rate, $lnEmp$ is the logarithm of the number of employees, $\mathbbm{1}[Private]$ is an indicator variable for private firms,  $\gamma_s$ are sector fixed effects, $\gamma_t$ are year fixed effects, $SizeCat$  is a categorical variable over the values $\lbrace1,2-10,11-50,51-200,201-999,1000+ \rbrace$.\\~\
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
+\multicolumn{3}{c}{Italy} \\
+\hline \hline
+\input{../Output/IT/OB_Emp_growth_regs_logs.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
+\multicolumn{3}{c}{Italy} \\
+\hline \hline
+\input{../Output/IT/OB_Emp_growth_regs_SizeCats.tex}
+\end{tabular}}
+\end{table}
+
+
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
+\multicolumn{3}{c}{Portugal} \\
+\hline \hline
+\input{../Output/PT/OB_Emp_growth_regs_logs.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
+\multicolumn{3}{c}{Portugal} \\
+\hline \hline
+\input{../Output/PT/OB_Emp_growth_regs_SizeCats.tex}
+\end{tabular}}
+\end{table}
+
+
+
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
+\multicolumn{3}{c}{Spain} \\
+\hline \hline
+\input{../Output/ES/OB_Emp_growth_regs_logs.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
+\multicolumn{3}{c}{Spain} \\
+\hline \hline
+\input{../Output/ES/OB_Emp_growth_regs_SizeCats.tex}
+\end{tabular}}
+\end{table}
+
+
+
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
+\multicolumn{3}{c}{France} \\
+\hline \hline
+\input{../Output/FR/OB_Emp_growth_regs_logs.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
+\multicolumn{3}{c}{France} \\
+\hline \hline
+\input{../Output/FR/OB_Emp_growth_regs_SizeCats.tex}
+\end{tabular}}
+\end{table}
+
+
+
+
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
+\multicolumn{3}{c}{Germany} \\
+\hline \hline
+\input{../Output/DE/OB_Emp_growth_regs_logs.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
+\multicolumn{3}{c}{Germany} \\
+\hline \hline
+\input{../Output/DE/OB_Emp_growth_regs_SizeCats.tex}
+\end{tabular}}
+\end{table}
+
+
+
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
+\multicolumn{3}{c}{Netherlands} \\
+\hline \hline
+\input{../Output/NL/OB_Emp_growth_regs_logs.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
+\multicolumn{3}{c}{Netherlands} \\
+\hline \hline
+\input{../Output/NL/OB_Emp_growth_regs_SizeCats.tex}
+\end{tabular}}
+\end{table}
+
+
+
+
+
+
+
+
 \clearpage
+
+
 \subsection{Compustat: Aggregate Employment and Haltiwanger Growth rates}
 \begin{figure}[!htpb]
 \centering
