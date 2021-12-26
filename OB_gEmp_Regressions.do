@@ -16,7 +16,7 @@ gen lnEmp_Priv = lnEmp*Private
 
 xtset IDNum Year
 
-* Using the NACE Rev.2 
+* Using the NACE Rev.2 4-digit codes
 
 reghdfe EmpGrowth_h lnEmp lnEmp_Priv, absorb(NACE_Rev_2_Core_code_4_digits Year)
 eststo m1
@@ -25,6 +25,7 @@ estadd local Year "Yes"
 estadd local Robust "Yes"
 
 
+* Using the SIC 3-digit codes
 
 reghdfe EmpGrowth_h lnEmp lnEmp_Priv, absorb(US_SIC_Core_code_3_digits Year)
 eststo m2
@@ -33,7 +34,7 @@ estadd local Year "Yes"
 estadd local Robust "Yes"
 
 
-esttab m1 m2 using "Output/$CountryID/OB_Emp_growth_regs.tex", se legend mtitles("NACE Rev2 4-digit Sectors" "US SIC 3-digit Sectors") title("Employment growth") s(N Sector Year Robust, label( "N" "Sector Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" lnEmp "(Log of) No. employees" lnEmp_Priv "(Log of) No. employees x Private") nonumbers keep( _cons lnEmp lnEmp_Priv) replace fragment
+esttab m1 m2 using "Output/$CountryID/OB_Emp_growth_regs_logs.tex", se legend mtitles("NACE Rev2 4-digit Sectors" "US SIC 3-digit Sectors") title("Employment growth") s(N Sector Year Robust, label( "N" "Sector Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" lnEmp "(Log of) No. employees" lnEmp_Priv "(Log of) No. employees x Private") nonumbers keep( _cons lnEmp lnEmp_Priv) replace fragment
 
 restore
 
@@ -76,9 +77,25 @@ gen SizeCat_Private = SizeCat*Private
 
 xtset IDNum Year
 
+* Using the NACE Rev.2 4-digit codes
+
+reghdfe EmpGrowth_h SizeCat SizeCat_Private, absorb(NACE_Rev_2_Core_code_4_digits Year)
+eststo m1
+estadd local Sector "Yes"
+estadd local Year "Yes"
+estadd local Robust "Yes"
 
 
+* Using the SIC 3-digit codes
 
+reghdfe EmpGrowth_h SizeCat SizeCat_Private, absorb(US_SIC_Core_code_3_digits Year)
+eststo m2
+estadd local Sector "Yes"
+estadd local Year "Yes"
+estadd local Robust "Yes"
+
+
+esttab m1 m2 using "Output/$CountryID/OB_Emp_growth_regs_SizeCats.tex", se legend mtitles("NACE Rev2 4-digit Sectors" "US SIC 3-digit Sectors") title("Employment growth") s(N Sector Year Robust, label( "N" "Sector Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" SizeCat "Size Category" SizeCat_Private "Size Category x Private") nonumbers keep( _cons lnEmp lnEmp_Priv) replace fragment
 
 
 
