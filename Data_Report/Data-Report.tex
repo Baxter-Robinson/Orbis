@@ -953,13 +953,19 @@ where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbb
 \subsection{Orbis: Haltiwanger Growth Rates Analysis}
 \subsubsection{Cases}
 
+The terms upward and downward have the following definitions:
+\begin{itemize}
+\item Upward: refers to the case where a firm has a HGR$<-$1.90 in period t, and has a HGR$>$1.90 in period t+1. That is, a firm originally has a dip in employment but recovers it in the following year. This implies that for be observed in this pattern, any firm shows at least 3 periods in the sample.
+\item Downward: refers to the case where a firm has a HGR$>$1.90 in period t, and has a HGR$<-$1.90 in period t+1. That is, a firm originally has a jump in employment but returns to a lower level it in the following year. This implies that for be observed in this pattern, any firm shows at least 3 periods in the sample.
+\end{itemize}
+
 \begin{table}[htbp]
 \resizebox{\textwidth}{!}{\begin{tabular}{l*{9}c}
 \multicolumn{10}{c}{\textbf{HGR patterns by country}} \\
 \multicolumn{10}{c}{HGR$>$abs(1.90)} \\
 \hline
-Country & Number of firms & Firms with  & Pctg firms  & Cases up  & Unique cases up  & Pctg up  & Cases down & Unique cases down  & Pctg down  \\
- &  & $HGR>abs(190)$  & $HGR>abs(1.90)$  &   & &   & & & \\
+Country & Number of firms &      Firms with  & Pctg firms       & Upward pattern  & Firms with         & Pctg up  & Downward pattern & Firms with   down  & Pctg down  \\
+        &                 & $HGR>abs(1.90)$  & $HGR>abs(1.90)$  &     cases        &  upward pattern    &         &  cases & downward pattern & \\
 \hline \hline
 \input{../Output/IT/OB_Table_HGR_Checks_190.tex}
 \input{../Output/PT/OB_Table_HGR_Checks_190.tex}
@@ -971,15 +977,13 @@ Country & Number of firms & Firms with  & Pctg firms  & Cases up  & Unique cases
 \end{table}
 
 
-
-
 \begin{table}[htbp]
 \resizebox{\textwidth}{!}{\begin{tabular}{l*{9}c}
 \multicolumn{10}{c}{\textbf{HGR patterns by country}} \\
 \multicolumn{10}{c}{HGR$>$abs(1.75)} \\
 \hline
 Country & Number of firms & Firms with  & Pctg firms  & Cases up  & Unique cases up  & Pctg up  & Cases down & Unique cases down  & Pctg down  \\
- &  & $HGR>abs(1.75)$  & $HGR>abs(1.75)$  &   & &   & & & \\
+        &                 & $HGR>abs(1.90)$  & $HGR>abs(1.90)$  &     cases        &  upward pattern    &         &  cases & downward pattern & \\
 \hline \hline
 \input{../Output/IT/OB_Table_HGR_Checks_175.tex}
 \input{../Output/PT/OB_Table_HGR_Checks_175.tex}
@@ -993,13 +997,9 @@ Country & Number of firms & Firms with  & Pctg firms  & Cases up  & Unique cases
 
 \subsubsection{HGR rebound patterns by country}
 
-The terms upward and downward have the following definitions:
-\begin{itemize}
-\item Upward: refers to the case where a firm has a HGR$<-$1.90 in period t, and has a HGR$>$1.90 in period t+1. That is, a firm originally has a dip in employment but recovers it in the following year. This implies that for be observed in this pattern, any firm shows at least 3 periods in the sample.
-\item Downward: refers to the case where a firm has a HGR$>$1.90 in period t, and has a HGR$<-$1.90 in period t+1. That is, a firm originally has a jump in employment but returns to a lower level it in the following year. This implies that for be observed in this pattern, any firm shows at least 3 periods in the sample.
-\end{itemize}
 
-The number of 'rebounds' refers to the case where a firm has the same of "downward"/"upward" cases. For example, in the case of Italy, where the threshold is a HGR of 1.90, 58 firms had twice a downward case. 
+
+The number of `rebounds' refers to the case where a firm has the same of ``downward"/``upward" cases. For example, in the case of Italy, where the threshold is a HGR of 1.90, 58 firms had twice a downward case. 
 
 \begin{table}[htbp]
 \resizebox{\textwidth}{!}{\begin{tabular}{l*{6}c}
