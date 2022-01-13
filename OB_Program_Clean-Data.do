@@ -207,9 +207,23 @@ replace Private = 1 if Main_exchange=="Unlisted" | (Main_exchange=="Delisted")  
 * Winsorization
 *----------------------
 
-sum 
+sort EmpGrowth_h
+xtile EmpGrowth_h_quartiles =   EmpGrowth_h  , nquantiles(200)  
+sum EmpGrowth_h if EmpGrowth_h_quartiles==2, detail
+return list 
+local bottom05pct = r(min)
+di `bottom05pct'
 
+sum EmpGrowth_h if EmpGrowth_h_quartiles==199, detail
+return list 
+local top05pct = r(max)
+di `top05pct'
 
+egen bottom05pct = min(EmpGrowth_h) if EmpGrowth_h_quartiles==2
+egen top05pct = max(EmpGrowth_h) if EmpGrowth_h_quartiles==199
+
+replace EmpGrowth_h = `bottom05pct' if EmpGrowth_h < `bottom05pct'
+replace EmpGrowth_h = `top05pct' if EmpGrowth_h > `top05pct'
 
 *----------------------
 * Save unbalanced panel
