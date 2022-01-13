@@ -8,8 +8,7 @@
 gen Year=year(Closing_date)
 egen FirstYear=min(Year), by(BvD_ID_Number)
 replace FirstYear=year(IPO_date) if ((year(IPO_date)<year(FirstYear)) & ~missing(FirstYear))
-replace FirstYear=year(Date_of_incorporation) if ((year(Date_of_incorporation)<year(FirstYear)) & ~missing(Date_of_incorporation))
-
+replace FirstYear=year(Date_of_incorporation) if ((year(Date_of_incorporation)<year(FirstYear)) & ~missing(Date_of_incorporation) & (year(Date_of_incorporation)<year(IPO_date)) )
 gen Age=Year-FirstYear
 drop FirstYear
 
@@ -87,7 +86,7 @@ replace Sales = Revenue if (Sales == 0) & (Revenue > 0)
 *drop if Sales == .
 
 *---------------------------
-* Haltiwanger growth rates -  additional variables
+* Haltiwanger growth rates -  Additional variables
 *---------------------------
 * Loop for setting a similar structure (as Sales and Number of employees) to additional variables to check for the Haltiwanger growth rates
 
@@ -203,6 +202,13 @@ replace FirmType=6 if (EverPublic)
 
 gen Private=0
 replace Private = 1 if Main_exchange=="Unlisted" | (Main_exchange=="Delisted")  & (Year >= Delisted_year)
+
+*----------------------
+* Winsorization
+*----------------------
+
+sum 
+
 
 
 *----------------------

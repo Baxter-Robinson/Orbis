@@ -51,7 +51,7 @@ preserve
 /* 
 gEmp_ft = const + alpha * SizeCat + beta * SizeCat*1{Private} + Sector FE + Time FE + error
 
-Where SizeCat is a categorical variable over the values {1,2-10,11-50,51-200,201-999,1000+}.
+Where SizeCat is a set of BINARY variables over for the values {1,2-10,11-50,51-200,201-999,1000+} 
 */
 
 
@@ -71,15 +71,17 @@ replace SizeCat = 4 if (groups==51) | (groups==200)
 replace SizeCat = 5 if (groups==201) | (groups==999)
 replace SizeCat = 6 if (groups==1000) | (groups==`max')
 
-levelsof SizeCat
+forvalues i=2/6{
+	gen SizeGroup`i' = 0
+	replace SizeGroup`i' = 1 if SizeCat==`i'
+}
 
-gen SizeCat_Private = SizeCat*Private
 
 xtset IDNum Year
 
 * Using the NACE Rev.2 4-digit codes
 
-reghdfe EmpGrowth_h SizeCat SizeCat_Private, absorb(NACE_Rev_2_Core_code_4_digits Year)
+reghdfe EmpGrowth_h SizeGroup2 SizeGroup3 SizeGroup4 SizeGroup5 SizeGroup6 Private, absorb(NACE_Rev_2_Core_code_4_digits Year)
 eststo m1
 estadd local Sector "Yes"
 estadd local Year "Yes"
@@ -88,14 +90,14 @@ estadd local Robust "Yes"
 
 * Using the SIC 3-digit codes
 
-reghdfe EmpGrowth_h SizeCat SizeCat_Private, absorb(US_SIC_Core_code_3_digits Year)
+reghdfe EmpGrowth_h SizeGroup2 SizeGroup3 SizeGroup4 SizeGroup5 SizeGroup6 Private, absorb(US_SIC_Core_code_3_digits Year)
 eststo m2
 estadd local Sector "Yes"
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
 
-esttab m1 m2 using "Output/$CountryID/OB_Emp_growth_regs_SizeCats.tex", se legend mtitles("NACE Rev2 4-digit Sectors" "US SIC 3-digit Sectors") title("Employment growth") s(N Sector Year Robust, label( "N" "Sector Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" SizeCat "Size Category" SizeCat_Private "Size Category x Private") nonumbers keep( _cons SizeCat SizeCat_Private) replace fragment
+esttab m1 m2 using "Output/$CountryID/OB_Emp_growth_regs_SizeCats.tex", se legend mtitles("NACE Rev2 4-digit Sectors" "US SIC 3-digit Sectors") title("Employment growth") s(N Sector Year Robust, label( "N" "Sector Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" SizeGroup2 "2-10 Employees" SizeGroup3 "11-50 Employees" SizeGroup4 "51-200 Employees" SizeGroup5 "201-999 Employees" SizeGroup6 "More than 1000 Employees" Private "Private Firm") nonumbers keep( _cons SizeGroup2 SizeGroup3 SizeGroup4 SizeGroup5 SizeGroup6 Private) replace fragment
 
 
 
