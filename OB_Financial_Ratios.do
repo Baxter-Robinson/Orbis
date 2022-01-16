@@ -34,8 +34,7 @@
 		rename Market_capitalisation_mil MktCap
 		
 		* Full sample
-*		foreach x in Assets EBITDA GrossProfits MktCap Stock nShareholders Revenue Assets_EBITDA Assets_Revenue Assets_Profits MktCap_Assets{
-		foreach x in Assets_EBITDA Assets_Revenue Assets_Profits MktCap_Assets{
+		foreach x in Assets EBITDA GrossProfits MktCap Stock nShareholders Revenue Assets_EBITDA Assets_Revenue Assets_Profits MktCap_Assets{
 		
 			file write FinRatios " ${CountryID}"
 			file write FinRatios " & `fy_obs' "
