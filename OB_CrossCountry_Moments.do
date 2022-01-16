@@ -27,11 +27,11 @@ preserve
 		bysort IDNum: egen F_review = max(nEmployees)
 
 		gen BelowQ1 = 0
-		replace BelowQ1 if F_review<`Emp_quartile1'
+		replace BelowQ1=1 if F_review<`Emp_quartile1'
 
 
 		gen BelowMedian = 0
-		replace BelowMedian if F_review<`Emp_median'
+		replace BelowMedian=1 if F_review<`Emp_median'
 
 
 		bysort IDNum: gen nvals = _n == 1  
@@ -41,7 +41,7 @@ preserve
 		sum numFirms, detail
 		local nfirms = r(mean)
 		
-		file write FinRatios " & `nfirms' "
+		file write CrossCountry " & `nfirms' "
 		
 		sum BelowQ1, detail
 		return list
@@ -59,22 +59,37 @@ preserve
 		local meanEmpG = r(mean)
 		local sdEmpG = r(sd)
 		
-		Avg Employment growth
 		
-		
-		
-		
-      - Std Employment growth
-      - Static Firm Share
-      - IPO employment growth
-      - Employment share of public firms
-      - Sales share of public firms 
-		
-		
+		file write CrossCountry " & `meanEmpG' "
+		file write CrossCountry " & `sdEmpG' "
 		file write CrossCountry " & `static_Q1' "
-		
-		file write CrossCountry " & `static_Q2' \\ "
+		file write CrossCountry " & `static_Q2' "
 
+			
+		gen AfterIPO1Y = 0
+		replace AfterIPO1Y= 1 if IPO_year-Year==1
+		
+		sum EmpGrowth_h if AfterIPO1Y==1, detail
+		local ave_EmpGrowth_h_IPO1Y = r(mean)
+		
+		file write CrossCountry " & `ave_EmpGrowth_h_IPO1Y' "
+		
+		gen Public = 1-Private
+		sum EmpGrowth_h if Public==1, detail
+		local ave_EmpGrowth_h_Public = r(mean)
+		
+		file write CrossCountry " & `ave_EmpGrowth_h_Public' "
+		
+		sum Sales, detail
+		local TotSales=r(sum)
+		
+		sum Sales if Public==1,detail
+		local PublicSales = r(sum)
+ 		
+		local PctPublicSales = round(100*`PublicSales'/`TotSales',.01)
+		
+		file write CrossCountry " & `PctPublicSales' "
+ 				
 		file close _all
 
 restore
