@@ -34,25 +34,41 @@
 		rename Market_capitalisation_mil MktCap
 		
 		* Full sample
-		foreach x in Assets EBITDA GrossProfits MktCap Stock nShareholders Revenue Assets_EBITDA Assets_Revenue Assets_Profits MktCap_Assets{
-			
-			file write FinRatios "${CountryID}"
+*		foreach x in Assets EBITDA GrossProfits MktCap Stock nShareholders Revenue Assets_EBITDA Assets_Revenue Assets_Profits MktCap_Assets{
+		foreach x in Assets_EBITDA Assets_Revenue Assets_Profits MktCap_Assets{
+		
+			file write FinRatios " ${CountryID}"
 			file write FinRatios " & `fy_obs' "
-			file write FinRatios " & `x' & Full Sample"
+			if `x'==Assets_EBITDA{
+				file write FinRatios " & Assets to EBITDA & Full Sample"
+			}
+			else if `x'==Assets_Revenue{
+				file write FinRatios " & Assets to Revenue & Full Sample"
+			}
+			else if `x'==Assets_Profits{
+				file write FinRatios " & Assets to Profits & Full Sample"
+			}
+			else if `x'==MktCap_Assets{
+				file write FinRatios " & Market Cap to Assets & Full Sample"
+			}
+			else{
+				file write FinRatios " & `x' & Full Sample"
+			}
+			
 			
 			* Missing observations
 			sum `x' if `x'==. , detail
 			return list
 			local missing_`x' = r(N)
-			local pct_missing_`x' = `missing_`x''/`fy_obs'
+			local pct_missing_`x' = 100*`missing_`x''/`fy_obs'
 			file write FinRatios " & `pct_missing_`x''"
 			
 			* Zero-valued observations
 			sum `x' if `x'==0 , detail
 			return list
-			local zeroes_`x' = r(N)
-			local pct_zeroes_`x' = `zeroes_`x''/`fy_obs'
-			file write FinRatios " & `pct_zeroes_`x''"
+			local zeros_`x' = r(N)
+			local pct_zeros_`x' = 100*`zeros_`x''/`fy_obs'
+			file write FinRatios " & `pct_zeros_`x''"
 			
 			* Average
 			sum `x' if `x'!=. , detail
@@ -78,27 +94,41 @@
 			local Var_`x' = r(Var)
 			file write FinRatios " & `Var_`x'' \\ "
 			
-			
+			*file write FinRatios "  \hline "
 			
 			* Private firms only ------------------------------------------------------------------------------------------------------
 			
-			file write FinRatios "${CountryID}"
+			file write FinRatios " ${CountryID} "
 			file write FinRatios " & `fy_obs' "
-			file write FinRatios " & `x' & Private Firms"
+			if `x'==Assets_EBITDA{
+				file write FinRatios " & Assets to EBITDA & Private Firms"
+			}
+			else if `x'==Assets_Revenue{
+				file write FinRatios " & Assets to Revenue & Private Firms"
+			}
+			else if `x'==Assets_Profits{
+				file write FinRatios " & Assets to Profits & Private Firms"
+			}
+			else if `x'==MktCap_Assets{
+				file write FinRatios " & Market Cap to Assets & Private Firms"
+			}
+			else{
+				file write FinRatios " & `x' & Private Firms"
+			}
 			
 			* Missing observations
 			sum `x' if (`x'==.) & (Private==1), detail
 			return list
 			local missing_`x' = r(N)
-			local pct_missing_`x' = `missing_`x''/`fy_obs'
+			local pct_missing_`x' = 100*`missing_`x''/`fy_obs'
 			file write FinRatios " & `pct_missing_`x''"
 			
 			* Zero-valued observations
 			sum `x' if (`x'==0) & (Private==1) , detail
 			return list
-			local zeroes_`x' = r(N)
-			local pct_zeroes_`x' = `zeroes_`x''/`fy_obs'
-			file write FinRatios " & `pct_zeroes_`x''"
+			local zeros_`x' = r(N)
+			local pct_zeros_`x' = 100*`zeros_`x''/`fy_obs'
+			file write FinRatios " & `pct_zeros_`x''"
 			
 			* Average
 			sum `x' if (`x'!=.) & (Private==1) , detail
@@ -124,27 +154,41 @@
 			local Var_`x' = r(Var)
 			file write FinRatios " & `Var_`x'' \\ "
 			
-			
+			*file write FinRatios " \hline "
 			
 			* Public firms only ------------------------------------------------------------------------------------------------------
 			
-			file write FinRatios "${CountryID}"
+			file write FinRatios " ${CountryID}"
 			file write FinRatios " & `fy_obs' "
-			file write FinRatios " & `x' & Private Firms"
+			if `x'==Assets_EBITDA{
+				file write FinRatios " & Assets to EBITDA & Public Firms"
+			}
+			else if `x'==Assets_Revenue{
+				file write FinRatios " & Assets to Revenue & Public Firms"
+			}
+			else if `x'==Assets_Profits{
+				file write FinRatios " & Assets to Profits & Public Firms"
+			}
+			else if `x'==MktCap_Assets{
+				file write FinRatios " & Market Cap to Assets & Public Firms"
+			}
+			else{
+				file write FinRatios " & `x' & Public Firms"
+			}
 			
 			* Missing observations
 			sum `x' if (`x'==.) & (Private==0), detail
 			return list
 			local missing_`x' = r(N)
-			local pct_missing_`x' = `missing_`x''/`fy_obs'
+			local pct_missing_`x' = 100*`missing_`x''/`fy_obs'
 			file write FinRatios " & `pct_missing_`x''"
 			
 			* Zero-valued observations
 			sum `x' if (`x'==0) & (Private==0) , detail
 			return list
-			local zeroes_`x' = r(N)
-			local pct_zeroes_`x' = `zeroes_`x''/`fy_obs'
-			file write FinRatios " & `pct_zeroes_`x''"
+			local zeros_`x' = r(N)
+			local pct_zeros_`x' = 100*`zeros_`x''/`fy_obs'
+			file write FinRatios " & `pct_zeros_`x''"
 			
 			* Average
 			sum `x' if (`x'!=.) & (Private==0) , detail
@@ -170,7 +214,7 @@
 			local Var_`x' = r(Var)
 			file write FinRatios " & `Var_`x'' \\ "
 			
-			file write FinRatios "\hline"
+			file write FinRatios " \hline \hline"
 			
 		}
 
