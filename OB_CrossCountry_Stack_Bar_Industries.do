@@ -37,94 +37,106 @@ global Countries  FR ES PT DE NL
 foreach C of global Countries {
 	append using "Data_Cleaned/`C'_Unbalanced.dta"	
 	replace Country="`C'" if missing(Country)
-	replace CountryID=2 if "`C'"=="FR"
-	replace CountryID=3 if "`C'"=="ES"
-	replace CountryID=4 if "`C'"=="PT"
-	replace CountryID=5 if "`C'"=="DE"
-	replace CountryID=6 if "`C'"=="NL"
+	
 
 }
 
-do SIC_3d_to_NAICS_2d.do 
+replace CountryID=2 if Country=="FR"
+replace CountryID=3 if Country=="ES"
+replace CountryID=4 if Country=="PT"
+replace CountryID=5 if Country=="DE"
+replace CountryID=6 if Country=="NL"
 
-gen NAICS_Industry = .
-replace NAICS_Industry = 1 if NAICS_2_digit==11
-replace NAICS_Industry = 2 if (NAICS_2_digit==21)|(NAICS_2_digit==22)|(NAICS_2_digit==23)
-replace NAICS_Industry = 3 if (NAICS_2_digit==31)|(NAICS_2_digit==32)|(NAICS_2_digit==33)
-replace NAICS_Industry = 4 if (NAICS_2_digit==41)|(NAICS_2_digit==44)|(NAICS_2_digit==45)|(NAICS_2_digit==48)|(NAICS_2_digit==49)
-replace NAICS_Industry = 5 if (NAICS_2_digit==51)|(NAICS_2_digit==52)|(NAICS_2_digit==53)|(NAICS_2_digit==54)|(NAICS_2_digit==55)|(NAICS_2_digit==56)
-replace NAICS_Industry = 6 if (NAICS_2_digit==61)|(NAICS_2_digit==62)|(NAICS_2_digit==71)|(NAICS_2_digit==72)|(NAICS_2_digit==81)|(NAICS_2_digit==91)
+keep IDNum Year Country CountryID NACE_Rev_2_main_section NACE_Rev_2_Core_code_4_digits Industry_4digit NACE_Rev_2_Primary_code_s NACE_Rev_2_SEcondary_code_s US_SIC_Core_code_3_digits US_SIC_Primary_code_s US_SIC_Secondary_code_s
 
 
+gen Activity_Code = .
+replace Activity_Code= 1 if NACE_Rev_2_main_section=="A - Agriculture, forestry and fishing"
+replace Activity_Code= 1 if NACE_Rev_2_main_section=="B - Mining and quarrying"
+replace Activity_Code= 2 if NACE_Rev_2_main_section=="C - Manufacturing"
+replace Activity_Code= 3 if NACE_Rev_2_main_section=="D - Electricity, gas, steam and air conditioning supply"
+replace Activity_Code= 3 if NACE_Rev_2_main_section=="E - Water supply; sewerage, waste management and remediation activities"
+replace Activity_Code= 3 if NACE_Rev_2_main_section=="F - Construction"
+replace Activity_Code= 4 if NACE_Rev_2_main_section=="G - Wholesale and retail trade; repair of motor vehicles and motorcycles"
+replace Activity_Code= 5 if NACE_Rev_2_main_section=="H - Transportation and storage"
+replace Activity_Code= 5 if NACE_Rev_2_main_section=="I - Accommodation and food service activities"
+replace Activity_Code= 5 if NACE_Rev_2_main_section=="J - Information and communication"
+replace Activity_Code= 5 if NACE_Rev_2_main_section=="K - Financial and insurance activities"
+replace Activity_Code= 5 if NACE_Rev_2_main_section=="L - Real estate activities"
+replace Activity_Code= 5 if NACE_Rev_2_main_section=="M - Professional, scientific and technical activities"
+replace Activity_Code= 5 if NACE_Rev_2_main_section=="N - Administrative and support service activities"
+replace Activity_Code= 6 if NACE_Rev_2_main_section=="O - Public administration and defence; compulsory social security"
+replace Activity_Code= 6 if NACE_Rev_2_main_section=="P - Education"
+replace Activity_Code= 6 if NACE_Rev_2_main_section=="Q - Human health and social work activities"
+replace Activity_Code= 6 if NACE_Rev_2_main_section=="R - Arts, entertainment and recreation"
+replace Activity_Code= 6 if NACE_Rev_2_main_section=="S - Other service activities"
+replace Activity_Code= 6 if NACE_Rev_2_main_section=="T - Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use"
+replace Activity_Code= 6 if NACE_Rev_2_main_section=="U - Activities of extraterritorial organisations and bodies"
+replace Activity_Code= 6 if missing(NACE_Rev_2_main_section)
 
 
+bysort CountryID Activity_Code IDNum: gen nvals = _n == 1 
+
+collapse (first) Country NACE_Rev_2_main_section (sum) Ind = nvals, by (CountryID Activity_Code)
 
 
+bysort CountryID: egen Nfirms = total(Ind) 
+gen pct = round(100*Ind/Nfirms,.01)
 
-tab NAICS_Industry
-return list
-local Total_Industries = r(N) 
+bysort CountryID: egen TotalPCT = total(pct) 
 
-levelsof NAICS_Industry, local(NAICS)
-
-
-* By Country: Percentages of composition of industries
-foreach c of CountryID{
-	foreach x of local NAICS{
-		tab NAICS_Industry if (NAICS_Industry==`x') & (CountryID==`c') 
-		return list
-		local abs = r(N)
-		local `c'_pct_NAICS_`x' = round(100*`abs'/`Total_Industries', .01)
-	}
-} 
-
-* By Country: Percentages of composition of industries in variables for stack bar
-foreach c of CountryID{
-	foreach x of local NAICS{
-		gen `c'_pct_NAICS_`i' = ``c'_pct_NAICS_`x'' 
-	}
-} 
-
-
-* By Country: Cumulative percentages of composition of industry
-foreach c of CountryID{
-	foreach i of local NAICS{
-		if (`i'==1) & (CountryID==`c') {
-			gen `c'_cum_pct_NAICS_`i' = ``c'_pct_NAICS_1'
-		}
-		else if `i'==2 & (CountryID==`c') {
-			gen `c'_cum_pct_NAICS_`i' = ``c'_pct_NAICS_1'+``c'_pct_NAICS_2'
-		}
-		else if `i'==3 & (CountryID==`c') {
-			gen `c'_cum_pct_NAICS_`i' = ``c'_pct_NAICS_1'+``c'_pct_NAICS_2'+``c'_pct_NAICS_3'
-		}
-		else if `i'==4 & (CountryID==`c') {
-			gen `c'_cum_pct_NAICS_`i' = ``c'_pct_NAICS_1'+``c'_pct_NAICS_2'+``c'_pct_NAICS_3'+``c'_pct_NAICS_4'
-		}
-		else if `i'==5 & (CountryID==`c') {
-			gen `c'_cum_pct_NAICS_`i' = ``c'_pct_NAICS_1'+``c'_pct_NAICS_2'+``c'_pct_NAICS_3'+``c'_pct_NAICS_4'+``c'_pct_NAICS_5'
-		}
-		else if `i'==6 & (CountryID==`c') {
-			gen `c'_cum_pct_NAICS_6 = 100
-		}
-		
-	}
-
-}
+bysort CountryID: gen cumfreq = sum(pct)
 
 * Midpoint calculation for labels in graphs
-foreach c of CountryID{
-	local `c'_midpoint_1 = ``c'_pct_NAICS_1'/2 if 
-	local `c'_midpoint_2 = (``c'_pct_NAICS_1'+``c'_pct_NAICS_2')/2
-	local `c'_midpoint_3 = (``c'_pct_NAICS_2'+``c'_pct_NAICS_3')/2
-	local `c'_midpoint_4 = (``c'_pct_NAICS_3'+``c'_pct_NAICS_4')/2
-	local `c'_midpoint_5 = (``c'_pct_NAICS_4'+``c'_pct_NAICS_5')/2
-	local `c'_midpoint_6 =  (100+``c'_pct_NAICS_5')/2
 
+gen midpoint = .
+
+levelsof Activity_Code, local(Act_Code)
+levelsof CountryID, local(Countries)
+
+foreach c of local Countries{
+	foreach i of local Act_Code{
+		sum pct if (CountryID==`c') & (Activity_Code==`i'), detail
+		return list
+		local `c'_pct_ActivityCode_`i' = r(mean)
+	}
 }
 
 
+foreach c of local Countries{
+		local `c'_midpoint_1 = (``c'_pct_ActivityCode_1')/2 
+		local `c'_midpoint_2 = (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2')/2
+		local `c'_midpoint_3 = (``c'_pct_ActivityCode_2'+``c'_pct_ActivityCode_3')/2
+		local `c'_midpoint_4 = (``c'_pct_ActivityCode_3'+``c'_pct_ActivityCode_4')/2
+		local `c'_midpoint_5 = (``c'_pct_ActivityCode_4'+``c'_pct_ActivityCode_5')/2
+		local `c'_midpoint_6 =  (100+``c'_pct_ActivityCode_5')/2
+}
+
+foreach c of local Countries{
+	foreach i of local Act_Code{
+		replace midpoint=``c'_midpoint_`i''  if (CountryID==`c') & (Activity_Code==`i')
+	}
+}
 
 
+drop NACE_Rev_2_main_section Ind TotalPCT
+reshape wide pct cumfreq midpoint, i(CountryID)  j(Activity_Code)   
+gen TotalPCT = cumfreq5+pct6
+gen floor = 0
 
+label define CountryID 1 "Italy" 2 "France"  3 "Spain" 4 "Portugal" 5 "Germany" 6 "Netherlands" 
+
+local Labels  1 "Italy" 2 "France"  3 "Spain" 4 "Portugal" 5 "Germany" 6 "Netherlands" 
+graph twoway (rbar floor pct1 CountryID, color(maroon) barwidth(.75) )  ///
+(rbar pct1 pct2 CountryID, color(navy) barwidth(.75))  ///
+(rbar pct2 pct3 CountryID, color(dkgreen) barwidth(.75))  ///
+(rbar pct3 pct4 CountryID, color(orange) barwidth(.75))  ///
+(rbar pct4 pct5 CountryID, color(purple) barwidth(.75))  ///
+(rbar pct5 TotalPCT CountryID, color(edkblue) barwidth(.75)), ///
+legend(label(1 "Code 1") label( 2 "Code 2" ) label( 3 "Code 3" ) label( 4 "Code 4" ) label( 5 "Code 2" ) label( 6 "Code 6" )    ) ///
+ytitle("Percentage") ///
+ylabel(, format(%9.0fc)) ///
+xtitle("Country") ///
+xlabel(`Labels')  ///
+graphregion(color(white)) 
 
