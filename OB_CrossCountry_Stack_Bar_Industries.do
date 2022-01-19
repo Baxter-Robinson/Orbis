@@ -175,6 +175,6 @@ text(`6_midpoint_3' 1 "`6_pct_ActivityCode_3'", color(white) size(small)) /// Be
 text(`6_midpoint_4' 1 "`6_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
 text(`6_midpoint_5' 1 "`6_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
 text(`6_midpoint_6' 1 "`6_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-graph export Output/Cross-Country/OB_CrossCountry_Industry_Comparison.pdf, replace  
+graph export "Output/Cross-Country/OB_CrossCountry_Industry_Comparison.png", replace  
 
 
