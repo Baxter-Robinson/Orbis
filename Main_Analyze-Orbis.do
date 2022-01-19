@@ -43,8 +43,7 @@ set more off
 *---------------------
 * Loop over countries 
 *---------------------
-*global Countries IT FR ES PT DE NL
-global Countries DE NL
+global Countries IT FR ES PT DE NL
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
@@ -73,7 +72,7 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
@@ -96,9 +95,13 @@ foreach Country of global Countries {
 	*do OB_Table_IPO-years.do
 	*do OB_Table_IPOyear_Descriptive-Stats.do
 	
-	*do OB_HGR_regressions.do
 	
 	*do OB_HGR_Pattern_Checks.do 
+	
+	
+	
+	do OB_HGR_regressions.do
+	do OB_gEmp_Regressions.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
@@ -180,3 +183,5 @@ foreach Country of global Countries {
 *do Graph_CrossCountry.do
 
 *do Table_Model-Moments.do
+
+*do OB_CrossCountry_Moments.do
