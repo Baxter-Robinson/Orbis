@@ -103,7 +103,23 @@ scatter avgEmpGrowth_Public EquityMktDepth_OB, xtitle("Equity Market Depth") yti
 graph export Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_OB.pdf, replace
 scatter avgEmpGrowth_Public EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Average Employment Growth - Public Firms") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_WB.pdf, replace
+*/
 
+* Average Employment Growth of Public vs. Private Firms
+graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_CSyearend) ///
+ (scatter avgEmpGrowth_Private EquityMktDepth_CSyearend), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
+graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_CSyearend.pdf, replace
+graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_CSAnnual) ///
+ (scatter avgEmpGrowth_Private EquityMktDepth_CSAnnual), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
+graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_CSannual.pdf, replace
+graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_OB) ///
+ (scatter avgEmpGrowth_Private EquityMktDepth_OB), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
+graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_OB.pdf, replace
+graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_WB) ///
+ (scatter avgEmpGrowth_Private EquityMktDepth_WB), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
+graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_WB.pdf, replace
+
+/*
 * Variance of Employment Growth - Private Firms
 scatter varEmpGrowth_Private EquityMktDepth_CSyearend, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Private Firms") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/varEmpGrowthPrivate_EquityMktDepth_CSyearend.pdf, replace
@@ -123,6 +139,24 @@ scatter varEmpGrowth_Public EquityMktDepth_OB, xtitle("Equity Market Depth") yti
 graph export Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_OB.pdf, replace
 scatter varEmpGrowth_Public EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Public Firms") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_WB.pdf, replace
+
+*/
+
+* Variance Employment Growth of Public vs. Private Firms
+graph twoway (scatter varEmpGrowth_Public EquityMktDepth_CSyearend) ///
+ (scatter varEmpGrowth_Private EquityMktDepth_CSyearend), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
+graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_CSyearend.pdf, replace
+graph twoway (scatter varEmpGrowth_Public EquityMktDepth_CSAnnual) ///
+ (scatter varEmpGrowth_Private EquityMktDepth_CSAnnual), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
+graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_CSannual.pdf, replace
+graph twoway (scatter varEmpGrowth_Public EquityMktDepth_OB) ///
+ (scatter varEmpGrowth_Private EquityMktDepth_OB), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
+graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_OB.pdf, replace
+graph twoway (scatter varEmpGrowth_Public EquityMktDepth_WB) ///
+ (scatter varEmpGrowth_Private EquityMktDepth_WB), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
+graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_WB.pdf, replace
+
+/*
 
 * Share of Employment in Public Firms
 scatter empShare_Public EquityMktDepth_CSyearend, xtitle("Equity Market Depth") ytitle("Employment Share of Public Firms") graphregion(color(white)) mlabel(Country)
