@@ -35,8 +35,8 @@ set more off
 *global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 * HOME
-*cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 *
 
@@ -72,7 +72,7 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
@@ -100,8 +100,8 @@ foreach Country of global Countries {
 	
 	
 	
-	do OB_HGR_regressions.do
-	do OB_gEmp_Regressions.do
+	*do OB_HGR_regressions.do
+	*do OB_gEmp_Regressions.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
@@ -151,8 +151,8 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Equity Market Depth
 	*-------------------------------------------------------
-	*use "Data_Raw/`Country'_StockPrice.dta", clear
-	*do CS_EquityMarketDepth.do
+	use "Data_Raw/`Country'_StockPrice.dta", clear
+	do CS_EquityMarketDepth.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB) Country-level Indicators
