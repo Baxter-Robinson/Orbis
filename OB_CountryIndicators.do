@@ -18,9 +18,9 @@ replace varEmpGrowth = varEmpGrowth^2
 bysort Year: egen nEmployeesTot = total(nEmployees)
 bysort Year Private: egen nEmployeesTot_byFirmType = total(nEmployees)
 gen empShare_byFirmType = nEmployeesTot_byFirmType/nEmployeesTot
-* Employment shares by size (large firm >= 29 employees)
+* Employment shares by size (large firm >= 99 employees)
 gen nEmployees_LargeFirms = .
-replace nEmployees_LargeFirms = nEmployees if nEmployees > 29
+replace nEmployees_LargeFirms = nEmployees if nEmployees > 99
 bysort Year: egen nEmployeesTot_LargeFirm = total(nEmployees_LargeFirms)
 gen empShare_LargeFirms = nEmployeesTot_LargeFirm/nEmployeesTot
 * Market capitalization
