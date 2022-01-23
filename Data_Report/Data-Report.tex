@@ -1090,10 +1090,26 @@ and\\~\
 where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ represents the Haltiwanger growth rate, $lnEmp$ is the logarithm of the number of employees, $\mathbbm{1}[Private]$ is an indicator variable for private firms,  $\gamma_s$ are sector fixed effects, $\gamma_t$ are year fixed effects, $SizeCat$  is a categorical variable over the values $\lbrace1,2-10,11-50,51-200,201-999,1000+ \rbrace$.\\~\
 
 \begin{table}[htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
-\multicolumn{3}{c}{Italy} \\
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Italy} \\
 \hline \hline
-\input{../Output/IT/OB_Emp_growth_regs_logs.tex}
+\input{../Output/IT/OB_Emp_growth_regs_NACE.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Italy} \\
+\hline \hline
+\input{../Output/IT/OB_Emp_growth_regs_SIC.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Italy} \\
+\hline \hline
+\input{../Output/IT/OB_Emp_growth_regs_SizeCats_NACE.tex}
 \end{tabular}}
 \end{table}
 
@@ -1101,102 +1117,175 @@ where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ rep
 \resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
 \multicolumn{3}{c}{Italy} \\
 \hline \hline
-\input{../Output/IT/OB_Emp_growth_regs_SizeCats.tex}
+\input{../Output/IT/OB_Emp_growth_regs_SizeCats_SIC.tex}
 \end{tabular}}
 \end{table}
 
 
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Portugal} \\
+\hline \hline
+\input{../Output/PT/OB_Emp_growth_regs_NACE.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Portugal} \\
+\hline \hline
+\input{../Output/PT/OB_Emp_growth_regs_SIC.tex}
+\end{tabular}}
+\end{table}
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Portugal} \\
+\hline \hline
+\input{../Output/PT/OB_Emp_growth_regs_SizeCats_NACE.tex}
+\end{tabular}}
+\end{table}
 
 \begin{table}[htpb]
 \resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
 \multicolumn{3}{c}{Portugal} \\
 \hline \hline
-\input{../Output/PT/OB_Emp_growth_regs_logs.tex}
+\input{../Output/PT/OB_Emp_growth_regs_SizeCats_SIC.tex}
+\end{tabular}}
+\end{table}
+
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Spain} \\
+\hline \hline
+\input{../Output/ES/OB_Emp_growth_regs_NACE.tex}
 \end{tabular}}
 \end{table}
 
 \begin{table}[htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
-\multicolumn{3}{c}{Portugal} \\
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Spain} \\
 \hline \hline
-\input{../Output/PT/OB_Emp_growth_regs_SizeCats.tex}
+\input{../Output/ES/OB_Emp_growth_regs_SIC.tex}
 \end{tabular}}
 \end{table}
 
-
-
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Spain} \\
+\hline \hline
+\input{../Output/ES/OB_Emp_growth_regs_SizeCats_NACE.tex}
+\end{tabular}}
+\end{table}
 
 \begin{table}[htpb]
 \resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
 \multicolumn{3}{c}{Spain} \\
 \hline \hline
-\input{../Output/ES/OB_Emp_growth_regs_logs.tex}
+\input{../Output/ES/OB_Emp_growth_regs_SizeCats_SIC.tex}
+\end{tabular}}
+\end{table}
+
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{France} \\
+\hline \hline
+\input{../Output/FR/OB_Emp_growth_regs_NACE.tex}
 \end{tabular}}
 \end{table}
 
 \begin{table}[htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
-\multicolumn{3}{c}{Spain} \\
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{France} \\
 \hline \hline
-\input{../Output/ES/OB_Emp_growth_regs_SizeCats.tex}
+\input{../Output/FR/OB_Emp_growth_regs_SIC.tex}
 \end{tabular}}
 \end{table}
 
-
-
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{France} \\
+\hline \hline
+\input{../Output/FR/OB_Emp_growth_regs_SizeCats_NACE.tex}
+\end{tabular}}
+\end{table}
 
 \begin{table}[htpb]
 \resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
 \multicolumn{3}{c}{France} \\
 \hline \hline
-\input{../Output/FR/OB_Emp_growth_regs_logs.tex}
+\input{../Output/FR/OB_Emp_growth_regs_SizeCats_SIC.tex}
+\end{tabular}}
+\end{table}
+
+
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Germany} \\
+\hline \hline
+\input{../Output/DE/OB_Emp_growth_regs_NACE.tex}
 \end{tabular}}
 \end{table}
 
 \begin{table}[htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
-\multicolumn{3}{c}{France} \\
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Germany} \\
 \hline \hline
-\input{../Output/FR/OB_Emp_growth_regs_SizeCats.tex}
+\input{../Output/DE/OB_Emp_growth_regs_SIC.tex}
 \end{tabular}}
 \end{table}
 
-
-
-
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Germany} \\
+\hline \hline
+\input{../Output/DE/OB_Emp_growth_regs_SizeCats_NACE.tex}
+\end{tabular}}
+\end{table}
 
 \begin{table}[htpb]
 \resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
 \multicolumn{3}{c}{Germany} \\
 \hline \hline
-\input{../Output/DE/OB_Emp_growth_regs_logs.tex}
+\input{../Output/DE/OB_Emp_growth_regs_SizeCats_SIC.tex}
+\end{tabular}}
+\end{table}
+
+
+
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Netherlands} \\
+\hline \hline
+\input{../Output/NL/OB_Emp_growth_regs_NACE.tex}
 \end{tabular}}
 \end{table}
 
 \begin{table}[htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
-\multicolumn{3}{c}{Germany} \\
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Netherlands} \\
 \hline \hline
-\input{../Output/DE/OB_Emp_growth_regs_SizeCats.tex}
+\input{../Output/NL/OB_Emp_growth_regs_SIC.tex}
 \end{tabular}}
 \end{table}
 
-
-
+\begin{table}[htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Netherlands} \\
+\hline \hline
+\input{../Output/NL/OB_Emp_growth_regs_SizeCats_NACE.tex}
+\end{tabular}}
+\end{table}
 
 \begin{table}[htpb]
 \resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
 \multicolumn{3}{c}{Netherlands} \\
 \hline \hline
-\input{../Output/NL/OB_Emp_growth_regs_logs.tex}
-\end{tabular}}
-\end{table}
-
-\begin{table}[htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
-\multicolumn{3}{c}{Netherlands} \\
-\hline \hline
-\input{../Output/NL/OB_Emp_growth_regs_SizeCats.tex}
+\input{../Output/NL/OB_Emp_growth_regs_SizeCats_SIC.tex}
 \end{tabular}}
 \end{table}
 
