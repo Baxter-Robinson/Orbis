@@ -125,6 +125,7 @@ xtset IDNum Year
 * Using the NACE Rev.2 4-digit codes
 
 reghdfe EmpGrowth_h SizeGroup2 SizeGroup3 SizeGroup4 SizeGroup5 SizeGroup6 Private, absorb(Industry_4digit Year) vce(robust)
+eststo m1
 estadd local Sector "Yes"
 estadd local Year "Yes"
 estadd local Robust "Yes"

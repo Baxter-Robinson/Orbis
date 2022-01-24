@@ -48,18 +48,23 @@ preserve
 		
 		sum BelowQ1, detail
 		return list
-		local static_Q1 = round(100*r(sum)/`nfirms',.01)
+		local static_Q1 = 100*r(sum)/`nfirms'
 		
 		
 		sum BelowMedian, detail
 		return list
-		local static_Q2 = round(100*r(sum)/`nfirms', .01)
+		local static_Q2 = 100*r(sum)/`nfirms'
 
+		file write Static  "   &   "
 		
-		file write Static " & `static_Q1' "
+		file write Static  %4.2fc  (`static_Q1')
 		
-		file write Static " & `static_Q2' \\ "
-
+		file write Static  "   &   "
+		
+		file write Static  %4.2fc  (`static_Q2')
+		
+		file write Static  "   \\  "
+			
 		file close _all
 
 restore

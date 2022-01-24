@@ -1119,21 +1119,13 @@ where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ rep
 \end{tabular}}
 \end{table}
 
-
-
-
 \begin{table}[htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
 \multicolumn{3}{c}{Italy} \\
 \hline \hline
 \input{../Output/IT/OB_Emp_growth_regs_SizeCats_SIC.tex}
 \end{tabular}}
 \end{table}
-
-\begin{comment}
-
-
-
 
 
 \begin{table}[htpb]
@@ -1161,8 +1153,8 @@ where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ rep
 \end{table}
 
 \begin{table}[htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
-\multicolumn{3}{c}{Portugal} \\
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Portugal} \\
 \hline \hline
 \input{../Output/PT/OB_Emp_growth_regs_SizeCats_SIC.tex}
 \end{tabular}}
@@ -1194,8 +1186,8 @@ where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ rep
 \end{table}
 
 \begin{table}[htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
-\multicolumn{3}{c}{Spain} \\
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Spain} \\
 \hline \hline
 \input{../Output/ES/OB_Emp_growth_regs_SizeCats_SIC.tex}
 \end{tabular}}
@@ -1227,8 +1219,8 @@ where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ rep
 \end{table}
 
 \begin{table}[htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
-\multicolumn{3}{c}{France} \\
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{France} \\
 \hline \hline
 \input{../Output/FR/OB_Emp_growth_regs_SizeCats_SIC.tex}
 \end{tabular}}
@@ -1261,13 +1253,12 @@ where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ rep
 \end{table}
 
 \begin{table}[htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
-\multicolumn{3}{c}{Germany} \\
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Germany} \\
 \hline \hline
 \input{../Output/DE/OB_Emp_growth_regs_SizeCats_SIC.tex}
 \end{tabular}}
 \end{table}
-
 
 
 \begin{table}[htpb]
@@ -1277,6 +1268,7 @@ where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ rep
 \input{../Output/NL/OB_Emp_growth_regs_NACE.tex}
 \end{tabular}}
 \end{table}
+
 
 \begin{table}[htpb]
 \resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
@@ -1295,15 +1287,13 @@ where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ rep
 \end{table}
 
 \begin{table}[htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{2}c}
-\multicolumn{3}{c}{Netherlands} \\
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
+\multicolumn{4}{c}{Netherlands} \\
 \hline \hline
 \input{../Output/NL/OB_Emp_growth_regs_SizeCats_SIC.tex}
 \end{tabular}}
 \end{table}
 
-
-\end{comment}
 \clearpage
 
 \subsection{Orbis: Static Firm Share}
@@ -1312,7 +1302,7 @@ where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ rep
 \resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
 \multicolumn{4}{c}{Static Firm share} \\
 \toprule
-Country & Number of Firms & Below Q1 & Below Median \\
+Country & Number of Firms & Below 25th Percentile & Below 50th Percentile \\
 \hline
 \input{../Output/IT/OB_Static_Firm.tex}
 \input{../Output/FR/OB_Static_Firm.tex}
@@ -2312,10 +2302,10 @@ where $y_{it}$ represents the firm x year-level Haltiwanger growth rate, $\mathb
 \subsection{Financial Information (Orbis)}
 \subsubsection{Italy}
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{ccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
 \toprule
-Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average & Min & Max & Variance \\
-        &  			    & 		   &	    & Missing 	 & Zeros      &  		&	  & 	& 		    \\
+Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
+        &  			    & 		   &	    & Missing 	 & Zeros      &  		&	  & 	& 		 &   \\
 \hline \hline
 \input{../Output/IT/OB_Financial_Ratios.tex}
 \end{tabular}}
@@ -2326,8 +2316,8 @@ Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average 
 \begin{table}[!htpb]
 \resizebox{\textwidth}{!}{\begin{tabular}{ccccccccccc}
 \toprule
-Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average & Min & Max & Variance \\
-        &  			    & 		   &	    & Missing 	 & Zeros      &  		&	  & 	& 		    \\
+Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
+        &  			    & 		   &	    & Missing 	 & Zeros      &  		&	  & 	& 		 &   \\
 \hline \hline
 \input{../Output/FR/OB_Financial_Ratios.tex}
 \end{tabular}}
@@ -2340,8 +2330,8 @@ Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average 
 \begin{table}[!htpb]
 \resizebox{\textwidth}{!}{\begin{tabular}{ccccccccccc}
 \toprule
-Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average & Min & Max & Variance \\
-        &  			    & 		   &	    & Missing 	 & Zeros      &  		&	  & 	& 		    \\
+Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
+        &  			    & 		   &	    & Missing 	 & Zeros      &  		&	  & 	& 		 &   \\
 \hline \hline
 \input{../Output/ES/OB_Financial_Ratios.tex}
 \end{tabular}}
@@ -2353,8 +2343,8 @@ Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average 
 \begin{table}[!htpb]
 \resizebox{\textwidth}{!}{\begin{tabular}{ccccccccccc}
 \toprule
-Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average & Min & Max & Variance \\
-        &  			    & 		   &	    & Missing 	 & Zeros      &  		&	  & 	& 		    \\
+Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
+        &  			    & 		   &	    & Missing 	 & Zeros      &  		&	  & 	& 		 &   \\
 \hline \hline
 \input{../Output/PT/OB_Financial_Ratios.tex}
 \end{tabular}}
@@ -2366,8 +2356,8 @@ Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average 
 \begin{table}[!htpb]
 \resizebox{\textwidth}{!}{\begin{tabular}{ccccccccccc}
 \toprule
-Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average & Min & Max & Variance \\
-        &  			    & 		   &	    & Missing 	 & Zeros      &  		&	  & 	& 		    \\
+Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
+        &  			    & 		   &	    & Missing 	 & Zeros      &  		&	  & 	& 		 &   \\
 \hline \hline
 \input{../Output/DE/OB_Financial_Ratios.tex}
 \end{tabular}}
@@ -2379,8 +2369,8 @@ Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average 
 \begin{table}[!htpb]
 \resizebox{\textwidth}{!}{\begin{tabular}{ccccccccccc}
 \toprule
-Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average & Min & Max & Variance \\
-        &  			    & 		   &	    & Missing 	 & Zeros      &  		&	  & 	& 		    \\
+Country & Firm-Year Obs & Variable & Sample & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
+        &  			    & 		   &	    & Missing 	 & Zeros      &  		&	  & 	& 		 &   \\
 \hline \hline
 \input{../Output/NL/OB_Financial_Ratios.tex}
 \end{tabular}}

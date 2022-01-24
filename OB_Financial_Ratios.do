@@ -34,6 +34,7 @@
 		rename Market_capitalisation_mil MktCap
 		
 		* Full sample
+		
 		foreach x in Assets EBITDA GrossProfits MktCap Stock nShareholders Revenue Assets_EBITDA Assets_Revenue Assets_Profits MktCap_Assets{
 		
 			file write FinRatios " ${CountryID}"
@@ -41,13 +42,22 @@
 			if `x'==Assets_EBITDA{
 				file write FinRatios " & Assets to EBITDA & Full Sample"
 			}
+			else if `x'== MktCap{
+				file write FinRatios " & Market Capitalization & Full Sample"
+			}
+			else if `x'== nShareholders{
+				file write FinRatios " & Number of Shareholders & Full Sample"
+			}
+			else if `x'== Stock{
+				file write FinRatios " & Number of Shares & Full Sample"
+			}
 			else if `x'==Assets_Revenue{
 				file write FinRatios " & Assets to Revenue & Full Sample"
 			}
 			else if `x'==Assets_Profits{
 				file write FinRatios " & Assets to Profits & Full Sample"
 			}
-			else if `x'==MktCap_Assets{
+			else if `x'== MktCap_Assets {
 				file write FinRatios " & Market Cap to Assets & Full Sample"
 			}
 			else{
@@ -56,43 +66,44 @@
 			
 			
 			* Missing observations
-			sum `x' if `x'==. , detail
+			gen mi_`x' = 0
+			replace mi_`x' = 1 if missing(`x')
+			sum mi_`x' , detail
 			return list
-			local missing_`x' = r(N)
+			local missing_`x' = r(sum)
 			local pct_missing_`x' = 100*`missing_`x''/`fy_obs'
-			file write FinRatios " & `pct_missing_`x''"
+			file write FinRatios  "   &   "
+			file write FinRatios %4.2fc (`pct_missing_`x'')
+			
 			
 			* Zero-valued observations
 			sum `x' if `x'==0 , detail
 			return list
 			local zeros_`x' = r(N)
 			local pct_zeros_`x' = 100*`zeros_`x''/`fy_obs'
-			file write FinRatios " & `pct_zeros_`x''"
+			file write FinRatios  "   &   "
+			file write FinRatios %4.2fc ( `pct_zeros_`x'')
 			
 			* Average
-			sum `x' if `x'!=. , detail
+			sum `x' if (`x'!=.) & (mi_`x'==0) , detail
 			return list
 			local mean_`x' = r(mean)
-			file write FinRatios " & `mean_`x''"
-			
-			* Min
-			sum `x' if `x'!=. , detail
-			return list
 			local min_`x' = r(min)
-			file write FinRatios " & `min_`x''"
-			
-			* Max
-			sum `x' if `x'!=. , detail
-			return list
 			local max_`x' = r(max)
-			file write FinRatios " & `max_`x''"
-			
-			* Variance
-			sum `x' if `x'!=. , detail
-			return list
-			local Var_`x' = r(Var)
-			file write FinRatios " & `Var_`x'' \\ "
-			
+			local p25_`x' = r(p25)
+			local p75_`x' = r(p75)
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`mean_`x'')
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`min_`x'')
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`max_`x'')
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`p25_`x'')
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`p75_`x'')
+			file write FinRatios  "   \\   "
+			drop mi_`x'
 			*file write FinRatios "  \hline "
 			
 			* Private firms only ------------------------------------------------------------------------------------------------------
@@ -101,6 +112,15 @@
 			file write FinRatios " & `fy_obs' "
 			if `x'==Assets_EBITDA{
 				file write FinRatios " & Assets to EBITDA & Private Firms"
+			}
+			else if `x'== MktCap{
+				file write FinRatios " & Market Capitalization & Private Firms"
+			}
+			else if `x'== nShareholders{
+				file write FinRatios " & Number of Shareholders & Private Firms"
+			}
+			else if `x'== Stock{
+				file write FinRatios " & Number of Shares & Private Firms"
 			}
 			else if `x'==Assets_Revenue{
 				file write FinRatios " & Assets to Revenue & Private Firms"
@@ -116,44 +136,47 @@
 			}
 			
 			* Missing observations
-			sum `x' if (`x'==.) & (Private==1), detail
+			gen mi_`x' = 0
+			replace mi_`x' = 1 if missing(`x')
+			sum mi_`x' if Private==1, detail
 			return list
-			local missing_`x' = r(N)
+			local missing_`x' = r(sum)
 			local pct_missing_`x' = 100*`missing_`x''/`fy_obs'
-			file write FinRatios " & `pct_missing_`x''"
+			file write FinRatios  "   &   "
+			file write FinRatios %4.2fc (`pct_missing_`x'')
+			
 			
 			* Zero-valued observations
 			sum `x' if (`x'==0) & (Private==1) , detail
 			return list
 			local zeros_`x' = r(N)
 			local pct_zeros_`x' = 100*`zeros_`x''/`fy_obs'
-			file write FinRatios " & `pct_zeros_`x''"
+			file write FinRatios  "   &   "
+			file write FinRatios %4.2fc ( `pct_zeros_`x'')
 			
 			* Average
-			sum `x' if (`x'!=.) & (Private==1) , detail
+			sum `x' if (`x'!=.) & (Private==1) & (mi_`x'==0) , detail
 			return list
-			local mean_`x' = r(mean)
-			file write FinRatios " & `mean_`x''"
-			
-			* Min
-			sum `x' if (`x'!=.) & (Private==1) , detail
-			return list
+			local mean_`x' = r(mean)			
 			local min_`x' = r(min)
-			file write FinRatios " & `min_`x''"
-			
-			* Max
-			sum `x' if (`x'!=.) & (Private==1) , detail
-			return list
 			local max_`x' = r(max)
-			file write FinRatios " & `max_`x''"
-			
-			* Variance
-			sum `x' if (`x'!=.) & (Private==1) , detail
-			return list
-			local Var_`x' = r(Var)
-			file write FinRatios " & `Var_`x'' \\ "
+			local p25_`x' = r(p25)
+			local p75_`x' = r(p75)
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`mean_`x'')
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`min_`x'')
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`max_`x'')
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`p25_`x'')
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`p75_`x'')
+			file write FinRatios  "   \\   "
 			
 			*file write FinRatios " \hline "
+			
+			drop mi_`x'
 			
 			* Public firms only ------------------------------------------------------------------------------------------------------
 			
@@ -161,6 +184,15 @@
 			file write FinRatios " & `fy_obs' "
 			if `x'==Assets_EBITDA{
 				file write FinRatios " & Assets to EBITDA & Public Firms"
+			}
+			else if `x'== MktCap{
+				file write FinRatios " & Market Capitalization & Public Firms"
+			}
+			else if `x'== nShareholders{
+				file write FinRatios " & Number of Shareholders & Public Firms"
+			}
+			else if `x'== Stock{
+				file write FinRatios " & Number of Shares & Public Firms"
 			}
 			else if `x'==Assets_Revenue{
 				file write FinRatios " & Assets to Revenue & Public Firms"
@@ -176,44 +208,48 @@
 			}
 			
 			* Missing observations
-			sum `x' if (`x'==.) & (Private==0), detail
+			gen mi_`x' = 0
+			replace mi_`x' = 1 if missing(`x')
+			sum mi_`x' if Private==0, detail
 			return list
-			local missing_`x' = r(N)
+			local missing_`x' = r(sum)
 			local pct_missing_`x' = 100*`missing_`x''/`fy_obs'
-			file write FinRatios " & `pct_missing_`x''"
+			file write FinRatios  "   &   "
+			file write FinRatios %4.2fc (`pct_missing_`x'')
+			
 			
 			* Zero-valued observations
-			sum `x' if (`x'==0) & (Private==0) , detail
+			sum `x' if (`x'==0) & (Private==0), detail
 			return list
 			local zeros_`x' = r(N)
 			local pct_zeros_`x' = 100*`zeros_`x''/`fy_obs'
-			file write FinRatios " & `pct_zeros_`x''"
+			file write FinRatios  "   &   "
+			file write FinRatios %4.2fc ( `pct_zeros_`x'')
 			
 			* Average
-			sum `x' if (`x'!=.) & (Private==0) , detail
+			sum `x' if (`x'!=.) & (Private==0) & (mi_`x'==0)  , detail
 			return list
 			local mean_`x' = r(mean)
-			file write FinRatios " & `mean_`x''"
-			
-			* Min
-			sum `x' if (`x'!=.) & (Private==0) , detail
-			return list
+			local mean_`x' = r(mean)			
 			local min_`x' = r(min)
-			file write FinRatios " & `min_`x''"
-			
-			* Max
-			sum `x' if (`x'!=.) & (Private==0) , detail
-			return list
 			local max_`x' = r(max)
-			file write FinRatios " & `max_`x''"
-			
-			* Variance
-			sum `x' if (`x'!=.) & (Private==0) , detail
-			return list
-			local Var_`x' = r(Var)
-			file write FinRatios " & `Var_`x'' \\ "
-			
+			local p25_`x' = r(p25)
+			local p75_`x' = r(p75)
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`mean_`x'')
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`min_`x'')
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`max_`x'')
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`p25_`x'')
+			file write FinRatios  "   &   "
+			file write FinRatios %8.2fc (`p75_`x'')
+			file write FinRatios  "   \\   "
+						
 			file write FinRatios " \hline \hline"
+			
+			drop mi_`x'
 			
 		}
 

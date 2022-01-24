@@ -45,11 +45,11 @@ preserve
 		
 		sum BelowQ1, detail
 		return list
-		local static_Q1 = round(100*r(sum)/`nfirms',.01)
+		local static_Q1 = 100*r(sum)/`nfirms'
 		
 		sum BelowMedian, detail
 		return list
-		local static_Q2 = round(100*r(sum)/`nfirms', .01)
+		local static_Q2 = 100*r(sum)/`nfirms'
 
 		
 		* ------------------------
@@ -86,7 +86,7 @@ preserve
 		sum Sales if Public==1,detail
 		local PublicSales = r(sum)
  		
-		local PctPublicSales = round(100*`PublicSales'/`TotSales',.01)
+		local PctPublicSales = 100*`PublicSales'/`TotSales'
 		
 		file write CrossCountry " & `PctPublicSales' \\ "
  				
