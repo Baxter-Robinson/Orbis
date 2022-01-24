@@ -151,8 +151,8 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Equity Market Depth
 	*-------------------------------------------------------
-	use "Data_Raw/`Country'_StockPrice.dta", clear
-	do CS_EquityMarketDepth.do
+	*use "Data_Raw/`Country'_StockPrice.dta", clear
+	*do CS_EquityMarketDepth.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB) Country-level Indicators

@@ -3,6 +3,16 @@
 
 preserve
 
+
+
+		gen Country="${CountryID}"
+		merge m:1 Country using "Data_Cleaned/PennWorldIndicators.dta"
+		drop if _merge==2
+
+		
+		rename Market_capitalisation_mil MarketCap
+		
+		
 		file close _all
 
 		file open CrossCountry using Output/${CountryID}/OB_Cross_Country.tex, write replace
@@ -11,7 +21,7 @@ preserve
 
 		* Static Firm Share
 
-		sum nEmployees if nEmployees!=.
+		sum nEmployees if nEmployees!=. , detail
 		return list
 		local Emp_quartile1 = r(p25)
 		local Emp_median = r(p50)
@@ -59,11 +69,14 @@ preserve
 		local meanEmpG = r(mean)
 		local sdEmpG = r(sd)
 		
-		
-		file write CrossCountry " & `meanEmpG' "
-		file write CrossCountry " & `sdEmpG' "
-		file write CrossCountry " & `static_Q1' "
-		file write CrossCountry " & `static_Q2' "
+		file write CrossCountry " &  "
+		file write CrossCountry %4.2fc (`meanEmpG')
+		file write CrossCountry " &  "
+		file write CrossCountry %4.2fc (`sdEmpG')
+		file write CrossCountry " &  "
+		file write CrossCountry %4.2fc (`static_Q1')
+		file write CrossCountry " &  "
+		file write CrossCountry %4.2fc (`static_Q2')
 
 			
 		gen AfterIPO1Y = 0
@@ -72,13 +85,15 @@ preserve
 		sum EmpGrowth_h if AfterIPO1Y==1, detail
 		local ave_EmpGrowth_h_IPO1Y = r(mean)
 		
-		file write CrossCountry " & `ave_EmpGrowth_h_IPO1Y' "
+		file write CrossCountry " &  "
+		file write CrossCountry %4.2fc (`ave_EmpGrowth_h_IPO1Y')
 		
 		gen Public = 1-Private
 		sum EmpGrowth_h if Public==1, detail
 		local ave_EmpGrowth_h_Public = r(mean)
 		
-		file write CrossCountry " & `ave_EmpGrowth_h_Public' "
+		file write CrossCountry " &  "
+		file write CrossCountry %4.2fc (`ave_EmpGrowth_h_Public')
 		
 		sum Sales, detail
 		local TotSales=r(sum)
@@ -88,8 +103,24 @@ preserve
  		
 		local PctPublicSales = 100*`PublicSales'/`TotSales'
 		
-		file write CrossCountry " & `PctPublicSales' \\ "
- 				
+		file write CrossCountry " &  "
+		file write CrossCountry %4.2fc (`PctPublicSales')
+		
+		bysort Year: egen MktC = total(MarketCap)
+		
+		collapse (mean) MktC gdpo 
+		
+		gen EquityMktDepth_OB = MktC/gdpo
+		
+		sum EquityMktDepth_OB, detail
+		return list
+		local ave_EquityMktDepth_OB = r(mean)
+		
+		file write CrossCountry " &  "
+		file write CrossCountry %08.4fc (`ave_EquityMktDepth_OB')
+ 		file write CrossCountry "  \\  "		
+		
+		
 		file close _all
 
 restore
