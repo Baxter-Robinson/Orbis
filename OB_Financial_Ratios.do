@@ -39,17 +39,29 @@
 		
 			file write FinRatios " ${CountryID}"
 			file write FinRatios " & `fy_obs' "
-			if `x'==Assets_EBITDA{
-				file write FinRatios " & Assets to EBITDA & Full Sample"
+			if `x'==Assets{
+				file write FinRatios " & Assets & Full Sample"
+			}
+			else if `x'==EBITDA{
+				file write FinRatios " & EBITDA & Full Sample"
+			}
+			else if `x'==GrossProfits{
+				file write FinRatios " & Gross Profits & Full Sample"
 			}
 			else if `x'== MarketCap{
 				file write FinRatios " & Market Capitalization & Full Sample"
 			}
+			else if `x'== Stock{
+				file write FinRatios " & Number of Shares & Full Sample"
+			}
 			else if `x'== nShareholders{
 				file write FinRatios " & Number of Shareholders & Full Sample"
 			}
-			else if `x'== Stock{
-				file write FinRatios " & Number of Shares & Full Sample"
+			else if `x'== Revenue{
+				file write FinRatios " & Revenue & Full Sample"
+			}			
+			else if `x'==Assets_EBITDA{
+				file write FinRatios " & Assets to EBITDA & Full Sample"
 			}
 			else if `x'==Assets_Revenue{
 				file write FinRatios " & Assets to Revenue & Full Sample"
@@ -59,9 +71,6 @@
 			}
 			else if `x'== MktCap_Assets {
 				file write FinRatios " & Market Cap to Assets & Full Sample"
-			}
-			else {
-				file write FinRatios " & `x' & Full Sample"
 			}
 			
 			
@@ -110,17 +119,29 @@
 			
 			file write FinRatios " ${CountryID} "
 			file write FinRatios " & `fy_obs' "
-			if `x'==Assets_EBITDA{
-				file write FinRatios " & Assets to EBITDA & Private Firms"
+			if `x'==Assets{
+				file write FinRatios " & Assets & Private Firms"
+			}
+			else if `x'==EBITDA{
+				file write FinRatios " & EBITDA & Private Firms"
+			}
+			else if `x'==GrossProfits{
+				file write FinRatios " & Gross Profits & Private Firms"
 			}
 			else if `x'== MarketCap{
 				file write FinRatios " & Market Capitalization & Private Firms"
 			}
+			else if `x'== Stock{
+				file write FinRatios " & Number of Shares & Private Firms"
+			}
 			else if `x'== nShareholders{
 				file write FinRatios " & Number of Shareholders & Private Firms"
 			}
-			else if `x'== Stock{
-				file write FinRatios " & Number of Shares & Private Firms"
+			else if `x'== Revenue{
+				file write FinRatios " & Revenue & Private Firms"
+			}			
+			else if `x'==Assets_EBITDA{
+				file write FinRatios " & Assets to EBITDA & Private Firms"
 			}
 			else if `x'==Assets_Revenue{
 				file write FinRatios " & Assets to Revenue & Private Firms"
@@ -128,11 +149,8 @@
 			else if `x'==Assets_Profits{
 				file write FinRatios " & Assets to Profits & Private Firms"
 			}
-			else if `x'==MktCap_Assets{
+			else if `x'== MktCap_Assets {
 				file write FinRatios " & Market Cap to Assets & Private Firms"
-			}
-			else{
-				file write FinRatios " & `x' & Private Firms"
 			}
 			
 			* Missing observations
@@ -182,17 +200,29 @@
 			
 			file write FinRatios " ${CountryID}"
 			file write FinRatios " & `fy_obs' "
-			if `x'==Assets_EBITDA{
-				file write FinRatios " & Assets to EBITDA & Public Firms"
+			if `x'==Assets{
+				file write FinRatios " & Assets & Public Firms"
+			}
+			else if `x'==EBITDA{
+				file write FinRatios " & EBITDA & Public Firms"
+			}
+			else if `x'==GrossProfits{
+				file write FinRatios " & Gross Profits & Public Firms"
 			}
 			else if `x'== MarketCap{
 				file write FinRatios " & Market Capitalization & Public Firms"
 			}
+			else if `x'== Stock{
+				file write FinRatios " & Number of Shares & Public Firms"
+			}
 			else if `x'== nShareholders{
 				file write FinRatios " & Number of Shareholders & Public Firms"
 			}
-			else if `x'== Stock{
-				file write FinRatios " & Number of Shares & Public Firms"
+			else if `x'== Revenue{
+				file write FinRatios " & Revenue & Public Firms"
+			}			
+			else if `x'==Assets_EBITDA{
+				file write FinRatios " & Assets to EBITDA & Public Firms"
 			}
 			else if `x'==Assets_Revenue{
 				file write FinRatios " & Assets to Revenue & Public Firms"
@@ -200,11 +230,8 @@
 			else if `x'==Assets_Profits{
 				file write FinRatios " & Assets to Profits & Public Firms"
 			}
-			else if `x'==MktCap_Assets{
+			else if `x'== MktCap_Assets {
 				file write FinRatios " & Market Cap to Assets & Public Firms"
-			}
-			else{
-				file write FinRatios " & `x' & Public Firms"
 			}
 			
 			* Missing observations
