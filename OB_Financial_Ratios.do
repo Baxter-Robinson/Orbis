@@ -31,18 +31,18 @@
 		return list
 		local fy_obs = r(N)	
 
-		rename Market_capitalisation_mil MktCap
+		rename Market_capitalisation_mil MarketCap
 		
 		* Full sample
 		
-		foreach x in Assets EBITDA GrossProfits MktCap Stock nShareholders Revenue Assets_EBITDA Assets_Revenue Assets_Profits MktCap_Assets{
+		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue Assets_EBITDA Assets_Revenue Assets_Profits MktCap_Assets{
 		
 			file write FinRatios " ${CountryID}"
 			file write FinRatios " & `fy_obs' "
 			if `x'==Assets_EBITDA{
 				file write FinRatios " & Assets to EBITDA & Full Sample"
 			}
-			else if `x'== MktCap{
+			else if `x'== MarketCap{
 				file write FinRatios " & Market Capitalization & Full Sample"
 			}
 			else if `x'== nShareholders{
@@ -60,7 +60,7 @@
 			else if `x'== MktCap_Assets {
 				file write FinRatios " & Market Cap to Assets & Full Sample"
 			}
-			else{
+			else {
 				file write FinRatios " & `x' & Full Sample"
 			}
 			
@@ -113,7 +113,7 @@
 			if `x'==Assets_EBITDA{
 				file write FinRatios " & Assets to EBITDA & Private Firms"
 			}
-			else if `x'== MktCap{
+			else if `x'== MarketCap{
 				file write FinRatios " & Market Capitalization & Private Firms"
 			}
 			else if `x'== nShareholders{
@@ -185,7 +185,7 @@
 			if `x'==Assets_EBITDA{
 				file write FinRatios " & Assets to EBITDA & Public Firms"
 			}
-			else if `x'== MktCap{
+			else if `x'== MarketCap{
 				file write FinRatios " & Market Capitalization & Public Firms"
 			}
 			else if `x'== nShareholders{
