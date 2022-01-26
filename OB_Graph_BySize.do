@@ -1,7 +1,8 @@
 
+** By Size Relative to percentiles **
+
 preserve
 
-	drop if (nEmployees==1)
 	su nEmployees, detail
 	local Categories `r(p10)' `r(p25)' `r(p50)' `r(p75)' `r(p90)' `r(p95)' `r(p99)'
 	local Labels  1 "0-10%" 2 "10-25%"  3 "25-50%" 4 "50-75%" 5 "75-90%" 6 "90-95%" 7 "95-99%" 8 "Top 1%"
@@ -51,3 +52,52 @@ restore
 
 
 
+** By Size Categories **
+preserve
+
+	su nEmployees, detail
+	local Categories 1 5 10 50 100 1000
+	local Labels  1 "1" 2 "2-5"  3 "6-10" 4 "11-50" 5 "51-100" 6 "101-1,000" 7 "1,000+" 
+
+	tokenize `Categories'
+	local Total=r(sum)
+	local TotalNFirms=r(N)
+	
+	gen SizeCategory=.
+	
+	replace SizeCategory=1  if (nEmployees<=`1')
+	
+		di ``1''
+	forval i=2/6{
+		local prior=`i'-1
+		replace SizeCategory=`i' if (nEmployees<=``i'') & (nEmployees>``prior'')
+			di ``i'', ``prior''
+	}
+	
+	replace SizeCategory=7 if ((nEmployees>`6') & ~missing(nEmployees))
+	di ``7''
+	
+	collapse (sum) nEmployees (mean) EmpGrowth_mean=EmpGrowth_h (sd) EmpGrowth_sd=EmpGrowth_h ///
+	(p25) EmpGrowth_p25=EmpGrowth_h (p50) EmpGrowth_p50=EmpGrowth_h (p75) EmpGrowth_p75=EmpGrowth_h, by(SizeCategory)
+
+	gen SharesOfEmployment=nEmployees/`Total'
+	
+	graph bar SharesOfEmployment , over(SizeCategory, relabel(`Labels'))  ///
+	ytitle("Share of Employment ") graphregion(color(white)) 
+	 graph export Output/$CountryID/Graph_BySizeCategory_EmpShares.pdf, replace  
+
+	twoway (scatter EmpGrowth_mean SizeCategory, connect(l)), xlabel(`Labels')  ///
+	ytitle("Average Employment Growth Rate ") graphregion(color(white)) 
+	 graph export Output/$CountryID/Graph_BySizeCategory_GrowthRateAvg.pdf, replace  
+	 
+	twoway (scatter EmpGrowth_p25 SizeCategory, connect(l)) ///
+	 (scatter EmpGrowth_p50 SizeCategory, connect(l)) ///
+	  (scatter EmpGrowth_p75 SizeCategory, connect(l)) ///
+	, xlabel(`Labels')   ytitle("Percentiles") graphregion(color(white)) 
+	 graph export Output/$CountryID/Graph_BySizeCategory_GrowthRatePerc.pdf, replace  
+	 
+	twoway (scatter EmpGrowth_sd SizeCategory, connect(l)), xlabel(`Labels')  ///
+	ytitle("Standard Deviation of Employment Growth Rate ") graphregion(color(white)) 
+	 graph export Output/$CountryID/Graph_BySizeCategory_GrowthRateStd.pdf, replace  
+	 
+restore

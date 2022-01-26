@@ -47,7 +47,7 @@ global Countries IT FR ES PT DE NL
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
-*local Country="PT"
+local Country="PT"
 foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
@@ -81,6 +81,7 @@ foreach Country of global Countries {
 	*do OB_Graph_IPOyear-Dist.do
 	*do OB_Graph_Growth_IPOyear-Dist.do
 	*do OB_Graph_BySize.do
+	*do OB_Graph_BySize_PubVPrivate.do
 	
 	*do OB_Regressions_FirmTypes.do
 
