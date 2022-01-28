@@ -37,9 +37,8 @@ global Countries  FR ES PT DE NL
 foreach C of global Countries {
 	append using "Data_Cleaned/`C'_Unbalanced.dta"	
 	replace Country="`C'" if missing(Country)
-	
-
 }
+
 
 replace CountryID=2 if Country=="FR"
 replace CountryID=3 if Country=="ES"
@@ -47,7 +46,7 @@ replace CountryID=4 if Country=="PT"
 replace CountryID=5 if Country=="DE"
 replace CountryID=6 if Country=="NL"
 
-keep IDNum Year Country CountryID NACE_Rev_2_main_section NACE_Rev_2_Core_code_4_digits Industry_4digit NACE_Rev_2_Primary_code_s NACE_Rev_2_SEcondary_code_s US_SIC_Core_code_3_digits US_SIC_Primary_code_s US_SIC_Secondary_code_s
+keep IDNum Year Country CountryID NACE_Rev_2_main_section NACE_Rev_2_Core_code_4_digits Industry_4digit NACE_Rev_2_Primary_code_s NACE_Rev_2_SEcondary_code_s US_SIC_Core_code_3_digits US_SIC_Primary_code_s US_SIC_Secondary_code_s nEmployees Private
 
 
 gen Activity_Code = .
@@ -75,106 +74,228 @@ replace Activity_Code= 6 if NACE_Rev_2_main_section=="U - Activities of extrater
 replace Activity_Code= 6 if missing(NACE_Rev_2_main_section)
 
 
-bysort CountryID Activity_Code IDNum: gen nvals = _n == 1 
 
-collapse (first) Country NACE_Rev_2_main_section (sum) Ind = nvals, by (CountryID Activity_Code)
+preserve
 
-bysort CountryID: egen Nfirms = total(Ind) 
-gen pct = round(100*Ind/Nfirms,.01)
+		* Private firms 
+		keep if Private==1
 
-bysort CountryID: egen TotalPCT = total(pct) 
+		bysort CountryID Activity_Code IDNum: gen nvals = _n == 1 
 
-bysort CountryID: gen cumfreq = sum(pct)
+		collapse (first) Country NACE_Rev_2_main_section (sum) Ind = nvals Employment=nEmployees, by (CountryID Activity_Code)
 
-* Midpoint calculation for labels in graphs
+		bysort CountryID: egen Nfirms = total(Ind) 
 
-gen midpoint = .
+		bysort CountryID: egen TotEmp = total(Employment) 
 
-levelsof Activity_Code, local(Act_Code)
-levelsof CountryID, local(Countries)
+		gen pct = 100*Employment/TotEmp
 
-foreach c of local Countries{
-	foreach i of local Act_Code{
-		sum pct if (CountryID==`c') & (Activity_Code==`i'), detail
-		return list
-		local `c'_pct_ActivityCode_`i' = r(mean)
-	}
-}
+		bysort CountryID: egen TotalPCT = total(pct) 
 
+		bysort CountryID: gen cumfreq = sum(pct)
 
-foreach c of local Countries{
-		local `c'_midpoint_1 = (``c'_pct_ActivityCode_1')/2 
-		local `c'_midpoint_2 = ( (``c'_pct_ActivityCode_1') + (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2') )/2
-		local `c'_midpoint_3 = ( (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2') + (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2'+``c'_pct_ActivityCode_3') )/2
-		local `c'_midpoint_4 = ( (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2' + ``c'_pct_ActivityCode_3' ) + (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2'+``c'_pct_ActivityCode_3' + ``c'_pct_ActivityCode_4') )/2
-		local `c'_midpoint_5 = ( (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2' + ``c'_pct_ActivityCode_3'+ ``c'_pct_ActivityCode_4') + (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2'+``c'_pct_ActivityCode_3' + ``c'_pct_ActivityCode_4'+``c'_pct_ActivityCode_5') )/2
-		local `c'_midpoint_6 =  (100+(``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2'+``c'_pct_ActivityCode_3' + ``c'_pct_ActivityCode_4'+``c'_pct_ActivityCode_5'))/2
-}
+		* Midpoint calculation for labels in graphs
 
-foreach c of local Countries{
-	foreach i of local Act_Code{
-		replace midpoint=``c'_midpoint_`i''  if (CountryID==`c') & (Activity_Code==`i')
-	}
-}
+		gen midpoint = .
+
+		levelsof Activity_Code, local(Act_Code)
+		levelsof CountryID, local(Countries)
+
+		foreach c of local Countries{
+			foreach i of local Act_Code{
+				sum pct if (CountryID==`c') & (Activity_Code==`i'), detail
+				return list
+				local `c'_pct_ActivityCode_`i' = round(r(mean),.01)
+			}
+		}
 
 
-drop NACE_Rev_2_main_section Ind TotalPCT
-reshape wide pct cumfreq midpoint, i(CountryID)  j(Activity_Code)   
-gen TotalPCT = cumfreq5+pct6
+		foreach c of local Countries{
+				local `c'_midpoint_1 = (``c'_pct_ActivityCode_1')/2 
+				local `c'_midpoint_2 = ( (``c'_pct_ActivityCode_1') + (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2') )/2
+				local `c'_midpoint_3 = ( (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2') + (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2'+``c'_pct_ActivityCode_3') )/2
+				local `c'_midpoint_4 = ( (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2' + ``c'_pct_ActivityCode_3' ) + (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2'+``c'_pct_ActivityCode_3' + ``c'_pct_ActivityCode_4') )/2
+				local `c'_midpoint_5 = ( (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2' + ``c'_pct_ActivityCode_3'+ ``c'_pct_ActivityCode_4') + (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2'+``c'_pct_ActivityCode_3' + ``c'_pct_ActivityCode_4'+``c'_pct_ActivityCode_5') )/2
+				local `c'_midpoint_6 =  (100+(``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2'+``c'_pct_ActivityCode_3' + ``c'_pct_ActivityCode_4'+``c'_pct_ActivityCode_5'))/2
+		}
 
-gen floor = 0
-
-label define CountryID 1 "Italy" 2 "France"  3 "Spain" 4 "Portugal" 5 "Germany" 6 "Netherlands" 
-
-local Labels  1 "Italy" 2 "France"  3 "Spain" 4 "Portugal" 5 "Germany" 6 "Netherlands" 
-graph twoway (rbar floor pct1 CountryID, color(maroon) barwidth(.75) )  ///
-(rbar pct1 cumfreq2 CountryID, color(navy) barwidth(.75))  ///
-(rbar cumfreq2 cumfreq3 CountryID, color(dkgreen) barwidth(.75))  ///
-(rbar cumfreq3 cumfreq4 CountryID, color(orange) barwidth(.75))  ///
-(rbar cumfreq4 cumfreq5 CountryID, color(purple) barwidth(.75))  ///
-(rbar cumfreq5 cumfreq6 CountryID, color(edkblue) barwidth(.75)), ///
-legend(label(1 "Agriculture, mining") label( 2 "Manufacturing" ) label( 3 "Construction" ) label( 4 "Wholesale and Retail Trade" ) label( 5 "Services" ) label( 6 "Other" )    ) ///
-ytitle("Percentage") ///
-ylabel(, format(%9.0fc)) ///
-xtitle("Country") ///
-xlabel(`Labels')  ///
-graphregion(color(white)) ///
-text(`1_midpoint_1' 1 "`1_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`1_midpoint_2' 1 "`1_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`1_midpoint_3' 1 "`1_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`1_midpoint_4' 1 "`1_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`1_midpoint_5' 1 "`1_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`1_midpoint_6' 1 "`1_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`2_midpoint_1' 2 "`2_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`2_midpoint_2' 2 "`2_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`2_midpoint_3' 2 "`2_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`2_midpoint_4' 2 "`2_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`2_midpoint_5' 2 "`2_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`2_midpoint_6' 2 "`2_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`3_midpoint_1' 3 "`3_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`3_midpoint_2' 3 "`3_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`3_midpoint_3' 3 "`3_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`3_midpoint_4' 3 "`3_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`3_midpoint_5' 3 "`3_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`3_midpoint_6' 3 "`3_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`4_midpoint_1' 4 "`4_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`4_midpoint_2' 4 "`4_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`4_midpoint_3' 4 "`4_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`4_midpoint_4' 4 "`4_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`4_midpoint_5' 4 "`4_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`4_midpoint_6' 4 "`4_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`5_midpoint_1' 5 "`5_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`5_midpoint_2' 5 "`5_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`5_midpoint_3' 5 "`5_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`5_midpoint_4' 5 "`5_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`5_midpoint_5' 5 "`5_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`5_midpoint_6' 5 "`5_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`6_midpoint_1' 6 "`6_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`6_midpoint_2' 6 "`6_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`6_midpoint_3' 6 "`6_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`6_midpoint_4' 6 "`6_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`6_midpoint_5' 6 "`6_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-text(`6_midpoint_6' 6 "`6_pct_ActivityCode_6'", color(white) size(small)) 
-graph export "Output/Cross-Country/OB_CrossCountry_Industry_Comparison.png",  replace  
+		foreach c of local Countries{
+			foreach i of local Act_Code{
+				replace midpoint=``c'_midpoint_`i''  if (CountryID==`c') & (Activity_Code==`i')
+			}
+		}
 
 
+		drop NACE_Rev_2_main_section Ind TotalPCT Employment
+		reshape wide pct cumfreq midpoint, i(CountryID)  j(Activity_Code)   
+		gen TotalPCT = cumfreq5+pct6
+
+		gen floor = 0
+
+		label define CountryID 1 "Italy" 2 "France"  3 "Spain" 4 "Portugal" 5 "Germany" 6 "Netherlands" 
+
+		local Labels  1 "Italy" 2 "France"  3 "Spain" 4 "Portugal" 5 "Germany" 6 "Netherlands" 
+		graph twoway (rbar floor pct1 CountryID, color(maroon) barwidth(.75) )  ///
+		(rbar pct1 cumfreq2 CountryID, color(navy) barwidth(.75))  ///
+		(rbar cumfreq2 cumfreq3 CountryID, color(dkgreen) barwidth(.75))  ///
+		(rbar cumfreq3 cumfreq4 CountryID, color(orange) barwidth(.75))  ///
+		(rbar cumfreq4 cumfreq5 CountryID, color(purple) barwidth(.75))  ///
+		(rbar cumfreq5 cumfreq6 CountryID, color(edkblue) barwidth(.75)), ///
+		legend(label(1 "Agriculture, mining") label( 2 "Manufacturing" ) label( 3 "Construction" ) label( 4 "Wholesale and Retail Trade" ) label( 5 "Services" ) label( 6 "Other" )    ) ///
+		ytitle("Percentage") ///
+		ylabel(, format(%9.0fc)) ///
+		xtitle("Country") ///
+		xlabel(`Labels')  ///
+		graphregion(color(white)) ///
+		text(`1_midpoint_1' 1 "`1_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`1_midpoint_2' 1 "`1_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`1_midpoint_3' 1 "`1_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`1_midpoint_4' 1 "`1_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`1_midpoint_5' 1 "`1_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`1_midpoint_6' 1 "`1_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`2_midpoint_1' 2 "`2_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`2_midpoint_2' 2 "`2_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`2_midpoint_3' 2 "`2_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`2_midpoint_4' 2 "`2_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`2_midpoint_5' 2 "`2_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`2_midpoint_6' 2 "`2_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`3_midpoint_1' 3 "`3_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`3_midpoint_2' 3 "`3_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`3_midpoint_3' 3 "`3_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`3_midpoint_4' 3 "`3_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`3_midpoint_5' 3 "`3_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`3_midpoint_6' 3 "`3_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`4_midpoint_1' 4 "`4_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`4_midpoint_2' 4 "`4_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`4_midpoint_3' 4 "`4_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`4_midpoint_4' 4 "`4_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`4_midpoint_5' 4 "`4_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`4_midpoint_6' 4 "`4_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`5_midpoint_1' 5 "`5_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`5_midpoint_2' 5 "`5_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`5_midpoint_3' 5 "`5_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`5_midpoint_4' 5 "`5_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`5_midpoint_5' 5 "`5_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`5_midpoint_6' 5 "`5_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`6_midpoint_1' 6 "`6_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`6_midpoint_2' 6 "`6_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`6_midpoint_3' 6 "`6_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`6_midpoint_4' 6 "`6_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`6_midpoint_5' 6 "`6_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`6_midpoint_6' 6 "`6_pct_ActivityCode_6'", color(white) size(small)) 
+		graph export "Output/Cross-Country/OB_CrossCountry_Industry_Comparison_Private_Firms.png",  replace  
+
+restore
+
+preserve
+	
+		* Public firms 
+		keep if Private==0
+
+		bysort CountryID Activity_Code IDNum: gen nvals = _n == 1 
+
+		collapse (first) Country NACE_Rev_2_main_section (sum) Ind = nvals Employment=nEmployees, by (CountryID Activity_Code)
+
+		bysort CountryID: egen Nfirms = total(Ind) 
+
+		bysort CountryID: egen TotEmp = total(Employment) 
+
+		gen pct = 100*Employment/TotEmp
+
+		bysort CountryID: egen TotalPCT = total(pct) 
+
+		bysort CountryID: gen cumfreq = sum(pct)
+
+		* Midpoint calculation for labels in graphs
+
+		gen midpoint = .
+
+		levelsof Activity_Code, local(Act_Code)
+		levelsof CountryID, local(Countries)
+
+		foreach c of local Countries{
+			foreach i of local Act_Code{
+				sum pct if (CountryID==`c') & (Activity_Code==`i'), detail
+				return list
+				local `c'_pct_ActivityCode_`i' = round(r(mean),.01)
+			}
+		}
+
+
+		foreach c of local Countries{
+				local `c'_midpoint_1 = (``c'_pct_ActivityCode_1')/2 
+				local `c'_midpoint_2 = ( (``c'_pct_ActivityCode_1') + (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2') )/2
+				local `c'_midpoint_3 = ( (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2') + (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2'+``c'_pct_ActivityCode_3') )/2
+				local `c'_midpoint_4 = ( (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2' + ``c'_pct_ActivityCode_3' ) + (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2'+``c'_pct_ActivityCode_3' + ``c'_pct_ActivityCode_4') )/2
+				local `c'_midpoint_5 = ( (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2' + ``c'_pct_ActivityCode_3'+ ``c'_pct_ActivityCode_4') + (``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2'+``c'_pct_ActivityCode_3' + ``c'_pct_ActivityCode_4'+``c'_pct_ActivityCode_5') )/2
+				local `c'_midpoint_6 =  (100+(``c'_pct_ActivityCode_1'+``c'_pct_ActivityCode_2'+``c'_pct_ActivityCode_3' + ``c'_pct_ActivityCode_4'+``c'_pct_ActivityCode_5'))/2
+		}
+
+		foreach c of local Countries{
+			foreach i of local Act_Code{
+				replace midpoint=``c'_midpoint_`i''  if (CountryID==`c') & (Activity_Code==`i')
+			}
+		}
+
+
+		drop NACE_Rev_2_main_section Ind TotalPCT Employment
+		reshape wide pct cumfreq midpoint, i(CountryID)  j(Activity_Code)   
+		gen TotalPCT = cumfreq5+pct6
+
+		gen floor = 0
+
+		label define CountryID 1 "Italy" 2 "France"  3 "Spain" 4 "Portugal" 5 "Germany" 6 "Netherlands" 
+
+		local Labels  1 "Italy" 2 "France"  3 "Spain" 4 "Portugal" 5 "Germany" 6 "Netherlands" 
+		graph twoway (rbar floor pct1 CountryID, color(maroon) barwidth(.75) )  ///
+		(rbar pct1 cumfreq2 CountryID, color(navy) barwidth(.75))  ///
+		(rbar cumfreq2 cumfreq3 CountryID, color(dkgreen) barwidth(.75))  ///
+		(rbar cumfreq3 cumfreq4 CountryID, color(orange) barwidth(.75))  ///
+		(rbar cumfreq4 cumfreq5 CountryID, color(purple) barwidth(.75))  ///
+		(rbar cumfreq5 cumfreq6 CountryID, color(edkblue) barwidth(.75)), ///
+		legend(label(1 "Agriculture, mining") label( 2 "Manufacturing" ) label( 3 "Construction" ) label( 4 "Wholesale and Retail Trade" ) label( 5 "Services" ) label( 6 "Other" )    ) ///
+		ytitle("Percentage") ///
+		ylabel(, format(%9.0fc)) ///
+		xtitle("Country") ///
+		xlabel(`Labels')  ///
+		graphregion(color(white)) ///
+		text(`1_midpoint_1' 1 "`1_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`1_midpoint_2' 1 "`1_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`1_midpoint_3' 1 "`1_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`1_midpoint_4' 1 "`1_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`1_midpoint_5' 1 "`1_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`1_midpoint_6' 1 "`1_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`2_midpoint_1' 2 "`2_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`2_midpoint_2' 2 "`2_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`2_midpoint_3' 2 "`2_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`2_midpoint_4' 2 "`2_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`2_midpoint_5' 2 "`2_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`2_midpoint_6' 2 "`2_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`3_midpoint_1' 3 "`3_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`3_midpoint_2' 3 "`3_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`3_midpoint_3' 3 "`3_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`3_midpoint_4' 3 "`3_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`3_midpoint_5' 3 "`3_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`3_midpoint_6' 3 "`3_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`4_midpoint_1' 4 "`4_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`4_midpoint_2' 4 "`4_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`4_midpoint_3' 4 "`4_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`4_midpoint_4' 4 "`4_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`4_midpoint_5' 4 "`4_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`4_midpoint_6' 4 "`4_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`5_midpoint_1' 5 "`5_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`5_midpoint_2' 5 "`5_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`5_midpoint_3' 5 "`5_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`5_midpoint_4' 5 "`5_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`5_midpoint_5' 5 "`5_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`5_midpoint_6' 5 "`5_pct_ActivityCode_6'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`6_midpoint_1' 6 "`6_pct_ActivityCode_1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`6_midpoint_2' 6 "`6_pct_ActivityCode_2'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`6_midpoint_3' 6 "`6_pct_ActivityCode_3'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`6_midpoint_4' 6 "`6_pct_ActivityCode_4'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`6_midpoint_5' 6 "`6_pct_ActivityCode_5'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+		text(`6_midpoint_6' 6 "`6_pct_ActivityCode_6'", color(white) size(small)) 
+		graph export "Output/Cross-Country/OB_CrossCountry_Industry_Comparison_Public_Firms.png",  replace  
+
+		
+restore

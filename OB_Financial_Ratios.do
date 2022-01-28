@@ -69,7 +69,7 @@
 			else if `x'==Assets_Profits{
 				file write FinRatios " & Assets to Profits & Full Sample"
 			}
-			else if `x'== MktCap_Assets {
+			else if `x'==MktCap_Assets {
 				file write FinRatios " & Market Cap to Assets & Full Sample"
 			}
 			

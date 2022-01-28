@@ -108,13 +108,17 @@ preserve
 		
 		bysort Year: egen MktC = total(MarketCap)
 		
-		collapse (mean) MktC gdpo 
-		
-		gen EquityMktDepth_OB = MktC/gdpo
-		
-		sum EquityMktDepth_OB, detail
+		sum MarketCap, detail
 		return list
-		local ave_EquityMktDepth_OB = r(mean)
+		local ave_MarketCap = r(mean)
+		
+		sum gdpo, detail
+		return list
+		local ave_gdpo = r(mean)
+		
+		local ave_EquityMktDepth_OB = `ave_MarketCap'/`ave_gdpo'
+		
+		di `ave_EquityMktDepth_OB'
 		
 		file write CrossCountry " &  "
 		file write CrossCountry %08.4fc (`ave_EquityMktDepth_OB')
