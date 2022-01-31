@@ -44,7 +44,7 @@
 			file write FinRatios " Full Sample " 
 			
 			file write FinRatios " & "
-			file write FinRatios %12.2fc (`fy_obs')
+			file write FinRatios %12.0gc (`fy_obs')
 	
 			
 			* Missing observations
@@ -132,7 +132,7 @@
 			file write FinRatios " Public Firms " 
 			
 			file write FinRatios " & "
-			file write FinRatios %12.2fc (`fy_obs')
+			file write FinRatios %12.0gc (`fy_obs')
 	
 			
 			* Missing observations
@@ -217,7 +217,7 @@
 			file write FinRatios " Private Firms " 
 			
 			file write FinRatios " & "
-			file write FinRatios %12.2fc (`fy_obs')
+			file write FinRatios %12.0gc (`fy_obs')
 	
 			
 			* Missing observations

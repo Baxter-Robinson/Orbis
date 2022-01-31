@@ -43,7 +43,11 @@ preserve
 		gen BelowMedian = 0
 		replace BelowMedian=1 if F_review<`Emp_median'
 
-
+		bysort IDNum: gen nvals = _n == 1  
+		replace BelowQ1 = BelowQ1*nvals
+		replace BelowMedian = BelowMedian*nvals
+		drop nvals 
+		
 		bysort IDNum: gen nvals = _n == 1  
 		replace nvals = sum(nvals)
 		replace nvals = nvals[_N] 
@@ -51,7 +55,9 @@ preserve
 		sum numFirms, detail
 		local nfirms = r(mean)
 		
-		file write CrossCountry " & `nfirms' "
+		file write CrossCountry " &  "
+		file write CrossCountry %12.0gc (`nfirms')
+		
 		
 		sum BelowQ1, detail
 		return list
@@ -110,7 +116,7 @@ preserve
 		
 		sum MarketCap, detail
 		return list
-		local ave_MarketCap = r(mean)
+		local ave_MarketCap = r(sum)
 		
 		sum gdpo, detail
 		return list

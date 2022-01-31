@@ -76,6 +76,10 @@ preserve
 	 }
 	
 	
+	sum pct_nFirmsCatPrivate  if (Private==1) & (SizeCategory==5), detail
+	local lb = r(mean)
+	local endpoint5 = ((100+`lb')/2)
+	
 	label define SizeCat 1 "1 " 2 "2-10"  3 "11-99" 4 "100-999" 5 "+1000" 
 	local Labels  1 "1" 2 "2-10"  3 "11-99" 4 "100-999" 5 "+1000"  
 	
@@ -95,7 +99,7 @@ preserve
 		text(`endpoint2' 2 "`nfirmspublic3'", color(navy) size(small)) /// 
 		text(`endpoint3' 3 "`nfirmspublic3'", color(navy) size(small)) /// 
 		text(`endpoint4' 4 "`nfirmspublic4'", color(navy) size(small)) /// 
-		text(`endpoint5' 5 "`nfirmspublic5'", color(navy) size(small)) /// 
+		text(`endpoint5' 5 "`nfirmspublic5'", color(white) size(small)) /// 
 		graphregion(color(white))
 		graph export Output/$CountryID/OB_BySizeCat_ShareFirms.pdf, replace 
 	
