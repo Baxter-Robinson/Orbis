@@ -46,7 +46,7 @@ estadd local Sector "Yes"
 estadd local Year "No"
 estadd local Robust "Yes"
 
-esttab m1 m1 m1b  using "Output/$CountryID/OB_Emp_growth_regs_NACE.tex", se legend mtitles("NACE Rev2 4-digit Sectors" "NACE Rev2 4-digit Sectors" "NACE Rev2 4-digit Sectors") title("Employment growth") s(N Sector Year Robust, label( "N" "Sector Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" lnEmp "(Log of) No. employees" lnEmp_Priv "(Log of) No. employees x Private") nonumbers keep( _cons lnEmp lnEmp_Priv) replace fragment
+esttab m1 m1a m1b  using "Output/$CountryID/OB_Emp_growth_regs_NACE.tex", se legend mtitles("NACE Rev2 4-digit Sectors" "NACE Rev2 4-digit Sectors" "NACE Rev2 4-digit Sectors") title("Employment growth") s(N Sector Year Robust, label( "N" "Sector Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" lnEmp "(Log of) No. employees" lnEmp_Priv "(Log of) No. employees x Private") nonumbers keep( _cons lnEmp lnEmp_Priv) replace fragment
 
 * Using the SIC 3-digit codes
 
