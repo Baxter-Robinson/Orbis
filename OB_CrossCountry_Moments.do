@@ -3,15 +3,12 @@
 
 preserve
 
-
-
 		gen Country="${CountryID}"
 		merge m:1 Country using "Data_Cleaned/PennWorldIndicators.dta"
 		drop if _merge==2
-
-		
-		rename Market_capitalisation_mil MarketCap
-		
+		drop _merge
+		merge m:1 Country using "Data_Cleaned/${CountryID}_CountryLevel.dta"
+		drop _merge
 		
 		file close _all
 
@@ -20,11 +17,11 @@ preserve
 		file write CrossCountry " ${CountryID} "
 
 		* Static Firm Share
-
-		sum nEmployees if nEmployees!=. , detail
+		sum nEmployees if  nEmployees!=., detail
 		return list
 		local Emp_quartile1 = r(p25)
 		local Emp_median = r(p50)
+		di `Emp_quartile1'
 
 		/*
 		* Positive values only
@@ -36,19 +33,20 @@ preserve
 
 		bysort IDNum: egen F_review = max(nEmployees)
 
-		gen BelowQ1 = 0
-		replace BelowQ1=1 if F_review<`Emp_quartile1'
+		gen BelowQ1 = 0 
+		replace BelowQ1=1 if F_review < `Emp_quartile1'
 
 
 		gen BelowMedian = 0
-		replace BelowMedian=1 if F_review<`Emp_median'
+		replace BelowMedian=1 if F_review < `Emp_median'
+
 
 		bysort IDNum: gen nvals = _n == 1  
+		
 		replace BelowQ1 = BelowQ1*nvals
 		replace BelowMedian = BelowMedian*nvals
-		drop nvals 
 		
-		bysort IDNum: gen nvals = _n == 1  
+		
 		replace nvals = sum(nvals)
 		replace nvals = nvals[_N] 
 		gen numFirms = nvals
@@ -86,7 +84,7 @@ preserve
 
 			
 		gen AfterIPO1Y = 0
-		replace AfterIPO1Y= 1 if IPO_year-Year==1
+		replace AfterIPO1Y= 1 if Year-IPO_year==1
 		
 		sum EmpGrowth_h if AfterIPO1Y==1, detail
 		local ave_EmpGrowth_h_IPO1Y = r(mean)
@@ -112,14 +110,15 @@ preserve
 		file write CrossCountry " &  "
 		file write CrossCountry %4.2fc (`PctPublicSales')
 		
-		bysort Year: egen MktC = total(MarketCap)
+		
+		
+		* Market capitalization
+		bysort Year: egen MarketCap1 = total(Market_capitalisation_mil)
 		
 		sum MarketCap, detail
-		return list
-		local ave_MarketCap = r(sum)
+		local ave_MarketCap = r(mean)
 		
 		sum gdpo, detail
-		return list
 		local ave_gdpo = r(mean)
 		
 		local ave_EquityMktDepth_OB = `ave_MarketCap'/`ave_gdpo'

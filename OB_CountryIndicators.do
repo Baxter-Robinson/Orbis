@@ -2,11 +2,11 @@
 
 drop if Year < 2009
 drop if Year > 2016
-/*
+
 if "${CountryID}" == "FR" {
 	drop if Year > 2014
 }
-*/
+
 
 
 * Average Growth rate of Employment
