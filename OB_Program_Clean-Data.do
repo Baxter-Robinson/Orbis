@@ -51,23 +51,6 @@ drop minE minS maxE maxS tagMaxE tagMaxS tagMinE tagMinS
 
 xtset IDNum Year
 
-
-/*
-duplicates drop IDNum Year Sales Number_of_employees, force
-duplicates tag IDNum Year, gen(dup)
-gen duptemp = Sales + Number_of_employees
-drop if dup == 1 & duptemp == .
-drop if dup == 2 & duptemp == .
-duplicates drop IDNum Year, force
-*/
-
-/*
-* XXX Currently it just retains the first observation - need to code this to take a consistent closing date with the other years XXX
-duplicates drop IDNum Year , force
-
-xtset IDNum Year
-*/
-
 *---------------------------
 * Financials
 *---------------------------
@@ -78,12 +61,7 @@ rename Costs_of_employees WageBill
 rename Total_assets Assets
 rename P_L_before_tax GrossProfits
 
-
-drop if (Revenue<0)
-drop if (Sales<0)
-drop if (Assets<0)
 replace Sales = Revenue if (Sales == 0) & (Revenue > 0)
-*drop if Sales == .
 
 *---------------------------
 * Haltiwanger growth rates -  Additional variables
@@ -120,10 +98,8 @@ foreach v in COGS Revenue Export_revenue Assets EBITDA{
 *---------------------------
 rename Number_of_employees nEmployees
 
-drop if (nEmployees<0)
-replace nEmployees = . if (nEmployees == 0 & Sales > 0) | (nEmployees == 0 & Revenue > 0)
 
-gen SalesPerEmployee=Sales/nEmployees
+gen SalesPerEmployee=Sales/nEmployees if (nEmployees>0)
 
 *---------------------------
 * Sector
@@ -165,6 +141,30 @@ bysort IDNum: gen Assets_h = (Assets_fHGR  - L.Assets_fHGR )/((Assets_fHGR  + L.
 bysort IDNum: gen EBITDA_h = (EBITDA_fHGR  - L.EBITDA_fHGR )/((EBITDA_fHGR  + L.EBITDA_fHGR )/2) 
 
 drop COGS_fHGR Revenue_fHGR Export_revenue_fHGR Assets_fHGR EBITDA_fHGR
+
+*----------------------
+* Winsorization Employment Growth
+*----------------------
+
+sort EmpGrowth_h
+xtile EmpGrowth_h_quartiles =   EmpGrowth_h  , nquantiles(200)  
+sum EmpGrowth_h if EmpGrowth_h_quartiles==2, detail
+return list 
+local bottom05pct = r(min)
+di `bottom05pct'
+
+sum EmpGrowth_h if EmpGrowth_h_quartiles==199, detail
+return list 
+local top05pct = r(max)
+di `top05pct'
+
+egen bottom05pct = min(EmpGrowth_h) if EmpGrowth_h_quartiles==2
+egen top05pct = max(EmpGrowth_h) if EmpGrowth_h_quartiles==199
+
+replace EmpGrowth_h = `bottom05pct' if EmpGrowth_h < `bottom05pct'
+replace EmpGrowth_h = `top05pct' if EmpGrowth_h > `top05pct'
+
+
 *---------------------------
 * IPO Info
 *---------------------------
@@ -204,26 +204,12 @@ gen Private=0
 replace Private = 1 if Main_exchange=="Unlisted" | (Main_exchange=="Delisted")  & (Year >= Delisted_year)
 
 *----------------------
-* Winsorization
+* Inclusion Criteria
 *----------------------
+drop if (Year<2009)
+drop if (Year>2018)
 
-sort EmpGrowth_h
-xtile EmpGrowth_h_quartiles =   EmpGrowth_h  , nquantiles(200)  
-sum EmpGrowth_h if EmpGrowth_h_quartiles==2, detail
-return list 
-local bottom05pct = r(min)
-di `bottom05pct'
-
-sum EmpGrowth_h if EmpGrowth_h_quartiles==199, detail
-return list 
-local top05pct = r(max)
-di `top05pct'
-
-egen bottom05pct = min(EmpGrowth_h) if EmpGrowth_h_quartiles==2
-egen top05pct = max(EmpGrowth_h) if EmpGrowth_h_quartiles==199
-
-replace EmpGrowth_h = `bottom05pct' if EmpGrowth_h < `bottom05pct'
-replace EmpGrowth_h = `top05pct' if EmpGrowth_h > `top05pct'
+drop if missing(nEmployees)
 
 *----------------------
 * Save unbalanced panel
@@ -278,16 +264,13 @@ restore
 
 
 *------------------
-* Balanced Panel
+* Save Balanced Panel
 *------------------
 
 * Narrower year range for France
 if "${CountryID}" == "FR"{
 	drop if (Year<2010)
 	drop if (Year>2014)
-	drop if Sales == .
-	drop if nEmployees == .
-	drop if GrossProfits == .
 	sort IDNum Year
 	*by IDNum: drop if (missing(nEmployees)| missing(Sales))
 	egen nyear = total(inrange(Year, 2010, 2014)), by(IDNum)
@@ -296,11 +279,6 @@ if "${CountryID}" == "FR"{
 }
 * Regular year range for other countries
 else {
-	drop if (Year<2009)
-	drop if (Year>2018)
-	drop if Sales == .
-	drop if nEmployees == .
-	drop if GrossProfits == .
 	sort IDNum Year
 	*by IDNum: drop if (missing(nEmployees)| missing(Sales))
 	egen nyear = total(inrange(Year, 2009, 2018)), by(IDNum)
@@ -308,18 +286,14 @@ else {
 	drop nyear
 }
 
-
 * Making sure it is strongly balanced 
 xtset IDNum Year 
 
-*--------------------
-* Save balanced panel
-*--------------------
 
 save "Data_Cleaned/${CountryID}_Balanced.dta", replace
 
 *---------------------------
-* Create  One Percent sample
+* Create One Percent sample
 *---------------------------
 
 * Characteristics: 
