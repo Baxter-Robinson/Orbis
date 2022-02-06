@@ -27,50 +27,49 @@ xtset IDNum Year
 
 * Using the NACE Rev.2 4-digit codes
 
-reghdfe EmpGrowth_h lnEmp lnEmp_Priv, absorb(Industry_4digit Year) vce(robust)
+reghdfe EmpGrowth_h lnEmp Private, absorb(Industry_4digit Year) vce(robust)
 eststo m1
 estadd local Sector "Yes"
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
-reghdfe EmpGrowth_h lnEmp lnEmp_Priv, absorb( Year) vce(robust)
+reghdfe EmpGrowth_h lnEmp Private, absorb( Year) vce(robust)
 eststo m1a
 estadd local Sector "No"
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
 
-reghdfe EmpGrowth_h lnEmp lnEmp_Priv, absorb(Industry_4digit) vce(robust)
+reghdfe EmpGrowth_h lnEmp Private, absorb(Industry_4digit) vce(robust)
 eststo m1b
 estadd local Sector "Yes"
 estadd local Year "No"
 estadd local Robust "Yes"
 
-esttab m1 m1a m1b  using "Output/$CountryID/OB_Emp_growth_regs_NACE.tex", se legend mtitles("NACE Rev2 4-digit Sectors" "NACE Rev2 4-digit Sectors" "NACE Rev2 4-digit Sectors") title("Employment growth") s(N Sector Year Robust, label( "N" "Sector Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" lnEmp "(Log of) No. employees" lnEmp_Priv "(Log of) No. employees x Private") nonumbers keep( _cons lnEmp lnEmp_Priv) replace fragment
+esttab m1 m1a m1b  using "Output/$CountryID/OB_Emp_growth_regs_NACE.tex", se legend mtitles("NACE Rev2 4-digit Sectors" "NACE Rev2 4-digit Sectors" "NACE Rev2 4-digit Sectors") title("Employment growth") s(N Sector Year Robust, label( "N" "Sector Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" lnEmp "(Log of) No. employees" Private "Private Firm") nonumbers keep( _cons lnEmp lnEmp_Priv) replace fragment
 
 * Using the SIC 3-digit codes
-/*
-reghdfe EmpGrowth_h lnEmp lnEmp_Priv, absorb(US_SIC_Core_code_3_digits Year) vce(robust)
+
+reghdfe EmpGrowth_h lnEmp Private, absorb(US_SIC_Core_code_3_digits Year) vce(robust)
 eststo m2
 estadd local Sector "Yes"
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
-reghdfe EmpGrowth_h lnEmp lnEmp_Priv, absorb( Year) vce(robust)
+reghdfe EmpGrowth_h lnEmp Private, absorb( Year) vce(robust)
 eststo m2a
 estadd local Sector "No"
 estadd local Year "Yes"
 estadd local Robust "Yes"
 
-reghdfe EmpGrowth_h lnEmp lnEmp_Priv, absorb(US_SIC_Core_code_3_digits) vce(robust)
+reghdfe EmpGrowth_h lnEmp Private, absorb(US_SIC_Core_code_3_digits) vce(robust)
 eststo m2b
 estadd local Sector "Yes"
 estadd local Year "No"
 estadd local Robust "Yes"
 
-esttab m2 m2a m2b using "Output/$CountryID/OB_Emp_growth_regs_SIC.tex", se legend mtitles("US SIC 3-digit Sectors" "US SIC 3-digit Sectors" "US SIC 3-digit Sectors") title("Employment growth") s(N Sector Year Robust, label( "N" "Sector Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" lnEmp "(Log of) No. employees" lnEmp_Priv "(Log of) No. employees x Private") nonumbers keep( _cons lnEmp lnEmp_Priv) replace fragment
+esttab m2 m2a m2b using "Output/$CountryID/OB_Emp_growth_regs_SIC.tex", se legend mtitles("US SIC 3-digit Sectors" "US SIC 3-digit Sectors" "US SIC 3-digit Sectors") title("Employment growth") s(N Sector Year Robust, label( "N" "Sector Fixed Effect" "Year Fixed Effect" "Robust S.E."))  varlabels(_cons "Constant" lnEmp "(Log of) No. employees" Private "Private Firm") nonumbers keep( _cons lnEmp lnEmp_Priv) replace fragment
 
-*/
 restore
 
 

@@ -85,15 +85,15 @@
 			local p25_`x' = r(p25)
 			local p75_`x' = r(p75)
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`mean_`x'')
+			file write FinRatios %12.2gc (`mean_`x'')
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`min_`x'')
+			file write FinRatios %12.2gc (`min_`x'')
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`max_`x'')
+			file write FinRatios %12.2gc (`max_`x'')
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`p25_`x'')
+			file write FinRatios %12.2gc (`p25_`x'')
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`p75_`x'')
+			file write FinRatios %12.2gc (`p75_`x'')
 			file write FinRatios  "   \\   "					
 			drop mi_`x'	
 		}			
@@ -112,6 +112,9 @@
 
 		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue
 
+		* Public firms
+		keep if Private==0
+		
 		gen EBITDA_Assets = EBITDA/Assets
 		gen Revenue_Assets = Revenue/Assets
 		gen Profits_Assets = GrossProfits/Assets
@@ -126,16 +129,12 @@
 		replace MarketCap = MarketCap/1000000
 		replace Revenue =  Revenue/1000000
 		
-		
-		* Public firms
-		keep if Private==0
-		
 		* Firm x Year Observations
 
 		gen firm_year_obs = _n
 		sum firm_year_obs, detail
 		return list
-		local fy_obs = r(N)	
+		local fy_obs_pub = r(N)	
 
 		
 		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue EBITDA_Assets Revenue_Assets Profits_Assets MktCap_Assets{
@@ -150,7 +149,7 @@
 			file write FinRatios " Public Firms " 
 			
 			file write FinRatios " & "
-			file write FinRatios %12.0gc (`fy_obs')
+			file write FinRatios %12.0gc (`fy_obs_pub')
 	
 			
 			* Missing observations
@@ -181,15 +180,15 @@
 			local p25_`x' = r(p25)
 			local p75_`x' = r(p75)
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`mean_`x'')
+			file write FinRatios %12.2gc (`mean_`x'')
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`min_`x'')
+			file write FinRatios %12.2gc (`min_`x'')
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`max_`x'')
+			file write FinRatios %12.2gc (`max_`x'')
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`p25_`x'')
+			file write FinRatios %12.2gc (`p25_`x'')
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`p75_`x'')
+			file write FinRatios %12.2gc (`p75_`x'')
 			file write FinRatios  "   \\   "					
 			drop mi_`x'	
 		}			
@@ -206,7 +205,10 @@
 	preserve
 
 		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue
-
+		
+		* Public firms
+		keep if Private==1
+		
 		gen EBITDA_Assets = EBITDA/Assets
 		gen Revenue_Assets = Revenue/Assets
 		gen Profits_Assets = GrossProfits/Assets
@@ -219,23 +221,16 @@
 		replace EBITDA = EBITDA/10000
 		replace GrossProfits = GrossProfits/1000000
 		replace MarketCap = MarketCap/1000000
-		replace Revenue =  Revenue/1000000
-
-		
-		* Public firms
-		
-		keep if Private==1
+		replace Revenue =  Revenue/1000000		
 		
 		* Firm x Year Observations
 
 		gen firm_year_obs = _n
 		sum firm_year_obs, detail
 		return list
-		local fy_obs = r(N)	
+		local fy_obs_private = r(N)	
 
-		
-		
-		
+				
 		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue EBITDA_Assets Revenue_Assets Profits_Assets MktCap_Assets{
 				
 	
@@ -246,7 +241,7 @@
 			file write FinRatios " Private Firms " 
 			
 			file write FinRatios " & "
-			file write FinRatios %12.0gc (`fy_obs')
+			file write FinRatios %12.0gc (`fy_obs_private')
 	
 			
 			* Missing observations
@@ -277,15 +272,15 @@
 			local p25_`x' = r(p25)
 			local p75_`x' = r(p75)
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`mean_`x'')
+			file write FinRatios %12.2gc (`mean_`x'')
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`min_`x'')
+			file write FinRatios %12.2gc (`min_`x'')
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`max_`x'')
+			file write FinRatios %12.2gc (`max_`x'')
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`p25_`x'')
+			file write FinRatios %12.2gc (`p25_`x'')
 			file write FinRatios  "   &   "
-			file write FinRatios %8.2fc (`p75_`x'')
+			file write FinRatios %12.2gc (`p75_`x'')
 			file write FinRatios  "   \\   "					
 			drop mi_`x'	
 		}			
