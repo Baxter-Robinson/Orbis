@@ -12,7 +12,8 @@ preserve
 		
 		file close _all
 
-		file open CrossCountry using Output/${CountryID}/OB_Cross_Country.tex, write replace
+		*file open CrossCountry using Output/${CountryID}/OB_Cross_Country_Balanced.tex, write replace
+		file open CrossCountry using Output/${CountryID}/OB_Cross_Country_Unbalanced.tex, write replace
 
 		file write CrossCountry " ${CountryID} "
 

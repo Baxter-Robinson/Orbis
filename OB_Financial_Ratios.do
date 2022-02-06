@@ -16,11 +16,21 @@
 
 		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue
 
-		gen Assets_EBITDA = Assets/EBITDA
-		gen Assets_Revenue = Assets/Revenue
-		gen Assets_Profits = Assets/GrossProfits
+		gen EBITDA_Assets = EBITDA/Assets
+		gen Revenue_Assets = Revenue/Assets
+		gen Profits_Assets = GrossProfits/Assets
 		gen MktCap_Assets = Market_capitalisation_mil/Assets
-
+		
+		
+		rename Market_capitalisation_mil MarketCap
+		
+		* Dividing over 1,000,000 to make units visible in the table.
+		replace Assets=Assets/1000000
+		replace EBITDA = EBITDA/10000
+		replace GrossProfits = GrossProfits/1000000
+		replace MarketCap = MarketCap/1000000
+		replace Revenue =  Revenue/1000000
+		
 		* Firm x Year Observations
 
 		gen firm_year_obs = _n
@@ -28,11 +38,11 @@
 		return list
 		local fy_obs = r(N)	
 
-		rename Market_capitalisation_mil MarketCap
+		
 		
 		* Full sample
 		
-		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue Assets_EBITDA Assets_Revenue Assets_Profits MktCap_Assets{
+		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue EBITDA_Assets Revenue_Assets Profits_Assets MktCap_Assets{
 		
 		*foreach x in Assets EBITDA {
 		
@@ -102,11 +112,24 @@
 
 		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue
 
-		gen Assets_EBITDA = Assets/EBITDA
-		gen Assets_Revenue = Assets/Revenue
-		gen Assets_Profits = Assets/GrossProfits
+		gen EBITDA_Assets = EBITDA/Assets
+		gen Revenue_Assets = Revenue/Assets
+		gen Profits_Assets = GrossProfits/Assets
 		gen MktCap_Assets = Market_capitalisation_mil/Assets
-
+		
+		rename Market_capitalisation_mil MarketCap
+		
+		* Dividing over 1,000,000 to make units visible in the table.
+		replace Assets=Assets/1000000
+		replace EBITDA = EBITDA/10000
+		replace GrossProfits = GrossProfits/1000000
+		replace MarketCap = MarketCap/1000000
+		replace Revenue =  Revenue/1000000
+		
+		
+		* Public firms
+		keep if Private==0
+		
 		* Firm x Year Observations
 
 		gen firm_year_obs = _n
@@ -114,13 +137,8 @@
 		return list
 		local fy_obs = r(N)	
 
-		rename Market_capitalisation_mil MarketCap
 		
-		* Public firms
-		
-		keep if Private==0
-		
-		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue Assets_EBITDA Assets_Revenue Assets_Profits MktCap_Assets{
+		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue EBITDA_Assets Revenue_Assets Profits_Assets MktCap_Assets{
 		
 		*foreach x in Assets EBITDA {
 		
@@ -189,11 +207,25 @@
 
 		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue
 
-		gen Assets_EBITDA = Assets/EBITDA
-		gen Assets_Revenue = Assets/Revenue
-		gen Assets_Profits = Assets/GrossProfits
+		gen EBITDA_Assets = EBITDA/Assets
+		gen Revenue_Assets = Revenue/Assets
+		gen Profits_Assets = GrossProfits/Assets
 		gen MktCap_Assets = Market_capitalisation_mil/Assets
+		
+		rename Market_capitalisation_mil MarketCap
+		
+		* Dividing over 1,000,000 to make units visible in the table.
+		replace Assets=Assets/1000000
+		replace EBITDA = EBITDA/10000
+		replace GrossProfits = GrossProfits/1000000
+		replace MarketCap = MarketCap/1000000
+		replace Revenue =  Revenue/1000000
 
+		
+		* Public firms
+		
+		keep if Private==1
+		
 		* Firm x Year Observations
 
 		gen firm_year_obs = _n
@@ -201,13 +233,10 @@
 		return list
 		local fy_obs = r(N)	
 
-		rename Market_capitalisation_mil MarketCap
 		
-		* Public firms
 		
-		keep if Private==1
 		
-		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue Assets_EBITDA Assets_Revenue Assets_Profits MktCap_Assets{
+		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue EBITDA_Assets Revenue_Assets Profits_Assets MktCap_Assets{
 				
 	
 			file close _all

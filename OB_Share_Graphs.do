@@ -32,15 +32,16 @@ preserve
 	replace nFirmsCatPublic = round(nFirmsCatPublic)
 	replace nFirmsCatPrivate = round(nFirmsCatPrivate)
 	
+	
 	gen public_firms = nFirmsCatPublic
 	replace public_firms = 0 if public_firms==. 
 	gen private_firms = nFirmsCatPrivate
 	replace private_firms = 0 if private_firms==.
 	
-	levelsof SizeCategory, local(categories)
+	
 	
 	gen TotFirms = .
-	
+	levelsof SizeCategory, local(categories)
 	foreach x of local categories{
 		sum nFirmsCatPublic if SizeCategory==`x', detail
 		local pubf = r(mean)
@@ -48,13 +49,17 @@ preserve
 		local privf = r(mean)
 		replace TotFirms = `pubf'+`privf' if SizeCategory==`x'
 	}
-		
-	gen pct_nFirmsCatPrivate = 100*nFirmsCatPrivate/TotFirms
-	gen pct_nFirmsCatPublic = 100*nFirmsCatPublic/TotFirms
 	
+	bysort Private: egen nFirms = total(TotFirms)
+	
+	sort Private SizeCategory
+	
+	gen pct_nFirmsCatPrivate = 100*nFirmsCatPrivate/nFirms
+	gen pct_nFirmsCatPublic = 100*nFirmsCatPublic/nFirms
+	drop TotFirms
 	
 	gen floor = 0
-	gen roof = 100
+	gen roof = .
 	 
 	 forval i=1/5{
 	 	gen mid`i'=  pct_nFirmsCatPrivate/2  if (Private==1) & (SizeCategory==`i') // midpoints for private firms
@@ -65,20 +70,18 @@ preserve
 		gen nfirms`i' = pct_nFirmsCatPrivate if (Private==1) & (SizeCategory==`i') // values for private firms labels
 		su nfirms`i', meanonly
 		local nFirms`i' = round(r(mean))
-		drop nfirms`i'
-		
-		local endpoint`i' = 105
+		drop nfirms`i'		
 		
 		gen nfirmspub`i' = pct_nFirmsCatPublic if (Private==0) & (SizeCategory==`i')
 		su nfirmspub`i', meanonly
 		local nfirmspublic`i' = round(r(mean))
 		drop nfirmspub`i'
+		
+		local endpoint`i' = `nFirms`i''+`nfirmspublic`i'' + 2.5
+		replace roof = `nFirms`i''+`nfirmspublic`i'' if (SizeCategory==`i')
+		
 	 }
 	
-	
-	sum pct_nFirmsCatPrivate  if (Private==1) & (SizeCategory==5), detail
-	local lb = r(mean)
-	local endpoint5 = ((100+`lb')/2)
 	
 	label define SizeCat 1 "1 " 2 "2-10"  3 "11-99" 4 "100-999" 5 "+1000" 
 	local Labels  1 "1" 2 "2-10"  3 "11-99" 4 "100-999" 5 "+1000"  
@@ -99,7 +102,7 @@ preserve
 		text(`endpoint2' 2 "`nfirmspublic3'", color(navy) size(small)) /// 
 		text(`endpoint3' 3 "`nfirmspublic3'", color(navy) size(small)) /// 
 		text(`endpoint4' 4 "`nfirmspublic4'", color(navy) size(small)) /// 
-		text(`endpoint5' 5 "`nfirmspublic5'", color(white) size(small)) /// 
+		text(`endpoint5' 5 "`nfirmspublic5'", color(navy) size(small)) /// 
 		graphregion(color(white))
 		graph export Output/$CountryID/OB_BySizeCat_ShareFirms.pdf, replace 
 	
@@ -162,13 +165,14 @@ restore
 			local privf = r(mean)
 			replace TotFirms = `pubf'+`privf' if SizeCategory==`x'
 		}
-			
-		gen pct_nEmpCatPrivate = 100*nEmpCatPrivate/TotFirms
-		gen pct_nEmpCatPublic = 100*nEmpCatPublic/TotFirms
+		bysort Private: egen nFirms = total(TotFirms)	
+		
+		gen pct_nEmpCatPrivate = 100*nEmpCatPrivate/nFirms
+		gen pct_nEmpCatPublic = 100*nEmpCatPublic/nFirms
 		
 		
 		gen floor = 0
-		gen roof = 100
+		gen roof = .
 		 
 		 forval i=1/5{
 			gen mid`i'=  pct_nEmpCatPrivate/2  if (Private==1) & (SizeCategory==`i') // midpoints for private firms
@@ -181,18 +185,21 @@ restore
 			local nEmp`i' = round(r(mean))
 			drop nEmp`i'
 			
-			local endpoint`i' = 105
 
 			gen nEmppub`i' = pct_nEmpCatPublic if (Private==0) & (SizeCategory==`i')
 			su nEmppub`i', meanonly
 			local nEmppublic`i' = round(r(mean))
 			drop nEmppub`i'
-		 }
-		
-			sum pct_nEmpCatPrivate if (Private==1) & (SizeCategory==5), detail
-			local endpoint5 = (100+r(mean))/2
 			
-		
+			local endpoint`i' = `nEmp`i''+`nEmppublic`i'' + 2.5
+			replace roof = `nEmp`i''+`nEmppublic`i'' if (SizeCategory==`i')
+			
+		 }		
+		sum roof if SizeCategory==5,detail
+		local endp5roof1 = r(mean)
+		sum pct_nEmpCatPrivate if SizeCategory==5,detail
+		local endp5roof2 = r(mean)
+		local endpoint5 = (`endp5roof1'+`endp5roof2')/2
 		
 		label define SizeCat 1 "1 " 2 "2-10"  3 "11-99" 4 "100-999" 5 "+1000" 
 		local Labels  1 "1" 2 "2-10"  3 "11-99" 4 "100-999" 5 "+1000"  
@@ -275,7 +282,7 @@ restore
 		gen private_firms = nEmpCatPrivate
 		replace private_firms = 0 if private_firms==.
 				
-		gen TotFirms = .
+		gen TotEmp = .
 		
 		levelsof AgeCategory, local(categories)		
 		foreach x of local categories{
@@ -283,15 +290,16 @@ restore
 			local pubf = r(mean)
 			sum nEmpCatPrivate if AgeCategory==`x', detail
 			local privf = r(mean)
-			replace TotFirms = `pubf'+`privf' if AgeCategory==`x'
+			replace TotEmp = `pubf'+`privf' if AgeCategory==`x'
 		}
-			
-		gen pct_nEmpCatPrivate = 100*nEmpCatPrivate/TotFirms
-		gen pct_nEmpCatPublic = 100*nEmpCatPublic/TotFirms
+		
+		bysort Private: egen nEmp = total(TotEmp)	
+		
+		gen pct_nEmpCatPrivate = 100*nEmpCatPrivate/nEmp
+		gen pct_nEmpCatPublic = 100*nEmpCatPublic/nEmp
 		
 		gen floor = 0
-		gen roof = 100
-			
+		gen roof = .
 		
 		
 		levelsof AgeCategory, local(categories)	
@@ -300,14 +308,15 @@ restore
 			local mean_`i' = r(mean)
 			di `mean_`i''
 			local midpoint`i' = round(`mean_`i''/2,.01)    // midpoints for private firms
-			di `midpoint`i''
-			local endpoint`i' = round((`mean_`i''+100)/2,.01)
-			
+						
 			su pct_nEmpCatPrivate if (Private==1) & (AgeCategory==`i') , detail // values for private firms labels
 			local nEmp`i' = round(r(mean))
 	
 			su pct_nEmpCatPublic if (Private==0) & (AgeCategory==`i'), detail
 			local nEmppublic`i' = round(r(mean))
+			
+			local endpoint`i' = `nEmp`i''+`nEmppublic`i'' + 1
+			replace roof = `nEmp`i''+`nEmppublic`i'' if (AgeCategory==`i')
 		 }
 		 
 		 
@@ -348,21 +357,21 @@ restore
 			text(`midpoint13' 13 "`nEmp13'", color(white) size(small)) /// 
 			text(`midpoint14' 14 "`nEmp14'", color(white) size(small)) /// 
 			text(`midpoint15' 15 "`nEmp15'", color(white) size(small)) /// 
-			text(`endpoint1' 1 "`nEmppublic2'", color(white) size(small)) /// 
-			text(`endpoint2' 2 "`nEmppublic2'", color(white) size(small)) /// 
-			text(`endpoint3' 3 "`nEmppublic3'", color(white) size(small)) /// 
-			text(`endpoint4' 4 "`nEmppublic4'", color(white) size(small)) /// 
-			text(`endpoint5' 5 "`nEmppublic5'", color(white) size(small)) /// 
-			text(`endpoint6' 6 "`nEmppublic6'", color(white) size(small)) /// 
-			text(`endpoint7' 7 "`nEmppublic7'", color(white) size(small)) /// 
-			text(`endpoint8' 8 "`nEmppublic8'", color(white) size(small)) /// 
-			text(`endpoint9' 9 "`nEmppublic9'", color(white) size(small)) /// 
-			text(`endpoint10' 10 "`nEmppublic10'", color(white) size(small)) /// 
-			text(`endpoint11' 11 "`nEmppublic11'", color(white) size(small)) /// 
-			text(`endpoint12' 12 "`nEmppublic12'", color(white) size(small)) /// 
-			text(`endpoint13' 13 "`nEmppublic13'", color(white) size(small)) /// 
-			text(`endpoint14' 14 "`nEmppublic14'", color(white) size(small)) /// 
-			text(`endpoint15' 15 "`nEmppublic15'", color(white) size(small)) /// 
+			text(`endpoint1' 1 "`nEmppublic2'", color(navy) size(small)) /// 
+			text(`endpoint2' 2 "`nEmppublic2'", color(navy) size(small)) /// 
+			text(`endpoint3' 3 "`nEmppublic3'", color(navy) size(small)) /// 
+			text(`endpoint4' 4 "`nEmppublic4'", color(navy) size(small)) /// 
+			text(`endpoint5' 5 "`nEmppublic5'", color(navy) size(small)) /// 
+			text(`endpoint6' 6 "`nEmppublic6'", color(navy) size(small)) /// 
+			text(`endpoint7' 7 "`nEmppublic7'", color(navy) size(small)) /// 
+			text(`endpoint8' 8 "`nEmppublic8'", color(navy) size(small)) /// 
+			text(`endpoint9' 9 "`nEmppublic9'", color(navy) size(small)) /// 
+			text(`endpoint10' 10 "`nEmppublic10'", color(navy) size(small)) /// 
+			text(`endpoint11' 11 "`nEmppublic11'", color(navy) size(small)) /// 
+			text(`endpoint12' 12 "`nEmppublic12'", color(navy) size(small)) /// 
+			text(`endpoint13' 13 "`nEmppublic13'", color(navy) size(small)) /// 
+			text(`endpoint14' 14 "`nEmppublic14'", color(navy) size(small)) /// 
+			text(`endpoint15' 15 "`nEmppublic15'", color(navy) size(small)) /// 
 			graphregion(color(white))
 			graph export Output/$CountryID/OB_ByAge_ShareEmployment.pdf, replace 
 	
