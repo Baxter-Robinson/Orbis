@@ -31,8 +31,8 @@ set more off
 
 * Javier PATH
 * Laptop
-cd "/Volumes/EHDD1 1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-global DATAPATH "/Volumes/EHDD1 1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 * HOME
 *cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
