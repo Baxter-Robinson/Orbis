@@ -181,3 +181,62 @@ graph export Output/Cross-Country/empShareLargeFirms_EquityMktDepth_WB.pdf, repl
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* Make a graph with equity market depth on the x-axis and any of these variables on the y-axis
+
+
+DomCredit_WB
+DomCreditBanks_WB
+PrivateDebtIMF 
+PrivateDebtAllIMF 
+HHDebtIMF 
+HHDebtAllIMF 
+NonFinancialDebtIMF 
+NonFinancialDebtAllIMF
+
+
+
+scatter DomCredit_WB EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Domestic Credit") graphregion(color(white)) mlabel(Country)
+graph export Output/Cross-Country/DomCredit_WB_EquityMktDepth.pdf, replace
+
+scatter DomCreditBanks_WB EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Domestic Credit by Banks") graphregion(color(white)) mlabel(Country)
+graph export Output/Cross-Country/DomCreditBanks_WB_EquityMktDepth.pdf, replace
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*Make another set of graphs with TFP on the y-axis and each measure of financial development on the x-axis
+
+
+scatter tfp EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)

@@ -12,6 +12,31 @@ drop _merge
 merge 1:1 Country using "Data_Cleaned/WB_MarketCapToGDP.dta"
 drop _merge
 
+merge 1:1 Country using "Data_Cleaned/WB_DomCreditToGDP.dta"
+drop _merge
+
+merge 1:1 Country using "Data_Cleaned/WB_DomCreditBanksToGDP.dta"
+drop _merge
+
+merge 1:1 Country using "Data_Cleaned/IMF_PrivateDebtToGDP.dta"
+drop _merge
+
+merge 1:1 Country using "Data_Cleaned/IMF_HHDebtToGDP.dta"
+drop _merge
+
+merge 1:1 Country using "Data_Cleaned/IMF_NonFinancialDebtToGDP.dta"
+drop _merge
+
+merge 1:1 Country using "Data_Cleaned/IMF_PrivateDebtAllToGDP.dta"
+drop _merge
+
+merge 1:1 Country using "Data_Cleaned/IMF_HHDebtAllToGDP.dta"
+drop _merge
+
+merge 1:1 Country using "Data_Cleaned/IMF_NonFinancialDebtAllToGDP.dta"
+drop _merge
+
+
 
 gen EquityMktDepth_CSyearend = mve_yearend/gdpo
 gen EquityMktDepth_CSAnnual = mve_annual/gdpo
