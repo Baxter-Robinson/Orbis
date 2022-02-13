@@ -6,7 +6,6 @@
 */
 		
 preserve
-preserve
 keep Sales nEmployees Year IDNum Private
 sum nEmployees, detail
 
