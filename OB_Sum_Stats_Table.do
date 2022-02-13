@@ -8,7 +8,6 @@
 preserve
 preserve
 keep Sales nEmployees Year IDNum Private
-keep if Private==0
 sum nEmployees, detail
 
 local minEmp = r(min)
