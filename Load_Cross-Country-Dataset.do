@@ -8,7 +8,6 @@ foreach Country of global Countries {
 merge 1:1 Country using "Data_Cleaned/PennWorldIndicators.dta"
 drop _merge
 
-
 merge 1:1 Country using "Data_Cleaned/WB_MarketCapToGDP.dta"
 drop _merge
 
@@ -21,17 +20,19 @@ drop _merge
 merge 1:1 Country using "Data_Cleaned/IMF_PrivateDebtToGDP.dta"
 drop _merge
 
+merge 1:1 Country using "Data_Cleaned/IMF_PrivateDebtAllToGDP.dta"
+drop _merge
+
 merge 1:1 Country using "Data_Cleaned/IMF_HHDebtToGDP.dta"
+drop _merge
+
+
+merge 1:1 Country using "Data_Cleaned/IMF_HHDebtAllToGDP.dta"
 drop _merge
 
 merge 1:1 Country using "Data_Cleaned/IMF_NonFinancialDebtToGDP.dta"
 drop _merge
 
-merge 1:1 Country using "Data_Cleaned/IMF_PrivateDebtAllToGDP.dta"
-drop _merge
-
-merge 1:1 Country using "Data_Cleaned/IMF_HHDebtAllToGDP.dta"
-drop _merge
 
 merge 1:1 Country using "Data_Cleaned/IMF_NonFinancialDebtAllToGDP.dta"
 drop _merge
