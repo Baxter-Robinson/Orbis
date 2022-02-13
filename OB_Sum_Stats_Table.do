@@ -1,8 +1,8 @@
 
 /*
- New Summary Statistics Table
-        - Rows: Full sample/Private Firms/Public Firms
-        - Columns: Employment (Min, P10,P50 p90, Max), Sales (Min, P10, P50, P90, Max)
+New Summary Statistics Table
+Rows: Full sample/Private Firms/Public Firms
+Columns: Employment (Min, P10,P50 p90, Max), Sales (Min, P10, P50, P90, Max)
 */
 		
 preserve
