@@ -8,6 +8,7 @@ Columns: Employment (Min, P10,P50 p90, Max), Sales (Min, P10, P50, P90, Max)
 preserve
 keep Sales nEmployees Year IDNum Private
 sum nEmployees, detail
+replace Sales = Sales/1000000
 
 local minEmp = r(min)
 local p10Emp = r(p10)
@@ -68,7 +69,9 @@ restore
 preserve
 keep Sales nEmployees Year IDNum Private
 keep if Private==1
+replace Sales = Sales/1000000
 sum nEmployees, detail
+
 
 local minEmp = r(min)
 local p10Emp = r(p10)
@@ -130,6 +133,7 @@ restore
 preserve
 keep Sales nEmployees Year IDNum Private
 keep if Private==0
+replace Sales = Sales/1000000
 sum nEmployees, detail
 
 local minEmp = r(min)
