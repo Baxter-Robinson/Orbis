@@ -167,7 +167,7 @@ foreach Country of global Countries {
 
 
 *-------------------------------------------------------
-* World Bank Data 
+* World Bank Data and IMF data
 *-------------------------------------------------------
 *do WB_CleanData.do
 
