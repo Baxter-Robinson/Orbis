@@ -212,10 +212,29 @@ drop if (Year>2018)
 drop if missing(nEmployees)
 
 *----------------------
+* Size Category 
+*----------------------
+
+sum nEmployees, detail
+local max= r(max)
+egen groups  = cut(nEmployees), at (1, 2, 5, 6, 10, 11, 50, 51, 100, 101, 1000, 1001, `max')
+
+gen SizeCategory = . 
+replace SizeCategory = 1 if groups==1
+replace SizeCategory = 2 if (groups==2) | (groups==5)
+replace SizeCategory = 3 if (groups==6) | (groups==10)
+replace SizeCategory = 4 if (groups==11) | (groups==50)
+replace SizeCategory = 5 if (groups==51) | (groups==100)
+replace SizeCategory = 6 if (groups==101) | (groups==1000)
+replace SizeCategory = 7 if (groups==1001) | (groups==`max')
+
+*----------------------
 * Save unbalanced panel
 *----------------------
 
 save "Data_Cleaned/${CountryID}_Unbalanced.dta", replace
+
+drop SizeCategory
 
 *--------------------------------------------------------------
 * Create country-level-statistics for a country-level database
@@ -285,6 +304,26 @@ else {
 	keep if nyear == 10
 	drop nyear
 }
+
+
+
+*----------------------
+* Size Category 
+*----------------------
+
+sum nEmployees, detail
+local max= r(max)
+egen groups  = cut(nEmployees), at (1, 2, 5, 6, 10, 11, 50, 51, 100, 101, 1000, 1001, `max')
+
+gen SizeCategory = . 
+replace SizeCategory = 1 if groups==1
+replace SizeCategory = 2 if (groups==2) | (groups==5)
+replace SizeCategory = 3 if (groups==6) | (groups==10)
+replace SizeCategory = 4 if (groups==11) | (groups==50)
+replace SizeCategory = 5 if (groups==51) | (groups==100)
+replace SizeCategory = 6 if (groups==101) | (groups==1000)
+replace SizeCategory = 7 if (groups==1001) | (groups==`max')
+
 
 * Making sure it is strongly balanced 
 xtset IDNum Year 
