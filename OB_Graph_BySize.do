@@ -464,7 +464,7 @@ restore
 		drop mid`i'
 		
 		su EmpGrowth_sd if  (SizeCategory==`i'), detail
-		local EmpGrowth_sd`i' = round(r(mean),.001)
+		local EmpGrowth_sd`i' = r(mean)
 
 	
 		if ("${CountryID}" == "ES") | ("${CountryID}" == "DE")  {
@@ -590,7 +590,7 @@ restore
 		drop mid`i'
 		
 		su Sales_Employees if  (SizeCategory==`i'), detail
-		local Sales_Employees`i' = round(r(mean),.01)
+		local Sales_Employees`i' = r(mean)
 
 	
 		if ("${CountryID}" == "ES") | ("${CountryID}" == "DE")  {
@@ -715,7 +715,7 @@ restore
 		drop mid`i'
 		
 		su nFirms if  (SizeCategory==`i'), detail
-		local nFirms`i' = round(r(mean))
+		local nFirms`i' = r(mean)
 
 	
 		if ("${CountryID}" == "ES") | ("${CountryID}" == "DE")  {

@@ -113,9 +113,6 @@ gen Industry_2digit=floor(Industry_4digit/100)
 * Growth Rates
 *---------------------------
 
-* Employment Growth Rate (Regular)
-bysort IDNum: gen EmpGrowth_r=(nEmployees-L.nEmployees)/(L.nEmployees)
-
 * Employment Growth Rate (Haltiwanger)
 bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
 	

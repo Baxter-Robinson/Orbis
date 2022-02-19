@@ -31,19 +31,24 @@ preserve
 		gen BelowMedian = 0
 		replace BelowMedian=1 if F_review < `Emp_median'
 
-
+		gen Below10 = 0
+		replace Below10=1 if F_review < 10
+		gen Below100 = 0
+		replace Below100=1 if F_review < 100
+		
 		bysort IDNum: gen nvals = _n == 1  
 		
 		replace BelowQ1 = BelowQ1*nvals
 		replace BelowMedian = BelowMedian*nvals
-		
+		replace Below10 = Below10*nvals
+		replace Below100 = Below100*nvals		
 		
 		replace nvals = sum(nvals)
 		replace nvals = nvals[_N] 
 		gen numFirms = nvals
+		drop nvals
 		sum numFirms, detail
 		local nfirms = r(mean)
-		
 		file write Static " & `nfirms' "
 		
 		sum BelowQ1, detail
@@ -54,6 +59,15 @@ preserve
 		sum BelowMedian, detail
 		return list
 		local static_Q2 = 100*r(sum)/`nfirms'
+		
+		sum Below10, detail
+		return list
+		local static_10 = 100*r(sum)/`nfirms'
+		
+		sum Below100, detail
+		return list
+		local static_100 = 100*r(sum)/`nfirms'
+		
 
 		file write Static  "   &   "
 		
@@ -62,6 +76,14 @@ preserve
 		file write Static  "   &   "
 		
 		file write Static  %4.2fc  (`static_Q2')
+		
+		file write Static  "   &   "
+		
+		file write Static  %4.2fc  (`static_10')
+		
+		file write Static  "   &   "
+		
+		file write Static  %4.2fc  (`static_100')
 		
 		file write Static  "   \\  "
 			

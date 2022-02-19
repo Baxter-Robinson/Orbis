@@ -31,12 +31,12 @@ set more off
 
 * Javier PATH
 * Laptop
-cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+*cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+*global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 * HOME
-*cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 *
 
@@ -58,6 +58,8 @@ foreach Country of global Countries {
 	
 	*do OB_Table_Missing-Observations.do
 	
+	do OB_RAW_By_Year_NumFirms_PubVPrivate.do
+	
 	*-------------------------------------------------------
 	* Clean Data
 	*-------------------------------------------------------
@@ -72,7 +74,7 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
@@ -102,12 +104,16 @@ foreach Country of global Countries {
 	
 	
 	*do OB_HGR_regressions.do
-	*do OB_gEmp_Regressions.do
+	
+	do OB_Graph_BySize.do
+	do OB_Graph_HaltiGrowth_Employment-Dist.do
+	do OB_gEmp_Regressions.do
+	do OB_Table_Share_Emp_SizeCat.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Balanced.dta",clear
+	use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
@@ -120,6 +126,7 @@ foreach Country of global Countries {
 	*do OB_Graph_Change-No-Shareholders-Dist.do
 	*do OB_Graph_FirmTypes.do
 	
+	do OB_Static_Firm_Share.do
 	
 	*-------------------------------------------------------
 	* Compustat (CS): Unbalanced Panel
