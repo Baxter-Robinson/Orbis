@@ -45,7 +45,7 @@
 		
 		levelsof SizeCategory, local(SizeCat)
 		
-		foreach i in local SizeCat{
+		foreach i of local SizeCat{
 			sum pct_nEmpCat if SizeCategory==`i', detail
 			local SizeCat`i' = r(mean)
 		}

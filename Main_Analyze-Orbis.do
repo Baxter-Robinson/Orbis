@@ -58,14 +58,14 @@ foreach Country of global Countries {
 	
 	*do OB_Table_Missing-Observations.do
 	
-	do OB_RAW_By_Year_NumFirms_PubVPrivate.do
+	*do OB_RAW_By_Year_NumFirms_PubVPrivate.do
 	
 	*-------------------------------------------------------
 	* Clean Data
 	*-------------------------------------------------------
 	* Orbis
-	*use "${DATAPATH}/${CountryID}_merge.dta", clear
-	*do OB_Program_Clean-Data.do
+	use "${DATAPATH}/${CountryID}_merge.dta", clear
+	do OB_Program_Clean-Data.do
 	
 	* Compustat
 	*use "${DATAPATH}/${CountryID}_compustat.dta", clear
@@ -74,7 +74,7 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
@@ -101,19 +101,17 @@ foreach Country of global Countries {
 	
 	*do OB_HGR_Pattern_Checks.do 
 	
-	
-	
 	*do OB_HGR_regressions.do
 	
-	do OB_Graph_BySize.do
-	do OB_Graph_HaltiGrowth_Employment-Dist.do
-	do OB_gEmp_Regressions.do
-	do OB_Table_Share_Emp_SizeCat.do
+	*do OB_Graph_BySize.do
+	*do OB_Graph_HaltiGrowth_Employment-Dist.do
+	*do OB_gEmp_Regressions.do
+	*do OB_Table_Share_Emp_SizeCat.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
 	*-------------------------------------------------------
-	use "Data_Cleaned/`Country'_Balanced.dta",clear
+	*use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
@@ -126,7 +124,7 @@ foreach Country of global Countries {
 	*do OB_Graph_Change-No-Shareholders-Dist.do
 	*do OB_Graph_FirmTypes.do
 	
-	do OB_Static_Firm_Share.do
+	*do OB_Static_Firm_Share.do
 	
 	*-------------------------------------------------------
 	* Compustat (CS): Unbalanced Panel
@@ -181,7 +179,7 @@ foreach Country of global Countries {
 *-------------------------------------------------------
 * Penn World Table (PN) Indicators
 *-------------------------------------------------------
-use "${DATAPATH}/pwt100.dta", clear
+*use "${DATAPATH}/pwt100.dta", clear
 *do PN_Indicators.do
 
 *-----------------------------
