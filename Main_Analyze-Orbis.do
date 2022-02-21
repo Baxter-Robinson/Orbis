@@ -83,7 +83,7 @@ foreach Country of global Countries {
 	*do OB_Graph_IPOyear-Dist.do
 	*do OB_Graph_Growth_IPOyear-Dist.do
 	*do OB_Graph_BySize.do
-	*do OB_Graph_BySize_PubVPrivate.do
+	do OB_Graph_BySize_PubVPrivate.do
 	
 	*do OB_Regressions_FirmTypes.do
 
@@ -103,7 +103,7 @@ foreach Country of global Countries {
 	
 	*do OB_HGR_regressions.do
 	
-	do OB_Sum_Stats_Table.do
+	*do OB_Sum_Stats_Table.do
 	
 	*do OB_Graph_BySize.do
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do

@@ -53,8 +53,76 @@
 \FloatBarrier
 %------------------------------------------------------------------------------
 
+\subsection{Summary Statistics Table}
+\begin{table}[!htpb]
+\caption{Summary Statistics}
+\begin{tabular}{l*{11}{c}}
+\hline
+Country & Sample & \multicolumn{5}{c}{Employment} & \multicolumn{5}{c}{Sales (EUR, millions)} \\ \cline{3-7} \cline{8-12}
+		&		 & Min & P10 & P50 & P90 & Max & Min & P10 & P50 & P90 & Max \\  \hline
+Italy & \input{../Output/IT/OB_Sum_Stats.tex} 
+Italy & \input{../Output/IT/OB_Sum_Stats_Private.tex}  
+Italy & \input{../Output/IT/OB_Sum_Stats_Public.tex}  \\
+Portugal & \input{../Output/PT/OB_Sum_Stats.tex} 
+Portugal & \input{../Output/PT/OB_Sum_Stats_Private.tex} 
+Portugal & \input{../Output/PT/OB_Sum_Stats_Public.tex} \\ 
+France & \input{../Output/FR/OB_Sum_Stats.tex}  
+France & \input{../Output/FR/OB_Sum_Stats_Private.tex}  
+France & \input{../Output/FR/OB_Sum_Stats_Public.tex}   \\
+Spain & \input{../Output/ES/OB_Sum_Stats.tex}  
+Spain & \input{../Output/ES/OB_Sum_Stats_Private.tex}  
+Spain & \input{../Output/ES/OB_Sum_Stats_Public.tex}   \\
+Germany & \input{../Output/DE/OB_Sum_Stats.tex}  
+Germany & \input{../Output/DE/OB_Sum_Stats_Private.tex}  
+Germany & \input{../Output/DE/OB_Sum_Stats_Public.tex}   \\
+Netherlands & \input{../Output/NL/OB_Sum_Stats.tex}  
+Netherlands & \input{../Output/NL/OB_Sum_Stats_Private.tex}  
+Netherlands & \input{../Output/NL/OB_Sum_Stats_Public.tex}   
+\end{tabular}
+\end{table}
 
-\subsection{Average Growth Rates by Size}
+\clearpage
+
+
+\subsection{Average Employment Growth Rates by Size Categories}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.6]{../Output/IT/Graph_BySizeCategory_GrowthRateAvg.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.6]{../Output/PT/Graph_BySizeCategory_GrowthRateAvg.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.6]{../Output/FR/Graph_BySizeCategory_GrowthRateAvg.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/ES/Graph_BySizeCategory_GrowthRateAvg.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Germany}
+ \includegraphics[scale=0.6]{../Output/DE/Graph_BySizeCategory_GrowthRateAvg.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_GrowthRateAvg.pdf}
+\end{subfigure}
+\end{figure}
+
+\clearpage
+
+
+\subsection{Average Employment Growth Rates by Size Percentiles}
 \begin{figure}[!htpb]
 \centering
 \begin{subfigure}{.49\textwidth}
@@ -84,125 +152,83 @@
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Netherland}
+    \subcaption{Netherlands}
  \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_GrowthRateAvg.pdf}
 \end{subfigure}
 \end{figure}
 
-\subsection{Weighted Average Growth Rates by Size}
+
+\subsection{Standard Deviation of Employment Growth Rates by Size Categories}
 \begin{figure}[!htpb]
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Italy}
- \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_GrowthRateAvg_Weighted.pdf}
+ \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Portugal}
- \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_GrowthRateAvg_Weighted.pdf}
+ \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{France}
- \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_GrowthRateAvg_Weighted.pdf}
+ \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Spain}
- \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_GrowthRateAvg_Weighted.pdf}
+ \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Germany}
- \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_GrowthRateAvg_Weighted.pdf}
+ \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Netherland}
- \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_GrowthRateAvg_Weighted.pdf}
+ \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 \end{subfigure}
 \end{figure}
 
-
-\subsection{Number of firms by Size}
+\subsection{Standard Deviation of Employment Growth Rates by Size Percentiles}
 \begin{figure}[!htpb]
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Italy}
- \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_NumFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Portugal}
- \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_NumFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{France}
- \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_NumFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Spain}
- \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_NumFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Germany}
- \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_NumFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Netherland}
- \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_NumFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 \end{subfigure}
 \end{figure}
 
-
-
-
-\subsection{Percentiles-specific Growth Rates by Size}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Italy}
- \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_GrowthRatePercentiles.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Portugal}
- \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_GrowthRatePercentiles.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{France}
- \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_GrowthRatePercentiles.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Spain}
- \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_GrowthRatePercentiles.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Germany}
- \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_GrowthRatePercentiles.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Netherland}
- \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_GrowthRatePercentiles.pdf}
-\end{subfigure}
-\end{figure}
-
-
-
-
-
-\subsection{Standard Deviation of Growth Rates by Size}
+\subsection{Number of Firms by Size Categories}
 \begin{figure}[!htpb]
 \centering
 \begin{subfigure}{.49\textwidth}
@@ -239,41 +265,45 @@
 
 
 
-\subsection{Weighted Standard Deviation of Growth Rates by Size}
+\subsection{Number of firms by Size Percentile}
 \begin{figure}[!htpb]
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Italy}
- \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_GrowthRateStd_Weighted.pdf}
+ \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_NumFirms.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Portugal}
- \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_GrowthRateStd_Weighted.pdf}
+ \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_NumFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{France}
- \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_GrowthRateStd_Weighted.pdf}
+ \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_NumFirms.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Spain}
- \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_GrowthRateStd_Weighted.pdf}
+ \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_NumFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Germany}
- \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_GrowthRateStd_Weighted.pdf}
+ \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_NumFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Netherland}
- \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_GrowthRateStd_Weighted.pdf}
+ \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_NumFirms.pdf}
 \end{subfigure}
 \end{figure}
 
+\subsection{Sales per Employee by Size Category}
+\clearpage
+\subsection{Sales per Employee by Size Percentiles}
+\clearpage
 
 \subsection{Distribution of Employment Growth Rates (Orbis)}
 \begin{figure}[!htpb]
@@ -310,25 +340,41 @@
 \end{subfigure}
 \end{figure}
 
-
-
-\subsection{Employment Statistics (Orbis)}
-\begin{table}[!htpb]
+\subsection{Compustat: Distribution of Employment Growth Rates}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
     \centering
-    \scalebox{0.9}{
-    \begin{tabular}{@{} l  r r r | r r | r r | r r r @{}}
-        \toprule
-          & \multicolumn{3}{c}{Avg Number of Employees} & \multicolumn{2}{c}{Mean Growth Rate} & \multicolumn{2}{c}{Std of Growth Rate}  & \multicolumn{2}{c}{n firm-year Obs} \\
-         & Public & Private & Ratio  & Public & Private  & Public & Private & Public & Private   \\ \midrule
-        \input{../Output/IT/Table_PubVsPri.tex}
-        \input{../Output/PT/Table_PubVsPri.tex}
-        \input{../Output/ES/Table_PubVsPri.tex}
-        \input{../Output/FR/Table_PubVsPri.tex}
-	\input{../Output/DE/Table_PubVsPri.tex}
-	\input{../Output/NL/Table_PubVsPri.tex}
-    \end{tabular}
-    }
-\end{table}
+    \subcaption{Italy}
+ \includegraphics[scale=0.6]{../Output/IT/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.6]{../Output/PT/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.6]{../Output/FR/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/ES/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Germany}
+ \includegraphics[scale=0.6]{../Output/DE/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Netherland}
+ \includegraphics[scale=0.6]{../Output/NL/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+\end{subfigure}
+\end{figure}
+
 \clearpage
 
 
@@ -449,254 +495,7 @@
 \clearpage
 
 
-\clearpage
 
-\subsection{Additional variables HGR - ITALY}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{COGS}
- \includegraphics[scale=0.6]{../Output/IT/Distribution_COGS_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Revenue}
- \includegraphics[scale=0.6]{../Output/IT/Distribution_Revenue_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Assets}
- \includegraphics[scale=0.6]{../Output/IT/Distribution_Assets_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Profit}
- \includegraphics[scale=0.6]{../Output/IT/Distribution_ProfitGrowth_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Sales}
- \includegraphics[scale=0.6]{../Output/IT/Distribution_SalesGrowth_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{EBITDA}
- \includegraphics[scale=0.6]{../Output/IT/Distribution_EBITDA_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\end{figure}
-\clearpage
-
-
-\subsection*{Additional variables HGR - PORTUGAL}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{COGS}
- \includegraphics[scale=0.6]{../Output/PT/Distribution_COGS_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Revenue}
- \includegraphics[scale=0.6]{../Output/PT/Distribution_Revenue_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Assets}
- \includegraphics[scale=0.6]{../Output/PT/Distribution_Assets_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Profit}
- \includegraphics[scale=0.6]{../Output/PT/Distribution_ProfitGrowth_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Sales}
- \includegraphics[scale=0.6]{../Output/PT/Distribution_SalesGrowth_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{EBITDA}
- \includegraphics[scale=0.6]{../Output/PT/Distribution_EBITDA_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\end{figure}
-\clearpage
-
-
-\subsection*{Additional variables HGR - SPAIN}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{COGS}
- \includegraphics[scale=0.6]{../Output/ES/Distribution_COGS_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Revenue}
- \includegraphics[scale=0.6]{../Output/ES/Distribution_Revenue_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Assets}
- \includegraphics[scale=0.6]{../Output/ES/Distribution_Assets_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Profit}
- \includegraphics[scale=0.6]{../Output/ES/Distribution_ProfitGrowth_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Sales}
- \includegraphics[scale=0.6]{../Output/ES/Distribution_SalesGrowth_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{EBITDA}
- \includegraphics[scale=0.6]{../Output/ES/Distribution_EBITDA_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\end{figure}
-\clearpage
-
-
-\subsection*{Additional variables HGR - FRANCE}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{COGS}
- \includegraphics[scale=0.6]{../Output/FR/Distribution_COGS_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Revenue}
- \includegraphics[scale=0.6]{../Output/FR/Distribution_Revenue_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Assets}
- \includegraphics[scale=0.6]{../Output/FR/Distribution_Assets_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Profit}
- \includegraphics[scale=0.6]{../Output/FR/Distribution_ProfitGrowth_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Sales}
- \includegraphics[scale=0.6]{../Output/FR/Distribution_SalesGrowth_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{EBITDA}
- \includegraphics[scale=0.6]{../Output/FR/Distribution_EBITDA_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\end{figure}
-\clearpage
-
-
-
-\subsection*{Additional variables HGR - GERMANY}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{COGS}
- \includegraphics[scale=0.6]{../Output/DE/Distribution_COGS_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Revenue}
- \includegraphics[scale=0.6]{../Output/DE/Distribution_Revenue_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Assets}
- \includegraphics[scale=0.6]{../Output/DE/Distribution_Assets_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Profit}
- \includegraphics[scale=0.6]{../Output/DE/Distribution_ProfitGrowth_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Sales}
- \includegraphics[scale=0.6]{../Output/DE/Distribution_SalesGrowth_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{EBITDA}
- \includegraphics[scale=0.6]{../Output/DE/Distribution_EBITDA_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\end{figure}
-\clearpage
-
-
-
-\subsection*{Additional variables HGR - NETHERLANDS}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{COGS}
- \includegraphics[scale=0.6]{../Output/NL/Distribution_COGS_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Revenue}
- \includegraphics[scale=0.6]{../Output/NL/Distribution_Revenue_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Assets}
- \includegraphics[scale=0.6]{../Output/NL/Distribution_Assets_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Profit}
- \includegraphics[scale=0.6]{../Output/NL/Distribution_ProfitGrowth_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Sales}
- \includegraphics[scale=0.6]{../Output/NL/Distribution_SalesGrowth_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{EBITDA}
- \includegraphics[scale=0.6]{../Output/NL/Distribution_EBITDA_h_Haltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\end{figure}
-\clearpage
-
-
-
-\subsection{Employment jumps - Public firms}
-\begin{center}
-\textbf{Italy}\\~\
-\resizebox{.45\linewidth}{!}{\input{../Output/IT/Table_Public_nEmployees_freq.tex}}
-\clearpage
-\textbf{Portugal}\\~\
-\resizebox{.45\linewidth}{!}{\input{../Output/PT/Table_Public_nEmployees_freq.tex}}
-\clearpage
-\textbf{France}\\~\
-\resizebox{.45\linewidth}{!}{\input{../Output/FR/Table_Public_nEmployees_freq.tex}}
-\clearpage
-\textbf{Spain}\\~\
-\resizebox{.45\linewidth}{!}{\input{../Output/ES/Table_Public_nEmployees_freq.tex}}
-\clearpage
-\textbf{Germany}\\~\
-\resizebox{.45\linewidth}{!}{\input{../Output/DE/Table_Public_nEmployees_freq.tex}}
-\clearpage
-\textbf{Netherlands}\\~\
-\resizebox{.45\linewidth}{!}{\input{../Output/NL/Table_Public_nEmployees_freq.tex}}
-\clearpage
-\end{center}
 
 \subsection{Haltiwanger Growth Rate Regressions}
 
@@ -1068,125 +867,6 @@ where the vector $x_{jt} = \left[  1, x_{1jt}, \mathbbm{1}\text{Public}, \mathbb
 \end{itemize}
 \clearpage
 
-\subsection{Orbis: Haltiwanger Growth Rates Analysis}
-\subsubsection{Cases}
-
-The terms upward and downward have the following definitions:
-\begin{itemize}
-\item Upward: refers to the case where a firm has a HGR$<-$1.90 in period t, and has a HGR$>$1.90 in period t+1. That is, a firm originally has a dip in employment but recovers it in the following year. This implies that for be observed in this pattern, any firm shows at least 3 periods in the sample.
-\item Downward: refers to the case where a firm has a HGR$>$1.90 in period t, and has a HGR$<-$1.90 in period t+1. That is, a firm originally has a jump in employment but returns to a lower level it in the following year. This implies that for be observed in this pattern, any firm shows at least 3 periods in the sample.
-\end{itemize}
-
-\begin{table}[htbp]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{9}c}
-\multicolumn{10}{c}{\textbf{HGR patterns by country}} \\
-\multicolumn{10}{c}{HGR$>$abs(1.90)} \\
-\hline
-Country & Number of firms &      Firms with  & Pctg firms       & Upward pattern  & Firms with         & Pctg up  & Downward pattern & Firms with   down  & Pctg down  \\
-        &                 & $HGR>abs(1.90)$  & $HGR>abs(1.90)$  &     cases        &  upward pattern    &         &  cases & downward pattern & \\
-\hline \hline
-\input{../Output/IT/OB_Table_HGR_Checks_190.tex}
-\input{../Output/PT/OB_Table_HGR_Checks_190.tex}
-\input{../Output/FR/OB_Table_HGR_Checks_190.tex}
-\input{../Output/ES/OB_Table_HGR_Checks_190.tex}
-\input{../Output/DE/OB_Table_HGR_Checks_190.tex}
-\input{../Output/NL/OB_Table_HGR_Checks_190.tex}
-\end{tabular}}
-\end{table}
-
-
-\begin{table}[htbp]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{9}c}
-\multicolumn{10}{c}{\textbf{HGR patterns by country}} \\
-\multicolumn{10}{c}{HGR$>$abs(1.75)} \\
-\hline
-Country & Number of firms & Firms with  & Pctg firms  & Cases up  & Unique cases up  & Pctg up  & Cases down & Unique cases down  & Pctg down  \\
-        &                 & $HGR>abs(1.90)$  & $HGR>abs(1.90)$  &     cases        &  upward pattern    &         &  cases & downward pattern & \\
-\hline \hline
-\input{../Output/IT/OB_Table_HGR_Checks_175.tex}
-\input{../Output/PT/OB_Table_HGR_Checks_175.tex}
-\input{../Output/FR/OB_Table_HGR_Checks_175.tex}
-\input{../Output/ES/OB_Table_HGR_Checks_175.tex}
-\input{../Output/DE/OB_Table_HGR_Checks_175.tex}
-\input{../Output/NL/OB_Table_HGR_Checks_175.tex}
-\end{tabular}}
-\end{table}
-\clearpage
-
-\subsubsection{HGR rebound patterns by country}
-
-
-
-The number of `rebounds' refers to the case where a firm has the same of ``downward"/``upward" cases. For example, in the case of Italy, where the threshold is a HGR of 1.90, 58 firms had twice a downward case. 
-
-\begin{table}[htbp]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{6}c}
-\multicolumn{7}{c}{Italy} \\
-\hline
-Threshold &  Direction & Unique cases & 1 rebound  & 2 rebounds  & 3 rebounds  & 4 or more   \\
-\hline \hline
-\multirow{2}{*}{1.90} & \input{../Output/IT/OB_Table_HGR_Times_190.tex}
-\multirow{2}{*}{1.75} & \input{../Output/IT/OB_Table_HGR_Times_175.tex}
-\end{tabular}}
-\end{table}
-
-\begin{table}[htbp]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}c}
-\multicolumn{6}{c}{Portugal} \\
-\hline
-Threshold & Direction & Unique cases & 1 rebound  & 2 rebounds  & 3 rebounds or more   \\
-\hline \hline
-\multirow{2}{*}{1.90} &\input{../Output/PT/OB_Table_HGR_Times_190.tex}
-\multirow{2}{*}{1.75} &\input{../Output/PT/OB_Table_HGR_Times_175.tex}
-\end{tabular}}
-\end{table}
-
-\begin{table}[htbp]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{6}c}
-\multicolumn{7}{c}{France} \\
-\hline
-Threshold &  Direction & Unique cases & 1 rebound  & 2 rebounds  & 3 rebounds  & 4 or more   \\
-\hline \hline
-\multirow{2}{*}{1.90} & \input{../Output/FR/OB_Table_HGR_Times_190.tex}
-\multirow{2}{*}{1.75} & \input{../Output/FR/OB_Table_HGR_Times_175.tex}
-\end{tabular}}
-\end{table}
-
-\begin{table}[htbp]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{6}c}
-\multicolumn{7}{c}{Spain} \\
-\hline
-Threshold &  Direction & Unique cases & 1 rebound  & 2 rebounds  & 3 rebounds  & 4 or more   \\
-\hline \hline
-\multirow{2}{*}{1.90} & \input{../Output/ES/OB_Table_HGR_Times_190.tex}
-\multirow{2}{*}{1.75} & \input{../Output/ES/OB_Table_HGR_Times_175.tex}
-\end{tabular}}
-\end{table}
-
-\begin{table}[htbp]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{6}c}
-\multicolumn{7}{c}{Germany} \\
-\hline
-Threshold &  Direction & Unique cases & 1 rebound  & 2 rebounds  & 3 rebounds  & 4 or more   \\
-\hline \hline
-\multirow{2}{*}{1.90} & \input{../Output/DE/OB_Table_HGR_Times_190.tex}
-\multirow{2}{*}{1.75} & \input{../Output/DE/OB_Table_HGR_Times_175.tex}
-\end{tabular}}
-\end{table}
-
-\begin{table}[htbp]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{4}c}
-\multicolumn{5}{c}{Netherlands} \\
-\hline
-Threshold & Direction & Unique cases & 1 rebound  & 3 rebounds or more   \\
-\hline \hline
-\multirow{2}{*}{1.90} & \input{../Output/NL/OB_Table_HGR_Times_190.tex}
-\multirow{2}{*}{1.75} & \input{../Output/NL/OB_Table_HGR_Times_175.tex}
-\end{tabular}}
-\end{table}
-
-
-\clearpage
 
 
 
@@ -1412,103 +1092,8 @@ where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ rep
 
 \clearpage
 
-\subsection{Orbis: Static Firm Share}
-
-\begin{table}[htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
-\multicolumn{4}{c}{Static Firm share} \\
-\toprule
-Country & Number of Firms & Below 25th Percentile & Below 50th Percentile \\
-\hline
-\input{../Output/IT/OB_Static_Firm.tex}
-\input{../Output/FR/OB_Static_Firm.tex}
-\input{../Output/ES/OB_Static_Firm.tex}
-\input{../Output/PT/OB_Static_Firm.tex}
-\input{../Output/DE/OB_Static_Firm.tex}
-\input{../Output/NL/OB_Static_Firm.tex}
-\end{tabular}}
-\end{table}
 
 
-
-
-\clearpage
-
-
-\subsection{Compustat: Aggregate Employment and Haltiwanger Growth rates}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Italy}
- \includegraphics[scale=0.6]{../Output/IT/CS_Agg_Employment_HGR.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Portugal}
- \includegraphics[scale=0.6]{../Output/PT/CS_Agg_Employment_HGR.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{France}
- \includegraphics[scale=0.6]{../Output/FR/CS_Agg_Employment_HGR.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Spain}
- \includegraphics[scale=0.6]{../Output/ES/CS_Agg_Employment_HGR.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Germany}
- \includegraphics[scale=0.6]{../Output/DE/CS_Agg_Employment_HGR.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Netherland}
- \includegraphics[scale=0.6]{../Output/NL/CS_Agg_Employment_HGR.pdf}
-\end{subfigure}
-\end{figure}
-
-\clearpage
-
-
-\subsection{Compustat: Distribution of Employment Growth Rates}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Italy}
- \includegraphics[scale=0.6]{../Output/IT/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Portugal}
- \includegraphics[scale=0.6]{../Output/PT/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{France}
- \includegraphics[scale=0.6]{../Output/FR/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Spain}
- \includegraphics[scale=0.6]{../Output/ES/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Germany}
- \includegraphics[scale=0.6]{../Output/DE/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Netherland}
- \includegraphics[scale=0.6]{../Output/NL/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
-\end{subfigure}
-\end{figure}
-
-\clearpage
 % section private_vs_public (end)
 
 %------------------------------------------------------------------------------
@@ -1535,6 +1120,81 @@ Country & Number of Firms & Below 25th Percentile & Below 50th Percentile \\
     \end{tabular}
     }
 \end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Employment Statistics (Orbis)}
+\begin{table}[!htpb]
+    \centering
+    \scalebox{0.9}{
+    \begin{tabular}{@{} l  r r r | r r | r r | r r r @{}}
+        \toprule
+          & \multicolumn{3}{c}{Avg Number of Employees} & \multicolumn{2}{c}{Mean Growth Rate} & \multicolumn{2}{c}{Std of Growth Rate}  & \multicolumn{2}{c}{n firm-year Obs} \\
+         & Public & Private & Ratio  & Public & Private  & Public & Private & Public & Private   \\ \midrule
+        \input{../Output/IT/Table_PubVsPri.tex}
+        \input{../Output/PT/Table_PubVsPri.tex}
+        \input{../Output/ES/Table_PubVsPri.tex}
+        \input{../Output/FR/Table_PubVsPri.tex}
+	\input{../Output/DE/Table_PubVsPri.tex}
+	\input{../Output/NL/Table_PubVsPri.tex}
+    \end{tabular}
+    }
+\end{table}
+\clearpage
+
+
+
+
+
+
+\subsection{Orbis: Static Firm Share}
+
+\begin{table}[!htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}c}
+\multicolumn{6}{c}{Static Firm share} \\
+\toprule
+Country & Number of Firms & Below 25th Percentile & Below 50th Percentile & Below 10 Employees & Below 100 Employees \\
+\hline
+\input{../Output/IT/OB_Static_Firm.tex}
+\input{../Output/FR/OB_Static_Firm.tex}
+\input{../Output/ES/OB_Static_Firm.tex}
+\input{../Output/PT/OB_Static_Firm.tex}
+\input{../Output/DE/OB_Static_Firm.tex}
+\input{../Output/NL/OB_Static_Firm.tex}
+\end{tabular}}
+\end{table}
+
+
+
+
+\clearpage
+
 
 
 
@@ -1573,73 +1233,6 @@ Country & Number of Firms & Below 25th Percentile & Below 50th Percentile \\
 \end{subfigure}
 \end{figure}
 
-
-
-\subsection{Average ``Age'' by Size Percentile} % (fold)
-\label{sec:age_by_size}
-
-\begin{table}[!htpb]
-    \scalebox{0.8}{
-    \begin{tabular}{@{}l r r r r r r r r @{}}
-        \toprule
-        & 0-10\% & 10-25\% & 25-50\% & 50-75\% & 75-90\% & 90-95\% & 95-99\% & Top 1\% \\ \midrule
-        \input{../Output/IT/Table_BySize_AgeDist.tex}
-        \input{../Output/PT/Table_BySize_AgeDist.tex}
-        \input{../Output/ES/Table_BySize_AgeDist.tex}
-        \input{../Output/FR/Table_BySize_AgeDist.tex}
-	\input{../Output/DE/Table_BySize_AgeDist.tex}
-	\input{../Output/NL/Table_BySize_AgeDist.tex}
-    \end{tabular}
-    }
-\end{table}
-
-\subsection{Number of Firm-Year Observations by Size Percentile} % (fold)
-\label{sec:nFirms_by_size}
-
-\begin{table}[!htpb]
-    \scalebox{0.8}{
-    \begin{tabular}{@{}l r r r r r r r r @{}}
-        \toprule
-        & 0-10\% & 10-25\% & 25-50\% & 50-75\% & 75-90\% & 90-95\% & 95-99\% & Top 1\% \\ \midrule
-        \input{../Output/IT/Table_BySize_NFirms.tex}
-        \input{../Output/PT/Table_BySize_NFirms.tex}
-        \input{../Output/ES/Table_BySize_NFirms.tex}
-        \input{../Output/FR/Table_BySize_NFirms.tex}
-	\input{../Output/DE/Table_BySize_NFirms.tex}
-	\input{../Output/NL/Table_BySize_NFirms.tex}
-    \end{tabular}
-    }
-\end{table}
-\pagebreak
-
-
-% \subsection{Distribution of firms across employment bins}
-
-% \begin{figure}[!htpb]
-% \centering
-% \caption{Distribution of firms across employment bins (Compustat)}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Italy}
-%  \includegraphics[scale=0.60]{../Output/IT/Distribution_Employment-Compustat.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Portugal}
-%  \includegraphics[scale=0.60]{../Output/PT/Distribution_Employment-Compustat.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{France}
-%  \includegraphics[scale=0.60]{../Output/FR/Distribution_Employment-Compustat.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Spain}
-%  \includegraphics[scale=0.60]{../Output/ES/Distribution_Employment-Compustat.pdf}
-% \end{subfigure}
-% \end{figure}
-% \pagebreak
 
 
 % subsection employment_by_size (end)
@@ -2335,7 +1928,7 @@ where $y_{it}$ represents the firm x year-level Haltiwanger growth rate, $\mathb
 %------------------------------------------------------------------------------
 
 
-\subsection{Descriptive stats}
+
 \begin{table}[!htpb]
     \centering
     \caption{Descriptive Statistics - Italy}
