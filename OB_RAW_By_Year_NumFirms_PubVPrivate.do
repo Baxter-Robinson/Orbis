@@ -1,7 +1,7 @@
 
 
 * Use Raw Data
-use "${DATAPATH}/IT_merge.dta", clear
+*use "${DATAPATH}/IT_merge.dta", clear
 
 *use "${DATAPATH}/${CountryID}_merge.dta", clear
 

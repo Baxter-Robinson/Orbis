@@ -64,40 +64,9 @@ rename P_L_before_tax GrossProfits
 replace Sales = Revenue if (Sales == 0) & (Revenue > 0)
 
 *---------------------------
-* Haltiwanger growth rates -  Additional variables
-*---------------------------
-* Loop for setting a similar structure (as Sales and Number of employees) to additional variables to check for the Haltiwanger growth rates
-
-foreach v in COGS Revenue Export_revenue Assets EBITDA{
-	gen `v'_fHGR = `v'
-	* Remove duplicates (updated)
-	replace `v'_fHGR = 0.5 if `v'_fHGR==0
-	replace `v'_fHGR = 0 if `v'_fHGR==.
-	sort IDNum Year
-	by IDNum Year: egen minE = min(`v'_fHGR)
-	by IDNum Year: egen maxE = max(`v'_fHGR)
-
-	* Drop the duplicate with missing number of employees 
-	duplicates tag IDNum Year, gen(dup)
-	gen tagMaxE = 1 if `v'_fHGR == maxE & `v'_fHGR > minE & dup > 0
-	gen tagMinE = 1 if `v'_fHGR == minE & `v'_fHGR < maxE & minE <= 0.5 & dup > 0
-	drop if tagMinE == 1
-	drop dup
-
-	* Drop remaining duplicates where there is no disrepancy
-	duplicates drop IDNum Year, force
-	replace `v'_fHGR = . if `v'_fHGR==0
-	replace `v'_fHGR = 0 if `v'_fHGR==0.5
-
-	drop minE maxE tagMaxE tagMinE 
-
-}
-
-*---------------------------
 * Number of Employees
 *---------------------------
 rename Number_of_employees nEmployees
-
 
 gen SalesPerEmployee=Sales/nEmployees if (nEmployees>0)
 
@@ -112,6 +81,7 @@ gen Industry_2digit=floor(Industry_4digit/100)
 *---------------------------
 * Growth Rates
 *---------------------------
+cap xtset IDNum Year
 
 * Employment Growth Rate (Haltiwanger)
 bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
@@ -122,29 +92,13 @@ bysort IDNum: gen SalesGrowth_h = (Sales-L.Sales)/((Sales+L.Sales)/2)
 * Profit Growth Rate (Haltiwanger)
 bysort IDNum: gen ProfitGrowth_h = (GrossProfits-L.GrossProfits)/((GrossProfits+L.GrossProfits)/2)
 
-* COGS (Haltiwanger)
-bysort IDNum: gen COGS_h = (COGS_fHGR -L.COGS_fHGR )/((COGS_fHGR +L.COGS_fHGR )/2)
-		
-* Revenue (Haltiwanger)
-bysort IDNum: gen Revenue_h = (Revenue_fHGR  - L.Revenue_fHGR )/((Revenue_fHGR  + L.Revenue_fHGR )/2)
-		
-* Export_revenue (Haltiwanger)
-bysort IDNum: gen Export_revenue_h = (Export_revenue_fHGR  - L.Export_revenue_fHGR )/((Export_revenue_fHGR +L.Export_revenue_fHGR )/2)		
-
-* Assets (Haltiwanger)
-bysort IDNum: gen Assets_h = (Assets_fHGR  - L.Assets_fHGR )/((Assets_fHGR  + L.Assets_fHGR )/2)
-		
-* EBITDA (Haltiwanger)
-bysort IDNum: gen EBITDA_h = (EBITDA_fHGR  - L.EBITDA_fHGR )/((EBITDA_fHGR  + L.EBITDA_fHGR )/2) 
-
-drop COGS_fHGR Revenue_fHGR Export_revenue_fHGR Assets_fHGR EBITDA_fHGR
 
 *----------------------
 * Winsorization Employment Growth
 *----------------------
 
 sort EmpGrowth_h
-xtile EmpGrowth_h_quartiles =   EmpGrowth_h  , nquantiles(200)  
+xtile EmpGrowth_h_quartiles =   EmpGrowth_h if  (EmpGrowth_h!=.), nquantiles(200)  
 sum EmpGrowth_h if EmpGrowth_h_quartiles==2, detail
 return list 
 local bottom05pct = r(min)
@@ -155,11 +109,17 @@ return list
 local top05pct = r(max)
 di `top05pct'
 
-egen bottom05pct = min(EmpGrowth_h) if EmpGrowth_h_quartiles==2
-egen top05pct = max(EmpGrowth_h) if EmpGrowth_h_quartiles==199
+gen bottom05pct = `bottom05pct'
+gen top05pct = `top05pct'
 
-replace EmpGrowth_h = `bottom05pct' if EmpGrowth_h < `bottom05pct'
-replace EmpGrowth_h = `top05pct' if EmpGrowth_h > `top05pct'
+gen repbottom05pct = 0
+replace repbottom05pct = 1 if EmpGrowth_h < bottom05pct
+
+gen reptop05pct = 0
+replace reptop05pct = 1 if EmpGrowth_h < top05pct
+
+replace EmpGrowth_h = `bottom05pct' if repbottom05pct==1
+replace EmpGrowth_h = `top05pct' if reptop05pct == 1
 
 
 *---------------------------
