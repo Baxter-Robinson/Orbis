@@ -18,9 +18,9 @@ local maxEmp = r(max)
 
 file close _all
 
-file open TexFile using Output/${CountryID}/OB_Sum_Stats_Employment.tex, write replace
+file open TexFile using Output/${CountryID}/OB_Sum_Stats.tex, write replace
 			
-file write TexFile " Employment & Full Sample " 
+file write TexFile " Full Sample " 
 			
 file write TexFile " & "
 
@@ -33,15 +33,8 @@ file write TexFile " & "
 file write TexFile %12.2gc ( `p90Emp')
 file write TexFile " & "
 file write TexFile %12.2gc ( `maxEmp')
-file write TexFile  "   \\   "
+file write TexFile  "   &   "
 
-file close _all
-
-file open TexFile using Output/${CountryID}/OB_Sum_Stats_Sales.tex, write replace
-			
-file write TexFile " Sales  & Full Sample " 
-			
-file write TexFile " & "
 
 sum Sales, detail 
 local minSales = r(min)
@@ -81,9 +74,9 @@ local maxEmp = r(max)
 
 file close _all
 
-file open TexFile using Output/${CountryID}/OB_Sum_Stats_Employment_Private.tex, write replace
+file open TexFile using Output/${CountryID}/OB_Sum_Stats_Private.tex, write replace
 			
-file write TexFile " Employment & Private " 
+file write TexFile " Private " 
 			
 file write TexFile " & "
 
@@ -96,15 +89,7 @@ file write TexFile " & "
 file write TexFile %12.2gc ( `p90Emp')
 file write TexFile " & "
 file write TexFile %12.2gc ( `maxEmp')
-file write TexFile  "   \\   "
-
-file close _all
-
-file open TexFile using Output/${CountryID}/OB_Sum_Stats_Sales_Private.tex, write replace
-			
-file write TexFile " Sales & Private " 
-			
-file write TexFile " & "
+file write TexFile  "   &   "
 
 sum Sales, detail 
 local minSales = r(min)
@@ -144,9 +129,9 @@ local maxEmp = r(max)
 
 file close _all
 
-file open TexFile using Output/${CountryID}/OB_Sum_Stats_Employment_Public.tex, write replace
+file open TexFile using Output/${CountryID}/OB_Sum_Stats_Public.tex, write replace
 			
-file write TexFile " Employment & Public " 
+file write TexFile " Public " 
 			
 file write TexFile " & "
 
@@ -159,15 +144,7 @@ file write TexFile " & "
 file write TexFile %12.2gc ( `p90Emp')
 file write TexFile " & "
 file write TexFile %12.2gc ( `maxEmp')
-file write TexFile  "   \\   "
-
-file close _all
-
-file open TexFile using Output/${CountryID}/OB_Sum_Stats_Sales_Public.tex, write replace
-			
-file write TexFile " Sales & Public  " 
-			
-file write TexFile " & "
+file write TexFile  "   &   "
 
 sum Sales, detail 
 local minSales = r(min)
