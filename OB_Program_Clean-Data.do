@@ -96,30 +96,7 @@ bysort IDNum: gen ProfitGrowth_h = (GrossProfits-L.GrossProfits)/((GrossProfits+
 *----------------------
 * Winsorization Employment Growth
 *----------------------
-
-sort EmpGrowth_h
-xtile EmpGrowth_h_quartiles =   EmpGrowth_h if  (EmpGrowth_h!=.), nquantiles(200)  
-sum EmpGrowth_h if EmpGrowth_h_quartiles==2, detail
-return list 
-local bottom05pct = r(min)
-di `bottom05pct'
-
-sum EmpGrowth_h if EmpGrowth_h_quartiles==199, detail
-return list 
-local top05pct = r(max)
-di `top05pct'
-
-gen bottom05pct = `bottom05pct'
-gen top05pct = `top05pct'
-
-gen repbottom05pct = 0
-replace repbottom05pct = 1 if EmpGrowth_h < bottom05pct
-
-gen reptop05pct = 0
-replace reptop05pct = 1 if EmpGrowth_h < top05pct
-
-replace EmpGrowth_h = `bottom05pct' if repbottom05pct==1
-replace EmpGrowth_h = `top05pct' if reptop05pct == 1
+winsor2 EmpGrowth_h, cuts(0.5 99.5) replace
 
 
 *---------------------------
