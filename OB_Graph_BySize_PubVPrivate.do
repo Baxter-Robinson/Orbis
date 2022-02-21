@@ -255,8 +255,7 @@ preserve
 	local Total=r(sum)
 	local TotalNFirms=r(N)
 	
-	
-	
+	drop if SizeCategory==.
 	drop if nEmployees==.   
 	
 	*Total Firms
@@ -267,8 +266,7 @@ preserve
 	bysort SizeCategory Year: egen nFirms_Private = count(IDNum) if Private==1
 	
 	
-	
-	collapse (sum) nEmployees (mean) EmpGrowth_mean=EmpGrowth_h nFirms_Public nFirms_Private (sd) EmpGrowth_sd=EmpGrowth_h (p25) EmpGrowth_p25=EmpGrowth_h (p50) EmpGrowth_median=EmpGrowth_h (p75) EmpGrowth_p75=EmpGrowth_h (p90) EmpGrowth_p90=EmpGrowth_h (p95) EmpGrowth_p95=EmpGrowth_h (p99) EmpGrowth_p99=EmpGrowth_h, by(SizeCategory Private)
+	collapse (sum) nEmployees (mean) EmpGrowth_mean=EmpGrowth_h nFirms_Public nFirms_Private (sd) EmpGrowth_sd=EmpGrowth_h, by(SizeCategory Private)
 
 	local MinSize=10 
 	

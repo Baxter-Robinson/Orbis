@@ -13,14 +13,6 @@ preserve
 	keep if nEmployees!=.
 	sum nEmployees, detail
 	local max= r(max)
-	egen groups  = cut(nEmployees), at (1, 2, 10, 11, 99, 100, 999, 1000, `max')
-
-	gen SizeCategory = . 
-	replace SizeCategory = 1 if groups==1
-	replace SizeCategory = 2 if (groups==2) | (groups==10)
-	replace SizeCategory = 3 if (groups==11) | (groups==99)
-	replace SizeCategory = 4 if (groups==100) | (groups==999)
-	replace SizeCategory = 5 if (groups==1000) | (groups==`max')
 	
 	drop if SizeCategory==.
 	
@@ -61,7 +53,7 @@ preserve
 	gen floor = 0
 	gen roof = .
 	 
-	 forval i=1/5{
+	 forval i=1/7{
 	 	gen mid`i'=  pct_nFirmsCatPrivate/2  if (Private==1) & (SizeCategory==`i') // midpoints for private firms
 		su mid`i', meanonly
 		local midpoint`i' = r(mean)
@@ -83,8 +75,8 @@ preserve
 	 }
 	
 	
-	label define SizeCat 1 "1 " 2 "2-10"  3 "11-99" 4 "100-999" 5 "+1000" 
-	local Labels  1 "1" 2 "2-10"  3 "11-99" 4 "100-999" 5 "+1000"  
+	label define SizeCat  1 "1" 2 "2-5"  3 "6-10" 4 "11-50" 5 "51-100" 6 "101-1,000" 7 "1,000+" 
+	local Labels  1 "1" 2 "2-5"  3 "6-10" 4 "11-50" 5 "51-100" 6 "101-1,000" 7 "1,000+" 
 	
 	graph twoway (rbar floor pct_nFirmsCatPrivate SizeCategory, color(maroon))  ///
 		(rbar pct_nFirmsCatPrivate roof SizeCategory, color(navy)), ///
@@ -98,11 +90,15 @@ preserve
 		text(`midpoint3' 3 "`nFirms3'", color(white) size(small)) /// 
 		text(`midpoint4' 4 "`nFirms4'", color(white) size(small)) /// 
 		text(`midpoint5' 5 "`nFirms5'", color(white) size(small)) /// 
+		text(`midpoint6' 6 "`nFirms6'", color(white) size(small)) /// 
+		text(`midpoint7' 7 "`nFirms7'", color(white) size(small)) /// 
 		text(`endpoint1' 1 "`nfirmspublic1'", color(navy) size(small)) /// Begin labels for public firms
 		text(`endpoint2' 2 "`nfirmspublic3'", color(navy) size(small)) /// 
 		text(`endpoint3' 3 "`nfirmspublic3'", color(navy) size(small)) /// 
 		text(`endpoint4' 4 "`nfirmspublic4'", color(navy) size(small)) /// 
 		text(`endpoint5' 5 "`nfirmspublic5'", color(navy) size(small)) /// 
+		text(`endpoint6' 7 "`nfirmspublic6'", color(navy) size(small)) /// 
+		text(`endpoint6' 7 "`nfirmspublic7'", color(navy) size(small)) /// 
 		graphregion(color(white))
 		graph export Output/$CountryID/OB_BySizeCat_ShareFirms.pdf, replace 
 	
@@ -129,16 +125,6 @@ restore
 		keep IDNum Year nEmployees Private 
 			
 		keep if nEmployees!=.
-		sum nEmployees, detail
-		local max= r(max)
-		egen groups  = cut(nEmployees), at (1, 2, 10, 11, 99, 100, 999, 1000, `max')
-
-		gen SizeCategory = . 
-		replace SizeCategory = 1 if groups==1
-		replace SizeCategory = 2 if (groups==2) | (groups==10)
-		replace SizeCategory = 3 if (groups==11) | (groups==99)
-		replace SizeCategory = 4 if (groups==100) | (groups==999)
-		replace SizeCategory = 5 if (groups==1000) | (groups==`max')
 		
 		drop if SizeCategory==.
 		
@@ -174,7 +160,7 @@ restore
 		gen floor = 0
 		gen roof = .
 		 
-		 forval i=1/5{
+		 forval i=1/7{
 			gen mid`i'=  pct_nEmpCatPrivate/2  if (Private==1) & (SizeCategory==`i') // midpoints for private firms
 			su mid`i', meanonly
 			local midpoint`i' = r(mean)
@@ -201,8 +187,8 @@ restore
 		local endp5roof2 = r(mean)
 		local endpoint5 = (`endp5roof1'+`endp5roof2')/2
 		
-		label define SizeCat 1 "1 " 2 "2-10"  3 "11-99" 4 "100-999" 5 "+1000" 
-		local Labels  1 "1" 2 "2-10"  3 "11-99" 4 "100-999" 5 "+1000"  
+		label define SizeCat  1 "1" 2 "2-5"  3 "6-10" 4 "11-50" 5 "51-100" 6 "101-1,000" 7 "1,000+" 
+		local Labels  1 "1" 2 "2-5"  3 "6-10" 4 "11-50" 5 "51-100" 6 "101-1,000" 7 "1,000+" 
 		
 		graph twoway (rbar floor pct_nEmpCatPrivate SizeCategory, color(maroon))  ///
 			(rbar pct_nEmpCatPrivate roof SizeCategory, color(navy)), ///
@@ -216,11 +202,15 @@ restore
 			text(`midpoint3' 3 "`nEmp3'", color(white) size(small)) /// 
 			text(`midpoint4' 4 "`nEmp4'", color(white) size(small)) /// 
 			text(`midpoint5' 5 "`nEmp5'", color(white) size(small)) /// 
+			text(`midpoint5' 6 "`nEmp6'", color(white) size(small)) /// 
+			text(`midpoint5' 7 "`nEmp7'", color(white) size(small)) /// 
 			text(`endpoint1' 1 "`nEmppublic1'", color(navy) size(small)) /// Begin labels for public firms
 			text(`endpoint2' 2 "`nEmppublic3'", color(navy) size(small)) /// 
 			text(`endpoint3' 3 "`nEmppublic3'", color(navy) size(small)) /// 
 			text(`endpoint4' 4 "`nEmppublic4'", color(navy) size(small)) /// 
 			text(`endpoint5' 5 "`nEmppublic5'", color(white) size(small)) /// 
+			text(`endpoint5' 6 "`nEmppublic6'", color(white) size(small)) /// 
+			text(`endpoint5' 7 "`nEmppublic7'", color(white) size(small)) /// 
 			graphregion(color(white))
 			graph export Output/$CountryID/OB_BySizeCat_ShareEmployment.pdf, replace 
 		
@@ -248,6 +238,7 @@ restore
 		keep if nEmployees!=.
 		sum nEmployees, detail
 		local max= r(max)
+		cap drop groups
 		egen groups  = cut(Age), at (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, `max')
 
 		gen AgeCategory = . 
