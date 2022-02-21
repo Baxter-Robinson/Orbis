@@ -231,7 +231,7 @@ replace SizeCategory = 7 if (groups==1001) | (groups==`max')
 
 save "Data_Cleaned/${CountryID}_Unbalanced.dta", replace
 
-drop SizeCategory
+drop SizeCategory groups
 
 *--------------------------------------------------------------
 * Create country-level-statistics for a country-level database
