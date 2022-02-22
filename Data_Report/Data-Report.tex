@@ -1207,7 +1207,7 @@ Country & 1 & 2-5 & 6-10 & 11-50 & 51-100 & 101-1000 & $+$1000 \\
 
 \clearpage
 
-\subsection{Orbis: Employment Composition Across Countries}
+\subsection{Employment Composition Across Countries (Orbis)}
 
 \subsubsection{Private Firms}
 \begin{center}
@@ -1527,9 +1527,6 @@ Country & Number of Firms & Below 25th Percentile & Below 50th Percentile & Belo
 \end{table}
 
 
-\clearpage
-
-
 \subsection{Employment Statistics (Orbis)}
 \begin{table}[!htpb]
     \centering
@@ -1547,8 +1544,6 @@ Country & Number of Firms & Below 25th Percentile & Below 50th Percentile & Belo
     \end{tabular}
     }
 \end{table}
-\clearpage
-
 
 
 \subsection{Cross-Country Moments (ORBIS)}
@@ -1587,6 +1582,92 @@ Country & Number of Firms &  Employment Growth & Employment Growth    & Static S
 
 
 \clearpage
+
+
+
+\subsection{Additional Financial Development Variables}
+
+\begin{figure}[!htpb]
+ \caption{Equity Market Depth and Financial Development Variables}
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Domestic Credit by Banks}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_DomCreditBanks_EquityMktDepth.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Private Credit}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_PrivateDebtAll_EquityMktDepth.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Household Debt (all instruments)}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_HHDebtAll_EquityMktDepth.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_NonFinancialDebtAll_EquityMktDepth.pdf}
+\end{subfigure}
+\end{figure}
+
+\clearpage
+
+
+\begin{figure}[!htpb]
+ \caption{Total Factor Productivity and Financial Development Variables}
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Domestic Credit by Banks}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_DomCreditBanks_TFP.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Private Credit}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_PrivateDebtAll_TFP.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Household Debt (all instruments)}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_HHDebtAll_TFP.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_NonFinancialDebtAll_TFP.pdf}
+\end{subfigure}
+\end{figure}
+
+\clearpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 %------------------------------------------------------------------------------
@@ -2088,7 +2169,20 @@ Market Capitalization to Assets &  \input{../Output/NL/OB_Financial_Ratios_MktCa
 \clearpage
 
 
-\subsection{Proportion of Firms' earliest date}
+\subsection{Proportion of Firms' Earliest Date}
+\begin{table}[!htpb]
+\begin{tabular}{lccc}
+\toprule
+Country  &  First Year in Data & IPO Year  & Incorporation Year \\
+\hline \hline
+\input{../Output/IT/OB_Firms_Earliest_Date.tex} 
+\input{../Output/FR/OB_Firms_Earliest_Date.tex}
+\input{../Output/ES/OB_Firms_Earliest_Date.tex}
+\input{../Output/PT/OB_Firms_Earliest_Date.tex}
+\input{../Output/DE/OB_Firms_Earliest_Date.tex}
+\input{../Output/NL/OB_Firms_Earliest_Date.tex}
+\end{tabular}
+\end{table}
 \clearpage
 
 %------------------------------------------------------------------------------

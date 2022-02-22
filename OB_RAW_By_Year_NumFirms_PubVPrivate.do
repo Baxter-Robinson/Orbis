@@ -1,60 +1,130 @@
 
 
 * Use Raw Data
-*use "${DATAPATH}/IT_merge.dta", clear
+* use "${DATAPATH}/IT_merge.dta", clear
 
 use "${DATAPATH}/${CountryID}_merge.dta", clear
 
+	preserve
 
-* Year
-gen Year=year(Closing_date)
-egen FirstYear=min(Year), by(BvD_ID_Number)
-replace FirstYear=year(IPO_date) if ((year(IPO_date)<year(FirstYear)) & ~missing(FirstYear))
-replace FirstYear=year(Date_of_incorporation) if ((year(Date_of_incorporation)<year(FirstYear)) & ~missing(Date_of_incorporation) & (year(Date_of_incorporation)<year(IPO_date)) )
-gen Age=Year-FirstYear
-drop FirstYear
+	* Year
+	gen Year=year(Closing_date)
+	egen FirstYear=min(Year), by(BvD_ID_Number)
+	replace FirstYear=year(IPO_date) if ((year(IPO_date)<year(FirstYear)) & ~missing(FirstYear))
+	replace FirstYear=year(Date_of_incorporation) if ((year(Date_of_incorporation)<year(FirstYear)) & ~missing(Date_of_incorporation) & (year(Date_of_incorporation)<year(IPO_date)) )
+	gen Age=Year-FirstYear
+	drop FirstYear
 
-* Convert IPO date from monthly to yearly
-gen IPO_year = year(IPO_date)
-gen Delisted_year = yofd(Delisted_date)
+	* Convert IPO date from monthly to yearly
+	gen IPO_year = year(IPO_date)
+	gen Delisted_year = yofd(Delisted_date)
 
-* Private/Public firms
-gen Private=0
-replace Private = 1 if Main_exchange=="Unlisted" | (Main_exchange=="Delisted")  & (Year >= Delisted_year)
+	* Private/Public firms
+	gen Private=0
+	replace Private = 1 if Main_exchange=="Unlisted" | (Main_exchange=="Delisted")  & (Year >= Delisted_year)
 
-egen IDNum=group(BvD_ID_Number)
+	egen IDNum=group(BvD_ID_Number)
 
-sort IDNum Year
+	sort IDNum Year
 
-/*
-    - New Bar chart
-        - x-axis: year
-        - y-axis: Stacked Bar of number of public firms and number of private firms
-*/
-
-
-bysort IDNum Year: gen nvals = _n == 1  
-
-collapse (sum) nvals, by(Year Private)
-
-bysort Year: egen totfirms = total(nvals)
-
-gen fPublic = 0
-replace fPublic = nvals if Private==0
-
-gen fPrivate = 0
-replace fPrivate = nvals if Private==1
-
-collapse (sum) fPublic fPrivate (first) totfirms, by(Year)
-
-gen floor = 0
+	/*
+		- New Bar chart
+			- x-axis: year
+			- y-axis: Stacked Bar of number of public firms and number of private firms
+	*/
 
 
-graph twoway (rbar floor fPrivate Year, color(maroon))  ///
-(rbar fPrivate totfirms Year, color(navy)), ///
-legend(label(1 "Private") label( 2 "Public" ) ) ///
-ytitle("Number of firms") ///
-ylabel(, format(%9.0fc)) ///
-xtitle("Year") ///
-	graphregion(color(white))
-graph export Output/$CountryID/Graph_ByYear_PubVPrivate_NumFirms.pdf, replace  
+	bysort IDNum Year: gen nvals = _n == 1  
+
+	collapse (sum) nvals, by(Year Private)
+
+	bysort Year: egen totfirms = total(nvals)
+
+	gen fPublic = 0
+	replace fPublic = nvals if Private==0
+
+	gen fPrivate = 0
+	replace fPrivate = nvals if Private==1
+
+	collapse (sum) fPublic fPrivate (first) totfirms, by(Year)
+
+	gen floor = 0
+
+
+	graph twoway (rbar floor fPrivate Year, color(maroon))  ///
+	(rbar fPrivate totfirms Year, color(navy)), ///
+	legend(label(1 "Private") label( 2 "Public" ) ) ///
+	ytitle("Number of firms") ///
+	ylabel(, format(%9.0fc)) ///
+	xtitle("Year") ///
+		graphregion(color(white))
+	graph export Output/$CountryID/Graph_ByYear_PubVPrivate_NumFirms.pdf, replace  
+
+	
+	restore
+	
+	preserve
+	
+	
+	file close _all
+		
+	file open FirmsDate using Output/${CountryID}/OB_Firms_Earliest_Date.tex, write replace
+	file write FirmsDate " ${CountryID} & "
+	
+	keep BvD_ID_Number Closing_date IPO_date Date_of_incorporation Delisted_date
+	
+	egen IDNum=group(BvD_ID_Number)
+	
+	* Year
+	gen Year=year(Closing_date)
+	egen FirstYear=min(Year), by(IDNum)
+	replace FirstYear=year(IPO_date) if ((year(IPO_date)<year(FirstYear)) & ~missing(FirstYear))
+	replace FirstYear=year(Date_of_incorporation) if ((year(Date_of_incorporation)<year(FirstYear)) & ~missing(Date_of_incorporation) & (year(Date_of_incorporation)<year(IPO_date)) )
+	
+	gen Incorportion_Year = year(Date_of_incorporation) if ((year(Date_of_incorporation)<year(FirstYear)) & ~missing(Date_of_incorporation) & (year(Date_of_incorporation)<year(IPO_date)) )
+
+	* Convert IPO date from monthly to yearly
+	gen IPO_year = year(IPO_date)
+	gen Delisted_year = yofd(Delisted_date)
+	
+	
+	gen ind_First_Year = 0
+	gen ind_IPO_Year = 0
+	gen ind_Incorporation_Year = 0
+	
+	
+	bysort IDNum: replace ind_IPO_Year = 1 if FirstYear==IPO_year
+	bysort IDNum: replace ind_Incorporation_Year = 1 if FirstYear==Incorportion_Year
+	
+	
+	bysort IDNum: replace ind_First_Year = 1 if (ind_IPO_Year == 0) & (ind_Incorporation_Year == 0)
+	
+	
+	bysort IDNum: gen nvals = _n == 1 
+	replace ind_IPO_Year = ind_IPO_Year*nvals
+	replace ind_Incorporation_Year = ind_Incorporation_Year*nvals
+	replace ind_First_Year = ind_First_Year*nvals
+	replace nvals = sum(nvals)
+	replace nvals = nvals[_N] 
+	gen Firms_total = nvals
+	drop nvals
+	
+	collapse (sum) ind_IPO_Year ind_Incorporation_Year ind_First_Year (first) Firms_total 
+	
+	foreach x of varlist ind_IPO_Year ind_Incorporation_Year ind_First_Year{
+		gen p_`x' = `x'*100/Firms_total
+		sum `p_`x'',detail
+		local `x'_prop = r(mean)
+	}
+	
+	file write FirmsDate %4.2gc (`ind_IPO_Year_prop')
+	file write FirmsDate " &  "
+	file write FirmsDate %4.2gc (`ind_Incorporation_Year_prop')
+	file write FirmsDate " &  "
+	file write FirmsDate %4.2gc (`ind_First_Year_prop')
+	file write FirmsDate " \\  "
+	
+	file close _all
+	
+	restore 
+	
