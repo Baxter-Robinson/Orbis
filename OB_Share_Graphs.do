@@ -122,7 +122,7 @@ restore
 			- y-axis Stacked bar chart: share of employees that are employed by public vs. private firms - sum of all bars should add up to 1
 		*/
 		
-		keep IDNum Year nEmployees Private 
+		keep IDNum Year nEmployees Private SizeCategory
 			
 		keep if nEmployees!=.
 		

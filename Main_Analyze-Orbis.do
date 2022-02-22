@@ -43,7 +43,8 @@ global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_
 *---------------------
 * Loop over countries 
 *---------------------
-global Countries IT FR ES PT DE NL
+*global Countries IT FR ES PT DE NL
+global Countries IT 
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
@@ -77,13 +78,16 @@ foreach Country of global Countries {
 	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
+	do OB_Graph_BySize_PubVPrivate.do
+	do OB_Graph_HaltiGrowth_Employment-Dist.do
+	do OB_Share_Graphs.do
+	*do OB_gEmp_Regressions.do
 	
-	*do OB_Graph_HaltiGrowth_Employment-Dist.do
 	*do OB_Script_DiD-IPO.do
 	*do OB_Graph_IPOyear-Dist.do
 	*do OB_Graph_Growth_IPOyear-Dist.do
 	*do OB_Graph_BySize.do
-	do OB_Graph_BySize_PubVPrivate.do
+	
 	
 	*do OB_Regressions_FirmTypes.do
 
@@ -107,7 +111,7 @@ foreach Country of global Countries {
 	
 	*do OB_Graph_BySize.do
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do
-	*do OB_gEmp_Regressions.do
+	
 	*do OB_Table_Share_Emp_SizeCat.do
 	
 	*-------------------------------------------------------
