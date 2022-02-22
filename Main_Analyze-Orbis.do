@@ -58,7 +58,7 @@ foreach Country of global Countries {
 	
 	*do OB_Table_Missing-Observations.do
 	
-	*do OB_RAW_By_Year_NumFirms_PubVPrivate.do
+	do OB_RAW_By_Year_NumFirms_PubVPrivate.do
 	
 	*-------------------------------------------------------
 	* Clean Data
@@ -80,6 +80,7 @@ foreach Country of global Countries {
 	do OB_Graph_BySize_PubVPrivate.do
 	do OB_Graph_HaltiGrowth_Employment-Dist.do
 	do OB_Share_Graphs.do
+	do OB_Table_Share_Emp_SizeCat.do
 	*do OB_gEmp_Regressions.do
 	
 	*do OB_Script_DiD-IPO.do
