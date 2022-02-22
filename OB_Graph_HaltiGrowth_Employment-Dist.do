@@ -33,36 +33,6 @@ preserve
 restore
 
 
-label var COGS_h "COGS"
-label var Revenue_h "Revenue"
-label var Export_revenue_h "Export Revenue"
-label var Assets_h  "Assets"
-label var EBITDA_h "EBITDA"
-label var SalesGrowth_h "Sales Growth"
-label var ProfitGrowth_h "Profits"
-
-
-foreach v in COGS_h Revenue_h Export_revenue_h Assets_h EBITDA_h  SalesGrowth_h ProfitGrowth_h{
-		preserve
-		drop if `v'==.
-		sum `v', detail
-		return list
-		if r(N)>0 {
-			gen range_`v' = r(max)-r(min)
-			replace `v' = `v'/range_`v'
-			drop range_`v'
-			twoway (hist `v' if Private == 0, frac lcolor(gs12) fcolor(gs12) width(`BinWidth') start(`MinVal')) ///
-			(hist `v' if Private == 1, frac lcolor(red) fcolor(none) width(`BinWidth') start(`MinVal')), ///
-			legend(label(1 "Public Firms") label(2 "Private Firms")) ///
-			xtitle("`v' growth - Haltiwanger") graphregion(color(white))
-			graph export Output/$CountryID/Distribution_`v'_Haltiwanger-PublicPrivate.pdf, replace 
-		}
-		
-		
-	restore
-	
-	}
-
 * Delisted vs non-delisted public
 preserve
 	keep if FirmType == 6

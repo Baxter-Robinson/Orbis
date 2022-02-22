@@ -8,7 +8,7 @@ preserve
 	   - X-axis Categories of employment (1, 2-10, 11-99, 100-999, 1000+)
 	   - y-axis Stacked bar chart: share of firms that are public vs. private - sum of all bars should add up to 1
 	*/
-	keep IDNum Year nEmployees Private
+	keep IDNum Year nEmployees Private SizeCategory
 		
 	keep if nEmployees!=.
 	sum nEmployees, detail
@@ -101,7 +101,7 @@ preserve
 		text(`endpoint6' 7 "`nfirmspublic7'", color(navy) size(small)) /// 
 		graphregion(color(white))
 		graph export Output/$CountryID/OB_BySizeCat_ShareFirms.pdf, replace 
-	
+		
 	
 restore
 	
