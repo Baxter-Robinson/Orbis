@@ -56,6 +56,7 @@
 \subsection{Summary Statistics Table}
 \begin{table}[!htpb]
 \caption{Summary Statistics}
+\resizebox{\textwidth}{!}{
 \begin{tabular}{l*{11}{c}}
 \hline
 Country & Sample & \multicolumn{5}{c}{Employment} & \multicolumn{5}{c}{Sales (EUR, millions)} \\ \cline{3-7} \cline{8-12}
@@ -78,7 +79,7 @@ Germany & \input{../Output/DE/OB_Sum_Stats_Public.tex}   \\
 Netherlands & \input{../Output/NL/OB_Sum_Stats.tex}  
 Netherlands & \input{../Output/NL/OB_Sum_Stats_Private.tex}  
 Netherlands & \input{../Output/NL/OB_Sum_Stats_Public.tex}   
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 \clearpage
@@ -234,32 +235,32 @@ Netherlands & \input{../Output/NL/OB_Sum_Stats_Public.tex}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Italy}
- \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+ \includegraphics[scale=0.6]{../Output/IT/Graph_BySizeCategory_PubVPrivate_nFirms.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Portugal}
- \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+ \includegraphics[scale=0.6]{../Output/PT/Graph_BySizeCategory_PubVPrivate_nFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{France}
- \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+ \includegraphics[scale=0.6]{../Output/FR/Graph_BySizeCategory_PubVPrivate_nFirms.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Spain}
- \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+ \includegraphics[scale=0.6]{../Output/ES/Graph_BySizeCategory_PubVPrivate_nFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Germany}
- \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+ \includegraphics[scale=0.6]{../Output/DE/Graph_BySizeCategory_PubVPrivate_nFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Netherland}
- \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+ \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_nFirms.pdf}
 \end{subfigure}
 \end{figure}
 
@@ -271,38 +272,104 @@ Netherlands & \input{../Output/NL/OB_Sum_Stats_Public.tex}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Italy}
- \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_NumFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_nFirms.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Portugal}
- \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_NumFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_nFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{France}
- \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_NumFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_nFirms.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Spain}
- \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_NumFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_nFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Germany}
- \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_NumFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_nFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Netherland}
- \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_NumFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_nFirms.pdf}
 \end{subfigure}
 \end{figure}
 
 \subsection{Sales per Employee by Size Category}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.6]{../Output/IT/Graph_BySizeCategory_PubVPrivate_SalesEmployeeAvg.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.6]{../Output/PT/Graph_BySizeCategory_PubVPrivate_SalesEmployeeAvg.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.6]{../Output/FR/Graph_BySizeCategory_PubVPrivate_SalesEmployeeAvg.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/ES/Graph_BySizeCategory_PubVPrivate_SalesEmployeeAvg.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Germany}
+ \includegraphics[scale=0.6]{../Output/DE/Graph_BySizeCategory_PubVPrivate_SalesEmployeeAvg.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Netherland}
+ \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_SalesEmployeeAvg.pdf}
+\end{subfigure}
+\end{figure}
 \clearpage
 \subsection{Sales per Employee by Size Percentiles}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_SalesEmployeeAvg.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_SalesEmployeeAvg.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_SalesEmployeeAvg.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_SalesEmployeeAvg.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Germany}
+ \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_SalesEmployeeAvg.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Netherland}
+ \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_SalesEmployeeAvg.pdf}
+\end{subfigure}
+\end{figure}
 \clearpage
 
 \subsection{Distribution of Employment Growth Rates (Orbis)}

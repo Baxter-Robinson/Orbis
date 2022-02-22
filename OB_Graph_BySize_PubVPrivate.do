@@ -60,7 +60,7 @@ preserve
 	 
 	  twoway (scatter nFirms_Public_mean SizeCategory if (Private==0), connect(l)) ///
 	(scatter nFirms_Private_mean SizeCategory if (Private==1), connect(l) msymbol(Sh)) ///
-	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Sales per Employee") graphregion(color(white)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Number of Firms") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	 graph export Output/$CountryID/Graph_BySize_PubVPrivate_nFirms.pdf, replace  
 	 
@@ -296,7 +296,7 @@ preserve
 	 
 	  twoway (scatter nFirms_Public_mean SizeCategory if (Private==0), connect(l)) ///
 	(scatter nFirms_Private_mean SizeCategory if (Private==1), connect(l) msymbol(Sh)) ///
-	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Sales per Employee") graphregion(color(white)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Number of Firms") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_nFirms.pdf, replace  
 	 

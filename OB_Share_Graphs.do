@@ -97,8 +97,8 @@ preserve
 		text(`endpoint3' 3 "`nfirmspublic3'", color(navy) size(small)) /// 
 		text(`endpoint4' 4 "`nfirmspublic4'", color(navy) size(small)) /// 
 		text(`endpoint5' 5 "`nfirmspublic5'", color(navy) size(small)) /// 
-		text(`endpoint6' 7 "`nfirmspublic6'", color(navy) size(small)) /// 
-		text(`endpoint6' 7 "`nfirmspublic7'", color(navy) size(small)) /// 
+		text(`endpoint6' 6 "`nfirmspublic6'", color(navy) size(small)) /// 
+		text(`endpoint7' 7 "`nfirmspublic7'", color(navy) size(small)) /// 
 		graphregion(color(white))
 		graph export Output/$CountryID/OB_BySizeCat_ShareFirms.pdf, replace 
 		
@@ -181,11 +181,11 @@ restore
 			replace roof = `nEmp`i''+`nEmppublic`i'' if (SizeCategory==`i')
 			
 		 }		
-		sum roof if SizeCategory==5,detail
-		local endp5roof1 = r(mean)
-		sum pct_nEmpCatPrivate if SizeCategory==5,detail
-		local endp5roof2 = r(mean)
-		local endpoint5 = (`endp5roof1'+`endp5roof2')/2
+		sum roof if SizeCategory==7,detail
+		local endp7roof1 = r(mean)
+		sum pct_nEmpCatPrivate if SizeCategory==7,detail
+		local endp7roof2 = r(mean)
+		local endpoint7 = (`endp7roof1'+`endp7roof2')/2
 		
 		label define SizeCat  1 "1" 2 "2-5"  3 "6-10" 4 "11-50" 5 "51-100" 6 "101-1,000" 7 "1,000+" 
 		local Labels  1 "1" 2 "2-5"  3 "6-10" 4 "11-50" 5 "51-100" 6 "101-1,000" 7 "1,000+" 
@@ -202,15 +202,15 @@ restore
 			text(`midpoint3' 3 "`nEmp3'", color(white) size(small)) /// 
 			text(`midpoint4' 4 "`nEmp4'", color(white) size(small)) /// 
 			text(`midpoint5' 5 "`nEmp5'", color(white) size(small)) /// 
-			text(`midpoint5' 6 "`nEmp6'", color(white) size(small)) /// 
-			text(`midpoint5' 7 "`nEmp7'", color(white) size(small)) /// 
+			text(`midpoint6' 6 "`nEmp6'", color(white) size(small)) /// 
+			text(`midpoint7' 7 "`nEmp7'", color(white) size(small)) /// 
 			text(`endpoint1' 1 "`nEmppublic1'", color(navy) size(small)) /// Begin labels for public firms
 			text(`endpoint2' 2 "`nEmppublic3'", color(navy) size(small)) /// 
 			text(`endpoint3' 3 "`nEmppublic3'", color(navy) size(small)) /// 
 			text(`endpoint4' 4 "`nEmppublic4'", color(navy) size(small)) /// 
 			text(`endpoint5' 5 "`nEmppublic5'", color(white) size(small)) /// 
-			text(`endpoint5' 6 "`nEmppublic6'", color(white) size(small)) /// 
-			text(`endpoint5' 7 "`nEmppublic7'", color(white) size(small)) /// 
+			text(`endpoint6' 6 "`nEmppublic6'", color(white) size(small)) /// 
+			text(`endpoint7' 7 "`nEmppublic7'", color(white) size(small)) /// 
 			graphregion(color(white))
 			graph export Output/$CountryID/OB_BySizeCat_ShareEmployment.pdf, replace 
 		
