@@ -1188,9 +1188,23 @@ where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ rep
     }
 \end{table}
 
-\clearpage
+\subsection{Share of Employment by Size Categories}
+\begin{table}[!htpb]
+\caption{Share of Employment by Size Categories}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{7}c}
+\toprule
+Country & 1 & 2-5 & 6-10 & 11-50 & 51-100 & 101-1000 & $+$1000 \\
+\hline
+\input{../Output/IT/OB_Share_Emp_Size_Category.tex}
+\input{../Output/PT/OB_Share_Emp_Size_Category.tex}
+\input{../Output/ES/OB_Share_Emp_Size_Category.tex}
+\input{../Output/FR/OB_Share_Emp_Size_Category.tex}
+\input{../Output/DE/OB_Share_Emp_Size_Category.tex}
+\input{../Output/NL/OB_Share_Emp_Size_Category.tex}
 
-\subsection{Share of Employment by Size Categories} % (fold)
+\end{tabular}}
+\end{table}
+
 \clearpage
 
 \subsection{Orbis: Employment Composition Across Countries}
@@ -1207,28 +1221,6 @@ where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ rep
 \end{center}
 
 \clearpage
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1517,7 +1509,7 @@ where $j$ indexes firms, $s$ indexes sectors, $t$ indexes years. $gEmp_{jt}$ rep
 
 
 
-\subsection{Orbis: Static Firm Share}
+\subsection{Static Firm Share (ORBIS)}
 
 \begin{table}[!htpb]
 \resizebox{\textwidth}{!}{\begin{tabular}{l*{5}c}
@@ -1559,7 +1551,7 @@ Country & Number of Firms & Below 25th Percentile & Below 50th Percentile & Belo
 
 
 
-\subsection{ORBIS: Cross-Country Moments}
+\subsection{Cross-Country Moments (ORBIS)}
 
 \subsubsection{Balanced Panel}
 \begin{table}[!htpb]
@@ -1645,7 +1637,7 @@ Country & Number of Firms &  Employment Growth & Employment Growth    & Static S
 \subsection{Missing Observations (Orbis)}
 \begin{table}[!htpb]
     \centering
-    \scalebox{0.9}{
+    \resizebox{\textwidth}{!}{
     \begin{tabular}{@{}ccccccc@{}}
         \toprule
         & Full Sample & No Employees & No Sales & No Revenues & No Assets & Missing shareholders \\ \midrule
