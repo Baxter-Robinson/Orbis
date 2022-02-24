@@ -31,19 +31,20 @@ set more off
 
 * Javier PATH
 * Laptop
-*cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 * HOME
-cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+*cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+*global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 *
 
 *---------------------
 * Loop over countries 
 *---------------------
-global Countries IT FR ES PT DE NL
+*global Countries IT FR ES PT DE NL
+global Countries IT 
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
@@ -107,14 +108,14 @@ foreach Country of global Countries {
 	
 	*do OB_HGR_regressions.do
 	
-	*do OB_Sum_Stats_Table.do
+	do OB_Sum_Stats_Table.do
 	
 	*do OB_Graph_BySize.do
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do
 	
 	*do OB_Table_Share_Emp_SizeCat.do
 	
-	do OB_CS_Dist_Employment.do
+	*do OB_CS_Dist_Employment.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
