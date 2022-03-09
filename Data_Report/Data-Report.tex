@@ -57,10 +57,10 @@
 \begin{table}[!htpb]
 \caption{Summary Statistics}
 \resizebox{\textwidth}{!}{
-\begin{tabular}{l*{11}{c}}
+\begin{tabular}{l*{13}{c}}
 \hline
-Country & Sample & \multicolumn{5}{c}{Employment} & \multicolumn{5}{c}{Sales (EUR, millions)} \\ \cline{3-7} \cline{8-12}
-		&		 & Min & P10 & P50 & P90 & Max & Min & P10 & P50 & P90 & Max \\  \hline
+Country & Sample & Number  & Average Number of & \multicolumn{5}{c}{Employment} & \multicolumn{5}{c}{Sales (EUR, millions)} \\ \cline{5-9} \cline{10-14}
+		&		& of Firms & Firms per Year    & Min & P10 & P50 & P90 & Max & Min & P10 & P50 & P90 & Max \\  \hline
 Italy & \input{../Output/IT/OB_Sum_Stats.tex} 
 Italy & \input{../Output/IT/OB_Sum_Stats_Private.tex}  
 Italy & \input{../Output/IT/OB_Sum_Stats_Public.tex}  \\
@@ -229,77 +229,80 @@ Netherlands & \input{../Output/NL/OB_Sum_Stats_Public.tex}
 \end{subfigure}
 \end{figure}
 
-\subsection{Number of Firms by Size Categories}
+\subsection{Share of Firms by Size Categories}
 \begin{figure}[!htpb]
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Italy}
- \includegraphics[scale=0.6]{../Output/IT/Graph_BySizeCategory_PubVPrivate_nFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/IT/OB_BySizeCat_ShareFirms.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Portugal}
- \includegraphics[scale=0.6]{../Output/PT/Graph_BySizeCategory_PubVPrivate_nFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/PT/OB_BySizeCat_ShareFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{France}
- \includegraphics[scale=0.6]{../Output/FR/Graph_BySizeCategory_PubVPrivate_nFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/FR/OB_BySizeCat_ShareFirms.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Spain}
- \includegraphics[scale=0.6]{../Output/ES/Graph_BySizeCategory_PubVPrivate_nFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/ES/OB_BySizeCat_ShareFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Germany}
- \includegraphics[scale=0.6]{../Output/DE/Graph_BySizeCategory_PubVPrivate_nFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/DE/OB_BySizeCat_ShareFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Netherland}
- \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_nFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/NL/OB_BySizeCat_ShareFirms.pdf}
 \end{subfigure}
 \end{figure}
+\clearpage
 
 
 
-\subsection{Number of firms by Size Percentile}
+\subsection{Share of Employment by Size Category}
 \begin{figure}[!htpb]
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Italy}
- \includegraphics[scale=0.6]{../Output/IT/Graph_BySize_PubVPrivate_nFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/IT/OB_BySizeCat_ShareEmployment.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Portugal}
- \includegraphics[scale=0.6]{../Output/PT/Graph_BySize_PubVPrivate_nFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/PT/OB_BySizeCat_ShareEmployment.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{France}
- \includegraphics[scale=0.6]{../Output/FR/Graph_BySize_PubVPrivate_nFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/FR/OB_BySizeCat_ShareEmployment.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Spain}
- \includegraphics[scale=0.6]{../Output/ES/Graph_BySize_PubVPrivate_nFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/ES/OB_BySizeCat_ShareEmployment.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Germany}
- \includegraphics[scale=0.6]{../Output/DE/Graph_BySize_PubVPrivate_nFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/DE/OB_BySizeCat_ShareEmployment.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Netherland}
- \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_nFirms.pdf}
+ \includegraphics[scale=0.6]{../Output/NL/OB_BySizeCat_ShareEmployment.pdf}
 \end{subfigure}
 \end{figure}
+\clearpage
+
 
 \subsection{Sales per Employee by Size Category}
 \begin{figure}[!htpb]
@@ -445,45 +448,7 @@ Netherlands & \input{../Output/NL/OB_Sum_Stats_Public.tex}
 \clearpage
 
 
-
-\subsection{Share of Firms}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Italy}
- \includegraphics[scale=0.6]{../Output/IT/OB_BySizeCat_ShareFirms.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Portugal}
- \includegraphics[scale=0.6]{../Output/PT/OB_BySizeCat_ShareFirms.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{France}
- \includegraphics[scale=0.6]{../Output/FR/OB_BySizeCat_ShareFirms.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Spain}
- \includegraphics[scale=0.6]{../Output/ES/OB_BySizeCat_ShareFirms.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Germany}
- \includegraphics[scale=0.6]{../Output/DE/OB_BySizeCat_ShareFirms.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Netherland}
- \includegraphics[scale=0.6]{../Output/NL/OB_BySizeCat_ShareFirms.pdf}
-\end{subfigure}
-\end{figure}
-\clearpage
-
-
-\subsection{Share of Employment}
+\subsection{Share of Firms by Age}
 
 
 \begin{figure}[!htpb]
@@ -491,36 +456,35 @@ Netherlands & \input{../Output/NL/OB_Sum_Stats_Public.tex}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Italy}
- \includegraphics[scale=0.6]{../Output/IT/OB_BySizeCat_ShareEmployment.pdf}
+ \includegraphics[scale=0.6]{../Output/IT/OB_ByAge_Share_nFirms.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Portugal}
- \includegraphics[scale=0.6]{../Output/PT/OB_BySizeCat_ShareEmployment.pdf}
+ \includegraphics[scale=0.6]{../Output/PT/OB_ByAge_Share_nFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{France}
- \includegraphics[scale=0.6]{../Output/FR/OB_BySizeCat_ShareEmployment.pdf}
+ \includegraphics[scale=0.6]{../Output/FR/OB_ByAge_Share_nFirms.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Spain}
- \includegraphics[scale=0.6]{../Output/ES/OB_BySizeCat_ShareEmployment.pdf}
+ \includegraphics[scale=0.6]{../Output/ES/OB_ByAge_Share_nFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Germany}
- \includegraphics[scale=0.6]{../Output/DE/OB_BySizeCat_ShareEmployment.pdf}
+ \includegraphics[scale=0.6]{../Output/DE/OB_ByAge_Share_nFirms.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Netherland}
- \includegraphics[scale=0.6]{../Output/NL/OB_BySizeCat_ShareEmployment.pdf}
+ \includegraphics[scale=0.6]{../Output/NL/OB_ByAge_Share_nFirms.pdf}
 \end{subfigure}
 \end{figure}
 \clearpage
-
 
 
 \subsection{Share of Employment by Age}

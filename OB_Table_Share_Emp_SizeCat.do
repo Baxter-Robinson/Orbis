@@ -50,11 +50,11 @@
 			local SizeCat`i' = r(mean)
 		}
 		
-		file write CrossCountry %4.2gc (`SizeCat1')
+		file write CrossCountry %10.6gc (`SizeCat1')
 		file write CrossCountry " &  "
-		file write CrossCountry %4.2gc (`SizeCat2')
+		file write CrossCountry %10.6gc (`SizeCat2')
 		file write CrossCountry " &  "
-		file write CrossCountry %4.2gc (`SizeCat3')
+		file write CrossCountry %10.6gc (`SizeCat3')
 		file write CrossCountry " &  "
 		file write CrossCountry %4.2gc (`SizeCat4')
 		file write CrossCountry " &  "

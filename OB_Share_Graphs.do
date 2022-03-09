@@ -236,7 +236,7 @@ restore
 		keep IDNum Year nEmployees Private Age
 			
 		keep if nEmployees!=.
-		sum nEmployees, detail
+		sum Age, detail
 		local max= r(max)
 		cap drop groups
 		egen groups  = cut(Age), at (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, `max')
@@ -368,23 +368,95 @@ restore
 	
 	restore
 	
+		
+	
+	************************************************************************************************************
+	************************************************************************************************************
+	************************************************************************************************************
 	
 	
 	
+	preserve
+	* Share of Firms by Age
 	
 	
+		keep IDNum Year nEmployees Private Age
+		
+		keep if nEmployees!=.
+		sum Age, detail
+		local max= r(max)
+		cap drop groups
+		egen groups  = cut(Age), at (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, `max')
+
+		gen AgeCategory = . 
+		replace AgeCategory = 1 if groups==1
+		replace AgeCategory = 2 if groups==2
+		replace AgeCategory = 3 if groups==3
+		replace AgeCategory = 4 if groups==4
+		replace AgeCategory = 5 if groups==5
+		replace AgeCategory = 6 if groups==6
+		replace AgeCategory = 7 if groups==7
+		replace AgeCategory = 8 if groups==8
+		replace AgeCategory = 9 if groups==9
+		replace AgeCategory = 10 if groups==10
+		replace AgeCategory = 11 if groups==11
+		replace AgeCategory = 12 if groups==12
+		replace AgeCategory = 13 if groups==13
+		replace AgeCategory = 14 if groups==14
+		replace AgeCategory = 15 if (groups==15) | (groups==`max')
+		
+		drop if AgeCategory==.
+
+		bysort AgeCategory IDNum : gen nvals = _n == 1 
+		bysort AgeCategory : egen nFirmsAge = total(nvals) 
+		bysort AgeCategory : egen nFirmsAgePrivate = total(nvals) if Private==1
+		bysort AgeCategory : egen nFirmsAgePublic = total(nvals) if Private==0
+				
+		collapse (mean) nFirmsAgePrivate nFirmsAgePublic nFirmsAge, by(AgeCategory Private)
+		
+		replace nFirmsAgePublic = round(nFirmsAgePublic)
+		replace nFirmsAgePrivate = round(nFirmsAgePrivate)
+		
+		gen public_firms = nFirmsAgePublic
+		replace public_firms = 0 if public_firms==. 
+		gen private_firms = nFirmsAgePrivate
+		replace private_firms = 0 if private_firms==.
+		
+		bysort Private: egen nFirms = total(nFirmsAge)
+		
+		sort AgeCategory Private 
+		
+		gen pct_AgeCatPrivate = 100*nFirmsAgePrivate/nFirms
+		gen pct_AgeCatPublic = 100*nFirmsAgePublic/nFirms
+		
+		gen floor = 0
+		gen roof = .
+		
+		levelsof AgeCategory, local(categories)	
+		foreach i of local categories{						
+			su pct_AgeCatPrivate if (Private==1) & (AgeCategory==`i') , detail // values for private firms labels
+			local nEmp`i' = round(r(mean))
 	
+			su pct_AgeCatPublic if (Private==0) & (AgeCategory==`i'), detail
+			local nEmppublic`i' = round(r(mean))
+
+			replace roof = `nEmp`i''+`nEmppublic`i'' if (AgeCategory==`i')
+		 }
+		
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		label define AgeCategory 1 "1" 2 "2" 3 "3" 4 "4" 5 "5"  6 "6" 7 "7" 8 "8" 9 "9" 10 "10" 11 "11" 12 "12" 13 "13" 14 "14" 15 "15+'" 
+		local Labels  1 "1" 2 "2" 3 "3" 4 "4" 5 "5"  6 "6" 7 "7" 8 "8" 9 "9" 10 "10" 11 "11" 12 "12" 13 "13" 14 "14" 15 "15+" 
+		
+		
+		graph twoway (rbar floor pct_AgeCatPrivate AgeCategory, color(maroon))  ///
+			(rbar pct_AgeCatPrivate roof AgeCategory, color(navy)), ///
+			legend(label(1 "Private") label( 2 "Public" ) ) ///
+			ytitle("Share of firms") ///
+			ylabel(, format(%3.0fc)) ///
+			xtitle("Years in Market") ///
+			xlabel(`Labels')  ///
+			graphregion(color(white))
+			graph export Output/$CountryID/OB_ByAge_Share_nFirms.pdf, replace 
 	
 	
 	
