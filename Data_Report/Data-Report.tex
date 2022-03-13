@@ -1556,12 +1556,12 @@ Country & Number of Firms &  Employment Growth & Employment Growth    & Static S
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Domestic Credit by Banks}
- \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_DomCreditBanks_EquityMktDepth.pdf}
+    \subcaption{Domestic Credit to Private Sector by Banks}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/WB_DomCreditBanks_EquityMktDepth.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Private Credit}
+    \subcaption{Private Credit (all instruments)}
  \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_PrivateDebtAll_EquityMktDepth.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
@@ -1571,25 +1571,32 @@ Country & Number of Firms &  Employment Growth & Employment Growth    & Static S
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Spain}
+    \subcaption{NonFinancial Corporate Debt (all instruments)}
  \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_NonFinancialDebtAll_EquityMktDepth.pdf}
 \end{subfigure}
 \end{figure}
 
-\clearpage
-
+\paragraph{Definitions}
+\begin{small}
+	\begin{itemize}
+		\item Domestic Credit to Private Sector by Banks: Refers to financial resources provided to the private sector by other depository corporations (deposit taking corporations except central banks), such as through loans, purchases of nonequity securities, and trade credits and other accounts receivable, that establish a claim for repayment. For some countries these claims include credit to public enterprises. Source: World Bank\\~\
+		\item Private Debt (all instruments): Total stock of debt liabilities issued by households and nonfinancial corporations, including all debt instruments, as a share of GDP. Source: IMF Global Debt Database.\\~\
+		\item Household Debt (all instruments): Total stock of debt liabilities issued by households, including all debt instruments, as a share of GDP. Source: IMF Global Debt Database.\\~\
+		\item NonFinancial Corporate Debt (all instruments): Total stock of debt liabilities issued by nonfinancial corporations, including all debt instruments, as a share of GDP. Source: IMF Global Debt Database.\\~\
+	\end{itemize}
+\end{small}
 
 \begin{figure}[!htpb]
  \caption{Total Factor Productivity and Financial Development Variables}
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Domestic Credit by Banks}
- \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_DomCreditBanks_TFP.pdf}
+    \subcaption{Domestic Credit to Private Sector by Banks}
+ \includegraphics[scale=0.6]{../Output/Cross-Country/WB_DomCreditBanks_TFP.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Private Credit}
+    \subcaption{Private Debt (all instruments)}
  \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_PrivateDebtAll_TFP.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
@@ -1599,7 +1606,7 @@ Country & Number of Firms &  Employment Growth & Employment Growth    & Static S
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Spain}
+    \subcaption{NonFinancial Corporate Debt (all instruments)}
  \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_NonFinancialDebtAll_TFP.pdf}
 \end{subfigure}
 \end{figure}
@@ -1700,10 +1707,10 @@ Country & Number of Firms &  Employment Growth & Employment Growth    & Static S
 \subsection{Financial Information (Orbis)}
 \subsubsection{Italy}
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
-        &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
+        &  	        &                &	Missing   &  Zeros     &         & 	   &	 & 	               & 		   \\
 \hline \hline
 Assets & \input{../Output/IT/OB_Financial_Ratios_Assets.tex}
 EBITDA & \input{../Output/IT/OB_Financial_Ratios_EBITDA.tex}
@@ -1712,18 +1719,18 @@ Market Capitalization & \input{../Output/IT/OB_Financial_Ratios_MarketCap.tex}
 Number of Shares & \input{../Output/IT/OB_Financial_Ratios_Stock.tex}
 Number of Shareholders & \input{../Output/IT/OB_Financial_Ratios_nShareholders.tex}
 Revenue & \input{../Output/IT/OB_Financial_Ratios_Revenue.tex}
-Assets to EBITDA & \input{../Output/IT/OB_Financial_Ratios_Assets_EBITDA.tex}
-Assets to Revenue & \input{../Output/IT/OB_Financial_Ratios_Assets_Revenue.tex}
-Assets to Profits & \input{../Output/IT/OB_Financial_Ratios_Assets_Profits.tex}
-Market Capitalization to Assets &  \input{../Output/IT/OB_Financial_Ratios_MktCap_Assets.tex}
-%\input{../Output/IT/OB_Financial_Ratios.tex}
+Assets to EBITDA & \input{../Output/IT/OB_Financial_Ratios_ebitdatoassets.tex}
+Assets to Revenue & \input{../Output/IT/OB_Financial_Ratios_revenuetoassets.tex}
+Assets to Profits & \input{../Output/IT/OB_Financial_Ratios_profitstoassets.tex}
+Market Capitalization to Assets &  \input{../Output/IT/OB_Financial_Ratios_mktcaptoassets.tex}
 \end{tabular}}
  \hrule
 \end{table}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PUBLIC FIRMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -1735,10 +1742,10 @@ Market Capitalization & \input{../Output/IT/OB_Financial_Ratios_MarketCap_public
 Number of Shares & \input{../Output/IT/OB_Financial_Ratios_Stock_public.tex}
 Number of Shareholders & \input{../Output/IT/OB_Financial_Ratios_nShareholders_public.tex}
 Revenue & \input{../Output/IT/OB_Financial_Ratios_Revenue_public.tex}
-Assets to EBITDA & \input{../Output/IT/OB_Financial_Ratios_Assets_EBITDA_public.tex}
-Assets to Revenue & \input{../Output/IT/OB_Financial_Ratios_Assets_Revenue_public.tex}
-Assets to Profits & \input{../Output/IT/OB_Financial_Ratios_Assets_Profits_public.tex}
-Market Capitalization to Assets &  \input{../Output/IT/OB_Financial_Ratios_MktCap_Assets_public.tex}
+Assets to EBITDA & \input{../Output/IT/OB_Financial_Ratios_ebitdatoassets_public.tex}
+Assets to Revenue & \input{../Output/IT/OB_Financial_Ratios_revenuetoassets_public.tex}
+Assets to Profits & \input{../Output/IT/OB_Financial_Ratios_profitstoassets_public.tex}
+Market Capitalization to Assets &  \input{../Output/IT/OB_Financial_Ratios_mktcaptoassets_public.tex}
 %\input{../Output/IT/OB_Financial_Ratios.tex}
 \end{tabular}}
  \hrule
@@ -1746,7 +1753,7 @@ Market Capitalization to Assets &  \input{../Output/IT/OB_Financial_Ratios_MktCa
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PRIVATE FIRMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -1758,10 +1765,10 @@ Market Capitalization & \input{../Output/IT/OB_Financial_Ratios_MarketCap_privat
 Number of Shares & \input{../Output/IT/OB_Financial_Ratios_Stock_private.tex}
 Number of Shareholders & \input{../Output/IT/OB_Financial_Ratios_nShareholders_private.tex}
 Revenue & \input{../Output/IT/OB_Financial_Ratios_Revenue_private.tex}
-Assets to EBITDA & \input{../Output/IT/OB_Financial_Ratios_Assets_EBITDA_private.tex}
-Assets to Revenue & \input{../Output/IT/OB_Financial_Ratios_Assets_Revenue_private.tex}
-Assets to Profits & \input{../Output/IT/OB_Financial_Ratios_Assets_Profits_private.tex}
-Market Capitalization to Assets &  \input{../Output/IT/OB_Financial_Ratios_MktCap_Assets_private.tex}
+Assets to EBITDA & \input{../Output/IT/OB_Financial_Ratios_ebitdatoassets_private.tex}
+Assets to Revenue & \input{../Output/IT/OB_Financial_Ratios_revenuetoassets_private.tex}
+Assets to Profits & \input{../Output/IT/OB_Financial_Ratios_profitstoassets_private.tex}
+Market Capitalization to Assets &  \input{../Output/IT/OB_Financial_Ratios_mktcaptoassets_private.tex}
 %\input{../Output/IT/OB_Financial_Ratios.tex}
 \end{tabular}}
  \hrule
@@ -1775,7 +1782,7 @@ Market Capitalization to Assets &  \input{../Output/IT/OB_Financial_Ratios_MktCa
 
 \subsubsection{France}
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -1787,10 +1794,10 @@ Market Capitalization & \input{../Output/FR/OB_Financial_Ratios_MarketCap.tex}
 Number of Shares & \input{../Output/FR/OB_Financial_Ratios_Stock.tex}
 Number of Shareholders & \input{../Output/FR/OB_Financial_Ratios_nShareholders.tex}
 Revenue & \input{../Output/FR/OB_Financial_Ratios_Revenue.tex}
-Assets to EBITDA & \input{../Output/FR/OB_Financial_Ratios_Assets_EBITDA.tex}
-Assets to Revenue & \input{../Output/FR/OB_Financial_Ratios_Assets_Revenue.tex}
-Assets to Profits & \input{../Output/FR/OB_Financial_Ratios_Assets_Profits.tex}
-Market Capitalization to Assets &  \input{../Output/FR/OB_Financial_Ratios_MktCap_Assets.tex}
+Assets to EBITDA & \input{../Output/FR/OB_Financial_Ratios_ebitdatoassets.tex}
+Assets to Revenue & \input{../Output/FR/OB_Financial_Ratios_revenuetoassets.tex}
+Assets to Profits & \input{../Output/FR/OB_Financial_Ratios_profitstoassets.tex}
+Market Capitalization to Assets &  \input{../Output/FR/OB_Financial_Ratios_mktcaptoassets.tex}
 %\input{../Output/FR/OB_Financial_Ratios.tex}
 \end{tabular}}
  \hrule
@@ -1798,7 +1805,7 @@ Market Capitalization to Assets &  \input{../Output/FR/OB_Financial_Ratios_MktCa
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PUBLIC FIRMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -1810,10 +1817,10 @@ Market Capitalization & \input{../Output/FR/OB_Financial_Ratios_MarketCap_public
 Number of Shares & \input{../Output/FR/OB_Financial_Ratios_Stock_public.tex}
 Number of Shareholders & \input{../Output/FR/OB_Financial_Ratios_nShareholders_public.tex}
 Revenue & \input{../Output/FR/OB_Financial_Ratios_Revenue_public.tex}
-Assets to EBITDA & \input{../Output/FR/OB_Financial_Ratios_Assets_EBITDA_public.tex}
-Assets to Revenue & \input{../Output/FR/OB_Financial_Ratios_Assets_Revenue_public.tex}
-Assets to Profits & \input{../Output/FR/OB_Financial_Ratios_Assets_Profits_public.tex}
-Market Capitalization to Assets &  \input{../Output/FR/OB_Financial_Ratios_MktCap_Assets_public.tex}
+Assets to EBITDA & \input{../Output/FR/OB_Financial_Ratios_ebitdatoassets_public.tex}
+Assets to Revenue & \input{../Output/FR/OB_Financial_Ratios_revenuetoassets_public.tex}
+Assets to Profits & \input{../Output/FR/OB_Financial_Ratios_profitstoassets_public.tex}
+Market Capitalization to Assets &  \input{../Output/FR/OB_Financial_Ratios_mktcaptoassets_public.tex}
 %\input{../Output/FR/OB_Financial_Ratios.tex}
 \end{tabular}}
  \hrule
@@ -1821,7 +1828,7 @@ Market Capitalization to Assets &  \input{../Output/FR/OB_Financial_Ratios_MktCa
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PRIVATE FIRMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -1833,10 +1840,10 @@ Market Capitalization & \input{../Output/FR/OB_Financial_Ratios_MarketCap_privat
 Number of Shares & \input{../Output/FR/OB_Financial_Ratios_Stock_private.tex}
 Number of Shareholders & \input{../Output/FR/OB_Financial_Ratios_nShareholders_private.tex}
 Revenue & \input{../Output/FR/OB_Financial_Ratios_Revenue_private.tex}
-Assets to EBITDA & \input{../Output/FR/OB_Financial_Ratios_Assets_EBITDA_private.tex}
-Assets to Revenue & \input{../Output/FR/OB_Financial_Ratios_Assets_Revenue_private.tex}
-Assets to Profits & \input{../Output/FR/OB_Financial_Ratios_Assets_Profits_private.tex}
-Market Capitalization to Assets &  \input{../Output/FR/OB_Financial_Ratios_MktCap_Assets_private.tex}
+Assets to EBITDA & \input{../Output/FR/OB_Financial_Ratios_ebitdatoassets_private.tex}
+Assets to Revenue & \input{../Output/FR/OB_Financial_Ratios_revenuetoassets_private.tex}
+Assets to Profits & \input{../Output/FR/OB_Financial_Ratios_profitstoassets_private.tex}
+Market Capitalization to Assets &  \input{../Output/FR/OB_Financial_Ratios_mktcaptoassets_private.tex}
 %\input{../Output/FR/OB_Financial_Ratios.tex}
 \end{tabular}}
  \hrule
@@ -1851,7 +1858,7 @@ Market Capitalization to Assets &  \input{../Output/FR/OB_Financial_Ratios_MktCa
 
 \subsubsection{Spain}
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -1863,10 +1870,10 @@ Market Capitalization & \input{../Output/ES/OB_Financial_Ratios_MarketCap.tex}
 Number of Shares & \input{../Output/ES/OB_Financial_Ratios_Stock.tex}
 Number of Shareholders & \input{../Output/ES/OB_Financial_Ratios_nShareholders.tex}
 Revenue & \input{../Output/ES/OB_Financial_Ratios_Revenue.tex}
-Assets to EBITDA & \input{../Output/ES/OB_Financial_Ratios_Assets_EBITDA.tex}
-Assets to Revenue & \input{../Output/ES/OB_Financial_Ratios_Assets_Revenue.tex}
-Assets to Profits & \input{../Output/ES/OB_Financial_Ratios_Assets_Profits.tex}
-Market Capitalization to Assets &  \input{../Output/ES/OB_Financial_Ratios_MktCap_Assets.tex}
+Assets to EBITDA & \input{../Output/ES/OB_Financial_Ratios_ebitdatoassets.tex}
+Assets to Revenue & \input{../Output/ES/OB_Financial_Ratios_revenuetoassets.tex}
+Assets to Profits & \input{../Output/ES/OB_Financial_Ratios_profitstoassets.tex}
+Market Capitalization to Assets &  \input{../Output/ES/OB_Financial_Ratios_mktcaptoassets.tex}
 %\input{../Output/ES/OB_Financial_Ratios.tex}
 \end{tabular}}
  \hrule
@@ -1874,7 +1881,7 @@ Market Capitalization to Assets &  \input{../Output/ES/OB_Financial_Ratios_MktCa
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PUBLIC FIRMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -1886,10 +1893,10 @@ Market Capitalization & \input{../Output/ES/OB_Financial_Ratios_MarketCap_public
 Number of Shares & \input{../Output/ES/OB_Financial_Ratios_Stock_public.tex}
 Number of Shareholders & \input{../Output/ES/OB_Financial_Ratios_nShareholders_public.tex}
 Revenue & \input{../Output/ES/OB_Financial_Ratios_Revenue_public.tex}
-Assets to EBITDA & \input{../Output/ES/OB_Financial_Ratios_Assets_EBITDA_public.tex}
-Assets to Revenue & \input{../Output/ES/OB_Financial_Ratios_Assets_Revenue_public.tex}
-Assets to Profits & \input{../Output/ES/OB_Financial_Ratios_Assets_Profits_public.tex}
-Market Capitalization to Assets &  \input{../Output/ES/OB_Financial_Ratios_MktCap_Assets_public.tex}
+Assets to EBITDA & \input{../Output/ES/OB_Financial_Ratios_ebitdatoassets_public.tex}
+Assets to Revenue & \input{../Output/ES/OB_Financial_Ratios_revenuetoassets_public.tex}
+Assets to Profits & \input{../Output/ES/OB_Financial_Ratios_profitstoassets_public.tex}
+Market Capitalization to Assets &  \input{../Output/ES/OB_Financial_Ratios_mktcaptoassets_public.tex}
 %\input{../Output/ES/OB_Financial_Ratios.tex}
 \end{tabular}}
  \hrule
@@ -1897,7 +1904,7 @@ Market Capitalization to Assets &  \input{../Output/ES/OB_Financial_Ratios_MktCa
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PRIVATE FIRMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -1909,10 +1916,10 @@ Market Capitalization & \input{../Output/ES/OB_Financial_Ratios_MarketCap_privat
 Number of Shares & \input{../Output/ES/OB_Financial_Ratios_Stock_private.tex}
 Number of Shareholders & \input{../Output/ES/OB_Financial_Ratios_nShareholders_private.tex}
 Revenue & \input{../Output/ES/OB_Financial_Ratios_Revenue_private.tex}
-Assets to EBITDA & \input{../Output/ES/OB_Financial_Ratios_Assets_EBITDA_private.tex}
-Assets to Revenue & \input{../Output/ES/OB_Financial_Ratios_Assets_Revenue_private.tex}
-Assets to Profits & \input{../Output/ES/OB_Financial_Ratios_Assets_Profits_private.tex}
-Market Capitalization to Assets &  \input{../Output/ES/OB_Financial_Ratios_MktCap_Assets_private.tex}
+Assets to EBITDA & \input{../Output/ES/OB_Financial_Ratios_ebitdatoassets_private.tex}
+Assets to Revenue & \input{../Output/ES/OB_Financial_Ratios_revenuetoassets_private.tex}
+Assets to Profits & \input{../Output/ES/OB_Financial_Ratios_profitstoassets_private.tex}
+Market Capitalization to Assets &  \input{../Output/ES/OB_Financial_Ratios_mktcaptoassets_private.tex}
 %\input{../Output/ES/OB_Financial_Ratios.tex}
 \end{tabular}}
  \hrule
@@ -1922,7 +1929,7 @@ Market Capitalization to Assets &  \input{../Output/ES/OB_Financial_Ratios_MktCa
 
 \subsubsection{Portugal}
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -1934,10 +1941,10 @@ Market Capitalization & \input{../Output/PT/OB_Financial_Ratios_MarketCap.tex}
 Number of Shares & \input{../Output/PT/OB_Financial_Ratios_Stock.tex}
 Number of Shareholders & \input{../Output/PT/OB_Financial_Ratios_nShareholders.tex}
 Revenue & \input{../Output/PT/OB_Financial_Ratios_Revenue.tex}
-Assets to EBITDA & \input{../Output/PT/OB_Financial_Ratios_Assets_EBITDA.tex}
-Assets to Revenue & \input{../Output/PT/OB_Financial_Ratios_Assets_Revenue.tex}
-Assets to Profits & \input{../Output/PT/OB_Financial_Ratios_Assets_Profits.tex}
-Market Capitalization to Assets &  \input{../Output/PT/OB_Financial_Ratios_MktCap_Assets.tex}
+Assets to EBITDA & \input{../Output/PT/OB_Financial_Ratios_ebitdatoassets.tex}
+Assets to Revenue & \input{../Output/PT/OB_Financial_Ratios_revenuetoassets.tex}
+Assets to Profits & \input{../Output/PT/OB_Financial_Ratios_profitstoassets.tex}
+Market Capitalization to Assets &  \input{../Output/PT/OB_Financial_Ratios_mktcaptoassets.tex}
 %\input{../Output/PT/OB_Financial_Ratios.tex}
 \end{tabular}}
  \hrule
@@ -1945,7 +1952,7 @@ Market Capitalization to Assets &  \input{../Output/PT/OB_Financial_Ratios_MktCa
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PUBLIC FIRMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -1957,10 +1964,10 @@ Market Capitalization & \input{../Output/PT/OB_Financial_Ratios_MarketCap_public
 Number of Shares & \input{../Output/PT/OB_Financial_Ratios_Stock_public.tex}
 Number of Shareholders & \input{../Output/PT/OB_Financial_Ratios_nShareholders_public.tex}
 Revenue & \input{../Output/PT/OB_Financial_Ratios_Revenue_public.tex}
-Assets to EBITDA & \input{../Output/PT/OB_Financial_Ratios_Assets_EBITDA_public.tex}
-Assets to Revenue & \input{../Output/PT/OB_Financial_Ratios_Assets_Revenue_public.tex}
-Assets to Profits & \input{../Output/PT/OB_Financial_Ratios_Assets_Profits_public.tex}
-Market Capitalization to Assets &  \input{../Output/PT/OB_Financial_Ratios_MktCap_Assets_public.tex}
+Assets to EBITDA & \input{../Output/PT/OB_Financial_Ratios_ebitdatoassets_public.tex}
+Assets to Revenue & \input{../Output/PT/OB_Financial_Ratios_revenuetoassets_public.tex}
+Assets to Profits & \input{../Output/PT/OB_Financial_Ratios_profitstoassets_public.tex}
+Market Capitalization to Assets &  \input{../Output/PT/OB_Financial_Ratios_mktcaptoassets_public.tex}
 %\input{../Output/PT/OB_Financial_Ratios.tex}
 \end{tabular}}
  \hrule
@@ -1968,7 +1975,7 @@ Market Capitalization to Assets &  \input{../Output/PT/OB_Financial_Ratios_MktCa
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PRIVATE FIRMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -1980,11 +1987,10 @@ Market Capitalization & \input{../Output/PT/OB_Financial_Ratios_MarketCap_privat
 Number of Shares & \input{../Output/PT/OB_Financial_Ratios_Stock_private.tex}
 Number of Shareholders & \input{../Output/PT/OB_Financial_Ratios_nShareholders_private.tex}
 Revenue & \input{../Output/PT/OB_Financial_Ratios_Revenue_private.tex}
-Assets to EBITDA & \input{../Output/PT/OB_Financial_Ratios_Assets_EBITDA_private.tex}
-Assets to Revenue & \input{../Output/PT/OB_Financial_Ratios_Assets_Revenue_private.tex}
-Assets to Profits & \input{../Output/PT/OB_Financial_Ratios_Assets_Profits_private.tex}
-Market Capitalization to Assets &  \input{../Output/PT/OB_Financial_Ratios_MktCap_Assets_private.tex}
-%\input{../Output/PT/OB_Financial_Ratios.tex}
+Assets to EBITDA & \input{../Output/PT/OB_Financial_Ratios_ebitdatoassets_private.tex}
+Assets to Revenue & \input{../Output/PT/OB_Financial_Ratios_revenuetoassets_private.tex}
+Assets to Profits & \input{../Output/PT/OB_Financial_Ratios_profitstoassets_private.tex}
+Market Capitalization to Assets &  \input{../Output/PT/OB_Financial_Ratios_mktcaptoassets_private.tex}
 \end{tabular}}
  \hrule
 \end{table}
@@ -1993,7 +1999,7 @@ Market Capitalization to Assets &  \input{../Output/PT/OB_Financial_Ratios_MktCa
 
 \subsubsection{Germany}
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -2001,22 +2007,21 @@ Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min &
 Assets & \input{../Output/DE/OB_Financial_Ratios_Assets.tex}
 EBITDA & \input{../Output/DE/OB_Financial_Ratios_EBITDA.tex}
 Gross Profits & \input{../Output/DE/OB_Financial_Ratios_GrossProfits.tex}
-Market Capitalization & \input{../Output/DE/OB_Financial_Ratios_MarketCap.tex}
+çMarket Capitalization & \input{../Output/DE/OB_Financial_Ratios_MarketCap.tex}
 Number of Shares & \input{../Output/DE/OB_Financial_Ratios_Stock.tex}
 Number of Shareholders & \input{../Output/DE/OB_Financial_Ratios_nShareholders.tex}
 Revenue & \input{../Output/DE/OB_Financial_Ratios_Revenue.tex}
-Assets to EBITDA & \input{../Output/DE/OB_Financial_Ratios_Assets_EBITDA.tex}
-Assets to Revenue & \input{../Output/DE/OB_Financial_Ratios_Assets_Revenue.tex}
-Assets to Profits & \input{../Output/DE/OB_Financial_Ratios_Assets_Profits.tex}
-Market Capitalization to Assets &  \input{../Output/DE/OB_Financial_Ratios_MktCap_Assets.tex}
-%\input{../Output/DE/OB_Financial_Ratios.tex}
+Assets to EBITDA & \input{../Output/DE/OB_Financial_Ratios_ebitdatoassets.tex}
+Assets to Revenue & \input{../Output/DE/OB_Financial_Ratios_revenuetoassets.tex}
+Assets to Profits & \input{../Output/DE/OB_Financial_Ratios_profitstoassets.tex}
+Market Capitalization to Assets &  \input{../Output/DE/OB_Financial_Ratios_mktcaptoassets.tex}
 \end{tabular}}
  \hrule
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PUBLIC FIRMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -2028,18 +2033,17 @@ Market Capitalization & \input{../Output/DE/OB_Financial_Ratios_MarketCap_public
 Number of Shares & \input{../Output/DE/OB_Financial_Ratios_Stock_public.tex}
 Number of Shareholders & \input{../Output/DE/OB_Financial_Ratios_nShareholders_public.tex}
 Revenue & \input{../Output/DE/OB_Financial_Ratios_Revenue_public.tex}
-Assets to EBITDA & \input{../Output/DE/OB_Financial_Ratios_Assets_EBITDA_public.tex}
-Assets to Revenue & \input{../Output/DE/OB_Financial_Ratios_Assets_Revenue_public.tex}
-Assets to Profits & \input{../Output/DE/OB_Financial_Ratios_Assets_Profits_public.tex}
-Market Capitalization to Assets &  \input{../Output/DE/OB_Financial_Ratios_MktCap_Assets_public.tex}
-%\input{../Output/DE/OB_Financial_Ratios.tex}
+Assets to EBITDA & \input{../Output/DE/OB_Financial_Ratios_ebitdatoassets_public.tex}
+Assets to Revenue & \input{../Output/DE/OB_Financial_Ratios_revenuetoassets_public.tex}
+Assets to Profits & \input{../Output/DE/OB_Financial_Ratios_profitstoassets_public.tex}
+Market Capitalization to Assets &  \input{../Output/DE/OB_Financial_Ratios_mktcaptoassets_public.tex}
 \end{tabular}}
  \hrule
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PRIVATE FIRMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -2051,11 +2055,10 @@ Market Capitalization & \input{../Output/DE/OB_Financial_Ratios_MarketCap_privat
 Number of Shares & \input{../Output/DE/OB_Financial_Ratios_Stock_private.tex}
 Number of Shareholders & \input{../Output/DE/OB_Financial_Ratios_nShareholders_private.tex}
 Revenue & \input{../Output/DE/OB_Financial_Ratios_Revenue_private.tex}
-Assets to EBITDA & \input{../Output/DE/OB_Financial_Ratios_Assets_EBITDA_private.tex}
-Assets to Revenue & \input{../Output/DE/OB_Financial_Ratios_Assets_Revenue_private.tex}
-Assets to Profits & \input{../Output/DE/OB_Financial_Ratios_Assets_Profits_private.tex}
-Market Capitalization to Assets &  \input{../Output/DE/OB_Financial_Ratios_MktCap_Assets_private.tex}
-%\input{../Output/DE/OB_Financial_Ratios.tex}
+Assets to EBITDA & \input{../Output/DE/OB_Financial_Ratios_ebitdatoassets_private.tex}
+Assets to Revenue & \input{../Output/DE/OB_Financial_Ratios_revenuetoassets_private.tex}
+Assets to Profits & \input{../Output/DE/OB_Financial_Ratios_profitstoassets_private.tex}
+Market Capitalization to Assets &  \input{../Output/DE/OB_Financial_Ratios_mktcaptoassets_private.tex}
 \end{tabular}}
  \hrule
 \end{table}
@@ -2064,7 +2067,7 @@ Market Capitalization to Assets &  \input{../Output/DE/OB_Financial_Ratios_MktCa
 
 \subsubsection{Netherlands}
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -2076,10 +2079,10 @@ Market Capitalization & \input{../Output/NL/OB_Financial_Ratios_MarketCap.tex}
 Number of Shares & \input{../Output/NL/OB_Financial_Ratios_Stock.tex}
 Number of Shareholders & \input{../Output/NL/OB_Financial_Ratios_nShareholders.tex}
 Revenue & \input{../Output/NL/OB_Financial_Ratios_Revenue.tex}
-Assets to EBITDA & \input{../Output/NL/OB_Financial_Ratios_Assets_EBITDA.tex}
-Assets to Revenue & \input{../Output/NL/OB_Financial_Ratios_Assets_Revenue.tex}
-Assets to Profits & \input{../Output/NL/OB_Financial_Ratios_Assets_Profits.tex}
-Market Capitalization to Assets &  \input{../Output/NL/OB_Financial_Ratios_MktCap_Assets.tex}
+Assets to EBITDA & \input{../Output/NL/OB_Financial_Ratios_ebitdatoassets.tex}
+Assets to Revenue & \input{../Output/NL/OB_Financial_Ratios_revenuetoassets.tex}
+Assets to Profits & \input{../Output/NL/OB_Financial_Ratios_profitstoassets.tex}
+Market Capitalization to Assets &  \input{../Output/NL/OB_Financial_Ratios_mktcaptoassets.tex}
 %\input{../Output/NL/OB_Financial_Ratios.tex}
 \end{tabular}}
  \hrule
@@ -2087,7 +2090,7 @@ Market Capitalization to Assets &  \input{../Output/NL/OB_Financial_Ratios_MktCa
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PUBLIC FIRMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -2099,10 +2102,10 @@ Market Capitalization & \input{../Output/NL/OB_Financial_Ratios_MarketCap_public
 Number of Shares & \input{../Output/NL/OB_Financial_Ratios_Stock_public.tex}
 Number of Shareholders & \input{../Output/NL/OB_Financial_Ratios_nShareholders_public.tex}
 Revenue & \input{../Output/NL/OB_Financial_Ratios_Revenue_public.tex}
-Assets to EBITDA & \input{../Output/NL/OB_Financial_Ratios_Assets_EBITDA_public.tex}
-Assets to Revenue & \input{../Output/NL/OB_Financial_Ratios_Assets_Revenue_public.tex}
-Assets to Profits & \input{../Output/NL/OB_Financial_Ratios_Assets_Profits_public.tex}
-Market Capitalization to Assets &  \input{../Output/NL/OB_Financial_Ratios_MktCap_Assets_public.tex}
+Assets to EBITDA & \input{../Output/NL/OB_Financial_Ratios_ebitdatoassets_public.tex}
+Assets to Revenue & \input{../Output/NL/OB_Financial_Ratios_revenuetoassets_public.tex}
+Assets to Profits & \input{../Output/NL/OB_Financial_Ratios_profitstoassets_public.tex}
+Market Capitalization to Assets &  \input{../Output/NL/OB_Financial_Ratios_mktcaptoassets_public.tex}
 %\input{../Output/NL/OB_Financial_Ratios.tex}
 \end{tabular}}
  \hrule
@@ -2110,7 +2113,7 @@ Market Capitalization to Assets &  \input{../Output/NL/OB_Financial_Ratios_MktCa
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PRIVATE FIRMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{table}[!htpb]
-\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccccc}
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccccccc}
 \toprule
 Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
@@ -2122,10 +2125,10 @@ Market Capitalization & \input{../Output/NL/OB_Financial_Ratios_MarketCap_privat
 Number of Shares & \input{../Output/NL/OB_Financial_Ratios_Stock_private.tex}
 Number of Shareholders & \input{../Output/NL/OB_Financial_Ratios_nShareholders_private.tex}
 Revenue & \input{../Output/NL/OB_Financial_Ratios_Revenue_private.tex}
-Assets to EBITDA & \input{../Output/NL/OB_Financial_Ratios_Assets_EBITDA_private.tex}
-Assets to Revenue & \input{../Output/NL/OB_Financial_Ratios_Assets_Revenue_private.tex}
-Assets to Profits & \input{../Output/NL/OB_Financial_Ratios_Assets_Profits_private.tex}
-Market Capitalization to Assets &  \input{../Output/NL/OB_Financial_Ratios_MktCap_Assets_private.tex}
+Assets to EBITDA & \input{../Output/NL/OB_Financial_Ratios_ebitdatoassets_private.tex}
+Assets to Revenue & \input{../Output/NL/OB_Financial_Ratios_revenuetoassets_private.tex}
+Assets to Profits & \input{../Output/NL/OB_Financial_Ratios_profitstoassets_private.tex}
+Market Capitalization to Assets &  \input{../Output/NL/OB_Financial_Ratios_mktcaptoassets_private.tex}
 %\input{../Output/NL/OB_Financial_Ratios.tex}
 \end{tabular}}
  \hrule

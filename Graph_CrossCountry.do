@@ -181,10 +181,10 @@ graph export Output/Cross-Country/empShareLargeFirms_EquityMktDepth_WB.pdf, repl
 * Additional debt variables and Equity Market Depth
 
 scatter DomCredit_WB EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Domestic Credit") graphregion(color(white)) mlabel(Country)
-graph export Output/Cross-Country/IMF_DomCredit_EquityMktDepth.pdf, replace
+graph export Output/Cross-Country/WB_DomCredit_EquityMktDepth.pdf, replace
 
 scatter DomCreditBanks_WB EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Domestic Credit by Banks") graphregion(color(white)) mlabel(Country)
-graph export Output/Cross-Country/IMF_DomCreditBanks_EquityMktDepth.pdf, replace
+graph export Output/Cross-Country/WB_DomCreditBanks_EquityMktDepth.pdf, replace
 
 scatter PrivateDebtIMF EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Private Debt") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/IMF_PrivateDebt_EquityMktDepth.pdf, replace
@@ -207,10 +207,10 @@ graph export Output/Cross-Country/IMF_NonFinancialDebtAll_EquityMktDepth.pdf, re
 * Additional Debt variables and Total Factor Productivity
 
 scatter tfp DomCredit_WB,  xtitle("Domestic Credit") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
-graph export Output/Cross-Country/IMF_DomCredit_TFP.pdf, replace
+graph export Output/Cross-Country/WB_DomCredit_TFP.pdf, replace
 
 scatter tfp DomCreditBanks_WB, xtitle("Domestic Credit by Banks") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
-graph export Output/Cross-Country/IMF_DomCreditBanks_TFP.pdf, replace
+graph export Output/Cross-Country/WB_DomCreditBanks_TFP.pdf, replace
 
 scatter tfp PrivateDebtIMF, xtitle("Private Debt") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/IMF_PrivateDebt_TFP.pdf, replace

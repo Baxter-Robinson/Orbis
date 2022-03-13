@@ -1,7 +1,7 @@
  
 
 
-	
+
 	preserve
 
 /*
@@ -14,16 +14,10 @@
 
 */
 
-		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue
+		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue Year
 
-		gen EBITDA_Assets = EBITDA/Assets
-		gen Revenue_Assets = Revenue/Assets
-		gen Profits_Assets = GrossProfits/Assets
-		gen MktCap_Assets = Market_capitalisation_mil/Assets
-		
 		
 		rename Market_capitalisation_mil MarketCap
-		
 		* Dividing over 1,000,000 to make units visible in the table.
 		replace Assets=Assets/1000000
 		replace EBITDA = EBITDA/10000
@@ -31,21 +25,27 @@
 		replace MarketCap = MarketCap/1000000
 		replace Revenue =  Revenue/1000000
 		
+		gen ebitdatoassets = EBITDA/Assets
+		gen revenuetoassets = Revenue/Assets
+		gen profitstoassets = GrossProfits/Assets
+		gen mktcaptoassets = MarketCap/Assets
+		
+		
 		* Firm x Year Observations
-
-		gen firm_year_obs = _n
-		sum firm_year_obs, detail
-		return list
-		local fy_obs = r(N)	
+		
+		bysort IDNum Year: gen nvals = _n == 1
+		replace nvals = sum(nvals)
+        replace nvals = nvals[_N]
+		*sum nvals, detail
+		*return list
+		*local fy_obs = r(mean)	
 
 		
 		
 		* Full sample
 		
-		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue EBITDA_Assets Revenue_Assets Profits_Assets MktCap_Assets{
-		
-		*foreach x in Assets EBITDA {
-		
+		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue ebitdatoassets revenuetoassets profitstoassets mktcaptoassets{	
+		*foreach x in Revenue ebitdatoassets revenuetoassets profitstoassets mktcaptoassets{
 		
 			file close _all
 
@@ -54,6 +54,9 @@
 			file write FinRatios " Full Sample " 
 			
 			file write FinRatios " & "
+				sum nvals, detail
+				return list
+				local fy_obs = r(mean)
 			file write FinRatios %12.0gc (`fy_obs')
 	
 			
@@ -104,24 +107,16 @@
 	restore
 	
 	
-	
-	
 	***************************** Public Firms ***************************** 
 
 	preserve
 
-		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue
+		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue Year
 
 		* Public firms
 		keep if Private==0
 		
-		gen EBITDA_Assets = EBITDA/Assets
-		gen Revenue_Assets = Revenue/Assets
-		gen Profits_Assets = GrossProfits/Assets
-		gen MktCap_Assets = Market_capitalisation_mil/Assets
-		
 		rename Market_capitalisation_mil MarketCap
-		
 		* Dividing over 1,000,000 to make units visible in the table.
 		replace Assets=Assets/1000000
 		replace EBITDA = EBITDA/10000
@@ -129,15 +124,20 @@
 		replace MarketCap = MarketCap/1000000
 		replace Revenue =  Revenue/1000000
 		
+		gen ebitdatoassets = EBITDA/Assets
+		gen revenuetoassets = Revenue/Assets
+		gen profitstoassets = GrossProfits/Assets
+		gen mktcaptoassets = MarketCap/Assets
+		
+		
 		* Firm x Year Observations
-
-		gen firm_year_obs = _n
-		sum firm_year_obs, detail
-		return list
-		local fy_obs_pub = r(N)	
+		
+		bysort IDNum Year: gen nvals = _n == 1
+		replace nvals = sum(nvals)
+        replace nvals = nvals[_N]
 
 		
-		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue EBITDA_Assets Revenue_Assets Profits_Assets MktCap_Assets{
+		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue ebitdatoassets revenuetoassets profitstoassets mktcaptoassets{
 		
 		*foreach x in Assets EBITDA {
 		
@@ -149,6 +149,9 @@
 			file write FinRatios " Public Firms " 
 			
 			file write FinRatios " & "
+				sum nvals, detail
+				return list
+				local fy_obs_pub = r(mean)
 			file write FinRatios %12.0gc (`fy_obs_pub')
 	
 			
@@ -158,7 +161,7 @@
 			sum mi_`x' , detail
 			return list
 			local missing_`x' = r(sum)
-			local pct_missing_`x' = 100*`missing_`x''/`fy_obs'
+			local pct_missing_`x' = 100*`missing_`x''/`fy_obs_pub'
 			file write FinRatios  "   &   "
 			file write FinRatios %4.2fc (`pct_missing_`x'')
 			
@@ -167,7 +170,7 @@
 			sum `x' if `x'==0 , detail
 			return list
 			local zeros_`x' = r(N)
-			local pct_zeros_`x' = 100*`zeros_`x''/`fy_obs'
+			local pct_zeros_`x' = 100*`zeros_`x''/`fy_obs_pub'
 			file write FinRatios  "   &   "
 			file write FinRatios %4.2fc ( `pct_zeros_`x'')
 			
@@ -204,34 +207,33 @@
 
 	preserve
 
-		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue
+		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue Year
 		
 		* Public firms
 		keep if Private==1
 		
-		gen EBITDA_Assets = EBITDA/Assets
-		gen Revenue_Assets = Revenue/Assets
-		gen Profits_Assets = GrossProfits/Assets
-		gen MktCap_Assets = Market_capitalisation_mil/Assets
-		
 		rename Market_capitalisation_mil MarketCap
-		
 		* Dividing over 1,000,000 to make units visible in the table.
 		replace Assets=Assets/1000000
 		replace EBITDA = EBITDA/10000
 		replace GrossProfits = GrossProfits/1000000
 		replace MarketCap = MarketCap/1000000
-		replace Revenue =  Revenue/1000000		
+		replace Revenue =  Revenue/1000000
+		
+		gen ebitdatoassets = EBITDA/Assets
+		gen revenuetoassets = Revenue/Assets
+		gen profitstoassets = GrossProfits/Assets
+		gen mktcaptoassets = MarketCap/Assets
+		
 		
 		* Firm x Year Observations
-
-		gen firm_year_obs = _n
-		sum firm_year_obs, detail
-		return list
-		local fy_obs_private = r(N)	
+		
+		bysort IDNum Year: gen nvals = _n == 1
+		replace nvals = sum(nvals)
+        replace nvals = nvals[_N]
 
 				
-		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue EBITDA_Assets Revenue_Assets Profits_Assets MktCap_Assets{
+		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue ebitdatoassets revenuetoassets profitstoassets mktcaptoassets{
 				
 	
 			file close _all
@@ -241,6 +243,9 @@
 			file write FinRatios " Private Firms " 
 			
 			file write FinRatios " & "
+				sum nvals, detail
+				return list
+				local fy_obs_private = r(mean)
 			file write FinRatios %12.0gc (`fy_obs_private')
 	
 			
@@ -250,7 +255,7 @@
 			sum mi_`x' , detail
 			return list
 			local missing_`x' = r(sum)
-			local pct_missing_`x' = 100*`missing_`x''/`fy_obs'
+			local pct_missing_`x' = 100*`missing_`x''/`fy_obs_private'
 			file write FinRatios  "   &   "
 			file write FinRatios %4.2fc (`pct_missing_`x'')
 			
@@ -259,7 +264,7 @@
 			sum `x' if `x'==0 , detail
 			return list
 			local zeros_`x' = r(N)
-			local pct_zeros_`x' = 100*`zeros_`x''/`fy_obs'
+			local pct_zeros_`x' = 100*`zeros_`x''/`fy_obs_private'
 			file write FinRatios  "   &   "
 			file write FinRatios %4.2fc ( `pct_zeros_`x'')
 			
@@ -289,6 +294,4 @@
 		
 		
 	restore
-	
-	
 	
