@@ -8,8 +8,9 @@ replace ORBIS = 0 if Compustat==1
 
 
 keep nEmployees ORBIS Compustat IDNum Private
+keep if ~missing(nEmployees)
+replace nEmployees=25000 if nEmployees>=25000
 
-replace nEmployees=100000 if nEmployees>=100000
 
 twoway (hist nEmployees if ORBIS == 1, frac lcolor(gs12) fcolor(gs12)) (hist nEmployees if Compustat == 1, frac lcolor(red) fcolor(none) ), ///
 	legend(label(1 "Orbis Data") label(2 "Compustat Data")) ///

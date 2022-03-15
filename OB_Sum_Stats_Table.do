@@ -25,11 +25,11 @@ file write TexFile %12.0fc (`nFirms')
 file write TexFile " & "
 drop nvals
 
-bysort IDNum Year: gen nvals = _n == 1 
-bysort Year: egen nFirmsYear = total(nvals)
-sum nFirmsYear, detail
-local AvenFirmsYear = r(mean)
-file write TexFile %12.2gc ( `AvenFirmsYear')
+bysort IDNum: gen nvals = _n == 1 
+bysort IDNum: egen nYearsFirm = total(nvals)
+sum nYearsFirm, detail
+local AvenYearsFirm = r(mean)
+file write TexFile %12.0gc ( `AvenYearsFirm')
 file write TexFile " & "
 
 sort IDNum Year
