@@ -7,7 +7,8 @@ preserve
 	file write TabSampleComp "Year & \multicolumn{2}{c}{Number of public firms} & \multicolumn{2}{c}{Average Employment} & \multicolumn{2}{c}{Total Employment} & \multicolumn{2}{c}{Average Sales (Million)} & \multicolumn{2}{c}{Total Sales (Million)} \\ \midrule"_n
 	file write TabSampleComp  " & Orbis & Compustat & Orbis & Compustat & Orbis & Compustat & Orbis & Compustat & Orbis & Compustat \\ \cmidrule{2-11}"_n
 	* Merge both datasets
-	use "Data_Cleaned/${CountryID}_Balanced.dta", clear
+	use "Data_Cleaned/${CountryID}_Unbalanced.dta", clear
+	*use "Data_Cleaned/${CountryID}_Balanced.dta", clear
 	* Only keep firms that don't become delisted
 	*gen Delisted_year = yofd(Delisted_date)
 	keep if (FirmType == 6) & (Year < Delisted_year)
@@ -17,7 +18,8 @@ preserve
 	keep if nyear == max_nyear
 	keep Sales nEmployees Year IDNum
 	replace Sales = Sales/1000
-	append using "Data_Cleaned/${CountryID}_CompustatBalanced.dta", generate(dataset_id)
+	append using "Data_Cleaned/${CountryID}_CompustatUnbalanced.dta", generate(dataset_id)
+	*append using "Data_Cleaned/${CountryID}_CompustatBalanced.dta", generate(dataset_id)
 	drop if Sales == .
 	drop if nEmployees == .
 	replace Sales = Sales/1000 // Sales in million $

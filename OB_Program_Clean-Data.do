@@ -96,7 +96,15 @@ bysort IDNum: gen ProfitGrowth_h = (GrossProfits-L.GrossProfits)/((GrossProfits+
 *----------------------
 * Winsorization Employment Growth
 *----------------------
-winsor2 EmpGrowth_h, cuts(0.5 99.5) replace
+*winsor2 EmpGrowth_h, cuts(0.5 99.5) replace
+
+
+*----------------------
+* Drop Firms with Employment Growth
+*----------------------
+xtile pctEmpGrowth_h = EmpGrowth_h if ~missing(EmpGrowth_h), nq(200)
+drop if pctEmpGrowth_h==1
+
 
 
 *---------------------------

@@ -44,11 +44,10 @@ global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_R
 * Loop over countries 
 *---------------------
 *global Countries IT FR ES PT DE NL
-global Countries IT 
+global Countries FR 
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
-*local Country="PT"
 foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
@@ -65,7 +64,7 @@ foreach Country of global Countries {
 	* Clean Data
 	*-------------------------------------------------------
 	* Orbis
-	*use "${DATAPATH}/${CountryID}_merge.dta", clear
+	use "${DATAPATH}/${CountryID}_merge.dta", clear
 	*do OB_Program_Clean-Data.do
 	
 	* Compustat
@@ -75,7 +74,7 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	*do OB_Graph_BySize_PubVPrivate.do

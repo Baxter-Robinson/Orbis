@@ -178,38 +178,47 @@ scatter empShare_LargeFirms EquityMktDepth_WB, xtitle("Equity Market Depth") yti
 graph export Output/Cross-Country/empShareLargeFirms_EquityMktDepth_WB.pdf, replace
 
 
-* Additional debt variables and Equity Market Depth
 
-scatter DomCredit_WB EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Domestic Credit") graphregion(color(white)) mlabel(Country)
+* Additional debt variables and Equity Market Depth
+preserve
+keep if EquityMktDepth_WB!=. 
+
+scatter DomCredit_WB EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Domestic Credit") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/WB_DomCredit_EquityMktDepth.pdf, replace
 
-scatter DomCreditBanks_WB EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Domestic Credit by Banks") graphregion(color(white)) mlabel(Country)
+scatter DomCreditBanks_WB EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Domestic Credit by Banks") graphregion(color(white)) mlabel(Country) xsc(r(0 1)) xlabel(#5) ysc(r(0 2)) ylabel(#5)
 graph export Output/Cross-Country/WB_DomCreditBanks_EquityMktDepth.pdf, replace
 
-scatter PrivateDebtIMF EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Private Debt") graphregion(color(white)) mlabel(Country)
+scatter PrivateDebtIMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Private Debt") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/IMF_PrivateDebt_EquityMktDepth.pdf, replace
 
-scatter PrivateDebtAllIMF EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Private Debt (all instruments)") graphregion(color(white)) mlabel(Country)
+scatter PrivateDebtAllIMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Private Debt (all instruments)") graphregion(color(white)) mlabel(Country) xsc(r(0 1)) xlabel(#5) ysc(r(0 3)) ylabel(#5)
 graph export Output/Cross-Country/IMF_PrivateDebtAll_EquityMktDepth.pdf, replace
 
-scatter HHDebtIMF EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Household Debt") graphregion(color(white)) mlabel(Country)
+scatter HHDebtIMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Household Debt") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/IMF_HHDebt_EquityMktDepth.pdf, replace
 
-scatter HHDebtAllIMF EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Household Debt (all instruments)") graphregion(color(white)) mlabel(Country)
+scatter HHDebtAllIMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Household Debt (all instruments)") graphregion(color(white)) mlabel(Country) xsc(r(0 1)) xlabel(#5) ysc(r(0 1.5)) ylabel(#6)
 graph export Output/Cross-Country/IMF_HHDebtAll_EquityMktDepth.pdf, replace
 
-scatter NonFinancialDebtIMF EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("NonFinancial Debt") graphregion(color(white)) mlabel(Country)
+scatter NonFinancialDebtIMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("NonFinancial Debt") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/IMF_NonFinancialDebt_EquityMktDepth.pdf, replace
 
-scatter NonFinancialDebtAllIMF EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("NonFinancial Debt (all instruments)") graphregion(color(white)) mlabel(Country)
+scatter NonFinancialDebtAllIMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("NonFinancial Debt (all instruments)") graphregion(color(white)) mlabel(Country) xsc(r(0 1)) xlabel(#5) ysc(r(1 2)) ylabel(#5)
 graph export Output/Cross-Country/IMF_NonFinancialDebtAll_EquityMktDepth.pdf, replace
 
+restore
+
+
 * Additional Debt variables and Total Factor Productivity
+
+preserve
+keep if EquityMktDepth_WB!=. 
 
 scatter tfp DomCredit_WB,  xtitle("Domestic Credit") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/WB_DomCredit_TFP.pdf, replace
 
-scatter tfp DomCreditBanks_WB, xtitle("Domestic Credit by Banks") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
+scatter tfp DomCreditBanks_WB, xtitle("Domestic Credit by Banks") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country) xsc(r(0 2)) xlabel(#5) ylabel(#5)
 graph export Output/Cross-Country/WB_DomCreditBanks_TFP.pdf, replace
 
 scatter tfp PrivateDebtIMF, xtitle("Private Debt") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
@@ -230,5 +239,5 @@ graph export Output/Cross-Country/IMF_NonFinancialDebt_TFP.pdf, replace
 scatter tfp NonFinancialDebtAllIMF, xtitle("NonFinancial Debt (all instruments)") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/IMF_NonFinancialDebtAll_TFP.pdf, replace
 
-
+restore
 

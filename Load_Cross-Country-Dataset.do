@@ -39,6 +39,7 @@ drop _merge
 
 
 
+
 gen EquityMktDepth_CSyearend = mve_yearend/gdpo
 gen EquityMktDepth_CSAnnual = mve_annual/gdpo
 gen EquityMktDepth_CSAnnual2 = mve_annual2/gdpo  // Added due to second way of defining annual value (cfr. CS_EquityMarketDepth.do)
