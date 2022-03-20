@@ -94,18 +94,21 @@ bysort IDNum: gen ProfitGrowth_h = (GrossProfits-L.GrossProfits)/((GrossProfits+
 
 
 *----------------------
-* Winsorization Employment Growth
+* Winsorization Employment Growth from the bottom and top 0.5%
 *----------------------
 *winsor2 EmpGrowth_h, cuts(0.5 99.5) replace
 
 
 *----------------------
-* Drop Firms with Employment Growth
+* Trim firms with Haltiwanger Employment Growth from the bottom and top 0.5%
 *----------------------
-xtile pctEmpGrowth_h = EmpGrowth_h if ~missing(EmpGrowth_h), nq(200)
-drop if pctEmpGrowth_h==1
-
-
+gen EmpGrowth_h2 = EmpGrowth_h
+winsor2 EmpGrowth_h,  replace cuts(0.5 99.5) trim
+gen dropFirm = 0
+replace dropFirm=1 if (EmpGrowth_h==.) & (EmpGrowth_h2!=.)
+sort dropFirm
+keep if dropFirm==0
+drop EmpGrowth_h2 dropFirm
 
 *---------------------------
 * IPO Info
@@ -169,7 +172,7 @@ replace SizeCategory = 4 if (groups==11) | (groups==50)
 replace SizeCategory = 5 if (groups==51) | (groups==100)
 replace SizeCategory = 6 if (groups==101) | (groups==1000)
 replace SizeCategory = 7 if (groups==1001) | (groups==`max')
-
+drop groups 
 *----------------------
 * Save unbalanced panel
 *----------------------
