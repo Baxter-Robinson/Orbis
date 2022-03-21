@@ -67,11 +67,11 @@ foreach Country of global Countries {
 	* Orbis
 	*use "${DATAPATH}/${CountryID}_merge.dta", clear
 	
-	*do OB_Program_Clean-Data.do
+	do OB_Program_Clean-Data.do
 	
 	* Compustat
 	*use "${DATAPATH}/${CountryID}_compustat.dta", clear
-	*do CS_Program_Clean-Data.do
+	do CS_Program_Clean-Data.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
