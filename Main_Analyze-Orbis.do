@@ -65,7 +65,7 @@ foreach Country of global Countries {
 	* Clean Data
 	*-------------------------------------------------------
 	* Orbis
-	use "${DATAPATH}/${CountryID}_merge.dta", clear
+	*use "${DATAPATH}/${CountryID}_merge.dta", clear
 	
 	*do OB_Program_Clean-Data.do
 	
