@@ -1,5 +1,5 @@
 
-/*
+
 ** By Size Relative to percentiles **
 
 preserve
@@ -102,7 +102,7 @@ preserve
 	 graph export Output/$CountryID/Graph_BySizeCategory_GrowthRateStd.pdf, replace  
 	 
 restore
-*/
+
 
 
 preserve

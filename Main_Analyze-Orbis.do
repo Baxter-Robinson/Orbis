@@ -31,20 +31,20 @@ set more off
 
 * Javier PATH
 * Laptop
-cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+*cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+*global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 * HOME
-*cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 *
 
 *---------------------
 * Loop over countries 
 *---------------------
-*global Countries IT FR ES PT DE NL
-global Countries FR 
+global Countries IT FR ES PT DE NL
+*global Countries FR 
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
@@ -56,15 +56,17 @@ foreach Country of global Countries {
 	* Raw Data
 	*-------------------------------------------------------
 	
-	*do OB_Table_Missing-Observations.do
+	*** Section 4
+	do OB_Table_Missing-Observations.do
+	do OB_RAW_By_Year_NumFirms_PubVPrivate.do
 	
-	*do OB_RAW_By_Year_NumFirms_PubVPrivate.do
 	
 	*-------------------------------------------------------
 	* Clean Data
 	*-------------------------------------------------------
 	* Orbis
 	use "${DATAPATH}/${CountryID}_merge.dta", clear
+	
 	*do OB_Program_Clean-Data.do
 	
 	* Compustat
@@ -74,81 +76,73 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
-	*do OB_Graph_BySize_PubVPrivate.do
-	*do OB_Graph_HaltiGrowth_Employment-Dist.do
-	*do OB_Share_Graphs.do
-	*do OB_Table_Share_Emp_SizeCat.do
-	*do OB_gEmp_Regressions.do
 	
-	*do OB_Script_DiD-IPO.do
-	*do OB_Graph_IPOyear-Dist.do
-	*do OB_Graph_Growth_IPOyear-Dist.do
-	*do OB_Graph_BySize.do
+	**** Section 1
+	do OB_Sum_Stats_Table.do
+	do OB_Graph_BySize_PubVPrivate.do
+	do OB_Share_Graphs.do 
+	do OB_Graph_HaltiGrowth_Employment-Dist.do 
+	do OB_gEmp_Regressions.do
+	do OB_HGR_regressions.do
 	
 	
-	*do OB_Regressions_FirmTypes.do
+	**** Section 2
+	do OB_Table_BySize.do
+	do OB_Table_Share_Emp_SizeCat.do 
+	do OB_Graph_BySize.do
+	
+	**** Section 3
+	do OB_CrossCountry_Moments_Unbalanced.do
 
-
-
-	*do OB_Table_Descriptive-Stats.do
-	*do OB_Table_PubVsPri.do
-	*do OB_Table_BySize.do
-	*do OB_Table_BySize-Public.do
+	**** Section 4
+	do OB_Financial_Ratios.do
 	
-	*do OB_Table_IPOs.do
-	*do OB_Table_IPO-years.do
-	*do OB_Table_IPOyear_Descriptive-Stats.do
+	**** Section 5
+	do OB_CS_Dist_Employment.do
 	
+	**** Section 6
+	do OB_Table_IPO-years.do
+	do OB_Table_IPOs.do
+	do OB_Regressions_HGR_IPOs.do
+	do OB_Table_IPOyear_Descriptive-Stats.do
+	do OB_Graph_HaltiGrowth_Employment-Dist.do
 	
-	*do OB_HGR_Pattern_Checks.do 
-	
-	*do OB_HGR_regressions.do
-	
-	*do OB_Sum_Stats_Table.do
-	
-	*do OB_Graph_BySize.do
-	*do OB_Graph_HaltiGrowth_Employment-Dist.do
-	
-	*do OB_Table_Share_Emp_SizeCat.do
-	
-	*do OB_CS_Dist_Employment.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Balanced.dta",clear
+	use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
-	*do OB_Graph_BySize.do
-	*do OB_Graph_Lifecycle.do
-	*do OB_Graph_Lifecycle-ByFirmType.do
+	*** Section 3
+	do OB_Static_Firm_Share.do
+	do OB_Table_PubVsPri.do
+	do OB_CrossCountry_Moments_Balanced.do
 	
-	*do OB_Table_BySize-Public.do
-	*do OB_Graph_Age-Dist.do
-	*do OB_Graph_Change-No-Shareholders-Dist.do
-	*do OB_Graph_FirmTypes.do
 	
-	*do OB_Static_Firm_Share.do
+	*** Section 5
+	do OB_Graph_Lifecycle-ByFirmType.do
+	
 	
 	*-------------------------------------------------------
 	* Compustat (CS): Unbalanced Panel
 	*-------------------------------------------------------
 	*use "Data_Cleaned/`Country'_CompustatUnbalanced.dta",clear
 	
-	*do CS_Graph_Employment.do
-	
-	*do CS_Table_IPOyear_Descriptive-Stats.do
+	*** Section 1
+	do CS_Agg_Employment_HGR.do 
+	do CS_Graph_Employment.do
+	do CS_Table_IPOyear_Descriptive-Stats.do
 	
 	
 	*-------------------------------------------------------
 	* Compustat (CS): Balanced Panel
 	*-------------------------------------------------------
 	*use "Data_Cleaned/`Country'_CompustatBalanced.dta",clear
-	
 	
 	*do CS_Graph_Employment.do
 	*do CS_Graph_HaltiGrowth_Employment-Dist.do
@@ -158,24 +152,24 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Comparison: Compustat vs. Orbis
 	*-------------------------------------------------------
-	*do Table_CompustatOrbis-MissingObs.do
-	*do Table_Sample-Comparison.do
-	*do Table_CompustatOrbis-Comparison.do
+	
+	* Section 5
+	do Table_CompustatOrbis-Comparison.do
+		
 	
 	*-------------------------------------------------------
 	* Equity Market Depth
 	*-------------------------------------------------------
-	*use "Data_Raw/`Country'_StockPrice.dta", clear
-	*do CS_EquityMarketDepth.do
+	use "Data_Raw/`Country'_StockPrice.dta", clear
+	do CS_EquityMarketDepth.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB) Country-level Indicators
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Unbalanced.dta", clear
-	*do OB_CountryIndicators.do
+	use "Data_Cleaned/`Country'_Unbalanced.dta", clear
+	do OB_CountryIndicators.do
 		
-		
-		
+				
 }
 
 
@@ -193,9 +187,10 @@ foreach Country of global Countries {
 *-----------------------------
 * Cross Country Comparisons
 *-----------------------------
-*do Load_Cross-Country-Dataset.do
-*do Graph_CrossCountry.do
 
-*do Table_Model-Moments.do
+do Load_Cross-Country-Dataset.do
 
-*do OB_CrossCountry_Moments.do
+*** Section 2 
+do OB_CrossCountry_Stack_Bar_Industries.do
+*** Section 3
+do Graph_CrossCountry.do

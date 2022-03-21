@@ -1,25 +1,3 @@
-*----------------
-* Initial Set Up
-*----------------
-cls
-clear all
-*version 13
-*set maxvar 10000
-set type double
-set more off
-set rmsg on
-
-* Javier PATH
-* Laptop
-*cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
-
-* HOME
-cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
-
-
-
 *---------------------
 * Merge over countries
 *---------------------
@@ -32,7 +10,6 @@ gen CountryID=.
 replace CountryID=1 if Country=="IT"
 
 global Countries  FR ES PT DE NL
-*global Countries FR 
 
 foreach C of global Countries {
 	append using "Data_Cleaned/`C'_Unbalanced.dta"	

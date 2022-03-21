@@ -12,8 +12,7 @@ preserve
 		
 		file close _all
 
-		*file open CrossCountry using Output/${CountryID}/OB_Cross_Country_Balanced.tex, write replace
-		file open CrossCountry using Output/${CountryID}/OB_Cross_Country_Unbalanced.tex, write replace
+		file open CrossCountry using Output/${CountryID}/OB_Cross_Country_Balanced.tex, write replace
 
 		file write CrossCountry " ${CountryID} "
 
@@ -24,13 +23,6 @@ preserve
 		local Emp_median = r(p50)
 		di `Emp_quartile1'
 
-		/*
-		* Positive values only
-		sum nEmployees if (nEmployees!=.)&(nEmployees>0)
-		return list
-		local Emp_quartile1 = r(p25)
-		local Emp_median = r(p50)
-		*/
 
 		bysort IDNum: egen F_review = max(nEmployees)
 
