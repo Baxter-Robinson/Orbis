@@ -3,7 +3,8 @@
 ** By Size Relative to percentiles **
 
 preserve
-
+	drop SizeCategory
+	
 	su nEmployees, detail
 	local Categories `r(p10)' `r(p25)' `r(p50)' `r(p75)' `r(p90)' `r(p95)' `r(p99)'
 	local Labels  1 "0-10%" 2 "10-25%"  3 "25-50%" 4 "50-75%" 5 "75-90%" 6 "90-95%" 7 "95-99%" 8 "Top 1%"
@@ -55,7 +56,7 @@ restore
 
 ** By Size Categories **
 preserve
-
+	drop SizeCategory
 	su nEmployees, detail
 	local Categories 1 5 10 50 100 1000
 	local Labels  1 "1" 2 "2-5"  3 "6-10" 4 "11-50" 5 "51-100" 6 "101-1,000" 7 "1,000+" 
@@ -112,21 +113,9 @@ preserve
 	*/
 	
 	
-	keep IDNum Year nEmployees Sales EmpGrowth_h Private
+	keep IDNum Year nEmployees Sales EmpGrowth_h Private SizeCategory
 	
 	keep if nEmployees!=.
-	sum nEmployees, detail
-	local max= r(max)
-	egen groups  = cut(nEmployees), at (1, 2, 5, 6, 10, 11, 50, 51, 100, 101, 1000, 1001, `max')
-
-	gen SizeCategory = . 
-	replace SizeCategory = 1 if groups==1
-	replace SizeCategory = 2 if (groups==2) | (groups==5)
-	replace SizeCategory = 3 if (groups==6) | (groups==10)
-	replace SizeCategory = 4 if (groups==11) | (groups==50)
-	replace SizeCategory = 5 if (groups==51) | (groups==100)
-	replace SizeCategory = 6 if (groups==101) | (groups==1000)
-	replace SizeCategory = 7 if (groups==1001) | (groups==`max')
 	
 	drop if SizeCategory==.
 	
@@ -289,13 +278,14 @@ preserve
 	drop floor roof
 
 	
-restore
+	restore
 
 
 
 
 
 	preserve
+	drop SizeCategory
 	* Average Employment Growth
 	keep IDNum Year nEmployees Sales EmpGrowth_h Private
 	
@@ -359,25 +349,7 @@ restore
 		
 		
 	 }
-	
-	 /*
-	 local Labels  1 "0-10%" 2 "10-25%"  3 "25-50%" 4 "50-75%" 5 "75-90%" 6 "90-95%" 7 "95-99%" 8 "Top 1%"
-		graph twoway (rbar floor EmpGrowth_mean SizeCategory, color(maroon)),  ///
-		xlabel(`Labels') ///
-		ytitle("Average Employment Growth") ///
-		ylabel(, format(%9.4fc)) ///
-		xtitle("Size Category") ///
-		text(`midpoint1' 1 "`EmpGrowth_mean1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-		text(`midpoint2' 2 "`EmpGrowth_mean2'", color(white) size(small)) /// 
-		text(`midpoint3' 3 "`EmpGrowth_mean3'", color(white) size(small)) /// 
-		text(`midpoint4' 4 "`EmpGrowth_mean4'", color(white) size(small)) /// 
-		text(`midpoint5' 5 "`EmpGrowth_mean5'", color(white) size(small)) /// 
-		text(`midpoint6' 6 "`EmpGrowth_mean6'", color(white) size(small)) /// 
-		text(`midpoint7' 7 "`EmpGrowth_mean7'", color(white) size(small)) /// 
-		text(`midpoint8' 8 "`EmpGrowth_mean8'", color(white) size(small)) /// 
-		 graphregion(color(white))
-		 */
-	 
+		 
 	 * Currently, only exception is Portugal. Possibly need to modify when more countries are added 
 	 * This is needed for the correct labeling in the graph -> 
 	 if "${CountryID}" == "PT" {   /// This distinction is done because, surprisingly, Portugal does not have firms in the size bin 2 
@@ -421,6 +393,7 @@ restore
 
 	 
 	preserve
+	drop SizeCategory
 	* Standard Deviation Employment Growth
 	keep IDNum Year nEmployees Sales EmpGrowth_h Private
 	
@@ -484,25 +457,7 @@ restore
 		
 		
 	 }
-	
-	 /*
-	 local Labels  1 "0-10%" 2 "10-25%"  3 "25-50%" 4 "50-75%" 5 "75-90%" 6 "90-95%" 7 "95-99%" 8 "Top 1%"
-		graph twoway (rbar floor EmpGrowth_sd SizeCategory, color(maroon)),  ///
-		xlabel(`Labels') ///
-		ytitle("Standard Deviation Employment Growth") ///
-		ylabel(, format(%9.4fc)) ///
-		xtitle("Size Category") ///
-		text(`midpoint1' 1 "`EmpGrowth_sd1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-		text(`midpoint2' 2 "`EmpGrowth_sd2'", color(white) size(small)) /// 
-		text(`midpoint3' 3 "`EmpGrowth_sd3'", color(white) size(small)) /// 
-		text(`midpoint4' 4 "`EmpGrowth_sd4'", color(white) size(small)) /// 
-		text(`midpoint5' 5 "`EmpGrowth_sd5'", color(white) size(small)) /// 
-		text(`midpoint6' 6 "`EmpGrowth_sd6'", color(white) size(small)) /// 
-		text(`midpoint7' 7 "`EmpGrowth_sd7'", color(white) size(small)) /// 
-		text(`midpoint8' 8 "`EmpGrowth_sd8'", color(white) size(small)) /// 
-		 graphregion(color(white))
-		 */
-	 
+		 
 	 * Currently, only exception is Portugal. Possibly need to modify when more countries are added 
 	 * This is needed for the correct labeling in the graph -> 
 	 if "${CountryID}" == "PT" {   /// This distinction is done because, surprisingly, Portugal does not have firms in the size bin 2 
@@ -546,6 +501,7 @@ restore
 
 	
 	preserve
+	drop SizeCategory
 	* Average Sales per Employee
 	keep IDNum Year nEmployees Sales EmpGrowth_h Private
 	
@@ -610,25 +566,7 @@ restore
 		
 		
 	 }
-	
-	 /*
-	 local Labels  1 "0-10%" 2 "10-25%"  3 "25-50%" 4 "50-75%" 5 "75-90%" 6 "90-95%" 7 "95-99%" 8 "Top 1%"
-		graph twoway (rbar floor Sales_Employees SizeCategory, color(maroon)),  ///
-		xlabel(`Labels') ///
-		ytitle("Standard Deviation Employment Growth") ///
-		ylabel(, format(%9.4fc)) ///
-		xtitle("Size Category") ///
-		text(`midpoint1' 1 "`Sales_Employees1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
-		text(`midpoint2' 2 "`Sales_Employees2'", color(white) size(small)) /// 
-		text(`midpoint3' 3 "`Sales_Employees3'", color(white) size(small)) /// 
-		text(`midpoint4' 4 "`Sales_Employees4'", color(white) size(small)) /// 
-		text(`midpoint5' 5 "`Sales_Employees5'", color(white) size(small)) /// 
-		text(`midpoint6' 6 "`Sales_Employees6'", color(white) size(small)) /// 
-		text(`midpoint7' 7 "`Sales_Employees7'", color(white) size(small)) /// 
-		text(`midpoint8' 8 "`Sales_Employees8'", color(white) size(small)) /// 
-		 graphregion(color(white))
-		 */
-		 
+			 
 	 
 	 * Currently, only exception is Portugal. Possibly need to modify when more countries are added 
 	 * This is needed for the correct labeling in the graph -> 
@@ -673,6 +611,7 @@ restore
 	
 	
 	preserve
+	drop SizeCategory
 	keep IDNum Year nEmployees Sales EmpGrowth_h Private
 	* Number of firms
 	su nEmployees, detail
