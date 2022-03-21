@@ -90,7 +90,7 @@ Where SizeCat is a set of BINARY variables over for the values {1,2-10,11-50,51-
 */
 
 
-keep IDNum nEmployees Private EmpGrowth_h NACE_Rev_2_Core_code_4_digits Year US_SIC_Core_code_3_digits Industry_4digit
+keep IDNum nEmployees Private EmpGrowth_h NACE_Rev_2_Core_code_4_digits Year US_SIC_Core_code_3_digits Industry_4digit SizeCategory
 
 destring US_SIC_Core_code_3_digits, replace
 
@@ -106,7 +106,7 @@ keep if nEmployees!=.
 
 forvalues i=2/7{
 	gen SizeGroup`i' = 0
-	replace SizeGroup`i' = 1 if SizeCat==`i'
+	replace SizeGroup`i' = 1 if SizeCategory==`i'
 }
 
 * Interactions
