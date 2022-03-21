@@ -188,9 +188,10 @@ foreach Country of global Countries {
 * Cross Country Comparisons
 *-----------------------------
 
-do Load_Cross-Country-Dataset.do
-
 *** Section 2 
 do OB_CrossCountry_Stack_Bar_Industries.do
+
+
+do Load_Cross-Country-Dataset.do
 *** Section 3
 do Graph_CrossCountry.do
