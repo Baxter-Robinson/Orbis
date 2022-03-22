@@ -104,9 +104,10 @@ graph export Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_OB.pdf, repl
 scatter avgEmpGrowth_Public EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Average Employment Growth - Public Firms") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_WB.pdf, replace
 
+/*
 * Average Employment Growth of Public vs. Private Firms
-graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_CSyearend) ///
- (scatter avgEmpGrowth_Private EquityMktDepth_CSyearend), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
+graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_CSyearend, mlabel(Country) ) ///
+ (scatter avgEmpGrowth_Private EquityMktDepth_CSyearend, mlabel(Country) ), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white))
 graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_CSyearend.pdf, replace
 graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_CSAnnual) ///
  (scatter avgEmpGrowth_Private EquityMktDepth_CSAnnual), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
@@ -117,7 +118,7 @@ graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_OB.pdf, re
 graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_WB) ///
  (scatter avgEmpGrowth_Private EquityMktDepth_WB), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_WB.pdf, replace
-
+*/
 
 * Variance of Employment Growth - Private Firms
 scatter varEmpGrowth_Private EquityMktDepth_CSyearend, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Private Firms") graphregion(color(white)) mlabel(Country)
@@ -139,7 +140,7 @@ graph export Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_OB.pdf, repl
 scatter varEmpGrowth_Public EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Public Firms") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_WB.pdf, replace
 
-
+/*
 * Variance Employment Growth of Public vs. Private Firms
 graph twoway (scatter varEmpGrowth_Public EquityMktDepth_CSyearend) ///
  (scatter varEmpGrowth_Private EquityMktDepth_CSyearend), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
@@ -153,8 +154,7 @@ graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_OB.pdf, re
 graph twoway (scatter varEmpGrowth_Public EquityMktDepth_WB) ///
  (scatter varEmpGrowth_Private EquityMktDepth_WB), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_WB.pdf, replace
-
-
+*/
 
 * Share of Employment in Public Firms
 scatter empShare_Public EquityMktDepth_CSyearend, xtitle("Equity Market Depth") ytitle("Employment Share of Public Firms") graphregion(color(white)) mlabel(Country)
@@ -213,31 +213,38 @@ restore
 * Additional Debt variables and Total Factor Productivity
 
 preserve
-keep if EquityMktDepth_WB!=. 
+		keep if EquityMktDepth_WB!=. 
 
-scatter tfp DomCredit_WB,  xtitle("Domestic Credit") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
-graph export Output/Cross-Country/WB_DomCredit_TFP.pdf, replace
+		scatter tfp DomCredit_WB,  xtitle("Domestic Credit") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
+		graph export Output/Cross-Country/WB_DomCredit_TFP.pdf, replace
 
-scatter tfp DomCreditBanks_WB, xtitle("Domestic Credit by Banks") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country) xsc(r(0 2)) xlabel(#5) ylabel(#5)
-graph export Output/Cross-Country/WB_DomCreditBanks_TFP.pdf, replace
+		scatter tfp DomCreditBanks_WB, xtitle("Domestic Credit by Banks") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country) xsc(r(0 2)) xlabel(#5) ylabel(#5)
+		graph export Output/Cross-Country/WB_DomCreditBanks_TFP.pdf, replace
 
-scatter tfp PrivateDebtIMF, xtitle("Private Debt") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
-graph export Output/Cross-Country/IMF_PrivateDebt_TFP.pdf, replace
+		scatter tfp PrivateDebtIMF, xtitle("Private Debt") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
+		graph export Output/Cross-Country/IMF_PrivateDebt_TFP.pdf, replace
 
-scatter tfp PrivateDebtAllIMF, xtitle("Private Debt (all instruments)") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
-graph export Output/Cross-Country/IMF_PrivateDebtAll_TFP.pdf, replace
+		scatter tfp PrivateDebtAllIMF, xtitle("Private Debt (all instruments)") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
+		graph export Output/Cross-Country/IMF_PrivateDebtAll_TFP.pdf, replace
 
-scatter tfp HHDebtIMF, xtitle("Household Debt") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
-graph export Output/Cross-Country/IMF_HHDebt_TFP.pdf, replace
+		scatter tfp HHDebtIMF, xtitle("Household Debt") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
+		graph export Output/Cross-Country/IMF_HHDebt_TFP.pdf, replace
 
-scatter tfp HHDebtAllIMF, xtitle("Household Debt (all instruments)") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
-graph export Output/Cross-Country/IMF_HHDebtAll_TFP.pdf, replace
+		scatter tfp HHDebtAllIMF, xtitle("Household Debt (all instruments)") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
+		graph export Output/Cross-Country/IMF_HHDebtAll_TFP.pdf, replace
 
-scatter tfp NonFinancialDebtIMF, xtitle("NonFinancial Debt") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
-graph export Output/Cross-Country/IMF_NonFinancialDebt_TFP.pdf, replace
+		scatter tfp NonFinancialDebtIMF, xtitle("NonFinancial Debt") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
+		graph export Output/Cross-Country/IMF_NonFinancialDebt_TFP.pdf, replace
 
-scatter tfp NonFinancialDebtAllIMF, xtitle("NonFinancial Debt (all instruments)") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
-graph export Output/Cross-Country/IMF_NonFinancialDebtAll_TFP.pdf, replace
+		scatter tfp NonFinancialDebtAllIMF, xtitle("NonFinancial Debt (all instruments)") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
+		graph export Output/Cross-Country/IMF_NonFinancialDebtAll_TFP.pdf, replace
 
+restore
+
+preserve
+		keep if EquityMktDepth_WB!=. 
+		gen line90 = _n/4
+		graph twoway (scatter DomCredit_WB DomCreditBanks_WB ) (scatter PrivateDebtIMF PrivateDebtAllIMF) (scatter HHDebtIMF HHDebtAllIMF) (scatter NonFinancialDebtIMF NonFinancialDebtAllIMF) (line line90 line90 ) , xtitle("All instruments") graphregion(color(white)) legend(label(1 "Domestic Credit") label(2 "Private Debt") label(3 "Household Debt") label(4 "Non Financial Debt"))
+		graph export Output/Cross-Country/WB_IMF_Measure_Comparison.pdf, replace
 restore
 

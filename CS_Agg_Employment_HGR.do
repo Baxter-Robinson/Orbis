@@ -1,6 +1,5 @@
 
 
-preserve
 
 	*Compustat Haltiwanger Growth Rates and Employment
 	if "${CountryID}" == "PT" {
@@ -87,7 +86,7 @@ preserve
 
 
 
-			*preserve	
+			preserve	
 				bysort IDNum: egen Numchanges = total(firmchanging) // Gives you the number of jumps per firm
 				
 				*Percentage of firms with HGR>abs(1.90)
@@ -96,7 +95,7 @@ preserve
 				replace nvals = nvals[_N] 
 				gen FirmsHGR = nvals
 				drop nvals
-				gen p_HGR = FirmsHGR/Firms
+				gen p_HGR = FirmsHGR/Firms_total
 				
 				sum nEmployees if firmchanging==1, detail
 				
@@ -105,7 +104,7 @@ preserve
 				esttab . using "Output/$CountryID/CS_Table_Public_nEmployees_freq.tex" , cells("b(label(freq)) pct(fmt(2)) cumpct(fmt(2))") ///
 			   varlabels(, blist(Total "{hline @width}{break}"))      ///
 			   nonumber nomtitle noobs replace
-			*restore
+			restore
 	}
 	
-restore
+

@@ -51,7 +51,7 @@ global Countries IT FR ES PT DE NL
 foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
-
+	
 	*-------------------------------------------------------
 	* Raw Data
 	*-------------------------------------------------------
@@ -71,7 +71,7 @@ foreach Country of global Countries {
 	
 	* Compustat
 	*use "${DATAPATH}/${CountryID}_compustat.dta", clear
-	do CS_Program_Clean-Data.do
+	*do CS_Program_Clean-Data.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
@@ -127,17 +127,16 @@ foreach Country of global Countries {
 	*** Section 5
 	do OB_Graph_Lifecycle-ByFirmType.do
 	
-	
 	*-------------------------------------------------------
 	* Compustat (CS): Unbalanced Panel
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_CompustatUnbalanced.dta",clear
+	use "Data_Cleaned/`Country'_CompustatUnbalanced.dta",clear
 	
 	*** Section 1
-	do CS_Agg_Employment_HGR.do 
+	
 	do CS_Graph_Employment.do
 	do CS_Table_IPOyear_Descriptive-Stats.do
-	
+	do CS_Agg_Employment_HGR.do 
 	
 	*-------------------------------------------------------
 	* Compustat (CS): Balanced Panel
