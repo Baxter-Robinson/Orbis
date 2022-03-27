@@ -180,7 +180,7 @@ preserve
 	bysort Year: egen nFirmsYear = total(nvals)
 	sum nFirmsYear, detail
 	local AvenFirmsYear = r(mean)
-	file write TexFile %12.2gc ( `AvenFirmsYear')
+	file write TexFile %12.0fc ( `AvenFirmsYear')
 	file write TexFile " & "
 
 	sort IDNum Year
