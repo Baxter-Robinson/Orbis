@@ -20,13 +20,14 @@ preserve
 
 	bysort IDNum: gen nvals = _n == 1 
 	sum nvals, detail
+	return list
 	local nFirms = r(sum) 
 	file write TexFile %12.0fc (`nFirms')
 	file write TexFile " & "
 	drop nvals
 
-	bysort IDNum: gen nvals = _n == 1 
-	bysort IDNum: egen nYearsFirm = total(nvals)
+	bysort IDNum Year: gen nvals = _n == 1 
+	bysort Year: egen nYearsFirm = total(nvals)
 	sum nYearsFirm, detail
 	local AvenYearsFirm = r(mean)
 	file write TexFile %12.0gc ( `AvenYearsFirm')
