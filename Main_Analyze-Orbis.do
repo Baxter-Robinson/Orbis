@@ -81,7 +81,7 @@ foreach Country of global Countries {
 	
 	
 	**** Section 1
-	do OB_Sum_Stats_Table.do
+	*do OB_Sum_Stats_Table.do
 	*do OB_Graph_BySize_PubVPrivate.do
 	*do OB_Share_Graphs.do 
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do 
@@ -92,6 +92,7 @@ foreach Country of global Countries {
 	**** Section 2
 	*do OB_Table_BySize.do
 	*do OB_Table_Share_Emp_SizeCat.do 
+	do OB_Comparison_Eurostat_Enterprise_Statistics.do
 	*do OB_Graph_BySize.do
 	
 	**** Section 3

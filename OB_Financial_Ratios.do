@@ -134,7 +134,7 @@
 		
 		bysort IDNum Year: gen nvals = _n == 1
 		replace nvals = sum(nvals)
-        replace nvals = nvals[_N]
+        
 
 		
 		foreach x in Assets EBITDA GrossProfits MarketCap Stock nShareholders Revenue ebitdatoassets revenuetoassets profitstoassets mktcaptoassets{
