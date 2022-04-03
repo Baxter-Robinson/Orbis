@@ -83,7 +83,7 @@ foreach Country of global Countries {
 	**** Section 1
 	*do OB_Sum_Stats_Table.do
 	*do OB_Graph_BySize_PubVPrivate.do
-	*do OB_Share_Graphs.do 
+	do OB_Share_Graphs.do 
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do 
 	*do OB_gEmp_Regressions.do
 	*do OB_HGR_regressions.do
@@ -169,7 +169,12 @@ foreach Country of global Countries {
 	*use "Data_Cleaned/`Country'_Unbalanced.dta", clear
 	*do OB_CountryIndicators.do
 		
-				
+	
+	*-------------------------------------------------------
+	* EuroStat - Comparison
+	*-------------------------------------------------------
+	use "Data_Cleaned/EuroStat_Enterprise_Statistics.dta",clear
+	do EuroStat_Enterprise_Statistics.do
 }
 
 

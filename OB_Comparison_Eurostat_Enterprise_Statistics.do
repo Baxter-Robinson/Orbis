@@ -10,11 +10,11 @@ preserve
 
 		keep IDNum Year nEmployees
 		
-		* Reformulation of Size Categories to match the EuroStat Sizes
+		* 
 		
 				
 		*----------------------
-		* Size Category 
+		* Reformulation of Size Categories to match the EuroStat Sizes
 		*----------------------
 
 		sum nEmployees, detail
@@ -22,7 +22,7 @@ preserve
 		egen groups  = cut(nEmployees), at (0, 9, 10, 19, 20, 49, 50, 249, 250, `max')
 
 		gen SizeCategory = . 
-		replace SizeCategory = 1 if groups==0 | (groups==9)
+		replace SizeCategory = 1 if (groups==0) | (groups==9)
 		replace SizeCategory = 2 if (groups==10) | (groups==19)
 		replace SizeCategory = 3 if (groups==20) | (groups==49)
 		replace SizeCategory = 4 if (groups==50) | (groups==249)
@@ -83,10 +83,10 @@ preserve
 
 		sum nEmployees, detail
 		local max= r(max)
-		egen groups  = cut(nEmployees), at (0, 9, 10, 19, 20, 49, 50, 249, 250, `max')
+		egen groups  = cut(nEmployees), at (1, 9, 10, 19, 20, 49, 50, 249, 250, `max')
 
 		gen SizeCategory = . 
-		replace SizeCategory = 1 if groups==0 | (groups==9)
+		replace SizeCategory = 1 if groups==1 | (groups==9)
 		replace SizeCategory = 2 if (groups==10) | (groups==19)
 		replace SizeCategory = 3 if (groups==20) | (groups==49)
 		replace SizeCategory = 4 if (groups==50) | (groups==249)

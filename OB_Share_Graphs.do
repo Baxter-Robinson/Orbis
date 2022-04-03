@@ -141,7 +141,7 @@ restore
 		gen private_firms = nEmpCatPrivate
 		replace private_firms = 0 if private_firms==.
 				
-		gen TotFirms = .
+		gen TotEmp = .
 		
 		levelsof SizeCategory, local(categories)		
 		foreach x of local categories{
@@ -149,12 +149,12 @@ restore
 			local pubf = r(mean)
 			sum nEmpCatPrivate if SizeCategory==`x', detail
 			local privf = r(mean)
-			replace TotFirms = `pubf'+`privf' if SizeCategory==`x'
+			replace TotEmp = `pubf'+`privf' if SizeCategory==`x'
 		}
-		bysort Private: egen nFirms = total(TotFirms)	
+		bysort Private: egen nEmp = total(TotEmp)	
 		
-		gen pct_nEmpCatPrivate = 100*nEmpCatPrivate/nFirms
-		gen pct_nEmpCatPublic = 100*nEmpCatPublic/nFirms
+		gen pct_nEmpCatPrivate = 100*nEmpCatPrivate/nEmp
+		gen pct_nEmpCatPublic = 100*nEmpCatPublic/nEmp
 		
 		
 		gen floor = 0
@@ -213,8 +213,6 @@ restore
 			text(`endpoint7' 7 "`nEmppublic7'", color(white) size(small)) /// 
 			graphregion(color(white))
 			graph export Output/$CountryID/OB_BySizeCat_ShareEmployment.pdf, replace 
-		
-	
 	restore
 	
 	
@@ -459,12 +457,131 @@ restore
 			graph export Output/$CountryID/OB_ByAge_Share_nFirms.pdf, replace 
 	
 	
-	
+	restore
 	
 	
 
 
+************************************************************************************************************
+	************************************************************************************************************
+	************************************************************************************************************
 
+	
+	
+	preserve
+
+		/*
+		 EUROSTAT Size Categories - Comparison
+		*/
+		
+		keep IDNum Year nEmployees Private 
+			
+		keep if nEmployees!=.
+		
+		
+		*----------------------
+		* Size Category 
+		*----------------------
+
+		sum nEmployees, detail
+		local max= r(max)
+		egen groups  = cut(nEmployees), at (0, 9, 10, 19, 20,49, 50, 249,250, `max')
+
+		gen SizeCategory = . 
+		replace SizeCategory = 1 if (groups==0) | (groups==9)
+		replace SizeCategory = 2 if (groups==10) | (groups==19)
+		replace SizeCategory = 3 if (groups==20) | (groups==49)
+		replace SizeCategory = 4 if (groups==50) | (groups==249)
+		replace SizeCategory = 5 if (groups==250) | (groups==`max')
+		drop groups 
+		
+		
+		drop if SizeCategory==.
+		
+		bysort SizeCategory Year : egen nEmpCatPrivate = total(nEmployees) if Private==1
+		bysort SizeCategory Year : egen nEmpCatPublic = total(nEmployees) if Private==0
+		
+		collapse (mean) nEmpCatPublic nEmpCatPrivate, by(SizeCategory Private)
+		
+		replace nEmpCatPublic = round(nEmpCatPublic)
+		replace nEmpCatPrivate = round(nEmpCatPrivate)
+		
+		gen public_firms = nEmpCatPublic
+		replace public_firms = 0 if public_firms==. 
+		gen private_firms = nEmpCatPrivate
+		replace private_firms = 0 if private_firms==.
+				
+		gen TotEmp = .
+		
+		levelsof SizeCategory, local(categories)		
+		foreach x of local categories{
+			sum nEmpCatPublic if SizeCategory==`x', detail
+			local pubf = r(mean)
+			sum nEmpCatPrivate if SizeCategory==`x', detail
+			local privf = r(mean)
+			replace TotEmp = `pubf'+`privf' if SizeCategory==`x'
+		}
+		bysort Private: egen nEmp = total(TotEmp)	
+		
+		gen pct_nEmpCatPrivate = 100*nEmpCatPrivate/nEmp
+		gen pct_nEmpCatPublic = 100*nEmpCatPublic/nEmp
+		
+		
+		gen floor = 0
+		gen roof = .
+		 
+		 forval i=1/5{
+			gen mid`i'=  pct_nEmpCatPrivate/2  if (Private==1) & (SizeCategory==`i') // midpoints for private firms
+			su mid`i', meanonly
+			local midpoint`i' = r(mean)
+			drop mid`i'
+			
+			gen nEmp`i' = pct_nEmpCatPrivate if (Private==1) & (SizeCategory==`i') // values for private firms labels
+			su nEmp`i', meanonly
+			local nEmp`i' = round(r(mean))
+			drop nEmp`i'
+			
+
+			gen nEmppub`i' = pct_nEmpCatPublic if (Private==0) & (SizeCategory==`i')
+			su nEmppub`i', meanonly
+			local nEmppublic`i' = round(r(mean))
+			drop nEmppub`i'
+			
+			local endpoint`i' = `nEmp`i''+`nEmppublic`i'' + 2.5
+			replace roof = `nEmp`i''+`nEmppublic`i'' if (SizeCategory==`i')
+			
+		 }		
+		sum roof if SizeCategory==5,detail
+		local endp5roof1 = r(mean)
+		sum pct_nEmpCatPrivate if SizeCategory==5,detail
+		local endp5roof2 = r(mean)
+		local endpoint5 = (`endp5roof1'+`endp5roof2')/2
+		
+		label define SizeCat   1 "0-9" 2 "10-19"  3 "20-49" 4 "50-249" 5 "250+" 
+		local Labels  1 "0-9" 2 "10-19"  3 "20-49" 4 "50-249" 5 "250+" 
+		
+		graph twoway (rbar floor pct_nEmpCatPrivate SizeCategory, color(maroon))  ///
+			(rbar pct_nEmpCatPrivate roof SizeCategory, color(navy)), ///
+			legend(label(1 "Private") label( 2 "Public" ) ) ///
+			ytitle("Percentage of firms") ///
+			ylabel(, format(%3.0fc)) ///
+			xtitle("Number of Employees") ///
+			xlabel(`Labels') ///
+			text(`midpoint1' 1 "`nEmp1'", color(white) size(small)) /// Begin labels for private firms (first number is y second is x)
+			text(`midpoint2' 2 "`nEmp2'", color(white) size(small)) /// 
+			text(`midpoint3' 3 "`nEmp3'", color(white) size(small)) /// 
+			text(`midpoint4' 4 "`nEmp4'", color(white) size(small)) /// 
+			text(`midpoint5' 5 "`nEmp5'", color(white) size(small)) /// 
+			text(`endpoint1' 1 "`nEmppublic1'", color(navy) size(small)) /// Begin labels for public firms
+			text(`endpoint2' 2 "`nEmppublic3'", color(navy) size(small)) /// 
+			text(`endpoint3' 3 "`nEmppublic3'", color(navy) size(small)) /// 
+			text(`endpoint4' 4 "`nEmppublic4'", color(navy) size(small)) /// 
+			text(`endpoint5' 5 "`nEmppublic5'", color(white) size(small)) /// 
+			graphregion(color(white))
+			graph export Output/$CountryID/OB_By_EuroStat_SizeCat_ShareEmployment.pdf, replace 
+	restore
+	
+	
 
 
 
