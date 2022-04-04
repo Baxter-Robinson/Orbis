@@ -193,7 +193,7 @@ restore
 		graph twoway (rbar floor pct_nEmpCatPrivate SizeCategory, color(maroon))  ///
 			(rbar pct_nEmpCatPrivate roof SizeCategory, color(navy)), ///
 			legend(label(1 "Private") label( 2 "Public" ) ) ///
-			ytitle("Percentage of firms") ///
+			ytitle("Percentage of Employment") ///
 			ylabel(, format(%3.0fc)) ///
 			xtitle("Number of Employees") ///
 			xlabel(`Labels') ///
@@ -563,7 +563,7 @@ restore
 		graph twoway (rbar floor pct_nEmpCatPrivate SizeCategory, color(maroon))  ///
 			(rbar pct_nEmpCatPrivate roof SizeCategory, color(navy)), ///
 			legend(label(1 "Private") label( 2 "Public" ) ) ///
-			ytitle("Percentage of firms") ///
+			ytitle("Percentage of Employment") ///
 			ylabel(, format(%3.0fc)) ///
 			xtitle("Number of Employees") ///
 			xlabel(`Labels') ///

@@ -244,7 +244,7 @@ restore
 preserve
 		keep if EquityMktDepth_WB!=. 
 		gen line90 = _n/4
-		graph twoway (scatter DomCredit_WB DomCreditBanks_WB ) (scatter PrivateDebtIMF PrivateDebtAllIMF) (scatter HHDebtIMF HHDebtAllIMF) (scatter NonFinancialDebtIMF NonFinancialDebtAllIMF) (line line90 line90 ) , xtitle("All instruments") graphregion(color(white)) legend(label(1 "Domestic Credit") label(2 "Private Debt") label(3 "Household Debt") label(4 "Non Financial Debt"))
+		graph twoway (scatter DomCredit_WB DomCreditBanks_WB ) (scatter PrivateDebtIMF PrivateDebtAllIMF) (scatter HHDebtIMF HHDebtAllIMF) (scatter NonFinancialDebtIMF NonFinancialDebtAllIMF) (line line90 line90 ) , ytitle("Constrained Set of Instruments") xtitle("All instruments") graphregion(color(white)) legend(label(1 "Domestic Credit") label(2 "Private Debt") label(3 "Household Debt") label(4 "Non Financial Debt"))
 		graph export Output/Cross-Country/WB_IMF_Measure_Comparison.pdf, replace
 restore
 

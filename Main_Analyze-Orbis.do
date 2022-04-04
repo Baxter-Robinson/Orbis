@@ -92,7 +92,7 @@ foreach Country of global Countries {
 	**** Section 2
 	*do OB_Table_BySize.do
 	*do OB_Table_Share_Emp_SizeCat.do 
-	do OB_Comparison_Eurostat_Enterprise_Statistics.do
+	*do OB_Comparison_Eurostat_Enterprise_Statistics.do
 	*do OB_Graph_BySize.do
 	
 	**** Section 3
@@ -173,8 +173,8 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* EuroStat - Comparison
 	*-------------------------------------------------------
-	use "Data_Cleaned/EuroStat_Enterprise_Statistics.dta",clear
-	do EuroStat_Enterprise_Statistics.do
+	*use "Data_Cleaned/EuroStat_Enterprise_Statistics.dta",clear
+	*do EuroStat_Enterprise_Statistics.do
 }
 
 

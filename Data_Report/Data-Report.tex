@@ -1613,6 +1613,15 @@ Country & Number of Firms &  Employment Growth & Employment Growth    & Static S
 
 
 Note: The Equity Market Depth variable is taken from the WB data.  The TFP measure is taken from the Penn World Tables.  In order for the graphs in figure 25 and 26 to have the same number of countries,  I restricted them to both have Equity Market Depth and TFP measures jointly,  so the Czech Republic and Finland do not appear due to not having Equity Market Depth Data from the World Bank.
+
+
+\begin{figure}[!htpb]
+	\caption{Correlation Financial Development Variables}
+	\centering
+ 	\includegraphics[scale=0.9]{../Output/Cross-Country/WB_IMF_Measure_Comparison.pdf}
+\end{figure}
+
+
 \clearpage
 
 
@@ -2676,6 +2685,131 @@ where $y_{it}$ represents the firm x year-level Haltiwanger growth rate, $\mathb
 \pagebreak
 
 % section ipos (end)
+
+
+
+%------------------------------------------------------------------------------
+\FloatBarrier
+\section{Eurostat} % (fold)
+\label{sec:EuroStat}
+\FloatBarrier
+%------------------------------------------------------------------------------
+
+\subsection{Orbis: Share of Employment by EuroStat Size Categories}
+\begin{table}[!htpb]
+\caption{Share of Employment by Size Categories}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}c}
+\toprule
+Country & 0-9 & 10-19 & 20-49 & 50-249 & 250$+$ \\
+\hline
+\input{../Output/IT/OB_Share_Emp_Eurostat_Size_Category.tex}
+\input{../Output/PT/OB_Share_Emp_Eurostat_Size_Category.tex}
+\input{../Output/ES/OB_Share_Emp_Eurostat_Size_Category.tex}
+\input{../Output/FR/OB_Share_Emp_Eurostat_Size_Category.tex}
+\input{../Output/DE/OB_Share_Emp_Eurostat_Size_Category.tex}
+\input{../Output/NL/OB_Share_Emp_Eurostat_Size_Category.tex}
+
+\end{tabular}}
+\end{table}
+
+
+
+\subsection{EuroStat: Share of Employment by EuroStat Size Categories}
+\begin{table}[!htpb]
+\caption{Share of Employment by Size Categories}
+\resizebox{\textwidth}{!}{\begin{tabular}{l*{5}c}
+\toprule
+Country & 0-9 & 10-19 & 20-49 & 50-249 & 250$+$ \\
+\hline
+\input{../Output/IT/EuroStat_Share_Emp_Eurostat_Size_Category.tex}
+\input{../Output/PT/EuroStat_Share_Emp_Eurostat_Size_Category.tex}
+\input{../Output/ES/EuroStat_Share_Emp_Eurostat_Size_Category.tex}
+\input{../Output/FR/EuroStat_Share_Emp_Eurostat_Size_Category.tex}
+\input{../Output/DE/EuroStat_Share_Emp_Eurostat_Size_Category.tex}
+\input{../Output/NL/EuroStat_Share_Emp_Eurostat_Size_Category.tex}
+
+\end{tabular}}
+\end{table}
+
+\clearpage
+
+\subsection{EuroStat: Share of Employment by Size Category}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy - Orbis}
+ \includegraphics[scale=0.6]{../Output/IT/OB_By_EuroStat_SizeCat_ShareEmployment.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy - EuroStat}
+ \includegraphics[scale=0.6]{../Output/IT/EuroStat_BySizeCat_ShareEmployment.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal - Orbis}
+ \includegraphics[scale=0.6]{../Output/PT/OB_By_EuroStat_SizeCat_ShareEmployment.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal - EuroStat}
+ \includegraphics[scale=0.6]{../Output/PT/EuroStat_BySizeCat_ShareEmployment.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France - Orbis}
+ \includegraphics[scale=0.6]{../Output/FR/OB_By_EuroStat_SizeCat_ShareEmployment.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France - EuroStat}
+ \includegraphics[scale=0.6]{../Output/FR/EuroStat_BySizeCat_ShareEmployment.pdf}
+\end{subfigure}
+\end{figure}
+\clearpage
+
+\subsection{Share of Employment by Size Category}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain - Orbis}
+ \includegraphics[scale=0.6]{../Output/ES/OB_By_EuroStat_SizeCat_ShareEmployment.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain - EuroStat}
+ \includegraphics[scale=0.6]{../Output/ES/EuroStat_BySizeCat_ShareEmployment.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Germany - Orbis}
+ \includegraphics[scale=0.6]{../Output/DE/OB_By_EuroStat_SizeCat_ShareEmployment.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Germany - EuroStat}
+ \includegraphics[scale=0.6]{../Output/DE/EuroStat_BySizeCat_ShareEmployment.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Netherlands - Orbis}
+ \includegraphics[scale=0.6]{../Output/NL/OB_By_EuroStat_SizeCat_ShareEmployment.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Netherlands - EuroStat}
+ \includegraphics[scale=0.6]{../Output/NL/EuroStat_BySizeCat_ShareEmployment.pdf}
+\end{subfigure}
+\end{figure}
+\clearpage
+
+
+
+
+
+
 
 
 

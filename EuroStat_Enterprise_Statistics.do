@@ -123,9 +123,43 @@ restore
 		
 		
 		
+preserve
+				
+		keep if Country=="${CountryID}"
+		
+		destring, replace
+		keep Country Year NACE_Rev2 Size Firms nEmployees1 nEmployees2
+		keep if Year>=2008
+		keep if Year<=2016
+		
+		gen SizeCategory = . 
+		replace SizeCategory = 1 if Size=="0-9"
+		replace SizeCategory = 2 if Size=="10-19"
+		replace SizeCategory = 3 if Size=="20-49"
+		replace SizeCategory = 4 if Size=="50-249"
+		replace SizeCategory = 5 if Size=="GE250"
+		
+		drop if Size=="TOTAL"
+		
+		gen keepers = 0
+		replace keepers = 1 if inlist(NACE_Rev2,"B","C","D","E","F","G","H")
+		replace keepers = 1 if inlist(NACE_Rev2,"I","J","L","M","N","S95")
+		
+		drop if keepers==0
+		
+		collapse (sum) Firms nEmployees1 nEmployees2 (first) Country Size, by(SizeCategory Year NACE_Rev2)
+		
+		collapse (mean) Firms nEmployees1 nEmployees2 (first) Country Size, by(SizeCategory)
 		
 		
+		gen floor = 0
 		
-		
-		
+		local Labels  1 "0-9" 2 "10-19"  3 "20-49" 4 "50-249" 5 "250+" 
+		graph twoway (rbar floor Firms SizeCategory, color(maroon)),  ///
+			ytitle("Number of Firms") ///
+			ylabel(, format(%10.0fc)) ///
+			xtitle("Number of Employees") ///
+			xlabel(`Labels') ///
+			graphregion(color(white))
+		graph export Output/$CountryID/EuroStat_BySizeCat_nFirms.pdf, replace 
 		
