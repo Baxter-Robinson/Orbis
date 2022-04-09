@@ -181,7 +181,7 @@ graph export Output/Cross-Country/empShareLargeFirms_EquityMktDepth_WB.pdf, repl
 
 * Additional debt variables and Equity Market Depth
 preserve
-keep if EquityMktDepth_WB!=. 
+*keep if EquityMktDepth_WB!=. 
 
 scatter DomCredit_WB EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Domestic Credit") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/WB_DomCredit_EquityMktDepth.pdf, replace
@@ -213,7 +213,7 @@ restore
 * Additional Debt variables and Total Factor Productivity
 
 preserve
-		keep if EquityMktDepth_WB!=. 
+		*keep if EquityMktDepth_WB!=. 
 
 		scatter tfp DomCredit_WB,  xtitle("Domestic Credit") ytitle("Total Factor Productivity") graphregion(color(white)) mlabel(Country)
 		graph export Output/Cross-Country/WB_DomCredit_TFP.pdf, replace
@@ -242,7 +242,7 @@ preserve
 restore
 
 preserve
-		keep if EquityMktDepth_WB!=. 
+		*keep if EquityMktDepth_WB!=. 
 		gen line90 = _n/4
 		graph twoway (scatter DomCredit_WB DomCreditBanks_WB ) (scatter PrivateDebtIMF PrivateDebtAllIMF) (scatter HHDebtIMF HHDebtAllIMF) (scatter NonFinancialDebtIMF NonFinancialDebtAllIMF) (line line90 line90 ) , ytitle("Constrained Set of Instruments") xtitle("All instruments") graphregion(color(white)) legend(label(1 "Domestic Credit") label(2 "Private Debt") label(3 "Household Debt") label(4 "Non Financial Debt"))
 		graph export Output/Cross-Country/WB_IMF_Measure_Comparison.pdf, replace

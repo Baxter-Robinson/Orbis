@@ -163,3 +163,4 @@ preserve
 			graphregion(color(white))
 		graph export Output/$CountryID/EuroStat_BySizeCat_nFirms.pdf, replace 
 		
+restore
