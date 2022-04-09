@@ -104,7 +104,7 @@ preserve
 
 	keep if nEmployees!=.
 
-	forvalues i=2/7{
+	forvalues i=1/7{
 		gen SizeGroup`i' = 0
 		replace SizeGroup`i' = 1 if SizeCategory==`i'
 	}
