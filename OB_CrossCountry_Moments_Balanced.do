@@ -190,6 +190,9 @@ preserve
 		file write CrossCountry3 " ${CountryID} "
 		file write CrossCountry3 " &  "
 		
+		file write CrossCountry3 " All Firms "
+		file write CrossCountry3 " &  "
+		
 		sum labor_productivity , detail
 		return list
 		file write CrossCountry3 %4.2fc (`r(mean)')
@@ -216,6 +219,9 @@ preserve
 		
 		file write CrossCountry3 " \hline  "
 		
+		file write CrossCountry3 " Public Firms "
+		file write CrossCountry3 " &  "
+		
 		sum labor_productivity if Private==0, detail
 		return list
 		file write CrossCountry3 %4.2fc (`r(mean)')
@@ -241,6 +247,9 @@ preserve
 		file write CrossCountry3 " \\  "
 		
 		file write CrossCountry3 " \hline  "
+		
+		file write CrossCountry3 " Private Firms "
+		file write CrossCountry3 " &  "
 		
 		sum labor_productivity if Private==1, detail
 		return list
