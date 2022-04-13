@@ -216,7 +216,9 @@ preserve
 		file write CrossCountry3 %4.2fc (`Ratio9050')
 		file write CrossCountry3 " \\  "
 		
-		file write CrossCountry3 " \hline  "
+		
+		file write CrossCountry3 " ${CountryID} "
+		file write CrossCountry3 " &  "
 		
 		file write CrossCountry3 " Public Firms "
 		file write CrossCountry3 " &  "
@@ -245,7 +247,9 @@ preserve
 		file write CrossCountry3 %4.2fc (`Ratio9050')
 		file write CrossCountry3 " \\  "
 		
-		file write CrossCountry3 " \hline  "
+		
+		file write CrossCountry3 " ${CountryID} "
+		file write CrossCountry3 " &  "
 		
 		file write CrossCountry3 " Private Firms "
 		file write CrossCountry3 " &  "

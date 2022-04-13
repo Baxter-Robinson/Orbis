@@ -273,7 +273,20 @@ preserve
 	replace Sales = Sales/1000000
 	gen SalesEmployee = Sales/nEmployees
 	
-	collapse (sum) nEmployees (mean)nFirms_Public_mean = nFirms_Public nFirms_Private_mean = nFirms_Private SalesEmployee_mean =SalesEmployee  EmpGrowth_mean=EmpGrowth_h (sd) EmpGrowth_sd=EmpGrowth_h, by(SizeCategory Private)
+	replace GrossProfits = GrossProfits/1000000
+	gen GrossProfitsEmployee = GrossProfits/nEmployees
+	
+	replace Assets = Assets/1000000
+	
+	replace Revenue = Revenue/1000000
+	replace EBITDA = EBITDA/1000000
+	
+	gen RevtoAssets = Revenue/Assets
+	gen EBITDAtoAssets = EBITDA/Assets
+	gen GrossProfitstoAssets = GrossProfits/Assets
+	
+	
+	collapse (sum) nEmployees (mean)nFirms_Public_mean = nFirms_Public nFirms_Private_mean = nFirms_Private SalesEmployee_mean = SalesEmployee  EmpGrowth_mean=EmpGrowth_h GrossProfitsEmployee_mean = GrossProfitsEmployee Assets_mean = Assets RevtoAssets_mean = RevtoAssets EBITDAtoAssets_mean = EBITDAtoAssets  GrossProfitstoAssets_mean = GrossProfitstoAssets	(sd) EmpGrowth_sd=EmpGrowth_h Assets_sd = Assets, by(SizeCategory Private)
 
 	local MinSize=10 
 	
@@ -300,12 +313,49 @@ preserve
 	legend(label(1 "Public") label( 2 "Private" ))
 	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_nFirms.pdf, replace  
 	 
-	 twoway (scatter SalesEmployee_mean SizeCategory if (Private==0), connect(l)) ///
-	(scatter SalesEmployee_mean SizeCategory if (Private==1), connect(l) msymbol(Sh)) ///
+	 twoway (scatter SalesEmployee_mean SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
+	(scatter SalesEmployee_mean SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Sales per Employee in Millions") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_SalesEmployeeAvg.pdf, replace  
 	 
+	 
+	 	 twoway (scatter GrossProfitsEmployee_mean SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
+	(scatter GrossProfitsEmployee_mean SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Profits per Employee in Millions") graphregion(color(white)) ///
+	legend(label(1 "Public") label( 2 "Private" ))
+	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_ProfitsEmployeeAvg.pdf, replace  
+	 	 	 twoway (scatter Assets_mean SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
+	(scatter Assets_mean SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Assets in Millions") graphregion(color(white)) ///
+	legend(label(1 "Public") label( 2 "Private" ))
+	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_AssetsAvg.pdf, replace  
+
+	 
+	 	 	 twoway (scatter Assets_sd SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
+	(scatter Assets_sd SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Std. Dev. Assets in Millions") graphregion(color(white)) ///
+	legend(label(1 "Public") label( 2 "Private" ))
+	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_AssetsSD.pdf, replace  
+	 
+	 
+	 twoway (scatter RevtoAssets SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
+	(scatter RevtoAssets SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Revenue to Assets in Millions") graphregion(color(white)) ///
+	legend(label(1 "Public") label( 2 "Private" ))
+	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_RevenuetoAssetsAvg.pdf, replace  
+	 
+	 twoway (scatter EBITDAtoAssets SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
+	(scatter EBITDAtoAssets SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Average EBITDA to Assets in Millions") graphregion(color(white)) ///
+	legend(label(1 "Public") label( 2 "Private" ))
+	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_EBITDAtoAssetsAvg.pdf, replace  
+	 
+	 twoway (scatter GrossProfitstoAssets_mean SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
+	(scatter GrossProfitstoAssets_mean SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Profits to Assets in Millions") graphregion(color(white)) ///
+	legend(label(1 "Public") label( 2 "Private" ))
+	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_ProfitstoAssetsAvg.pdf, replace  
 	 
 restore
 
