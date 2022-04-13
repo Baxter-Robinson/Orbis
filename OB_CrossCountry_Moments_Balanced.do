@@ -127,7 +127,151 @@ preserve
 
 restore
 
+
+
+
+
+preserve
+
+		gen Country="${CountryID}"
+		merge m:1 Country using "Data_Cleaned/PennWorldIndicators.dta"
+		drop if _merge==2
+		drop _merge
+		merge m:1 Country using "Data_Cleaned/${CountryID}_CountryLevel.dta"
+		drop _merge
+		
+		file close _all
+
+		file open CrossCountry2 using Output/${CountryID}/OB_Cross_Country_Employment_Balanced.tex, write replace
+
+		file write CrossCountry2 " ${CountryID} "
+		file write CrossCountry2 " &  "
+		
+		sum EmpGrowth_h if Private==0, detail
+		return list
+		
+		file write CrossCountry2 %4.2fc (`r(mean)')
+		file write CrossCountry2 " &  "
+		file write CrossCountry2 %4.2fc (`r(sd)')
+		file write CrossCountry2 " &  "
+		
+		sum EmpGrowth_h if Private==1, detail
+		return list
+		
+		file write CrossCountry2 %4.2fc (`r(mean)')
+		file write CrossCountry2 " &  "
+		file write CrossCountry2 %4.2fc (`r(sd)')
+ 		file write CrossCountry2 "  \\  "		
+		
+		
+		file close _all
+
+restore
+
 	
+	
+
+preserve
+
+		gen Country="${CountryID}"
+		merge m:1 Country using "Data_Cleaned/PennWorldIndicators.dta"
+		drop if _merge==2
+		drop _merge
+		merge m:1 Country using "Data_Cleaned/${CountryID}_CountryLevel.dta"
+		drop _merge
+		
+		file close _all
+
+		file open CrossCountry3 using Output/${CountryID}/OB_Cross_Country_LaborProductivity_Balanced.tex, write replace
+		
+		gen sales_millions = Sales/1000000
+		gen labor_productivity = sales_millions/nEmployees
+		
+		file write CrossCountry3 " ${CountryID} "
+		file write CrossCountry3 " &  "
+		
+		sum labor_productivity , detail
+		return list
+		file write CrossCountry3 %4.2fc (`r(mean)')
+		file write CrossCountry3 " &  "
+		file write CrossCountry3 %4.2fc (`r(p50)')
+		file write CrossCountry3 " &  "
+		file write CrossCountry3 %4.2fc (`r(sd)')
+		file write CrossCountry3 " &  "
+		sum labor_productivity , detail
+		return list 
+		local CoeffVariation = `r(sd)'*100/`r(mean)'
+		file write CrossCountry3 %4.2fc (`CoeffVariation')
+		file write CrossCountry3 " &  "
+		sum labor_productivity , detail
+		return list 
+		local Ratio9010 = `r(p90)'/`r(p10)'
+		file write CrossCountry3 %4.2fc (`Ratio9010')
+		file write CrossCountry3 " &  "
+		sum labor_productivity , detail
+		return list 
+		local Ratio9050 = `r(p90)'/`r(p50)'
+		file write CrossCountry3 %4.2fc (`Ratio9050')
+		file write CrossCountry3 " \\  "
+		
+		file write CrossCountry3 " \hline  "
+		
+		sum labor_productivity if Private==0, detail
+		return list
+		file write CrossCountry3 %4.2fc (`r(mean)')
+		file write CrossCountry3 " &  "
+		file write CrossCountry3 %4.2fc (`r(p50)')
+		file write CrossCountry3 " &  "
+		file write CrossCountry3 %4.2fc (`r(sd)')
+		file write CrossCountry3 " &  "
+		sum labor_productivity if Private==0, detail
+		return list 
+		local CoeffVariation = `r(sd)'*100/`r(mean)'
+		file write CrossCountry3 %4.2fc (`CoeffVariation')
+		file write CrossCountry3 " &  "
+		sum labor_productivity if Private==0, detail
+		return list 
+		local Ratio9010 = `r(p90)'/`r(p10)'
+		file write CrossCountry3 %4.2fc (`Ratio9010')
+		file write CrossCountry3 " &  "
+		sum labor_productivity if Private==0, detail
+		return list 
+		local Ratio9050 = `r(p90)'/`r(p50)'
+		file write CrossCountry3 %4.2fc (`Ratio9050')
+		file write CrossCountry3 " \\  "
+		
+		file write CrossCountry3 " \hline  "
+		
+		sum labor_productivity if Private==1, detail
+		return list
+		file write CrossCountry3 %4.2fc (`r(mean)')
+		file write CrossCountry3 " &  "
+		file write CrossCountry3 %4.2fc (`r(p50)')
+		file write CrossCountry3 " &  "
+		file write CrossCountry3 %4.2fc (`r(sd)')
+		file write CrossCountry3 " &  "
+		sum labor_productivity if Private==1, detail
+		return list 
+		local CoeffVariation = `r(sd)'*100/`r(mean)'
+		file write CrossCountry3 %4.2fc (`CoeffVariation')
+		file write CrossCountry3 " &  "
+		sum labor_productivity if Private==1, detail
+		return list 
+		local Ratio9010 = `r(p90)'/`r(p10)'
+		file write CrossCountry3 %4.2fc (`Ratio9010')
+		file write CrossCountry3 " &  "
+		sum labor_productivity if Private==1, detail
+		return list 
+		local Ratio9050 = `r(p90)'/`r(p50)'
+		file write CrossCountry3 %4.2fc (`Ratio9050')
+		file write CrossCountry3 " \\  "		
+		
+		file write CrossCountry3 " \hline  "
+		
+		
+		file close _all
+
+restore
 
 
 

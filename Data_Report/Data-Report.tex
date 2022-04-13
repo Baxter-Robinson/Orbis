@@ -1528,6 +1528,42 @@ Country & Number of Firms &  Employment Growth & Employment Growth    & Static S
 \end{tabular}}
 \end{table}
 
+
+\begin{table}[!htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{ccccc}
+\toprule
+Country &  \multicolumn{2}{c}{Public Firms}  &  \multicolumn{2}{c}{Private Firms} \\
+
+        &  	Avg Haltiwanger Employment Growth Rate   &  Std. Dev. Haltiwanger Employment Growth Rate	&	Avg Haltiwanger Employment Growth Rate   &  Std. Dev. Haltiwanger Employment Growth Rate   \\
+\hline \hline
+%\input{../Output/FR/OB_Cross_Country_Employment_Balanced.tex}
+%\input{../Output/NL/OB_Cross_Country_Employment_Balanced.tex}
+%\input{../Output/DE/OB_Cross_Country_Employment_Balanced.tex}
+%\input{../Output/ES/OB_Cross_Country_Employment_Balanced.tex}
+%\input{../Output/PT/OB_Cross_Country_Employment_Balanced.tex}
+\input{../Output/IT/OB_Cross_Country_Employment_Balanced.tex} 
+\end{tabular}}
+\end{table}
+
+
+\begin{table}[!htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{cccccc}
+\caption{Labor Productivity}
+\toprule
+Country & Average & Median & Standard Deviation & Coefficient of Variation & 90-10 Ratio & 90-50 Ratio \\
+\hline \hline
+%\input{../Output/FR/OB_Cross_Country_Balanced.tex}
+%\input{../Output/NL/OB_Cross_Country_Balanced.tex}
+%\input{../Output/DE/OB_Cross_Country_Balanced.tex}
+%\input{../Output/ES/OB_Cross_Country_Balanced.tex}
+%\input{../Output/PT/OB_Cross_Country_Balanced.tex}
+\input{../Output/IT/OB_Cross_Country_LaborProductivity_Balanced.tex}
+\end{tabular}}
+\end{table}
+
+
+
+
 \subsubsection{Unbalanced Panel}
 \begin{table}[!htpb]
 \resizebox{\textwidth}{!}{\begin{tabular}{ccccccccccc}
@@ -1544,6 +1580,22 @@ Country & Number of Firms &  Employment Growth & Employment Growth    & Static S
 \end{tabular}}
 \end{table}
 
+
+\begin{table}[!htpb]
+\resizebox{\textwidth}{!}{\begin{tabular}{ccccc}
+\toprule
+Country &  \multicolumn{2}{c}{Public Firms}  &  \multicolumn{2}{c}{Private Firms} \\
+
+        &  	Avg Haltiwanger Employment Growth Rate   &  Std. Dev. Haltiwanger Employment Growth Rate	&	Avg Haltiwanger Employment Growth Rate   &  Std. Dev. Haltiwanger Employment Growth Rate   \\
+\hline \hline
+%\input{../Output/FR/OB_Cross_Country_Employment_Unbalanced.tex}
+%\input{../Output/NL/OB_Cross_Country_Employment_Unbalanced.tex}
+%\input{../Output/DE/OB_Cross_Country_Employment_Unbalanced.tex}
+%\input{../Output/ES/OB_Cross_Country_Employment_Unbalanced.tex}
+%\input{../Output/PT/OB_Cross_Country_Employment_Unbalanced.tex}
+\input{../Output/IT/OB_Cross_Country_Employment_Unbalanced.tex} 
+\end{tabular}}
+\end{table}
 
 \clearpage
 
@@ -2733,78 +2785,114 @@ Country & 0-9 & 10-19 & 20-49 & 50-249 & 250$+$ \\
 
 \clearpage
 
-\subsection{EuroStat: Share of Employment by Size Category}
+\subsection{Orbis v. EuroStat: Share of Employment by Size Category}
 \begin{figure}[!htpb]
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Italy - Orbis}
- \includegraphics[scale=0.6]{../Output/IT/OB_By_EuroStat_SizeCat_ShareEmployment.pdf}
+    \subcaption{Italy}
+ \includegraphics[scale=0.6]{../Output/IT/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Italy - EuroStat}
- \includegraphics[scale=0.6]{../Output/IT/EuroStat_BySizeCat_ShareEmployment.pdf}
+    \subcaption{Portugal}
+ \includegraphics[scale=0.6]{../Output/PT/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Portugal - Orbis}
- \includegraphics[scale=0.6]{../Output/PT/OB_By_EuroStat_SizeCat_ShareEmployment.pdf}
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/ES/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Portugal - EuroStat}
- \includegraphics[scale=0.6]{../Output/PT/EuroStat_BySizeCat_ShareEmployment.pdf}
+    \subcaption{France}
+ \includegraphics[scale=0.6]{../Output/FR/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{France - Orbis}
- \includegraphics[scale=0.6]{../Output/FR/OB_By_EuroStat_SizeCat_ShareEmployment.pdf}
+    \subcaption{Germany}
+ \includegraphics[scale=0.6]{../Output/DE/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{France - EuroStat}
- \includegraphics[scale=0.6]{../Output/FR/EuroStat_BySizeCat_ShareEmployment.pdf}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.6]{../Output/NL/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
 \end{subfigure}
 \end{figure}
 \clearpage
 
-\subsection{Share of Employment by Size Category}
+\subsection{Orbis v. EuroStat: Number of Employees by Size Category}
 \begin{figure}[!htpb]
 \centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Spain - Orbis}
- \includegraphics[scale=0.6]{../Output/ES/OB_By_EuroStat_SizeCat_ShareEmployment.pdf}
+    \subcaption{Italy}
+ \includegraphics[scale=0.6]{../Output/IT/OB_EuroStat_BySizeCat_nEmployees.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Spain - EuroStat}
- \includegraphics[scale=0.6]{../Output/ES/EuroStat_BySizeCat_ShareEmployment.pdf}
+    \subcaption{Portugal}
+ \includegraphics[scale=0.6]{../Output/PT/OB_EuroStat_BySizeCat_nEmployees.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Germany - Orbis}
- \includegraphics[scale=0.6]{../Output/DE/OB_By_EuroStat_SizeCat_ShareEmployment.pdf}
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/ES/OB_EuroStat_BySizeCat_nEmployees.pdf}
 \end{subfigure}%
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Germany - EuroStat}
- \includegraphics[scale=0.6]{../Output/DE/EuroStat_BySizeCat_ShareEmployment.pdf}
+    \subcaption{France}
+ \includegraphics[scale=0.6]{../Output/FR/OB_EuroStat_BySizeCat_nEmployees.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Netherlands - Orbis}
- \includegraphics[scale=0.6]{../Output/NL/OB_By_EuroStat_SizeCat_ShareEmployment.pdf}
+    \subcaption{Germany}
+ \includegraphics[scale=0.6]{../Output/DE/OB_EuroStat_BySizeCat_nEmployees.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Netherlands - EuroStat}
- \includegraphics[scale=0.6]{../Output/NL/EuroStat_BySizeCat_ShareEmployment.pdf}
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.6]{../Output/NL/OB_EuroStat_BySizeCat_nEmployees.pdf}
 \end{subfigure}
 \end{figure}
 \clearpage
 
+
+\subsection{Orbis v. EuroStat: Number of Firms by Size Category}
+\begin{figure}[!htpb]
+\centering
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Italy}
+ \includegraphics[scale=0.6]{../Output/IT/OB_EuroStat_BySizeCat_nFirms.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Portugal}
+ \includegraphics[scale=0.6]{../Output/PT/OB_EuroStat_BySizeCat_nFirms.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Spain}
+ \includegraphics[scale=0.6]{../Output/ES/OB_EuroStat_BySizeCat_nFirms.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{France}
+ \includegraphics[scale=0.6]{../Output/FR/OB_EuroStat_BySizeCat_nFirms.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Germany}
+ \includegraphics[scale=0.6]{../Output/DE/OB_EuroStat_BySizeCat_nFirms.pdf}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Netherlands}
+ \includegraphics[scale=0.6]{../Output/NL/OB_EuroStat_BySizeCat_nFirms.pdf}
+\end{subfigure}
+\end{figure}
+\clearpage
 
 
 

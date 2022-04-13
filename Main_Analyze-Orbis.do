@@ -96,7 +96,7 @@ foreach Country of global Countries {
 	*do OB_Graph_BySize.do
 	
 	**** Section 3
-	*do OB_CrossCountry_Moments_Unbalanced.do
+	do OB_CrossCountry_Moments_Unbalanced.do
 
 	**** Section 4
 	*do OB_Financial_Ratios.do
@@ -112,20 +112,20 @@ foreach Country of global Countries {
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do
 	
 	**** Section 7
-	do OB_Employment_Firms_EuroStat_comparison.do
+	*do OB_Employment_Firms_EuroStat_comparison.do
 	
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Balanced.dta",clear
+	use "Data_Cleaned/`Country'_Balanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
 	*** Section 3
 	*do OB_Static_Firm_Share.do
 	*do OB_Table_PubVsPri.do
-	*do OB_CrossCountry_Moments_Balanced.do
+	do OB_CrossCountry_Moments_Balanced.do
 	
 	
 	*** Section 5
