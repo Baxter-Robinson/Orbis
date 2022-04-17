@@ -361,6 +361,96 @@ restore
 
 
 
+
+*********************************** Haltiwanger employment growth rates
+*********************************** with fixed effects taken out. 
+*********************************** Connected scatter plots By Size Category
+
+
+
+preserve
+
+	destring US_SIC_Core_code_3_digits, replace
+	
+	gen missingNACE = 0
+	replace missingNACE=1 if missing(Industry_4digit) 
+
+	gen missingSIC = 0
+	replace missingSIC=1 if missing(US_SIC_Core_code_3_digits) 
+
+	xtset IDNum Year
+	
+	reg EmpGrowth_h i.Year, vce(robust)
+	predict double EmpGrowth_h_wYFE, residuals
+	
+	reg EmpGrowth_h i.Industry_4digit, vce(robust)
+	predict double EmpGrowth_h_wIFE, residuals
+	
+	reghdfe EmpGrowth_h i.Year, absorb(Industry_4digit) vce(robust) residuals(EmpGrowth_h_wYIFE)
+
+	su nEmployees, detail
+	local Categories 1 5 10 50 100 1000
+	local Labels  1 "1" 2 "2-5"  3 "6-10" 4 "11-50" 5 "51-100" 6 "101-1,000" 7 "1,000+" 
+
+	local Total=r(sum)
+	local TotalNFirms=r(N)
+	
+	drop if SizeCategory==.
+	drop if nEmployees==.   
+	
+	
+	*Total Firms
+	bysort SizeCategory Year : egen nFirms = count(IDNum) 
+	* Public number of firms by 
+	bysort SizeCategory Year : egen nFirms_Public = count(IDNum) if Private==0 	
+	* Private number of firms by 
+	bysort SizeCategory Year: egen nFirms_Private = count(IDNum) if Private==1
+	
+	
+	collapse (mean) nFirms_Public_mean = nFirms_Public nFirms_Private_mean = nFirms_Private  EmpGrowth_mean_wYFE=EmpGrowth_h_wYFE  EmpGrowth_mean_wIFE= EmpGrowth_h_wIFE  EmpGrowth_mean_wYIFE = EmpGrowth_h_wYIFE  , by(SizeCategory Private)
+
+	local MinSize=10 	
+	local Labels  1 "1" 2 "2-5"  3 "6-10" 4 "11-50" 5 "51-100" 6 "101-1,000" 7 "1,000+" 
+	twoway (scatter EmpGrowth_mean_wYFE SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
+	(scatter EmpGrowth_mean_wYFE SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Employment Growth Rate (wYFE)") graphregion(color(white)) ///
+	legend(label(1 "Public") label( 2 "Private" )) yscale(range(-0.6(0.2)0.6)) ylabel(-0.6(0.2)0.6)
+	graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_GrowthRateAvg_wYFE.pdf, replace  
+	 
+	 
+	 
+	 local MinSize=10 
+	
+	local Labels  1 "1" 2 "2-5"  3 "6-10" 4 "11-50" 5 "51-100" 6 "101-1,000" 7 "1,000+" 
+	twoway (scatter EmpGrowth_mean_wIFE SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
+	(scatter EmpGrowth_mean_wIFE SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Employment Growth Rate (wIFE)") graphregion(color(white)) ///
+	legend(label(1 "Public") label( 2 "Private" )) yscale(range(-0.6(0.2)0.6)) ylabel(-0.6(0.2)0.6)
+	graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_GrowthRateAvg_wIFE.pdf, replace  
+	
+	
+	local MinSize=10 
+	
+	local Labels  1 "1" 2 "2-5"  3 "6-10" 4 "11-50" 5 "51-100" 6 "101-1,000" 7 "1,000+" 
+	twoway (scatter EmpGrowth_mean_wYIFE SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
+	(scatter EmpGrowth_mean_wYIFE SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Employment Growth Rate (wYIFE)") graphregion(color(white)) ///
+	legend(label(1 "Public") label( 2 "Private" )) yscale(range(-0.6(0.2)0.6)) ylabel(-0.6(0.2)0.6)
+	graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_GrowthRateAvg_wYIFE.pdf, replace  
+	 
+	 
+	 restore
+
+
+
+
+
+
+
+
+
+
+
 *********************************** Stacked Bars By Size Category
 
 preserve

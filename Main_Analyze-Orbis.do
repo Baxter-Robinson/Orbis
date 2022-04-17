@@ -82,7 +82,7 @@ foreach Country of global Countries {
 	
 	**** Section 1
 	*do OB_Sum_Stats_Table.do
-	do OB_Graph_BySize_PubVPrivate.do
+	*do OB_Graph_BySize_PubVPrivate.do
 	*do OB_Share_Graphs.do 
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do 
 	*do OB_gEmp_Regressions.do
@@ -99,7 +99,7 @@ foreach Country of global Countries {
 	*do OB_CrossCountry_Moments_Unbalanced.do
 
 	**** Section 4
-	*do OB_Financial_Ratios.do
+	do OB_Financial_Ratios.do
 	
 	**** Section 5
 	*do OB_CS_Dist_Employment.do
