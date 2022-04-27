@@ -7,7 +7,7 @@ preserve
 	file write TabSampleComp "Year & \multicolumn{2}{c}{Number of public firms} & \multicolumn{2}{c}{Average Employment} & \multicolumn{2}{c}{Total Employment} & \multicolumn{2}{c}{Average Sales (Million)} & \multicolumn{2}{c}{Total Sales (Million)} \\ \midrule"_n
 	file write TabSampleComp  " & Orbis & Compustat & Orbis & Compustat & Orbis & Compustat & Orbis & Compustat & Orbis & Compustat \\ \cmidrule{2-11}"_n
 	* Merge both datasets
-	use "Data_Cleaned/${CountryID}_Unbalanced.dta", clear
+	*use "Data_Cleaned/${CountryID}_Unbalanced.dta", clear
 	*use "Data_Cleaned/${CountryID}_Balanced.dta", clear
 	* Only keep firms that don't become delisted
 	*gen Delisted_year = yofd(Delisted_date)

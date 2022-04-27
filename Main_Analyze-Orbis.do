@@ -44,7 +44,7 @@ global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_
 * Loop over countries 
 *---------------------
 global Countries IT FR ES PT DE NL
-*global Countries IT 
+*global Countries NL
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
@@ -99,7 +99,7 @@ foreach Country of global Countries {
 	*do OB_CrossCountry_Moments_Unbalanced.do
 
 	**** Section 4
-	do OB_Financial_Ratios.do
+	*do OB_Financial_Ratios.do
 	
 	**** Section 5
 	*do OB_CS_Dist_Employment.do
@@ -113,7 +113,7 @@ foreach Country of global Countries {
 	
 	**** Section 7
 	*do OB_Employment_Firms_EuroStat_comparison.do
-	
+	do OB_Employment_Firms_EuroStat_Yearly_Comparison.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
@@ -153,10 +153,11 @@ foreach Country of global Countries {
 
 	
 	*-------------------------------------------------------
-	* Comparison: Compustat vs. Orbis
+	* Comparison: Compustat vs. Orbis (Unbalanced)
 	*-------------------------------------------------------
 	
 	* Section 5
+	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*do Table_CompustatOrbis-Comparison.do
 		
 	
