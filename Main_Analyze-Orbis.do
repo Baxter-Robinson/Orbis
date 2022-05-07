@@ -31,20 +31,20 @@ set more off
 
 * Javier PATH
 * Laptop
-cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+*cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+*global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 * HOME
-*cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 *
 
 *---------------------
 * Loop over countries 
 *---------------------
-*global Countries IT FR ES PT DE NL
-global Countries NL
+global Countries IT FR ES PT DE NL
+*global Countries NL
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
@@ -98,7 +98,7 @@ foreach Country of global Countries {
 	*do OB_CrossCountry_Moments_Unbalanced.do
 
 	**** Section 4
-	do OB_Financial_Ratios.do
+	*do OB_Financial_Ratios.do
 	
 	**** Section 5
 	*do OB_CS_Dist_Employment.do
@@ -111,7 +111,7 @@ foreach Country of global Countries {
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do
 	
 	**** Section 7
-	*do OB_Employment_Firms_EuroStat_comparison.do
+	do OB_Employment_Firms_EuroStat_comparison.do
 	*do OB_Employment_Firms_EuroStat_Yearly_Comparison.do
 	
 	*-------------------------------------------------------
