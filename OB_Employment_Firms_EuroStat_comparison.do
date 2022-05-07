@@ -3,7 +3,6 @@
 * of employment with the EuroStat dataset
 
 
-/*
 preserve
 
 		keep IDNum Year nEmployees 
@@ -112,7 +111,7 @@ preserve
 
 
 restore
-*/
+
 
 
 preserve
