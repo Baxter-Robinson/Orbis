@@ -86,7 +86,6 @@ foreach Country of global Countries {
 	*do OB_Share_Graphs.do 
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do 
 	*do OB_gEmp_Regressions.do
-	*do OB_HGR_regressions.do
 	
 	
 	**** Section 2
