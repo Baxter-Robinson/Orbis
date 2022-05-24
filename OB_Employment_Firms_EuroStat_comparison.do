@@ -34,7 +34,7 @@ preserve
 		
 		frame create EuroStat
 		frame change EuroStat
-		use "Data_Cleaned/EuroStat_Enterprise_Statistics.dta"
+		use "Data_Cleaned/EuroStat_Enterprise_Statistics.dta", clear
 		
 		
 		keep if Country=="${CountryID}"
