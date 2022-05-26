@@ -31,20 +31,20 @@ set more off
 
 * Javier PATH
 * Laptop
-*cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 * HOME
-cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+*cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+*global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 *
 
 *---------------------
 * Loop over countries 
 *---------------------
-global Countries IT FR ES PT DE NL
-*global Countries NL
+*global Countries IT FR ES PT DE NL
+global Countries IT
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
