@@ -1,456 +1,181 @@
-import delimited using "${DATAPATH}/WB_MarketCapToGDP.csv", clear
 
-gen Country=""
-
-replace Country="NL" if (v1=="Netherlands")
-replace Country="AT" if (v1=="Austria")
-replace Country="BE" if (v1=="Belgium")
-replace Country="DE" if (v1=="Germany")
-replace Country="CZ" if (v1=="Czech Republic")
-replace Country="FI" if (v1=="Finland")
-replace Country="PT" if (v1=="Portugal")
-replace Country="ES" if (v1=="Spain")
-replace Country="IT" if (v1=="Italy")
-replace Country="FR" if (v1=="France")
-replace Country="HU" if (v1=="Hungary")
-
-
-drop if (Country=="")
-
-forval i=5/65{
-    local year=1955+`i'
-    rename v`i'  MarketCap`year'
-	
-}
+*------------------------------------------------------------------------------------------
+** Country Codes ISO-3166
+*------------------------------------------------------------------------------------------
+/*
+import delimited using "${DATAPATH}/ISO-3166_Country-Codes.csv", clear
+rename v1 CountryName
+rename v3 CountryCode_2Digit
+rename v4 CountryCode_3Digit
 drop v*
 
-br 
+save "Data_Cleaned/Country-Codes.dta", replace
 
-gen EquityMktDepth_WB=0
-gen nYears=0
+*/
 
-forval year=2009/2016{
-    replace EquityMktDepth_WB=EquityMktDepth_WB+MarketCap`year' if (~missing(MarketCap`year'))
-	replace nYears=nYears+1 if  (~missing(MarketCap`year'))
+
+** Clean World Bank Data
+
+
+local i=1
+
+forval i=1/3{
+	
+	if (`i'==1){
+		local DataLabel="MarketCapToGDP"
+		local VariableLabel="MarketCapToGDP"
+	}
+	else if (`i'==2){
+		local DataLabel="Domestic_credit_to_private_sector"
+		local VariableLabel="DomCredit"
+	}
+	else if (`i'==3){
+		local DataLabel="Domestic_credit_private_Sector_by_banks"
+		local VariableLabel="DomCreditBanks"
+	}
+
+		
+		
+	import delimited using "${DATAPATH}/WB_`DataLabel'.csv", clear
+
+
+	rename v2 CountryCode_3Digit
+
+	drop if (strlen(CountryCode_3Digit)>3)
+
+
+	forval i=5/65{
+		local year=1955+`i'
+		rename v`i'  `VariableLabel'`year'
+		
+	}
+	drop v*
+
+
+	gen `VariableLabel'_WB=0
+	gen nYears=0
+
+	forval year=2009/2016{
+		replace `VariableLabel'_WB=`VariableLabel'_WB+`VariableLabel'`year' if (~missing(`VariableLabel'`year'))
+		replace nYears=nYears+1 if  (~missing(`VariableLabel'`year'))
+		
+	}
+
+	replace `VariableLabel'_WB=`VariableLabel'_WB/nYears
+
+	drop `VariableLabel'1* `VariableLabel'2* nYears
+
+	save "Data_Cleaned/WB_`DataLabel'.dta", replace
 	
 }
 
-replace EquityMktDepth_WB=EquityMktDepth_WB/nYears/100
-
-drop MarketCap* nYears
+*/
 
 
-save "Data_Cleaned/WB_MarketCapToGDP.dta", replace
-
-
-
-
-********* World Bank Indicators
-
-* Domestic credit to private sector (% of GDP)
-clear all
-import delimited using "${DATAPATH}/WB_Domestic_credit_to_private_sector.csv", clear
-
-gen Country=""
-
-
-replace Country="NL" if (v1=="Netherlands")
-replace Country="AT" if (v1=="Austria")
-replace Country="BE" if (v1=="Belgium")
-replace Country="DE" if (v1=="Germany")
-replace Country="CZ" if (v1=="Czech Republic")
-replace Country="FI" if (v1=="Finland")
-replace Country="PT" if (v1=="Portugal")
-replace Country="ES" if (v1=="Spain")
-replace Country="IT" if (v1=="Italy")
-replace Country="FR" if (v1=="France")
-replace Country="HU" if (v1=="Hungary")
-
-
-drop if (Country=="")
-
-
-forval i=5/65{
-    local year=1955+`i'
-    rename v`i'  Credit`year'
-	
-}
-drop v*
-
-br 
-
-
-gen DomCredit_WB=0
-gen nYears=0
-
-
-forval year=2009/2016{
-    replace DomCredit_WB=DomCredit_WB+Credit`year' if (~missing(Credit`year'))
-	replace nYears=nYears+1 if  (~missing(Credit`year'))
-	
-}
-
-replace DomCredit_WB=DomCredit_WB/nYears/100
-
-drop Credit* nYears
-
-
-save "Data_Cleaned/WB_DomCreditToGDP.dta", replace
-
-* ------------------------------------ *
-
-* Domestic credit to private sector by banks (% of GDP)
-clear all
-import delimited using "${DATAPATH}/WB_Domestic_credit_private_Sector_by_banks.csv", clear
-
-gen Country=""
-
-replace Country="NL" if (v1=="Netherlands")
-replace Country="AT" if (v1=="Austria")
-replace Country="BE" if (v1=="Belgium")
-replace Country="DE" if (v1=="Germany")
-replace Country="CZ" if (v1=="Czech Republic")
-replace Country="FI" if (v1=="Finland")
-replace Country="PT" if (v1=="Portugal")
-replace Country="ES" if (v1=="Spain")
-replace Country="IT" if (v1=="Italy")
-replace Country="FR" if (v1=="France")
-replace Country="HU" if (v1=="Hungary")
-
-
-drop if (Country=="")
-
-forval i=5/65{
-    local year=1955+`i'
-    rename v`i'  CreditBanks`year'
-	
-}
-drop v*
-
-br 
-
-
-gen DomCreditBanks_WB=0
-gen nYears=0
-
-
-forval year=2009/2016{
-    replace DomCreditBanks_WB=DomCreditBanks_WB+CreditBanks`year' if (~missing(CreditBanks`year'))
-	replace nYears=nYears+1 if  (~missing(CreditBanks`year'))
-	
-}
-
-replace DomCreditBanks_WB=DomCreditBanks_WB/nYears/100
-
-drop CreditBanks* nYears
-
-
-
-save "Data_Cleaned/WB_DomCreditBanksToGDP.dta", replace
-
-
+** Clean IMF Data
 * --------------------------------------------------------------------------------------------- *
 
 
 ********* From the IMF Global Debt Database (https://www.imf.org/external/datamapper/datasets/GDD)
 
-* Private debt, loans and debt securities (Percent of GDP)
+local i=1
 
-import delimited "${DATAPATH}/IMF_Private_debt.csv", clear
-
-gen Country=""
-
-replace Country="NL" if (v1=="Netherlands")
-replace Country="AT" if (v1=="Austria")
-replace Country="BE" if (v1=="Belgium")
-replace Country="DE" if (v1=="Germany")
-replace Country="CZ" if (v1=="Czech Republic")
-replace Country="FI" if (v1=="Finland")
-replace Country="PT" if (v1=="Portugal")
-replace Country="ES" if (v1=="Spain")
-replace Country="IT" if (v1=="Italy")
-replace Country="FR" if (v1=="France")
-replace Country="HU" if (v1=="Hungary")
-
-
-drop if (Country=="")
-
-
-forval i=5/65{
-    local year=1955+`i'
-    rename v`i'  Debt`year'
+forval i=1/6{
 	
-}
-drop v*
+	if (`i'==1){
+		local DataLabel="Private_debt"
+		local VariableLabel="PrivateDebt"
+	}
+	else if (`i'==2){
+		local DataLabel="Private_debt_all_instruments"
+		local VariableLabel="PrivateDebtAll"
+	}
+	else if (`i'==3){
+		local DataLabel="Household_debt"
+		local VariableLabel="HHDebt"
+	}
+	else if (`i'==4){
+		local DataLabel="Household_debt_all_instruments"
+		local VariableLabel="HHDebtAll"
+	}
+	else if (`i'==5){
+		local DataLabel="Nonfinancial_corporate_debt"
+		local VariableLabel="NonFinancialDebt"
+	}
+	else if (`i'==6){
+		local DataLabel="Nonfinancial_corporate_debt_all_instruments"
+		local VariableLabel="NonFinancialDebt"
+	}
 
-br 
 
-gen PrivateDebtIMF=0
-gen nYears=0
+		
+		
+	import delimited using "${DATAPATH}/IMF_`DataLabel'.csv", clear
 
 
-forval year=2009/2016{
-    replace PrivateDebtIMF=PrivateDebtIMF+Debt`year' if (~missing(Debt`year'))
-	replace nYears=nYears+1 if  (~missing(Debt`year'))
+	rename v1 CountryName
+	replace Country="Bahamas (the)" if (CountryName=="Bahamas, The")
+	replace Country="Central African Republic (the)" if (CountryName=="Central African Republic")
+	replace Country="China" if (CountryName=="China, People's Republic of")
+	replace Country="Comoros (the)" if (CountryName=="Comoros")
+	replace Country="Congo (the Democratic Republic of the)" if (CountryName=="Congo, Dem. Rep. of the")
+	replace Country="Congo (the)" if (CountryName=="Congo, Republic of")
+	replace Country="Czechia" if (CountryName=="Czech Republic")
+	replace Country="Cote d'Ivoire" if (CountryName=="Côte d'Ivoire")
+	replace Country="Dominican Republic (the)" if (CountryName=="Dominican Republic")
+	replace Country="Gambia (the)" if (CountryName=="Gambia, The")
+	replace Country="Hong Kong" if (CountryName=="Hong Kong SAR")
+	replace Country="Iran (Islamic Republic of)" if (CountryName=="Iran")
+	replace Country="Korea (the Republic of)" if (CountryName=="Korea, Republic of")
+	replace Country="Kyrgyzstan" if (CountryName=="Kyrgyz Republic")
+	replace Country="Lao People's Democratic Republic (the)" if (CountryName=="Lao P.D.R.")
+	replace Country="Micronesia (Federated States of)" if (CountryName=="Micronesia, Fed. States of")
+	replace Country="Moldova (the Republic of)" if (CountryName=="Moldova")
+	replace Country="Netherlands (the)" if (CountryName=="Netherlands")
+	replace Country="North Macedonia" if (CountryName=="North Macedonia")
+	replace Country="Philippines (the)" if (CountryName=="Philippines")
+	replace Country="Russian Federation (the)" if (CountryName=="Russian Federation")
+	replace Country="Slovakia" if (CountryName=="Slovak Republic")
+	replace Country="South Sudan" if (CountryName=="South Sudan, Republic of")
+	replace Country="Sudan (the)" if (CountryName=="Sudan")
+	replace Country="Sao Tome and Principe" if (CountryName=="São Tomé and Príncipe")
+	replace Country="Tanzania, the United Republic of" if (CountryName=="Tanzania")
+	replace Country="United Arab Emirates (the)" if (CountryName=="United Arab Emirates")
+	replace Country="United Kingdom of Great Britain and Northern Ireland (the)" if (CountryName=="United Kingdom")
+	replace Country="United States of America (the)" if (CountryName=="United States")
+	replace Country="Venezuela (Bolivarian Republic of)" if (CountryName=="Venezuela")
+	replace Country="Viet Nam" if (CountryName=="Vietnam")
 	
-}
-
-replace PrivateDebtIMF=PrivateDebtIMF/nYears/100
-
-drop Debt* nYears
-
-
-save "Data_Cleaned/IMF_PrivateDebtToGDP.dta", replace
-
-* ------------------------------------ *
-* Household debt, loans and debt securities (Percent of GDP)
-
-
-import delimited "${DATAPATH}/IMF_Household_debt.csv", clear
-
-gen Country=""
-
-replace Country="NL" if (v1=="Netherlands")
-replace Country="AT" if (v1=="Austria")
-replace Country="BE" if (v1=="Belgium")
-replace Country="DE" if (v1=="Germany")
-replace Country="CZ" if (v1=="Czech Republic")
-replace Country="FI" if (v1=="Finland")
-replace Country="PT" if (v1=="Portugal")
-replace Country="ES" if (v1=="Spain")
-replace Country="IT" if (v1=="Italy")
-replace Country="FR" if (v1=="France")
-replace Country="HU" if (v1=="Hungary")
-
-
-drop if (Country=="")
-
-
-forval i=5/65{
-    local year=1955+`i'
-    rename v`i'  Debt`year'
+	merge 1:1 CountryName using "Data_Cleaned/Country-Codes.dta"
+	drop if _merge<3
+	drop _merge
 	
-}
-drop v*
 
-br 
+	forval i=5/65{
+		local year=1955+`i'
+		rename v`i'  `VariableLabel'`year'
+		
+	}
+	drop v*
 
-gen HHDebtIMF=0
-gen nYears=0
 
+	gen `VariableLabel'_IMF=0
+	gen nYears=0
 
-forval year=2009/2016{
-    replace HHDebtIMF=HHDebtIMF+Debt`year' if (~missing(Debt`year'))
-	replace nYears=nYears+1 if  (~missing(Debt`year'))
+	forval year=2009/2016{
+		replace `VariableLabel'_IMF=`VariableLabel'_IMF+`VariableLabel'`year' if (~missing(`VariableLabel'`year'))
+		replace nYears=nYears+1 if  (~missing(`VariableLabel'`year'))
+		
+	}
+
+	replace `VariableLabel'_IMF=`VariableLabel'_IMF/nYears
+
+	drop `VariableLabel'1* `VariableLabel'2* nYears CountryName CountryCode_2Digit 
+
+	save "Data_Cleaned/IMF_`DataLabel'.dta", replace
 	
+
 }
-
-replace HHDebtIMF=HHDebtIMF/nYears/100
-
-drop Debt* nYears
-
-
-save "Data_Cleaned/IMF_HHDebtToGDP.dta", replace
-
-* ------------------------------------ *
-* Nonfinancial corporate debt, loans and debt securities
-
-
-
-import delimited "${DATAPATH}/IMF_Nonfinancial_corporate_debt.csv", clear
-
-gen Country=""
-
-replace Country="NL" if (v1=="Netherlands")
-replace Country="AT" if (v1=="Austria")
-replace Country="BE" if (v1=="Belgium")
-replace Country="DE" if (v1=="Germany")
-replace Country="CZ" if (v1=="Czech Republic")
-replace Country="FI" if (v1=="Finland")
-replace Country="PT" if (v1=="Portugal")
-replace Country="ES" if (v1=="Spain")
-replace Country="IT" if (v1=="Italy")
-replace Country="FR" if (v1=="France")
-replace Country="HU" if (v1=="Hungary")
-
-
-drop if (Country=="")
-
-
-forval i=5/65{
-    local year=1955+`i'
-    rename v`i'  Debt`year'
-	
-}
-drop v*
-
-br 
-
-gen NonFinancialDebtIMF=0
-gen nYears=0
-
-
-forval year=2009/2016{
-    replace NonFinancialDebtIMF=NonFinancialDebtIMF+Debt`year' if (~missing(Debt`year'))
-	replace nYears=nYears+1 if  (~missing(Debt`year'))
-	
-}
-
-replace NonFinancialDebtIMF=NonFinancialDebtIMF/nYears/100
-
-drop Debt* nYears
-
-
-save "Data_Cleaned/IMF_NonFinancialDebtToGDP.dta", replace
-
-
-* ------------------------------------ *
-* Private debt, all instruments
-
-import delimited "${DATAPATH}/IMF_Private_debt_all_instruments.csv", clear
-
-gen Country=""
-
-replace Country="NL" if (v1=="Netherlands")
-replace Country="AT" if (v1=="Austria")
-replace Country="BE" if (v1=="Belgium")
-replace Country="DE" if (v1=="Germany")
-replace Country="CZ" if (v1=="Czech Republic")
-replace Country="FI" if (v1=="Finland")
-replace Country="PT" if (v1=="Portugal")
-replace Country="ES" if (v1=="Spain")
-replace Country="IT" if (v1=="Italy")
-replace Country="FR" if (v1=="France")
-replace Country="HU" if (v1=="Hungary")
-
-
-drop if (Country=="")
-
-
-forval i=5/65{
-    local year=1955+`i'
-    rename v`i'  Debt`year'
-	
-}
-drop v*
-
-br 
-
-gen PrivateDebtAllIMF=0
-gen nYears=0
-
-
-forval year=2009/2016{
-    replace PrivateDebtAllIMF=PrivateDebtAllIMF+Debt`year' if (~missing(Debt`year'))
-	replace nYears=nYears+1 if  (~missing(Debt`year'))
-	
-}
-
-replace PrivateDebtAllIMF=PrivateDebtAllIMF/nYears/100
-
-drop Debt* nYears
-
-
-save "Data_Cleaned/IMF_PrivateDebtAllToGDP.dta", replace
-* ------------------------------------ *
-* Household debt, all instruments
-
-
-import delimited "${DATAPATH}/IMF_Household_debt_all_instruments.csv", clear
-
-gen Country=""
-
-replace Country="NL" if (v1=="Netherlands")
-replace Country="AT" if (v1=="Austria")
-replace Country="BE" if (v1=="Belgium")
-replace Country="DE" if (v1=="Germany")
-replace Country="CZ" if (v1=="Czech Republic")
-replace Country="FI" if (v1=="Finland")
-replace Country="PT" if (v1=="Portugal")
-replace Country="ES" if (v1=="Spain")
-replace Country="IT" if (v1=="Italy")
-replace Country="FR" if (v1=="France")
-replace Country="HU" if (v1=="Hungary")
-
-
-drop if (Country=="")
-
-
-forval i=5/65{
-    local year=1955+`i'
-    rename v`i'  Debt`year'
-	
-}
-drop v*
-
-br 
-
-gen HHDebtAllIMF=0
-gen nYears=0
-
-
-forval year=2009/2016{
-    replace HHDebtAllIMF=HHDebtAllIMF+Debt`year' if (~missing(Debt`year'))
-	replace nYears=nYears+1 if  (~missing(Debt`year'))
-	
-}
-
-replace HHDebtAllIMF=HHDebtAllIMF/nYears/100
-
-drop Debt* nYears
-
-
-save "Data_Cleaned/IMF_HHDebtAllToGDP.dta", replace
-* ------------------------------------ *
-* Nonfinancial corporate debt, all instruments
-
-
-import delimited "${DATAPATH}/IMF_Nonfinancial_corporate_debt_all_instruments.csv", clear
-
-gen Country=""
-
-replace Country="NL" if (v1=="Netherlands")
-replace Country="AT" if (v1=="Austria")
-replace Country="BE" if (v1=="Belgium")
-replace Country="DE" if (v1=="Germany")
-replace Country="CZ" if (v1=="Czech Republic")
-replace Country="FI" if (v1=="Finland")
-replace Country="PT" if (v1=="Portugal")
-replace Country="ES" if (v1=="Spain")
-replace Country="IT" if (v1=="Italy")
-replace Country="FR" if (v1=="France")
-replace Country="HU" if (v1=="Hungary")
-
-
-drop if (Country=="")
-
-
-forval i=5/65{
-    local year=1955+`i'
-    rename v`i'  Debt`year'
-	
-}
-drop v*
-
-br 
-
-gen NonFinancialDebtAllIMF=0
-gen nYears=0
-
-
-forval year=2009/2016{
-    replace NonFinancialDebtAllIMF=NonFinancialDebtAllIMF+Debt`year' if (~missing(Debt`year'))
-	replace nYears=nYears+1 if  (~missing(Debt`year'))
-	
-}
-
-replace NonFinancialDebtAllIMF=NonFinancialDebtAllIMF/nYears/100
-
-drop Debt* nYears
-
-
-save "Data_Cleaned/IMF_NonFinancialDebtAllToGDP.dta", replace
-
 
 
 

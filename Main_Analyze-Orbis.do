@@ -15,9 +15,9 @@ set more off
 
 * Baxter PATH
 *if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
-*if `"`c(os)'"' == "Windows"   global   stem  `"D:/Dropbox/"'
-*cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
-*global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
+if `"`c(os)'"' == "Windows"   global   stem  `"D:/Dropbox/"'
+cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
+global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 
 
 * Emmanuel PATH
@@ -31,8 +31,8 @@ set more off
 
 * Javier PATH
 * Laptop
-cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
+*cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
+*global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 * HOME
 *cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
@@ -44,13 +44,13 @@ global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_R
 * Loop over countries 
 *---------------------
 *global Countries IT FR ES PT DE NL
-global Countries IT
-*global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
+*global Countries IT
+global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
-foreach Country of global Countries {
-	clear all
-	global CountryID="`Country'"
+*foreach Country of global Countries {
+*	clear all
+*	global CountryID="`Country'"
 	
 	*-------------------------------------------------------
 	* Raw Data
@@ -76,7 +76,7 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
@@ -178,7 +178,7 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	*use "Data_Cleaned/EuroStat_Enterprise_Statistics.dta",clear
 	*do EuroStat_Enterprise_Statistics.do
-}
+*}
 
 
 *-------------------------------------------------------
@@ -189,7 +189,7 @@ foreach Country of global Countries {
 *-------------------------------------------------------
 * Penn World Table (PN) Indicators
 *-------------------------------------------------------
-*use "${DATAPATH}/pwt100.dta", clear
+
 *do PN_Indicators.do
 
 *-----------------------------
