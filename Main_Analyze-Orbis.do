@@ -202,5 +202,7 @@ global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
 
 *do Load_Cross-Country-Dataset.do
+
 *** Section 3
-*do Graph_CrossCountry.do
+*do CrossCountry_Graph_Europe.do
+*do CrossCountry_Graph_All.do
