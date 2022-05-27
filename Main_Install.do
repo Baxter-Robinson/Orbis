@@ -8,3 +8,4 @@
 *----------------
 
 ssc install reghdfe, replace
+ssc install winsor2, replace
