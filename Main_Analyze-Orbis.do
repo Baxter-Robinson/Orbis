@@ -185,12 +185,13 @@ global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 * World Bank Data and IMF data
 *-------------------------------------------------------
 *do WB_CleanData.do
+*do IMF_CleanData.do
 
 *-------------------------------------------------------
 * Penn World Table (PN) Indicators
 *-------------------------------------------------------
 
-*do PN_Indicators.do
+*do PN_Clean.do
 
 *-----------------------------
 * Cross Country Comparisons
