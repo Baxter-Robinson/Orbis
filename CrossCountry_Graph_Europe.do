@@ -1,5 +1,7 @@
 * Country-level scatter plots between Eequity market depth and selected indicators
 
+use  "Data_Cleaned/CrossCountry_Dataset_Euro.dta", clear
+
 * Compare Equity Market Depth
 twoway (scatter EquityMktDepth_OB EquityMktDepth_WB , mlabel(Country)) ///
 (line EquityMktDepth_WB EquityMktDepth_WB, sort) ///
@@ -104,7 +106,6 @@ graph export Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_OB.pdf, repl
 scatter avgEmpGrowth_Public EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Average Employment Growth - Public Firms") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_WB.pdf, replace
 
-/*
 * Average Employment Growth of Public vs. Private Firms
 graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_CSyearend, mlabel(Country) ) ///
  (scatter avgEmpGrowth_Private EquityMktDepth_CSyearend, mlabel(Country) ), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white))
@@ -118,7 +119,6 @@ graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_OB.pdf, re
 graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_WB) ///
  (scatter avgEmpGrowth_Private EquityMktDepth_WB), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_WB.pdf, replace
-*/
 
 * Variance of Employment Growth - Private Firms
 scatter varEmpGrowth_Private EquityMktDepth_CSyearend, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Private Firms") graphregion(color(white)) mlabel(Country)
@@ -140,7 +140,7 @@ graph export Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_OB.pdf, repl
 scatter varEmpGrowth_Public EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Public Firms") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_WB.pdf, replace
 
-/*
+
 * Variance Employment Growth of Public vs. Private Firms
 graph twoway (scatter varEmpGrowth_Public EquityMktDepth_CSyearend) ///
  (scatter varEmpGrowth_Private EquityMktDepth_CSyearend), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
@@ -154,7 +154,7 @@ graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_OB.pdf, re
 graph twoway (scatter varEmpGrowth_Public EquityMktDepth_WB) ///
  (scatter varEmpGrowth_Private EquityMktDepth_WB), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_WB.pdf, replace
-*/
+
 
 * Share of Employment in Public Firms
 scatter empShare_Public EquityMktDepth_CSyearend, xtitle("Equity Market Depth") ytitle("Employment Share of Public Firms") graphregion(color(white)) mlabel(Country)
@@ -165,7 +165,7 @@ scatter empShare_Public EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle(
 graph export Output/Cross-Country/empSharePublic_EquityMktDepth_OB.pdf, replace
 scatter empShare_Public EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Employment Share of Public Firms") graphregion(color(white)) mlabel(Country)
 graph export Output/Cross-Country/empSharePublic_EquityMktDepth_WB.pdf, replace
-*/
+
 
 * Share of Employment in Large Firms
 scatter empShare_LargeFirms EquityMktDepth_CSyearend, xtitle("Equity Market Depth") ytitle("Employment Share of Large Firms (>99 Workers)") graphregion(color(white)) mlabel(Country)

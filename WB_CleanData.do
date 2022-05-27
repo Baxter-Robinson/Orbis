@@ -24,7 +24,7 @@ forval i=1/3{
 	
 	if (`i'==1){
 		local DataLabel="MarketCapToGDP"
-		local VariableLabel="MarketCapToGDP"
+		local VariableLabel="EquityMktDepth"
 	}
 	else if (`i'==2){
 		local DataLabel="Domestic_credit_to_private_sector"
