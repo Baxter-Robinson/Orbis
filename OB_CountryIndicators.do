@@ -30,16 +30,16 @@ bysort Year: egen MarketCap = total(Market_capitalisation_mil)
 collapse (mean) avgEmpGrowth varEmpGrowth empShare_byFirmType empShare_LargeFirms MarketCap, by(Private)
 gen Country = "${CountryID}"
 reshape wide avgEmpGrowth varEmpGrowth empShare_byFirmType empShare_LargeFirms MarketCap, i(Country) j(Private)
-rename empShare_byFirmType0 empShare_Private
-rename empShare_byFirmType1 empShare_Public
+rename empShare_byFirmType0 empShare_Public
+rename empShare_byFirmType1 empShare_Private
 rename MarketCap0 MarketCap
 drop MarketCap1
 egen empShare_LargeFirms = rowmean(empShare_LargeFirms0 empShare_LargeFirms1)
 drop empShare_LargeFirms0 empShare_LargeFirms1
 local vars avgEmpGrowth varEmpGrowth
 foreach var in `vars' {
-	rename `var'0 `var'_Private
-	rename `var'1 `var'_Public
+	rename `var'0 `var'_Public
+	rename `var'1 `var'_Private
 }
 merge 1:1 Country using "Data_Cleaned/${CountryID}_CountryLevel.dta"
 drop _merge
