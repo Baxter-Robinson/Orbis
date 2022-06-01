@@ -9,3 +9,4 @@
 
 ssc install reghdfe, replace
 ssc install winsor2, replace
+ssc install ftools, replace

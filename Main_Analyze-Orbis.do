@@ -47,10 +47,10 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 *global Countries IT
 global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 
-
+local Country="FR"
 *foreach Country of global Countries {
-*	clear all
-*	global CountryID="`Country'"
+	clear all
+	global CountryID="`Country'"
 	
 	*-------------------------------------------------------
 	* Raw Data
@@ -64,7 +64,7 @@ global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 	*-------------------------------------------------------
 	* Clean Data
 	*-------------------------------------------------------
-	* Orbis
+	*Orbis
 	*use "${DATAPATH}/${CountryID}_merge.dta", clear
 	
 	*do OB_Program_Clean-Data.do
@@ -104,6 +104,7 @@ global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 	*do OB_CS_Dist_Employment.do
 	
 	**** Section 6
+	*do OB_IPO_Graphs.do
 	*do OB_Table_IPO-years.do
 	*do OB_Table_IPOs.do
 	*do OB_Regressions_HGR_IPOs.do
@@ -163,7 +164,7 @@ global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
 	*-------------------------------------------------------
 	* Equity Market Depth
 	*-------------------------------------------------------
-	*use "Data_Raw/`Country'_StockPrice.dta", clear
+	*use "${DATAPATH}/`Country'_StockPrice.dta", clear
 	*do CS_EquityMarketDepth.do
 	
 	*-------------------------------------------------------
