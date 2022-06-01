@@ -2,6 +2,85 @@ preserve
 
 	* Generate variable that tells number of years before/after IPO
 	gen IPO_timescale = Year - IPO_year
+	drop if missing(IPO_timescale)
+	
+	*-------------------------------------------------------------------------
+	* Create tables for number of IPO firms with observations before and after
+	*  Any firms within +/- 3 years of an IPO
+	*-------------------------------------------------------------------------
+	file close _all
+	file open TabIPOyears using Output/${CountryID}/Table_IPO-Years_Any.tex, write replace
+	*Name of variables
+	*file write TabIPOyears " & -3 & -2 & -1 & Year of IPO & +1 & +2 & +3 \\ \midrule"_n
+	* Numer of IPO Firms
+	file write TabIPOyears " ${CountryID} "
+	* Total
+	forval t=-3/3{
+		sum IPO_timescale if (IPO_timescale==`t')
+		local nFirms : di %12.0fc r(N)
+		file write TabIPOyears " & `nFirms' "
+		
+	}
+	file close _all
+	
+	
+	*-------------------------------------------------------------------------
+	* Create tables for number of IPO firms with observations before and after
+	* Firms that we see continuously between t and 0 
+	*-------------------------------------------------------------------------
+	file close _all
+	file open TabIPOyears using Output/${CountryID}/Table_IPO-Years_Cum1Way.tex, write replace
+	*Name of variables
+	*file write TabIPOyears " & -3 & -2 & -1 & Year of IPO & +1 & +2 & +3 \\ \midrule"_n
+	* Numer of IPO Firms
+	file write TabIPOyears " ${CountryID} "
+
+	* -1 
+	forval t=-3/3{
+		gen PlusMinus_all=1 if (IPO_timescale>=min(`t',0)) & (IPO_timescale<=max(`t',0))
+		egen PlusMinus_cum = total(PlusMinus_all), by(IDNum)
+		replace PlusMinus_cum=. if PlusMinus_cum< abs(`t')+1
+		replace PlusMinus_cum=1 if PlusMinus_cum==abs(`t')+1
+		replace PlusMinus_cum=. if IPO_timescale<min(`t',0)
+		replace PlusMinus_cum=. if IPO_timescale>max(`t',0)
+		sum PlusMinus_cum if ~missing(PlusMinus_cum)
+		local nFirms : di %12.0fc r(N)/(abs(`t')+1)
+		file write TabIPOyears " & `nFirms' "
+		
+		drop PlusMinus_all PlusMinus_cum
+	}
+		
+	file close _all
+	
+	*-------------------------------------------------------------------------
+	* Create tables for number of IPO firms with observations before and after
+	* Firms that we see continuously from -t to t
+	*-------------------------------------------------------------------------
+	
+	file close _all
+	file open TabIPOyears using Output/${CountryID}/Table_IPO-Years_Cum2Way.tex, write replace
+	*Name of variables
+	*file write TabIPOyears " & -3 & -2 & -1 & Year of IPO & +1 & +2 & +3 \\ \midrule"_n
+	* Numer of IPO Firms
+	file write TabIPOyears " ${CountryID} "
+
+	* -1 
+	forval t=-3/3{
+		gen PlusMinus_all=1 if (IPO_timescale>=-abs(`t')) & (IPO_timescale<=abs(`t'))
+		egen PlusMinus_cum = total(PlusMinus_all), by(IDNum)
+		replace PlusMinus_cum=. if PlusMinus_cum< 2*abs(`t')+1
+		replace PlusMinus_cum=1 if PlusMinus_cum==2*abs(`t')+1
+		replace PlusMinus_cum=. if IPO_timescale<-abs(`t')
+		replace PlusMinus_cum=. if IPO_timescale>abs(`t')
+		sum PlusMinus_cum if ~missing(PlusMinus_cum)
+		local nFirms : di %12.0fc r(N)/(2*abs(`t')+1)
+		file write TabIPOyears " & `nFirms' "
+		
+		drop PlusMinus_all PlusMinus_cum
+	}
+		
+	file close _all
+
 	* Number of firms for which we have +/- x years relative to IPO
 	sort IDNum
 	*+/- three years
@@ -28,33 +107,10 @@ preserve
 	replace PlusMinus_OneYear = . if (PlusMinus_OneYear == 1) & (IPO_timescale < -1)
 	replace PlusMinus_OneYear = . if (PlusMinus_OneYear == 1) & (IPO_timescale > 1)
 	
-	* Create table for number of IPO firms with observations before and after
-	file close _all
-	file open TabIPOyears using Output/${CountryID}/Table_IPO-Years.tex, write replace
-	*Name of variables
-	*file write TabIPOyears "& Total & (+/-) One year & (+/-) Two years & (+/-) Three years \\ \midrule"_n
-	* Numer of IPO Firms
-	file write TabIPOyears " ${CountryID} &"
-	* Total
-	egen unique_IPO = group(IDNum) if IPO_year != .
-	su unique_IPO 
-	local N: di %12.0fc r(max)
-	file write TabIPOyears "`N' &"
-	* +/- one year
-	su PlusMinus_OneYear
-	local N: di %12.0fc r(N)/3
-	file write TabIPOyears "`N' &"
-	* +/- two years
-	su PlusMinus_TwoYears
-	local N: di %12.0fc r(N)/5
-	file write TabIPOyears "`N' &"
-	* +/- three years
-	su PlusMinus_ThreeYears
-	local N: di %12.0fc r(N)/7
-	file write TabIPOyears "`N' \\"_n
-	file close _all
+
 	
 	* Create table for proportion of IPO firms that become delisted
+	egen unique_IPO = group(IDNum) if IPO_year != .
 	su unique_IPO
 	local N_IPO: di %4.0fc r(max)
 	egen unique_IPO_delisted = group(IDNum) if (Delisted_date !=.) & (IPO_year != .)
@@ -96,4 +152,5 @@ preserve
 	file write TabDelistedIPO_after "`N_abovethree' \\"_n
 	file write TabDelistedIPO_after "\bottomrule"
 	file close _all
+	*/
 restore

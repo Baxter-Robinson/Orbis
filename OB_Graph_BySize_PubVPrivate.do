@@ -1,5 +1,5 @@
 
-
+/*
 *********************************** Connected scatter plots By Size Relative to Percentiles
 preserve
 
@@ -247,7 +247,7 @@ preserve
 
 	 
 restore
-
+*/
 *********************************** Connected scatter plots By Size Category
 
 
@@ -284,13 +284,17 @@ preserve
 	gen RevtoAssets = Revenue/Assets
 	gen EBITDAtoAssets = EBITDA/Assets
 	gen GrossProfitstoAssets = GrossProfits/Assets
+
 	
-	
-	collapse (sum) nEmployees (mean)nFirms_Public_mean = nFirms_Public nFirms_Private_mean = nFirms_Private SalesEmployee_mean = SalesEmployee  EmpGrowth_mean=EmpGrowth_h GrossProfitsEmployee_mean = GrossProfitsEmployee Assets_mean = Assets RevtoAssets_mean = RevtoAssets EBITDAtoAssets_mean = EBITDAtoAssets  GrossProfitstoAssets_mean = GrossProfitstoAssets	(sd) EmpGrowth_sd=EmpGrowth_h Assets_sd = Assets, by(SizeCategory Private)
+	collapse (sum) nEmployees TotalAssets=Assets TotalRevenue=Revenue (mean)nFirms_Public_mean = nFirms_Public nFirms_Private_mean = nFirms_Private SalesEmployee_mean = SalesEmployee  EmpGrowth_mean=EmpGrowth_h GrossProfitsEmployee_mean = GrossProfitsEmployee Assets_mean = Assets RevtoAssets   EBITDAtoAssets_mean = EBITDAtoAssets  GrossProfitstoAssets_mean = GrossProfitstoAssets 	(sd) EmpGrowth_sd=EmpGrowth_h Assets_sd = Assets, by(SizeCategory Private)
 
 	local MinSize=10 
 	
 	local Labels  1 "1" 2 "2-5"  3 "6-10" 4 "11-50" 5 "51-100" 6 "101-1,000" 7 "1,000+" 
+	
+	gen AssetstoRev_GroupMean=TotalAssets/TotalRevenue
+	
+	/*
 	twoway (scatter EmpGrowth_mean SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
 	(scatter EmpGrowth_mean SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Employment Growth Rate ") graphregion(color(white)) ///
@@ -325,27 +329,35 @@ preserve
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Profits per Employee in Millions") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_ProfitsEmployeeAvg.pdf, replace  
+	 	 	 */
 	 	 	 twoway (scatter Assets_mean SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
 	(scatter Assets_mean SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Assets in Millions") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_AssetsAvg.pdf, replace  
 
-	 
+	 /*
 	 	 	 twoway (scatter Assets_sd SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
 	(scatter Assets_sd SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Std. Dev. Assets in Millions") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_AssetsSD.pdf, replace  
-	 
-	 
+
+
 	 twoway (scatter RevtoAssets SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
-	(scatter RevtoAssets SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
+	(scatter RevtoAssets SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh) lpattern(dash)) ///
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Revenue to Assets in Millions") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_RevenuetoAssetsAvg.pdf, replace  
+
 	 
-	 twoway (scatter EBITDAtoAssets SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
+	 twoway (scatter AssetstoRev_GroupMean SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
+	(scatter AssetstoRev_GroupMean SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
+	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Assets to Revenue ") graphregion(color(white)) ///
+	legend(label(1 "Public") label( 2 "Private" ))
+	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_AssetsToRev.pdf, replace  
+	 
+	 /*	 twoway (scatter EBITDAtoAssets SizeCategory if (Private==0) & (nFirms_Public>`MinSize'), connect(l)) ///
 	(scatter EBITDAtoAssets SizeCategory if (Private==1) & (nFirms_Private>`MinSize'), connect(l) msymbol(Sh)) ///
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Average EBITDA to Assets in Millions") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
@@ -356,11 +368,12 @@ preserve
 	, xlabel(`Labels') xtitle("Size Category") ytitle("Average Profits to Assets in Millions") graphregion(color(white)) ///
 	legend(label(1 "Public") label( 2 "Private" ))
 	 graph export Output/$CountryID/Graph_BySizeCategory_PubVPrivate_ProfitstoAssetsAvg.pdf, replace  
+	 */
 	 
 restore
 
 
-
+/*
 
 *********************************** Haltiwanger employment growth rates
 *********************************** with fixed effects taken out. 
