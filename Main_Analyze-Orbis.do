@@ -67,7 +67,7 @@ local Country="FR"
 	*Orbis
 	*use "${DATAPATH}/${CountryID}_merge.dta", clear
 	
-	*do OB_Program_Clean-Data.do
+	*do OB_Clean-Data.do
 	
 	* Compustat
 	*use "${DATAPATH}/${CountryID}_compustat.dta", clear
