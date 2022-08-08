@@ -152,18 +152,18 @@ graph export Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_WB.pdf, repl
 
 
 * Variance Employment Growth of Public vs. Private Firms
-graph twoway (scatter varEmpGrowth_Public EquityMktDepth_CSyearend) ///
- (scatter varEmpGrowth_Private EquityMktDepth_CSyearend), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph twoway (scatter varEmpGrowth_Public EquityMktDepth_CSyearend, mlabel(CountryCode_2Digit)) ///
+ (scatter varEmpGrowth_Private EquityMktDepth_CSyearend, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Variance of Employment Growth") graphregion(color(white))  
 graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_CSyearend.pdf, replace
-graph twoway (scatter varEmpGrowth_Public EquityMktDepth_CSAnnual) ///
- (scatter varEmpGrowth_Private EquityMktDepth_CSAnnual), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph twoway (scatter varEmpGrowth_Public EquityMktDepth_CSAnnual, mlabel(CountryCode_2Digit)) ///
+ (scatter varEmpGrowth_Private EquityMktDepth_CSAnnual, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Variance of Employment Growth") graphregion(color(white))
 graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_CSannual.pdf, replace
-graph twoway (scatter varEmpGrowth_Public EquityMktDepth_OB) ///
- (scatter varEmpGrowth_Private EquityMktDepth_OB), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph twoway (scatter varEmpGrowth_Public EquityMktDepth_OB, mlabel(CountryCode_2Digit)) ///
+ (scatter varEmpGrowth_Private EquityMktDepth_OB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Variance of Employment Growth") graphregion(color(white))
 graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_OB.pdf, replace
 
 graph twoway (scatter varEmpGrowth_Public EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///
- (scatter varEmpGrowth_Private EquityMktDepth_WB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white))  legend(label(1 "Public") label( 2 "Private"))
+ (scatter varEmpGrowth_Private EquityMktDepth_WB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Variance of Employment Growth") graphregion(color(white))  legend(label(1 "Public") label( 2 "Private"))
 graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_WB.pdf, replace
 
 
@@ -201,22 +201,22 @@ graph export Output/Cross-Country/WB_DomCredit_EquityMktDepth.pdf, replace
 scatter DomCreditBanks_WB EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Domestic Credit by Banks") graphregion(color(white)) mlabel(CountryCode_2Digit) xsc(r(0 1)) xlabel(#5) ysc(r(0 2)) ylabel(#5)
 graph export Output/Cross-Country/WB_DomCreditBanks_EquityMktDepth.pdf, replace
 
-scatter PrivateDebtIMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Private Debt") graphregion(color(white)) mlabel(CountryCode_2Digit)
+scatter PrivateDebt_IMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Private Debt") graphregion(color(white)) mlabel(CountryCode_2Digit)
 graph export Output/Cross-Country/IMF_PrivateDebt_EquityMktDepth.pdf, replace
 
-scatter PrivateDebtAllIMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Private Debt (all instruments)") graphregion(color(white)) mlabel(CountryCode_2Digit) xsc(r(0 1)) xlabel(#5) ysc(r(0 3)) ylabel(#5)
+scatter PrivateDebtAll_IMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Private Debt (all instruments)") graphregion(color(white)) mlabel(CountryCode_2Digit) xsc(r(0 1)) xlabel(#5) ysc(r(0 3)) ylabel(#5)
 graph export Output/Cross-Country/IMF_PrivateDebtAll_EquityMktDepth.pdf, replace
 
-scatter HHDebtIMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Household Debt") graphregion(color(white)) mlabel(CountryCode_2Digit)
+scatter HHDebt_IMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Household Debt") graphregion(color(white)) mlabel(CountryCode_2Digit)
 graph export Output/Cross-Country/IMF_HHDebt_EquityMktDepth.pdf, replace
 
-scatter HHDebtAllIMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Household Debt (all instruments)") graphregion(color(white)) mlabel(CountryCode_2Digit) xsc(r(0 1)) xlabel(#5) ysc(r(0 1.5)) ylabel(#6)
+scatter HHDebtAll_IMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Household Debt (all instruments)") graphregion(color(white)) mlabel(CountryCode_2Digit) xsc(r(0 1)) xlabel(#5) ysc(r(0 1.5)) ylabel(#6)
 graph export Output/Cross-Country/IMF_HHDebtAll_EquityMktDepth.pdf, replace
 
-scatter NonFinancialDebtIMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("NonFinancial Debt") graphregion(color(white)) mlabel(CountryCode_2Digit)
+scatter NonFinancialDebt_IMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("NonFinancial Debt") graphregion(color(white)) mlabel(CountryCode_2Digit)
 graph export Output/Cross-Country/IMF_NonFinancialDebt_EquityMktDepth.pdf, replace
 
-scatter NonFinancialDebtAllIMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("NonFinancial Debt (all instruments)") graphregion(color(white)) mlabel(CountryCode_2Digit) xsc(r(0 1)) xlabel(#5) ysc(r(1 2)) ylabel(#5)
+scatter NonFinancialDebtAll_IMF EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("NonFinancial Debt (all instruments)") graphregion(color(white)) mlabel(CountryCode_2Digit) xsc(r(0 1)) xlabel(#5) ysc(r(1 2)) ylabel(#5)
 graph export Output/Cross-Country/IMF_NonFinancialDebtAll_EquityMktDepth.pdf, replace
 
 restore
