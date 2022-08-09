@@ -43,12 +43,11 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 *---------------------
 * Loop over countries 
 *---------------------
-*global Countries IT FR ES PT DE NL
-*global Countries IT
-global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
+*global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
+global Countries NL AT BE  // HU US GB
 
-local Country="FR"
-*foreach Country of global Countries {
+local Country="AT"
+foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
 	
@@ -166,20 +165,14 @@ local Country="FR"
 	*-------------------------------------------------------
 	*use "${DATAPATH}/`Country'_StockPrice.dta", clear
 	*do CS_EquityMarketDepth.do
-	
-	*-------------------------------------------------------
-	* Orbis (OB) Country-level Indicators
-	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Unbalanced.dta", clear
-	*do OB_CountryIndicators.do
-		
+
 	
 	*-------------------------------------------------------
 	* EuroStat - Comparison
 	*-------------------------------------------------------
 	*use "Data_Cleaned/EuroStat_Enterprise_Statistics.dta",clear
 	*do EuroStat_Enterprise_Statistics.do
-*}
+}
 
 
 *-------------------------------------------------------

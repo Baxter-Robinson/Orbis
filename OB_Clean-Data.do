@@ -195,11 +195,11 @@ gen EmpGrowthAroundIPOYear=EmpGrowth_h if ((IPO_year>=Year-1) & (IPO_year<=Year+
 gen EmpOfIPOingFirm=nEmployees if  (IPO_year==Year)
 
 * Private Share of Employment
-su nEmployees if (EverPublic)
+su nEmployees if (Private==0)
 local Public=r(sum)
 local PublicAvg=r(mean)
 
-su nEmployees if (~EverPublic)
+su nEmployees if (Private==1)
 local Private=r(sum)
 local PrivateAvg=r(mean)
 
@@ -209,17 +209,54 @@ gen PrivateAvg= `PrivateAvg'
 
 
 * Share of number of firms
-su nEmployees if (EverPublic) 
+su nEmployees if (Private==0) 
 local nPublic=r(N)
 
-su nEmployees if (~EverPublic) 
+su nEmployees if (Private==1) 
 local nPrivate=r(N)
 
 gen PrivateShareOfFirms=`nPrivate'/(`nPublic'+`nPrivate')
 
 
+drop if Year < 2009
+drop if Year > 2016
+
+if "${CountryID}" == "FR" {
+	drop if Year > 2014
+}
+
+* Emp Growth
+su EmpGrowth_h if (Private==0) 
+gen EmpGrowth_PubAll_Avg=r(mean)
+gen EmpGrowth_PubAll_Std=r(sd)
+
+su EmpGrowth_h if (Private==1)   
+gen EmpGrowth_PriAll_Avg=r(mean)
+gen EmpGrowth_PriAll_Std=r(sd)
+
+su EmpGrowth_h if (Private==0) & (nEmployees>99)
+gen EmpGrowth_PubLarge_Avg=r(mean)
+gen EmpGrowth_PubLarge_Std=r(sd)
+
+su EmpGrowth_h if (Private==1)  & (nEmployees>99)
+gen EmpGrowth_PriLarge_Avg=r(mean)
+gen EmpGrowth_PriLarge_Std=r(sd)
+
+
+* Employment shares by Firm Type
+bysort Year: egen nEmployeesTot = total(nEmployees)
+bysort Year Private: egen nEmployeesTot_byFirmType = total(nEmployees)
+gen EmpShare_Public=nEmployeesTot_byFirmType/nEmployeesTot if (Private==0)
+
+
+bysort Year: egen nEmployeesTot_Large = total(nEmployees) if (nEmployees>99)
+gen EmpShare_Large=nEmployeesTot_Large/nEmployeesTot if (nEmployees>99)
+
+
 collapse (mean) nEmployees EmpGrowthInIPOYear EmpOfIPOingFirm EmpGrowthAroundIPOYear PrivateShareOfEmp ///
-PublicAvg PrivateAvg PrivateShareOfFirms  , by(Country)
+PublicAvg PrivateAvg PrivateShareOfFirms EmpGrowth_PubAll_Avg EmpGrowth_PubAll_Std EmpGrowth_PriAll_Avg EmpGrowth_PriAll_Std ///
+  EmpGrowth_PubLarge_Avg EmpGrowth_PubLarge_Std EmpGrowth_PriLarge_Avg EmpGrowth_PriLarge_Std ///
+  EmpShare_Public  EmpShare_Large , by(Country)
 
 save "Data_Cleaned/${CountryID}_CountryLevel.dta", replace
 
@@ -245,7 +282,8 @@ else {
 	sort IDNum Year
 	*by IDNum: drop if (missing(nEmployees)| missing(Sales))
 	egen nyear = total(inrange(Year, 2009, 2018)), by(IDNum)
-	keep if nyear == 10
+	su nyear 
+	keep if nyear == r(max)
 	drop nyear
 }
 
