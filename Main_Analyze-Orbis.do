@@ -44,7 +44,7 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 * Loop over countries 
 *---------------------
 *global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
-global Countries NL AT BE  // HU US GB
+global Countries NL AT   // HU US GB
 
 local Country="AT"
 foreach Country of global Countries {
@@ -65,7 +65,6 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	*Orbis
 	*use "${DATAPATH}/${CountryID}_merge.dta", clear
-	
 	*do OB_Clean-Data.do
 	
 	* Compustat
@@ -159,12 +158,6 @@ foreach Country of global Countries {
 	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*do Table_CompustatOrbis-Comparison.do
 		
-	
-	*-------------------------------------------------------
-	* Equity Market Depth
-	*-------------------------------------------------------
-	*use "${DATAPATH}/`Country'_StockPrice.dta", clear
-	*do CS_EquityMarketDepth.do
 
 	
 	*-------------------------------------------------------

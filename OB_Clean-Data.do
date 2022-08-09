@@ -253,6 +253,9 @@ bysort Year: egen nEmployeesTot_Large = total(nEmployees) if (nEmployees>99)
 gen EmpShare_Large=nEmployeesTot_Large/nEmployeesTot if (nEmployees>99)
 
 
+bysort Year: egen MarketCap = total(Market_capitalisation_mil) if (Private==0)
+
+
 collapse (mean) nEmployees EmpGrowthInIPOYear EmpOfIPOingFirm EmpGrowthAroundIPOYear PrivateShareOfEmp ///
 PublicAvg PrivateAvg PrivateShareOfFirms EmpGrowth_PubAll_Avg EmpGrowth_PubAll_Std EmpGrowth_PriAll_Avg EmpGrowth_PriAll_Std ///
   EmpGrowth_PubLarge_Avg EmpGrowth_PubLarge_Std EmpGrowth_PriLarge_Avg EmpGrowth_PriLarge_Std ///
