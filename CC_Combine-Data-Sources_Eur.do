@@ -5,9 +5,22 @@ clear all
 
 *local Country="AT"
 foreach Country of global Countries {
-    append using "Data_Cleaned/`Country'_CountryLevel.dta"
+    append using "Data_Cleaned/`Country'_CountryLevel_OB_Main.dta"
 	
 }
+
+foreach Country of global Countries {
+    merge 1:1 Country using "Data_Cleaned/`Country'_CountryLevel_OB_IPO.dta"
+	drop _merge
+	
+}
+
+foreach Country of global Countries {
+    merge 1:1 Country using "Data_Cleaned/`Country'_CountryLevel_CS.dta"
+	drop _merge	
+}
+
+
 
 rename Country CountryCode_2Digit
 

@@ -1,5 +1,5 @@
+local nYears=5
 *forval nYears=2/5{
-	local nYears=5
 	preserve
 
 
@@ -107,7 +107,18 @@
 		(rcap highSpE lowSpE IPO_timescale), ///
 		xtitle("Years Around IPO") graphregion(color(white))
 		graph export Output/$CountryID/IPO_PropSalesPerEmp_`nYears'.pdf, replace 
+		
+		
+		** Save Results for Cross-Country-Dataset
+		gen IPODiff_Emp_5Year=BetaEmp_ByIPOYear[2]-BetaEmp_ByIPOYear[-2]
+		gen IPODiff_Ass_5Year=BetaAss_ByIPOYear[2]-BetaAss_ByIPOYear[-2]
+		gen IPODiff_SpE_5Year=BetaSpE_ByIPOYear[2]-BetaSpE_ByIPOYear[-2]
+		
+		gen Country="${CountryID}"
 
+		collapse (mean) IPODiff_*, by(Country)
+
+		save "Data_Cleaned/${CountryID}_CountryLevel_OB_IPO.dta", replace
 
 	restore
 *}

@@ -281,8 +281,6 @@ lab var cshoc "Outstanding Shares - Dec31 (Compustat Global - Security Daily)"
 lab var cshoi "Outstanding Shares - Dec31 (Compustat Global - Annual)"
 
 gen Country = "${CountryID}"
-merge 1:1 Country using "Data_Cleaned/${CountryID}_CountryLevel.dta"
-drop _merge
-save "Data_Cleaned/${CountryID}_CountryLevel.dta", replace
+save "Data_Cleaned/${CountryID}_CountryLevel_CS.dta", replace
 
 
