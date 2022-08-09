@@ -43,12 +43,12 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 *---------------------
 * Loop over countries 
 *---------------------
-global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
-*global Countries NL AT   // HU US GB
+*global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
+global Countries AT NL   // HU US GB
 
-local Country="FR"
+local Country="NL"
 foreach Country of global Countries {
-	clear all
+	*clear all
 	global CountryID="`Country'"
 	
 	*-------------------------------------------------------
@@ -76,8 +76,8 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
-	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
+	*use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
+	*use "Data_Cleaned/${CountryID}'_OnePercent.dta",clear
 	
 	
 	**** Section 1
@@ -173,16 +173,20 @@ foreach Country of global Countries {
 
 
 *-------------------------------------------------------
-* World Bank Data and IMF data
+* Create Cross Country Dataset
 *-------------------------------------------------------
+* World Bank
 *do WB_CleanData.do
+
+*IMF
 *do IMF_CleanData.do
 
-*-------------------------------------------------------
-* Penn World Table (PN) Indicators
-*-------------------------------------------------------
-
+* Penn World Tables
 *do PN_Clean.do
+
+*do CC_Combine-Data-Sources_All.do
+*do CC_Combine-Data-Sources_Eur.do
+
 
 *-----------------------------
 * Cross Country Comparisons
@@ -192,8 +196,10 @@ foreach Country of global Countries {
 *do OB_CrossCountry_Stack_Bar_Industries.do
 
 
-*do Load_Cross-Country-Dataset.do
-
 *** Section 3
 *do CrossCountry_Graph_Europe.do
 *do CrossCountry_Graph_All.do
+
+
+** Model
+*do Table_Model-Moments.do
