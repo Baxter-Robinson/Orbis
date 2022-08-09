@@ -43,10 +43,10 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 *---------------------
 * Loop over countries 
 *---------------------
-*global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
-global Countries NL AT   // HU US GB
+global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
+*global Countries NL AT   // HU US GB
 
-local Country="AT"
+local Country="FR"
 foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
@@ -74,7 +74,7 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
+	use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
@@ -107,6 +107,8 @@ foreach Country of global Countries {
 	*do OB_Table_IPOs.do
 	*do OB_Regressions_HGR_IPOs.do
 	*do OB_Table_IPOyear_Descriptive-Stats.do
+	* do OB_Table_IPO-Years.do
+	*do OB_Graph_IPOyear-Dist.do
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do
 	
 	**** Section 7
