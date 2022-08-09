@@ -64,8 +64,10 @@ foreach Country of global Countries {
 	* Clean Data
 	*-------------------------------------------------------
 	*Orbis
-	*use "${DATAPATH}/${CountryID}_merge.dta", clear
 	*do OB_Clean-Data.do
+	*do OB_Create-Balanced-Panel.do
+	*do OB_Create-One-Percent-Sample.do
+	*do OB_Create-Country-Level-Data.do
 	
 	* Compustat
 	*use "${DATAPATH}/${CountryID}_compustat.dta", clear
