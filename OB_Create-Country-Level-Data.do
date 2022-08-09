@@ -3,15 +3,6 @@
 *--------------------------------------------------------------
 use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
 
-preserve
-
-
-gen EmpGrowthInIPOYear=EmpGrowth_h if (IPO_year==Year)
-gen EmpGrowthAroundIPOYear=EmpGrowth_h if ((IPO_year>=Year-1) & (IPO_year<=Year+1))
-
-
-gen EmpOfIPOingFirm=nEmployees if  (IPO_year==Year)
-
 * Private Share of Employment
 su nEmployees if (Private==0)
 local Public=r(sum)
@@ -33,7 +24,7 @@ local nPublic=r(N)
 su nEmployees if (Private==1) 
 local nPrivate=r(N)
 
-gen PrivateShareOfFirms=`nPrivate'/(`nPublic'+`nPrivate')
+gen nFirmsShare_Public=`nPublic'/(`nPublic'+`nPrivate')
 
 
 drop if Year < 2009
@@ -44,6 +35,10 @@ if "${CountryID}" == "FR" {
 }
 
 * Emp Growth
+su EmpGrowth_h 
+gen EmpGrowth_All_Avg=r(mean)
+gen EmpGrowth_All_Std=r(sd)
+
 su EmpGrowth_h if (Private==0) 
 gen EmpGrowth_PubAll_Avg=r(mean)
 gen EmpGrowth_PubAll_Std=r(sd)
@@ -165,13 +160,19 @@ forvalues t=2009/2016{
 
 }
 
+* R&D Expenses to Total Revenue
+bysort Year: egen TotRandD = total(RaDExpenses) if (Private==0)
+bysort Year: egen TotRevenue = total(Revenue) if (Private==0)
+
+gen RaDToRev=TotRandD/TotRevenue
 
 
-local AllVars nEmployees EmpGrowthInIPOYear EmpOfIPOingFirm EmpGrowthAroundIPOYear PrivateShareOfEmp ///
-PublicAvg PrivateAvg PrivateShareOfFirms EmpGrowth_PubAll_Avg EmpGrowth_PubAll_Std EmpGrowth_PriAll_Avg EmpGrowth_PriAll_Std ///
+
+local AllVars EmpGrowth_All_Avg EmpGrowth_All_Std nFirmsShare_Public ///
+  EmpGrowth_PubAll_Avg EmpGrowth_PubAll_Std EmpGrowth_PriAll_Avg EmpGrowth_PriAll_Std ///
   EmpGrowth_PubLarge_Avg EmpGrowth_PubLarge_Std EmpGrowth_PriLarge_Avg EmpGrowth_PriLarge_Std ///
   EmpShare_Public  EmpShare_Large MarketCap EmpShare_Top* ///
-  AssetsPerEmp_* AssetsPerRev_* 
+  AssetsPerEmp_* AssetsPerRev_*  RaDToRev
   
 collapse (mean) `AllVars', by(Year)
   
@@ -180,5 +181,3 @@ gen Country="${CountryID}"
 collapse (mean) `AllVars', by(Country)
 
 save "Data_Cleaned/${CountryID}_CountryLevel.dta", replace
-
-restore
