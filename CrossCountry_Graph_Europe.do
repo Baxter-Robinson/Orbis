@@ -3,6 +3,7 @@
 use  "Data_Cleaned/CrossCountry_Dataset_Euro.dta", clear
 
 
+/*
 * Compare Equity Market Depth
 twoway (scatter EquityMktDepth_OB EquityMktDepth_WB , mlabel(CountryCode_2)) ///
 (line EquityMktDepth_WB EquityMktDepth_WB, sort) ///
@@ -114,82 +115,92 @@ graph export Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_OB.pdf, repl
 scatter avgEmpGrowth_Public EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Average Employment Growth - Public Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
 graph export Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_WB.pdf, replace
 
+*/
 * Average Employment Growth of Public vs. Private Firms
-graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_CSyearend, mlabel(CountryCode_2Digit) ) ///
- (scatter avgEmpGrowth_Private EquityMktDepth_CSyearend, mlabel(CountryCode_2Digit) ), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white))
-graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_CSyearend.pdf, replace
-graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_CSAnnual, mlabel(CountryCode_2Digit)) ///
- (scatter avgEmpGrowth_Private EquityMktDepth_CSAnnual, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white))
-graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_CSannual.pdf, replace
-graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_OB, mlabel(CountryCode_2Digit)) ///
- (scatter avgEmpGrowth_Private EquityMktDepth_OB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white))
+graph twoway (scatter EmpGrowth_PubAll_Avg EquityMktDepth_OB, mlabel(CountryCode_2Digit)) ///
+ (scatter EmpGrowth_PriAll_Avg EquityMktDepth_OB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white))
 graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_OB.pdf, replace
 
-graph twoway (scatter avgEmpGrowth_Public EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///
- (scatter avgEmpGrowth_Private EquityMktDepth_WB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) legend(label(1 "Public") label( 2 "Private"))
+graph twoway (scatter EmpGrowth_PubAll_Avg EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///
+ (scatter EmpGrowth_PriAll_Avg EquityMktDepth_WB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) legend(label(1 "Public") label( 2 "Private"))
 graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_WB.pdf, replace
 
+graph twoway (scatter EmpGrowth_PubLarge_Avg EquityMktDepth_OB, mlabel(CountryCode_2Digit)) ///
+ (scatter EmpGrowth_PriLarge_Avg EquityMktDepth_OB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white))
+graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_Large_OB.pdf, replace
 
-* Variance of Employment Growth - Private Firms
-scatter varEmpGrowth_Private EquityMktDepth_CSyearend, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Private Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/varEmpGrowthPrivate_EquityMktDepth_CSyearend.pdf, replace
-scatter varEmpGrowth_Private EquityMktDepth_CSAnnual, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Private Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/varEmpGrowthPrivate_EquityMktDepth_CSannual.pdf, replace
-scatter varEmpGrowth_Private EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Private Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/varEmpGrowthPrivate_EquityMktDepth_OB.pdf, replace
-scatter varEmpGrowth_Private EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Private Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/varEmpGrowthPrivate_EquityMktDepth_WB.pdf, replace
+graph twoway (scatter EmpGrowth_PubLarge_Avg EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///
+ (scatter EmpGrowth_PriLarge_Avg EquityMktDepth_WB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) legend(label(1 "Public") label( 2 "Private"))
+graph export Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_Large_WB.pdf, replace
 
-* Variance of Employment Growth - Public Firms
-scatter varEmpGrowth_Public EquityMktDepth_CSyearend, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Public Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_CSyearend.pdf, replace
-scatter varEmpGrowth_Public EquityMktDepth_CSAnnual, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Public Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_CSannual.pdf, replace
-scatter varEmpGrowth_Public EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Public Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_OB.pdf, replace
-scatter varEmpGrowth_Public EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Variance of Employment Growth - Public Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_WB.pdf, replace
-
-
+*/
 * Variance Employment Growth of Public vs. Private Firms
-graph twoway (scatter varEmpGrowth_Public EquityMktDepth_CSyearend, mlabel(CountryCode_2Digit)) ///
- (scatter varEmpGrowth_Private EquityMktDepth_CSyearend, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Variance of Employment Growth") graphregion(color(white))  
-graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_CSyearend.pdf, replace
-graph twoway (scatter varEmpGrowth_Public EquityMktDepth_CSAnnual, mlabel(CountryCode_2Digit)) ///
- (scatter varEmpGrowth_Private EquityMktDepth_CSAnnual, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Variance of Employment Growth") graphregion(color(white))
-graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_CSannual.pdf, replace
-graph twoway (scatter varEmpGrowth_Public EquityMktDepth_OB, mlabel(CountryCode_2Digit)) ///
- (scatter varEmpGrowth_Private EquityMktDepth_OB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Variance of Employment Growth") graphregion(color(white))
-graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_OB.pdf, replace
+graph twoway (scatter EmpGrowth_PubAll_Std EquityMktDepth_OB, mlabel(CountryCode_2Digit)) ///
+ (scatter EmpGrowth_PriAll_Std EquityMktDepth_OB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Variance of Employment Growth") graphregion(color(white))
+graph export Output/Cross-Country/EquityMktDepth_OB_EmpGrowth_PubVsPri_Std.pdf, replace
+graph twoway (scatter EmpGrowth_PubAll_Std EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///
+ (scatter EmpGrowth_PriAll_Std EquityMktDepth_WB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Variance of Employment Growth") graphregion(color(white))  legend(label(1 "Public") label( 2 "Private"))
+graph export Output/Cross-Country/EquityMktDepth_WB_EmpGrowth_PubVsPri_Std.pdf, replace
 
-graph twoway (scatter varEmpGrowth_Public EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///
- (scatter varEmpGrowth_Private EquityMktDepth_WB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Variance of Employment Growth") graphregion(color(white))  legend(label(1 "Public") label( 2 "Private"))
-graph export Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_WB.pdf, replace
+graph twoway (scatter EmpGrowth_PubLarge_Std EquityMktDepth_OB, mlabel(CountryCode_2Digit)) ///
+ (scatter EmpGrowth_PriLarge_Std EquityMktDepth_OB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Variance of Employment Growth") graphregion(color(white))
+graph export Output/Cross-Country/EquityMktDepth_OB_EmpGrowth_PubVsPri_Large_Std.pdf, replace
+graph twoway (scatter EmpGrowth_PubLarge_Std EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///
+ (scatter EmpGrowth_PriLarge_Std EquityMktDepth_WB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Variance of Employment Growth") graphregion(color(white))  legend(label(1 "Public") label( 2 "Private"))
+graph export Output/Cross-Country/EquityMktDepth_WB_EmpGrowth_PubVsPri_Large_Std.pdf, replace
 
 
 * Share of Employment in Public Firms
-scatter empShare_Public EquityMktDepth_CSyearend, xtitle("Equity Market Depth") ytitle("Employment Share of Public Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/empSharePublic_EquityMktDepth_CSyearend.pdf, replace
-scatter empShare_Public EquityMktDepth_CSAnnual, xtitle("Equity Market Depth") ytitle("Employment Share of Public Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/empSharePublic_EquityMktDepth_CSannual.pdf, replace
-scatter empShare_Public EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Employment Share of Public Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/empSharePublic_EquityMktDepth_OB.pdf, replace
-
-scatter empShare_Public EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Employment Share of Public Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/empSharePublic_EquityMktDepth_WB.pdf, replace
+scatter EmpShare_Public EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Employment Share of Public Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph export Output/Cross-Country/EquityMktDepth_OB_EmpSharePublic.pdf, replace
+scatter EmpShare_Public EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Employment Share of Public Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph export Output/Cross-Country/EquityMktDepth_WB_EmpSharePublic.pdf, replace
 
 
 * Share of Employment in Large Firms
-scatter empShare_LargeFirms EquityMktDepth_CSyearend, xtitle("Equity Market Depth") ytitle("Employment Share of Large Firms (>99 Workers)") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/empShareLargeFirms_EquityMktDepth_CSyearend.pdf, replace
-scatter empShare_LargeFirms EquityMktDepth_CSAnnual, xtitle("Equity Market Depth") ytitle("Employment Share of Large Firms (> 99 Workers)") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/empShareLargeFirms_EquityMktDepth_CSannual.pdf, replace
-scatter empShare_LargeFirms EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Employment Share of Large Firms (> 99 Workers)") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/empShareLargeFirms_EquityMktDepth_OB.pdf, replace
-scatter empShare_LargeFirms EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Employment Share of Large Firms (> 99  Workers)") graphregion(color(white)) mlabel(CountryCode_2Digit)
-graph export Output/Cross-Country/empShareLargeFirms_EquityMktDepth_WB.pdf, replace
+scatter EmpShare_Large EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Employment Share of Large Firms (> 99 Workers)") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph export Output/Cross-Country/EquityMktDepth_OB_EmpShareLargeFirms.pdf, replace
+scatter EmpShare_Large EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Employment Share of Large Firms (> 99  Workers)") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph export Output/Cross-Country/EquityMktDepth_WB_EmpShareLargeFirms.pdf, replace
+
+* Share of Employment in top 50%
+scatter EmpShare_Top50Perc EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Employment Share of Top 50% of Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph export Output/Cross-Country/EquityMktDepth_OB_EmpShare_Top50Perc.pdf, replace
+scatter EmpShare_Top50Perc EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Employment Share of Top 50% of Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph export Output/Cross-Country/EquityMktDepth_WB_EmpShare_Top50Perc.pdf, replace
 
 
+* Share of Employment in top 10%
+scatter EmpShare_Top10Perc EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Employment Share of Top 10% of Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph export Output/Cross-Country/EquityMktDepth_OB_EmpShare_Top10Perc.pdf, replace
+scatter EmpShare_Top10Perc EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Employment Share of Top 10% of Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph export Output/Cross-Country/EquityMktDepth_WB_EmpShare_Top10Perc.pdf, replace
+
+
+* Share of Employment in top 1%
+scatter EmpShare_Top01Perc EquityMktDepth_OB, xtitle("Equity Market Depth") ytitle("Employment Share of Top 1% of Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph export Output/Cross-Country/EquityMktDepth_OB_EmpShare_Top01Perc.pdf, replace
+scatter EmpShare_Top01Perc EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Employment Share of Top 1% of Firms") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph export Output/Cross-Country/EquityMktDepth_WB_EmpShare_Top01Perc.pdf, replace
+
+
+
+* Assets to Emp
+graph twoway (scatter AssetsPerEmp_PubLarge EquityMktDepth_OB, mlabel(CountryCode_2Digit)) ///
+ (scatter AssetsPerEmp_PriLarge EquityMktDepth_OB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Assets Per Employee") graphregion(color(white))
+graph export Output/Cross-Country/EquityMktDepth_OB_AssetsPerEmp_PubLarge.pdf, replace
+graph twoway (scatter AssetsPerEmp_PubLarge EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///
+ (scatter AssetsPerEmp_PriLarge EquityMktDepth_WB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Assets Per Employee") graphregion(color(white))  legend(label(1 "Public") label( 2 "Private"))
+graph export Output/Cross-Country/EquityMktDepth_WB_AssetsPerEmp_PubLarge.pdf, replace
+
+graph twoway (scatter AssetsPerRev_PubLarge EquityMktDepth_OB, mlabel(CountryCode_2Digit)) ///
+ (scatter AssetsPerRev_PriLarge EquityMktDepth_OB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Assets to Revenue") graphregion(color(white))
+graph export Output/Cross-Country/EquityMktDepth_OB_AssetsPerRev_PubLarge.pdf, replace
+graph twoway (scatter AssetsPerRev_PubLarge EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///
+ (scatter AssetsPerRev_PriLarge EquityMktDepth_WB, mlabel(CountryCode_2Digit)), xtitle("Equity Market Depth") ytitle("Assets to Revenue") graphregion(color(white))  legend(label(1 "Public") label( 2 "Private"))
+graph export Output/Cross-Country/EquityMktDepth_WB_AssetsPerRev_PubLarge.pdf, replace
+
+/*
 
 * Additional debt variables and Equity Market Depth
 preserve
