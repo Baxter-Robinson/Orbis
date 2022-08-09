@@ -61,6 +61,10 @@ rename Costs_of_goods_sold COGS
 rename Costs_of_employees WageBill
 rename Total_assets Assets
 rename P_L_before_tax GrossProfits
+if "${CountryID}" == "FR"{
+	gen var15=.
+}
+
 rename var15 RaDExpenses
 
 replace Sales = Revenue if (Sales == 0) & (Revenue > 0)
