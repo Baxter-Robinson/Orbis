@@ -18,8 +18,6 @@ local nYears=5
 		drop if missing(IPO_timescale)
 
 		
-		
-
 		gen YearIs_Zero=0
 		replace YearIs_Zero=1 if (IPO_timescale==0)
 		
@@ -32,8 +30,6 @@ local nYears=5
 			
 		}
 
-
-		
 		** Employment
 		reg PropEmployees YearIs_*
 		
@@ -110,10 +106,25 @@ local nYears=5
 		
 		
 		** Save Results for Cross-Country-Dataset
-		gen IPODiff_Emp_5Year=BetaEmp_ByIPOYear[2]-BetaEmp_ByIPOYear[-2]
-		gen IPODiff_Ass_5Year=BetaAss_ByIPOYear[2]-BetaAss_ByIPOYear[-2]
-		gen IPODiff_SpE_5Year=BetaSpE_ByIPOYear[2]-BetaSpE_ByIPOYear[-2]
+		sum BetaEmp_ByIPOYear if (IPO_timescale==2)
+		local Post=r(mean)
+		sum BetaEmp_ByIPOYear if (IPO_timescale==-2)
+		local Prior=r(mean)
+		gen IPODiff_Emp_5Year=`Post'-`Prior'
 		
+		sum BetaAss_ByIPOYear if (IPO_timescale==2)
+		local Post=r(mean)
+		sum BetaAss_ByIPOYear if (IPO_timescale==-2)
+		local Prior=r(mean)
+		gen IPODiff_Ass_5Year=`Post'-`Prior'
+		
+		sum BetaSpE_ByIPOYear if (IPO_timescale==2)
+		local Post=r(mean)
+		sum BetaSpE_ByIPOYear if (IPO_timescale==-2)
+		local Prior=r(mean)
+		gen IPODiff_SpE_5Year=`Post'-`Prior'
+		
+
 		gen Country="${CountryID}"
 
 		collapse (mean) IPODiff_*, by(Country)

@@ -1,5 +1,4 @@
-
-preserve
+use "Data_Cleaned/CrossCountry_Dataset_Euro.dta", clear
 
 	file close _all
 
@@ -26,9 +25,10 @@ preserve
 	
 
 	** All the Variables
-	local Variables EmpGrowthInIPOYear  EmpGrowthAroundIPOYear EmpOfIPOingFirm PrivateShareOfEmp ///
-	PublicAvg PrivateAvg PrivateShareOfFirms
+	local Variables EmpGrowth_All_Avg EmpGrowth_All_Std  RaDToRev EmpShare_Top50Perc /// 
+	EmpShare_Public  IPODiff_Emp_5Year IPODiff_Ass_5Year
 	
+
 	foreach var of local Variables{
 	
 	
@@ -42,7 +42,7 @@ preserve
 		else{
 			file write  TabModMoments " , "	
 		}
-		su `var' if (Country=="`Country'")
+		quietly su `var' if (CountryCode_2Digit=="`Country'")
 		local Moment: di %12.4f r(mean)
 		file write  TabModMoments "`Moment' "		
 	}
@@ -54,4 +54,3 @@ preserve
 	
 	
 	file close _all
-	restore

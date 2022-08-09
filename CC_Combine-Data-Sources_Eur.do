@@ -1,26 +1,32 @@
 **----------------------------------------
 ** Europe Only
 **----------------------------------------
-clear all
 
-*local Country="AT"
+* Combine Individual Country-Level Dataset
+clear all
 foreach Country of global Countries {
     append using "Data_Cleaned/`Country'_CountryLevel_OB_Main.dta"
-	
 }
+save "Data_Cleaned/CC_Combined_Dataset_OB_Main.dta",replace
 
+clear all
 foreach Country of global Countries {
-    merge 1:1 Country using "Data_Cleaned/`Country'_CountryLevel_OB_IPO.dta"
-	drop _merge
-	
+    append using "Data_Cleaned/`Country'_CountryLevel_OB_IPO.dta"
 }
+save "Data_Cleaned/CC_Combined_Dataset_OB_IPO.dta",replace
 
+clear all
 foreach Country of global Countries {
-    merge 1:1 Country using "Data_Cleaned/`Country'_CountryLevel_CS.dta"
-	drop _merge	
+    append using "Data_Cleaned/`Country'_CountryLevel_CS.dta"
 }
+save "Data_Cleaned/CC_Combined_Dataset_CS.dta",replace
 
-
+* Merge Combined Datasets together
+use "Data_Cleaned/CC_Combined_Dataset_OB_Main.dta", clear
+merge 1:1 Country using "Data_Cleaned/CC_Combined_Dataset_OB_IPO.dta"
+drop _merge
+merge 1:1 Country using "Data_Cleaned/CC_Combined_Dataset_CS.dta"
+drop _merge
 
 rename Country CountryCode_2Digit
 
