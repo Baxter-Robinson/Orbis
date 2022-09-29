@@ -1,7 +1,5 @@
 preserve
 
-	* Generate variable that tells number of years before/after IPO
-	gen IPO_timescale = Year - IPO_year
 	drop if missing(IPO_timescale)
 	
 	*-------------------------------------------------------------------------

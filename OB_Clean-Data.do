@@ -127,6 +127,9 @@ drop EmpGrowth_h2 dropFirm
 gen IPO_year = year(IPO_date)
 gen Delisted_year = yofd(Delisted_date)
 
+* Generate variable that tells number of years before/after IPO
+gen IPO_timescale = Year - IPO_year
+
 *---------------------------
 * Ownership
 *---------------------------
