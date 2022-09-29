@@ -61,10 +61,6 @@ rename Costs_of_goods_sold COGS
 rename Costs_of_employees WageBill
 rename Total_assets Assets
 rename P_L_before_tax GrossProfits
-if "${CountryID}" == "FR"{
-	gen var15=.
-}
-
 rename var15 RaDExpenses
 
 replace Sales = Revenue if (Sales == 0) & (Revenue > 0)
@@ -97,6 +93,12 @@ bysort IDNum: gen SalesGrowth_h = (Sales-L.Sales)/((Sales+L.Sales)/2)
 
 * Profit Growth Rate (Haltiwanger)
 bysort IDNum: gen ProfitGrowth_h = (GrossProfits-L.GrossProfits)/((GrossProfits+L.GrossProfits)/2)
+
+* Asset Growth Rate (Haltiwanger)
+bysort IDNum: gen AssetGrowth_h = (Assets-L.Assets)/((Assets+L.Assets)/2)
+
+* SalesPerEmployee Growth Rate (Haltiwanger)
+bysort IDNum: gen SalePerEmpGrowth_h = (SalesPerEmployee-L.SalesPerEmployee)/((SalesPerEmployee+L.SalesPerEmployee)/2)
 
 
 *----------------------

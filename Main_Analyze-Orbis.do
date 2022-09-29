@@ -11,7 +11,7 @@ clear all
 *set maxvar 10000
 set type double
 set more off
-set trace on
+*set trace on
 
 * Baxter PATH
 *if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
@@ -83,7 +83,8 @@ local Country="FR"
 	
 	
 	**** Section 1
-	do OB_Sum_Stats_Table.do
+	*do OB_SumStats_ByCountry.do
+	*do OB_SumStats_ByVariable.do
 	*do OB_Graph_BySize_PubVPrivate.do
 	*do OB_Share_Graphs.do 
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do 
