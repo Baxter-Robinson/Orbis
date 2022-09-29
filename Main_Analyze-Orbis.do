@@ -11,7 +11,7 @@ clear all
 *set maxvar 10000
 set type double
 set more off
-
+set trace on
 
 * Baxter PATH
 *if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
@@ -43,12 +43,14 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 *---------------------
 * Loop over countries 
 *---------------------
-*global Countries AT BE CZ DE ES FI FR IT NL PT  // HU US GB
-global Countries AT NL   // HU US GB
+* Alphabetical:
+*global Countries AT BE CZ DE ES FI FR NL IT PT  // HU US GB
+* Size
+global Countries NL AT BE DE FI CZ PT ES FR IT
 
-local Country="NL"
-foreach Country of global Countries {
-	*clear all
+local Country="FR"
+*foreach Country of global Countries {
+	clear all
 	global CountryID="`Country'"
 	
 	*-------------------------------------------------------
@@ -76,12 +78,12 @@ foreach Country of global Countries {
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	*use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
+	use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
 	*use "Data_Cleaned/${CountryID}'_OnePercent.dta",clear
 	
 	
 	**** Section 1
-	*do OB_Sum_Stats_Table.do
+	do OB_Sum_Stats_Table.do
 	*do OB_Graph_BySize_PubVPrivate.do
 	*do OB_Share_Graphs.do 
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do 
@@ -93,9 +95,7 @@ foreach Country of global Countries {
 	*do OB_Table_Share_Emp_SizeCat.do 
 	*do OB_Comparison_Eurostat_Enterprise_Statistics.do
 	*do OB_Graph_BySize.do
-	
-	**** Section 3
-	*do OB_CrossCountry_Moments_Unbalanced.do
+
 
 	**** Section 4
 	*do OB_Financial_Ratios.do
@@ -109,13 +109,13 @@ foreach Country of global Countries {
 	*do OB_Table_IPOs.do
 	*do OB_Regressions_HGR_IPOs.do
 	*do OB_Table_IPOyear_Descriptive-Stats.do
-	* do OB_Table_IPO-Years.do
+	*do OB_Table_IPO-Years.do
 	*do OB_Graph_IPOyear-Dist.do
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do
 	
 	**** Section 7
-	*do OB_Employment_Firms_EuroStat_comparison.do
-	*do OB_Employment_Firms_EuroStat_Yearly_Comparison.do
+	*XXX TBF XXX do OB_Employment_Firms_EuroStat_comparison.do
+	*XXX TBF XXX do OB_Employment_Firms_EuroStat_Yearly_Comparison.do
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
@@ -127,7 +127,7 @@ foreach Country of global Countries {
 	*** Section 3
 	*do OB_Static_Firm_Share.do
 	*do OB_Table_PubVsPri.do
-	*do OB_CrossCountry_Moments_Balanced.do
+	*XXX TBF XXX do OB_CrossCountry_Moments_Balanced.do
 	
 	
 	*** Section 5
@@ -150,7 +150,7 @@ foreach Country of global Countries {
 	*use "Data_Cleaned/`Country'_CompustatBalanced.dta",clear
 	
 	*do CS_Graph_Employment.do
-	*do CS_Graph_HaltiGrowth_Employment-Dist.do
+	*XXX TBF XXX do CS_Graph_HaltiGrowth_Employment-Dist.do
 	*do CS_Graph_Lifecycle-ByFirmType.do	
 
 	
@@ -161,15 +161,15 @@ foreach Country of global Countries {
 	* Section 5
 	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*do Table_CompustatOrbis-Comparison.do
-		
+		  
 
 	
 	*-------------------------------------------------------
 	* EuroStat - Comparison
 	*-------------------------------------------------------
-	*use "Data_Cleaned/EuroStat_Enterprise_Statistics.dta",clear
-	*do EuroStat_Enterprise_Statistics.do
-}
+	*XXX TBF XXX use "Data_Cleaned/EuroStat_Enterprise_Statistics.dta",clear
+	*XXX TBF XXX do EuroStat_Enterprise_Statistics.do
+*}
 
 
 *-------------------------------------------------------
@@ -203,3 +203,6 @@ foreach Country of global Countries {
 
 ** Model
 *do Table_Model-Moments.do
+		
+**** Section 3
+* XXX TBF XXX do OB_CrossCountry_Moments_Unbalanced.do
