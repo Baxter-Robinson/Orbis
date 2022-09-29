@@ -25,8 +25,8 @@ use "Data_Cleaned/CrossCountry_Dataset_Euro.dta", clear
 	
 
 	** All the Variables
-	local Variables EmpGrowth_All_Avg EmpGrowth_All_Std  RaDToRev EmpShare_Top50Perc /// 
-	EmpShare_Public  IPODiff_Emp_5Year IPODiff_Ass_5Year
+	local Variables Emp_Std LnEmp_Std EmpGrowth_All_Avg EmpGrowth_All_Std  RaDToRev EmpShare_Top50Perc /// 
+	EmpShare_Public  IPODiff_Emp_5Year IPODiff_Ass_5Year 
 	
 
 	foreach var of local Variables{

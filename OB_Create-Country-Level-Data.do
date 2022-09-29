@@ -176,12 +176,16 @@ bysort Year: egen TotRevenue = total(Revenue) if (Private==0)
 gen RaDToRev=TotRandD/TotRevenue
 
 
+* Standard Deviation of Employment
+bysort Year: egen Emp_Std=sd(nEmployees)
+bysort Year: egen LnEmp_Std=sd(ln(nEmployees))
+
 
 local AllVars EmpGrowth_All_Avg EmpGrowth_All_Std nFirmsShare_Public ///
   EmpGrowth_PubAll_Avg EmpGrowth_PubAll_Std EmpGrowth_PriAll_Avg EmpGrowth_PriAll_Std ///
   EmpGrowth_PubLarge_Avg EmpGrowth_PubLarge_Std EmpGrowth_PriLarge_Avg EmpGrowth_PriLarge_Std ///
   EmpShare_Public  EmpShare_Large MarketCap EmpShare_Top* ///
-  AssetsPerEmp_* AssetsPerRev_*  RaDToRev
+  AssetsPerEmp_* AssetsPerRev_*  RaDToRev Emp_Std LnEmp_Std
   
 collapse (mean) `AllVars', by(Year)
   
