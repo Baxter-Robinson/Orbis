@@ -107,6 +107,7 @@ local Country="FR"
 	**** Section 6
 	*do OB_IPO_YearsTable.do
 	*do OB_IPO_Graphs.do
+	*do OB_IPO_RegsAndGraphs.do
 	*do OB_Regressions_HGR_IPOs.do
 	*do OB_Table_IPOyear_Descriptive-Stats.do
 	*do OB_Table_IPO-Years.do

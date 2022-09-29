@@ -179,11 +179,30 @@ Trimmed takes out: Hong Kong, Luxembourg, Malaysia, Singapore, South Africa, and
 
 
 
-\FloatBarrier
-\subsection{Employment Growth Over IPOs}
-\FloatBarrier
+\begin{table}[!htpb]
+\caption{IPO Regressions}
+    \begin{center}
+    \scalebox{0.70}{
+    \begin{tabular}{l  cc cc cc}
+        \toprule
+        \input{../Output/FR/IPO_Reg_Emp.tex} \\
+    \end{tabular}
+    }
+
+
+    \end{center}
+        ``PropEmp'' is the proportional increase over the firm's average employment. So $\beta_0=$6.3 means that the firm in the year of IPO has employment 6.3\% above their average in the sample.\\
+    ``LnEmployees'' is the natural log of the number of employees. \\
+    ``EmpGrwoth'' is the Haltiwanger growth rate of employment between $t-1$ and $t$. 
+\end{table}
+
+
+
+
+
 \begin{figure}[!htpb]
 \centering
+\caption{Employment Growth Over IPOs}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Italy}
@@ -217,11 +236,11 @@ Trimmed takes out: Hong Kong, Luxembourg, Malaysia, Singapore, South Africa, and
 \end{figure}
 
 
-\FloatBarrier
-\subsection{Asset Growth Over IPOs}
+
 \FloatBarrier
 \begin{figure}[!htpb]
 \centering
+\caption{Asset Growth Over IPOs}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Italy}
@@ -257,10 +276,9 @@ Trimmed takes out: Hong Kong, Luxembourg, Malaysia, Singapore, South Africa, and
 
 
 \FloatBarrier
-\subsection{Sales Per Employee Growth Over IPOs}
-\FloatBarrier
 \begin{figure}[!htpb]
 \centering
+\caption{Sales Per Employee Growth Over IPOs}
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Italy}
