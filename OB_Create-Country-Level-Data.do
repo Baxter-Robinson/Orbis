@@ -116,18 +116,18 @@ gen EmpShare_Large=nEmployeesTot_Large/nEmployeesTot if (nEmployees>99)
 
 bysort Year: egen MarketCap = total(Market_capitalisation_mil) if (Private==0)
 
-
 if "${CountryID}" == "FR" {
-	
-	local StartYear=2010
+	local StartYear=2009
 	local FinishYear=2014
-else
-{
+}
+else {
 	local StartYear=2009
 	local FinishYear=2016
 }
+
 gen Emp_Percentile=.
-forvalues t=2009/2016{
+forvalues t=`StartYear'/`FinishYear'{
+	disp "`t'"
 	xtile Emp_Percentile_temp= nEmployees  if (Year==`t') , nq(100)
 	replace Emp_Percentile=Emp_Percentile_temp if (Year==`t')
 	

@@ -1,15 +1,18 @@
 
+use "Data_Cleaned/CrossCountry_Dataset_Euro.dta",clear
 
+
+** Loop over all countries again 
+foreach Country of global Countries {
+	clear all
+	global CountryID="`Country'"
+
+
+	
 
 preserve
 
 		gen Country="${CountryID}"
-		merge m:1 Country using "Data_Cleaned/PennWorldIndicators.dta"
-		drop if _merge==2
-		drop _merge
-		merge m:1 Country using "Data_Cleaned/${CountryID}_CountryLevel.dta"
-		drop _merge
-		
 		file close _all
 
 		file open CrossCountry using Output/${CountryID}/OB_Cross_Country_Unbalanced.tex, write replace
@@ -132,13 +135,8 @@ restore
 
 preserve
 
-		gen Country="${CountryID}"
-		merge m:1 Country using "Data_Cleaned/PennWorldIndicators.dta"
-		drop if _merge==2
-		drop _merge
-		merge m:1 Country using "Data_Cleaned/${CountryID}_CountryLevel.dta"
-		drop _merge
-		
+	
+		gen Country="${CountryID}"	
 		file close _all
 
 		file open CrossCountry2 using Output/${CountryID}/OB_Cross_Country_Employment_Unbalanced.tex, write replace
@@ -171,14 +169,8 @@ restore
 
 
 preserve
-
-		gen Country="${CountryID}"
-		merge m:1 Country using "Data_Cleaned/PennWorldIndicators.dta"
-		drop if _merge==2
-		drop _merge
-		merge m:1 Country using "Data_Cleaned/${CountryID}_CountryLevel.dta"
-		drop _merge
 		
+		gen Country="${CountryID}"
 		file close _all
 
 		file open CrossCountry3 using Output/${CountryID}/OB_Cross_Country_LaborProductivity_Unbalanced.tex, write replace
@@ -291,7 +283,7 @@ restore
 
 
 
-
+}
 
 
 
