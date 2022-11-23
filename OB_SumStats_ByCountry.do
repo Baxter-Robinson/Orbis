@@ -32,41 +32,53 @@ preserve
             file write OutputFile " Public Firms & " 
         }
                 
+				
+						
+	collapse (p10) nEmployees_p10=nEmployees Sales_p10=Sales  ///
+		(p50) nEmployees_p50=nEmployees Sales_p50=Sales  ///
+		(p90) nEmployees_p90=nEmployees Sales_p90=Sales  ///
+		(count) nEmployees_n=nEmployees Sales_n=Sales ///
+		, by(Year)
 
-    * Unique Number of Firms
-    bysort IDNum: gen nvals = _n == 1 
-    sum nvals, detail
-    return list
-    local nFirms = r(sum) 
-    file write OutputFile %12.0fc (`nFirms')
-    file write OutputFile " & "
-    drop nvals
 
-    * Employment Percentiles
-    sum nEmployees, detail
-	
-    local p10Emp = r(p10)
-    local p50Emp = r(p50)
-    local p90Emp = r(p90)
+		* Unique Number of Firms
+		sum nEmployees_n
+		local nFirms = r(mean) 
+		file write OutputFile %12.0fc (`nFirms')
+		file write OutputFile " & "
 
-    file write OutputFile %12.2gc ( `p10Emp')
-    file write OutputFile " & "
-    file write OutputFile %12.2gc ( `p50Emp')
-    file write OutputFile " & "
-    file write OutputFile %12.2gc ( `p90Emp')
-    file write OutputFile " & & "
-
-    * Sales Percentiles
-    sum Sales, detail 
-    local p10Sales = r(p10)
-    local p50Sales = r(p50)
-    local p90Sales = r(p90)
-
-    file write OutputFile %20.2gc ( `p10Sales')
-    file write OutputFile " & "
-    file write OutputFile %12.2gc ( `p50Sales')
-    file write OutputFile " & "
-    file write OutputFile %12.2gc ( `p90Sales')
+		* Employment Percentiles
+		sum nEmployees_p10
+		local Moment = r(mean) 
+		file write OutputFile %12.0fc ( `Moment')
+		file write OutputFile " & "
+		
+		sum nEmployees_p50
+		local Moment = r(mean) 
+		file write OutputFile %12.0fc ( `Moment')
+		file write OutputFile " & "
+		
+		sum nEmployees_p90
+		local Moment = r(mean) 
+		file write OutputFile %12.0fc ( `Moment')
+		file write OutputFile " & & "
+		
+		
+		* Sales Percentiles
+        sum Sales_p10
+        local Moment = r(mean) 
+        file write OutputFile %12.0fc ( `Moment')
+        file write OutputFile " & "
+        
+        sum Sales_p50
+        local Moment = r(mean) 
+        file write OutputFile %12.0fc ( `Moment')
+        file write OutputFile " & "
+        
+        sum Sales_p90
+        local Moment = r(mean) 
+        file write OutputFile %12.0fc ( `Moment')
+		
 
     file close _all
 
