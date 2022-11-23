@@ -61,6 +61,29 @@ forval i=1/3{
 		}
 		file write OutputFile " \\ " _newline
 		
+		file write OutputFile "p10 " 
+		foreach var of local Variables{
+			sum `var', detail
+			local Moment:  di %12.0fc r(p10)
+			file write OutputFile " & `Moment' "
+		}
+		file write OutputFile " \\ " _newline
+
+		file write OutputFile "p50 " 
+		foreach var of local Variables{
+			sum `var', detail
+			local Moment:  di %12.0fc r(p50)
+			file write OutputFile " & `Moment' "
+		}
+		file write OutputFile " \\ " _newline
+		
+		file write OutputFile "p90 " 
+		foreach var of local Variables{
+			sum `var', detail
+			local Moment:  di %12.0fc r(p90)
+			file write OutputFile " & `Moment' "
+		}
+		file write OutputFile " \\ " _newline		
 			
 		file write OutputFile "Avg Growth Rate " 
 		foreach var of local VariablesGrowth{
