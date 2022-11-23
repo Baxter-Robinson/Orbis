@@ -101,23 +101,6 @@ bysort IDNum: gen AssetGrowth_h = (Assets-L.Assets)/((Assets+L.Assets)/2)
 bysort IDNum: gen SalePerEmpGrowth_h = (SalesPerEmployee-L.SalesPerEmployee)/((SalesPerEmployee+L.SalesPerEmployee)/2)
 
 
-*----------------------
-* Winsorization Employment Growth from the bottom and top 0.5%
-*----------------------
-*winsor2 EmpGrowth_h, cuts(0.5 99.5) replace
-
-
-*----------------------
-* Trim firms with Haltiwanger Employment Growth from the bottom and top 0.5%
-*----------------------
-gen EmpGrowth_h2 = EmpGrowth_h
-winsor2 EmpGrowth_h,  replace cuts(0.5 99.5) trim
-gen dropFirm = 0
-replace dropFirm=1 if (EmpGrowth_h==.) & (EmpGrowth_h2!=.)
-sort dropFirm
-keep if dropFirm==0
-drop EmpGrowth_h2 dropFirm
-
 *---------------------------
 * IPO Info
 *---------------------------
@@ -166,6 +149,17 @@ drop if (Year<2009)
 drop if (Year>2018)
 
 drop if missing(nEmployees)
+
+
+*----------------------
+* Winsorization Employment/Assets/Sales/SalesPerEmp/EmpGrowth 
+* All Winsorizations should be done based on Public vs. Private
+*----------------------
+winsor2 nEmployees, cuts(0.5 99.5) replace by(Private Year)
+winsor2 Assets, cuts(0.5 99.5) replace by(Private Year)
+winsor2 Sales, cuts(0.5 99.5) replace by(Private Year)
+winsor2 SalesPerEmployee, cuts(0.5 99.5) replace by(Private Year)
+winsor2 EmpGrowth_h, cuts(0.5 99.5) replace by(Private Year)
 
 *----------------------
 * Size Category 
