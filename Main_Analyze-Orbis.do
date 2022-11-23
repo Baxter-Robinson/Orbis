@@ -48,10 +48,13 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 * Size
 global Countries NL AT BE DE FI CZ PT ES FR IT
 
-local Country="FR"
+local Country="NL"
+*local Country="FR"
 *foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
+	global FirstYear="2009"
+	global LastYear="2016"
 	
 	*-------------------------------------------------------
 	* Raw Data
@@ -65,7 +68,7 @@ local Country="FR"
 	*-------------------------------------------------------
 	* Clean Data
 	*-------------------------------------------------------
-	*Orbis
+	* Orbis
 	*do OB_Clean-Data.do
 	*do OB_Create-Balanced-Panel.do
 	*do OB_Create-One-Percent-Sample.do
@@ -75,14 +78,18 @@ local Country="FR"
 	*use "${DATAPATH}/${CountryID}_compustat.dta", clear
 	*do CS_Program_Clean-Data.do
 	
+	* EuroStat
+	*do EuroStat_Clean-Data.do
+	
+	
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
+	*use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
 	*use "Data_Cleaned/${CountryID}'_OnePercent.dta",clear
 	
 	
-	**** Section 1
+	**** Summary Statistics
 	*do OB_SumStats_ByCountry.do
 	*do OB_SumStats_ByVariable.do
 	*do OB_Graph_BySize_PubVPrivate.do
@@ -114,9 +121,7 @@ local Country="FR"
 	*do OB_Graph_IPOyear-Dist.do
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do
 	
-	**** Section 7
-	*XXX TBF XXX do OB_Employment_Firms_EuroStat_comparison.do
-	*XXX TBF XXX do OB_Employment_Firms_EuroStat_Yearly_Comparison.do
+
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Balanced Panel
@@ -156,20 +161,22 @@ local Country="FR"
 
 	
 	*-------------------------------------------------------
-	* Comparison: Compustat vs. Orbis (Unbalanced)
+	* Comparisons: 
 	*-------------------------------------------------------
 	
-	* Section 5
+	* Compustat vs. Orbis
 	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*do Table_CompustatOrbis-Comparison.do
-		  
-
 	
-	*-------------------------------------------------------
-	* EuroStat - Comparison
-	*-------------------------------------------------------
+	* Orbis vs. EuroStat
+	*do Validation_CreateBySize_OB.do
+	*do Validation_CreateBySize_ES.do
+	*do Validation_BySize_ObvsES.do
+	
+	* do OB_Validation_EuroStatOrbis_Comparison.do
+	*do EuroStat_Enterprise_Statistics.do
+	*XXX TBF XXX do OB_Employment_Firms_EuroStat_Yearly_Comparison.do
 	*XXX TBF XXX use "Data_Cleaned/EuroStat_Enterprise_Statistics.dta",clear
-	*XXX TBF XXX do EuroStat_Enterprise_Statistics.do
 *}
 
 
