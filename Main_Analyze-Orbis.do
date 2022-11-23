@@ -71,7 +71,6 @@ local Country="NL"
 	* Orbis
 	*do OB_Clean-Data.do
 	*do OB_Create-Balanced-Panel.do
-	*do OB_Create-One-Percent-Sample.do
 	*do OB_Create-Country-Level-Data.do
 	
 	* Compustat
