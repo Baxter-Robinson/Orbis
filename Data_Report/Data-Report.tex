@@ -45,6 +45,22 @@
 \listoffigures
 \FloatBarrier
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{To Discuss} % (fold)
+\label{sec:To_Discuss}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+    \item Winsorizing at 99.5 \textsuperscript{th} percentile has a big impact
+    \begin{itemize}
+        \item Mean Employment $46 \rightarrow 34$
+        \item Mean Sales $14.1M \rightarrow 9.3M $
+        \item Mean Assets $20.6M \rightarrow 13.1M$
+        \item Mean Sales per Employee $308k \rightarrow 262k $
+    \end{itemize}
+    \item With such a skewed distribution what is the right thing to do?
+\end{itemize}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -67,15 +83,15 @@
  \hline\hline
  & Employment & Sales & Assets & Sales Per Employee \\  \cline{3-5}
  &  & \multicolumn{3}{c}{(Thousands)}  \\
- All Firms & & & & \\ \cline{1-2}
+ All Firms & & & & \\ \cline{1-1}
  \input{../Output/FR/OB_SumStats_byVariable_All.tex} \\\\
- Private Firms &&&& \\ \cline{1-2}
+ Private Firms &&&& \\ \cline{1-1}
  \input{../Output/FR/OB_SumStats_byVariable_Pri.tex} \\\\ 
-Public Firms &&&& \\ \cline{1-2}
+Public Firms &&&& \\ \cline{1-1}
  \input{../Output/FR/OB_SumStats_byVariable_Pub.tex} \\
  \hline\hline
 \end{tabular}}\tabularnewline \\
-Note these are raw averages across firm-year observations. Should calculate the value by year and then average across year.
+Note these are raw averages across firm-year observations. All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years.
 \end{table}
 
 
@@ -91,7 +107,7 @@ Note these are raw averages across firm-year observations. Should calculate the 
  \input{../Output/FR/OB_SumStats_ByCountry_Pri.tex} \\
  \input{../Output/FR/OB_SumStats_ByCountry_Pub.tex}   \\
 \end{tabular}}
-Note these are raw averages across firm-year observations. Should calculate the value by year and then average across year.
+Note these are raw averages across firm-year observations.  All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years.
 \end{table}
 
 
@@ -320,11 +336,90 @@ Trimmed takes out: Hong Kong, Luxembourg, Malaysia, Singapore, South Africa, and
 % section micro_behaviour_of_firms (end)
 
 
+\FloatBarrier
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Data Coverage} % (fold)
+\label{sec:Data_Validation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+
+\begin{table}[!htpb]
+\caption{Number of Firms: Orbis (OB) vs. EuroStat (ES)}
+\resizebox{0.95\textwidth}{!}{
+\begin{tabular}{l rrrrr r }
+ \hline\hline
+ & 0-9 & 10-19 & 20-49 & 50-250 & 250+ & Total \\  \cline{2-6}
+ \input{../Output/FR/Validation_OB_BySize_nFirms_2011.tex} \\
+ \input{../Output/FR/Validation_ES_BySize_nFirms_2011.tex} \\
+ \input{../Output/FR/Validation_OBvsES_BySize_nFirms_2011.tex} \\\\
+ \input{../Output/FR/Validation_OB_BySize_nFirms_AvgOverYears.tex} \\
+ \input{../Output/FR/Validation_ES_BySize_nFirms_AvgOverYears.tex} \\
+ \input{../Output/FR/Validation_OBvsES_BySize_nFirms_AvgOverYears.tex} \\ \hline\hline
+\end{tabular}}\tabularnewline \\
+
+\end{table}
+
+\begin{table}[!htpb]
+\caption{Number of Employees: Orbis (OB) vs. EuroStat (ES)}
+\resizebox{0.95\textwidth}{!}{
+\begin{tabular}{l rrrrr r }
+ \hline\hline
+ & 0-9 & 10-19 & 20-49 & 50-250 & 250+ & Total \\  \cline{2-6}
+ \input{../Output/FR/Validation_OB_BySize_nEmp_2011.tex} \\
+ \input{../Output/FR/Validation_ES_BySize_nEmp_2011.tex} \\
+ \input{../Output/FR/Validation_OBvsES_BySize_nEmp_2011.tex} \\\\
+ \input{../Output/FR/Validation_OB_BySize_nEmp_AvgOverYears.tex} \\
+ \input{../Output/FR/Validation_ES_BySize_nEmp_AvgOverYears.tex} \\
+ \input{../Output/FR/Validation_OBvsES_BySize_nEmp_AvgOverYears.tex} \\ \hline\hline
+\end{tabular}}\tabularnewline \\
+XXX This Eurostat data does not contain all the 250+ firms. That is why we are getting $>100\%$ of firm in some cases. XXX
+\end{table}
+
+
+
+
+
+\begin{table}[!htpb]
+\caption{Number of Firms: Public Orbis (OB) vs. CompuStat (CS)}
+\resizebox{0.95\textwidth}{!}{
+\begin{tabular}{l rrrrr r }
+ \hline\hline
+ & 0-99 & 100-999 & 1,000-9,999 & 10,000-99,999 & 100,000+ & Total \\  \cline{2-6}
+ \input{../Output/FR/Validation_OB_BySizePub_nFirms_2011.tex} \\
+ \input{../Output/FR/Validation_CS_BySizePub_nFirms_2011.tex} \\
+ \input{../Output/FR/Validation_OBvsCS_BySizePub_nFirms_2011.tex} \\\\
+ \input{../Output/FR/Validation_OB_BySizePub_nFirms_AvgOverYears.tex} \\
+ \input{../Output/FR/Validation_CS_BySizePub_nFirms_AvgOverYears.tex} \\
+ \input{../Output/FR/Validation_OBvsCS_BySizePub_nFirms_AvgOverYears.tex} \\ \hline\hline
+\end{tabular}}\tabularnewline \\
+
+\end{table}
+
+\begin{table}[!htpb]
+\caption{Number of Employees: Orbis (OB) vs. CompuStat (CS)}
+\resizebox{0.95\textwidth}{!}{
+\begin{tabular}{l rrrrr r }
+ \hline\hline
+ & 0-99 & 100-999 & 1,000-9,999 & 10,000-99,999 & 100,000+ & Total \\  \cline{2-6}
+ \input{../Output/FR/Validation_OB_BySizePub_nEmp_2011.tex} \\
+ \input{../Output/FR/Validation_CS_BySizePub_nEmp_2011.tex} \\
+ \input{../Output/FR/Validation_OBvsCS_BySizePub_nEmp_2011.tex} \\\\
+ \input{../Output/FR/Validation_OB_BySizePub_nEmp_AvgOverYears.tex} \\
+ \input{../Output/FR/Validation_CS_BySizePub_nEmp_AvgOverYears.tex} \\
+ \input{../Output/FR/Validation_OBvsCS_BySizePub_nEmp_AvgOverYears.tex} \\ \hline\hline
+\end{tabular}}\tabularnewline \\
+
+\end{table}
+
+
+
 \appendix
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
 \section{Additional Cross Country Facts} % (fold)
 \label{sec:additional_cross_country_facts}
+\FloatBarrier
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[!htpb]

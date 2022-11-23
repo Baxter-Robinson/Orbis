@@ -49,7 +49,7 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 global Countries NL AT BE DE FI CZ PT ES FR IT
 
 local Country="NL"
-*local Country="FR"
+local Country="FR"
 *foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
@@ -74,8 +74,7 @@ local Country="NL"
 	*do OB_Create-Country-Level-Data.do
 	
 	* Compustat
-	*use "${DATAPATH}/${CountryID}_compustat.dta", clear
-	*do CS_Program_Clean-Data.do
+	*do CS_Clean-Data.do
 	
 	* EuroStat
 	*do EuroStat_Clean-Data.do
@@ -164,6 +163,11 @@ local Country="NL"
 	*-------------------------------------------------------
 	
 	* Compustat vs. Orbis
+	*do Validation_CreateBySize_OB_Public.do
+	*do Validation_CreateBySize_CS.do
+	*do Validation_BySize_ObvsCS.do
+	
+	
 	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*do Table_CompustatOrbis-Comparison.do
 	
