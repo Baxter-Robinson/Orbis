@@ -8,12 +8,13 @@ keep IDNum Year nEmployees
 sum nEmployees, detail
 local max= r(max)
 
-local Categories 100 1000 10000 100000
+local Categories 0 100 1000 10000 100000
 egen SizeCategory  = cut(nEmployees), at ( `Categories', `max')
 
 local iCategory=0
 foreach Num of local Categories {
 	local iCategory=`iCategory'+1
+	disp `iCategory'
 	replace SizeCategory=`iCategory' if (SizeCategory==`Num')
 	
 }

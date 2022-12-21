@@ -7,12 +7,12 @@
 	keep if Year>=${FirstYear}
 	keep if Year<=${LastYear}
 
-	gen SizeCategory = . 
-	replace SizeCategory = 1 if Size=="0-9"
-	replace SizeCategory = 2 if Size=="10-19"
-	replace SizeCategory = 3 if Size=="20-49"
-	replace SizeCategory = 4 if Size=="50-249"
-	replace SizeCategory = 5 if Size=="GE250"
+	gen SizeCategoryES = . 
+	replace SizeCategoryES = 1 if Size=="0-9"
+	replace SizeCategoryES = 2 if Size=="10-19"
+	replace SizeCategoryES = 3 if Size=="20-49"
+	replace SizeCategoryES = 4 if Size=="50-249"
+	replace SizeCategoryES = 5 if Size=="GE250"
 
 	drop if Size=="TOTAL"
 			
@@ -24,7 +24,7 @@
 	rename nEmployees1 nEmployees
 	rename Firms nFirms
 
-	collapse (sum) nFirms nEmployees , by(SizeCategory Year)
+	collapse (sum) nFirms nEmployees , by(SizeCategoryES Year)
 	
 	gen DataSet="ES"
 

@@ -49,7 +49,7 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 global Countries NL AT BE DE FI CZ PT ES FR IT
 
 local Country="NL"
-local Country="FR"
+*local Country="FR"
 *foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
@@ -77,14 +77,18 @@ local Country="FR"
 	*do CS_Clean-Data.do
 	
 	* EuroStat
-	*do EuroStat_Clean-Data.do
+	* XXX do EuroStat_Enterprise_Statistics.do
+	* XXX do EuroStat_Clean-Data.do
+	*do Validation_CreateBySize_ES.do
+	
+	*Create Weights
+	*do CleanData_CreateWeights.do
 	
 	
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
 	*use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
-	*use "Data_Cleaned/${CountryID}'_OnePercent.dta",clear
 	
 	
 	**** Summary Statistics
@@ -172,8 +176,6 @@ local Country="FR"
 	*do Table_CompustatOrbis-Comparison.do
 	
 	* Orbis vs. EuroStat
-	*do Validation_CreateBySize_OB.do
-	*do Validation_CreateBySize_ES.do
 	*do Validation_BySize_ObvsES.do
 	
 	* do OB_Validation_EuroStatOrbis_Comparison.do

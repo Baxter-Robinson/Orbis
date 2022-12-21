@@ -162,28 +162,47 @@ winsor2 SalesPerEmployee, cuts(0.5 99.5) replace by(Private Year)
 winsor2 EmpGrowth_h, cuts(0.5 99.5) replace by(Private Year)
 
 *----------------------
-* Size Category 
+* Size Categories
 *----------------------
 
 sum nEmployees, detail
 local max= r(max)
-egen groups  = cut(nEmployees), at (1, 2, 5, 6, 10, 11, 50, 51, 100, 101, 1000, 1001, `max')
 
-gen SizeCategory = . 
-replace SizeCategory = 1 if groups==1
-replace SizeCategory = 2 if (groups==2) | (groups==5)
-replace SizeCategory = 3 if (groups==6) | (groups==10)
-replace SizeCategory = 4 if (groups==11) | (groups==50)
-replace SizeCategory = 5 if (groups==51) | (groups==100)
-replace SizeCategory = 6 if (groups==101) | (groups==1000)
-replace SizeCategory = 7 if (groups==1001) | (groups==`max')
+* Ayerst Robinson (AR) Size Categories
+egen groups  = cut(nEmployees), at (1, 2, 5, 6, 10, 11, 50, 51, 100, 101, 1000, 1001, `max')
+gen SizeCategoryAR = . 
+replace SizeCategoryAR = 1 if groups==1
+replace SizeCategoryAR = 2 if (groups==2) | (groups==5)
+replace SizeCategoryAR = 3 if (groups==6) | (groups==10)
+replace SizeCategoryAR = 4 if (groups==11) | (groups==50)
+replace SizeCategoryAR = 5 if (groups==51) | (groups==100)
+replace SizeCategoryAR = 6 if (groups==101) | (groups==1000)
+replace SizeCategoryAR = 7 if (groups==1001) | (groups==`max')
 drop groups 
+
+* EuroStat Size Categories
+egen groups  = cut(nEmployees), at (0, 9, 10, 19, 20, 49, 50, 249, 250, `max')
+gen SizeCategoryES = . 
+replace SizeCategoryES = 1 if (groups==0) | (groups==9)
+replace SizeCategoryES = 2 if (groups==10) | (groups==19)
+replace SizeCategoryES = 3 if (groups==20) | (groups==49)
+replace SizeCategoryES = 4 if (groups==50) | (groups==249)
+replace SizeCategoryES = 5 if (groups==250) | (groups==`max')
+drop groups 
+
 *----------------------
 * Save unbalanced panel
 *----------------------
 
 save "Data_Cleaned/${CountryID}_Unbalanced.dta", replace
 
+*----------------------
+* Save BySize Categories
+*----------------------
+collapse (sum) nEmployees (count) nFirms=nEmployees, by (SizeCategoryES Year)
 
+gen DataSet="OB"
+
+save "Data_Cleaned/${CountryID}_Validation_bySize_OB.dta", replace
 
 
