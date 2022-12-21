@@ -9,18 +9,16 @@ gen EuroStatNumbers=nFirms if (DataSet=="ES")
 sort Year SizeCategoryES EuroStatNumbers
 bysort Year SizeCategoryES : replace EuroStatNumbers=EuroStatNumbers[1]
 
-gen Weights=EuroStatNumbers/nFirms if (DataSet=="OB")
+gen EuroStatWeights=EuroStatNumbers/nFirms if (DataSet=="OB")
 
 * Save the Weights
-drop if missing(Weights)
-keep Year SizeCategory Weights
-*save "Data_Temp/${CountryID}_OrbisWeights.dta", replace
+drop if missing(EuroStatWeights)
+keep Year SizeCategoryES EuroStatWeights
 
 *Open up full Unbalanced Panel and add weights
-*use "Data_Cleaned/${CountryID}_Unbalanced.dta", replace
-
 merge 1:m Year SizeCategoryES using "Data_Cleaned/${CountryID}_Unbalanced.dta"
 drop if _merge<3
+drop _merge
 
 
 save "Data_Cleaned/${CountryID}_Unbalanced.dta", replace
