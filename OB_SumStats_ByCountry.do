@@ -22,13 +22,13 @@ preserve
         }
         else if (`i'==2) {
             file open OutputFile using Output/${CountryID}/OB_SumStats_byCountry_Pri.tex, write replace
-            drop if (Private==0)
+            keep if (Public==0)
             file write OutputFile " Private Firms & " 
             
         }
         else if (`i'==3){
             file open OutputFile using Output/${CountryID}/OB_SumStats_byCountry_Pub.tex, write replace
-            drop if (Private==1)
+            keep if (Public==1)
             file write OutputFile " Public Firms & " 
         }
                 

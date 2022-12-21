@@ -10,20 +10,20 @@
 		file open CrossCountry using Output/${CountryID}/OB_Share_Emp_Size_Category.tex, write replace
 		file write CrossCountry " ${CountryID} & "
 		
-		keep IDNum Year nEmployees SizeCategory
+		keep IDNum Year nEmployees SizeCategoryAR
 
-		drop if SizeCategory==.
+		drop if SizeCategoryAR==.
 		
-		bysort SizeCategory Year : egen nEmpCat = total(nEmployees) 
+		bysort SizeCategoryAR Year : egen nEmpCat = total(nEmployees) 
 	
-		collapse (mean) nEmpCat, by(SizeCategory)
+		collapse (mean) nEmpCat, by(SizeCategoryAR)
 		egen TotEmp = total(nEmpCat)
 			
 		gen pct_nEmpCat = 100*nEmpCat/TotEmp
 		
-		levelsof SizeCategory, local(SizeCat)
+		levelsof SizeCategoryAR, local(SizeCat)
 		foreach i of local SizeCat{
-			sum pct_nEmpCat if SizeCategory==`i', detail
+			sum pct_nEmpCat if SizeCategoryAR==`i', detail
 			local SizeCat`i' = r(mean)
 		}
 		

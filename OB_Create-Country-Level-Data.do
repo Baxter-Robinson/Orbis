@@ -4,11 +4,11 @@
 use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
 
 * Private Share of Employment
-su nEmployees if (Private==0)
+su nEmployees if (Public==1)
 local Public=r(sum)
 local PublicAvg=r(mean)
 
-su nEmployees if (Private==1)
+su nEmployees if (Public==0)
 local Private=r(sum)
 local PrivateAvg=r(mean)
 
@@ -18,10 +18,10 @@ gen PrivateAvg= `PrivateAvg'
 
 
 * Share of number of firms
-su nEmployees if (Private==0) 
+su nEmployees if (Public==1)
 local nPublic=r(N)
 
-su nEmployees if (Private==1) 
+su nEmployees if (Public==0)
 local nPrivate=r(N)
 
 gen nFirmsShare_Public=`nPublic'/(`nPublic'+`nPrivate')
@@ -39,66 +39,66 @@ su EmpGrowth_h
 gen EmpGrowth_All_Avg=r(mean)
 gen EmpGrowth_All_Std=r(sd)
 
-su EmpGrowth_h if (Private==0) 
+su EmpGrowth_h if (Public==1)
 gen EmpGrowth_PubAll_Avg=r(mean)
 gen EmpGrowth_PubAll_Std=r(sd)
 
-su EmpGrowth_h if (Private==1)   
+su EmpGrowth_h if (Public==0)
 gen EmpGrowth_PriAll_Avg=r(mean)
 gen EmpGrowth_PriAll_Std=r(sd)
 
-su EmpGrowth_h if (Private==0) & (nEmployees>99)
+su EmpGrowth_h if (Public==1) & (nEmployees>99)
 gen EmpGrowth_PubLarge_Avg=r(mean)
 gen EmpGrowth_PubLarge_Std=r(sd)
 
-su EmpGrowth_h if (Private==1)  & (nEmployees>99)
+su EmpGrowth_h if (Public==0)  & (nEmployees>99)
 gen EmpGrowth_PriLarge_Avg=r(mean)
 gen EmpGrowth_PriLarge_Std=r(sd)
 
 ** Asset Ratios
-su Assets if (Private==0)
+su Assets if (Public==1)
 local TotAss=r(sum)
 
-su nEmployees if (Private==0)
+su nEmployees if (Public==1)
 local TotEmp=r(sum)
 
-su Revenue if (Private==0)
+su Revenue if (Public==1)
 local TotRev=r(sum)
 
 gen AssetsPerEmp_PubAll=`TotAss'/`TotEmp'
 gen AssetsPerRev_PubAll=`TotAss'/`TotRev'
 
-su Assets if (Private==1)
+su Assets if (Public==0)
 local TotAss=r(sum)
 
-su nEmployees if (Private==1)
+su nEmployees if (Public==0)
 local TotEmp=r(sum)
 
-su Revenue if (Private==1)
+su Revenue if (Public==0)
 local TotRev=r(sum)
 
 gen AssetsPerEmp_PriAll=`TotAss'/`TotEmp'
 gen AssetsPerRev_PriAll=`TotAss'/`TotRev'
 
-su Assets if (Private==0)  & (nEmployees>99)
+su Assets if (Public==1)  & (nEmployees>99)
 local TotAss=r(sum)
 
-su nEmployees if (Private==0)  & (nEmployees>99)
+su nEmployees if (Public==1)  & (nEmployees>99)
 local TotEmp=r(sum)
 
-su Revenue if (Private==0)  & (nEmployees>99)
+su Revenue if (Public==1)  & (nEmployees>99)
 local TotRev=r(sum)
 
 gen AssetsPerEmp_PubLarge=`TotAss'/`TotEmp'
 gen AssetsPerRev_PubLarge=`TotAss'/`TotRev'
 
-su Assets if (Private==1)  & (nEmployees>99)
+su Assets if (Public==0)  & (nEmployees>99)
 local TotAss=r(sum)
 
-su nEmployees if (Private==1)  & (nEmployees>99)
+su nEmployees if (Public==0)  & (nEmployees>99)
 local TotEmp=r(sum)
 
-su Revenue if (Private==1)  & (nEmployees>99)
+su Revenue if (Public==0)  & (nEmployees>99)
 local TotRev=r(sum)
 
 gen AssetsPerEmp_PriLarge=`TotAss'/`TotEmp'
@@ -108,13 +108,13 @@ gen AssetsPerRev_PriLarge=`TotAss'/`TotRev'
 
 * Employment shares by Firm Type
 bysort Year: egen nEmployeesTot = total(nEmployees)
-bysort Year Private: egen nEmployeesTot_byFirmType = total(nEmployees)
-gen EmpShare_Public=nEmployeesTot_byFirmType/nEmployeesTot if (Private==0)
+bysort Year Public: egen nEmployeesTot_byFirmType = total(nEmployees)
+gen EmpShare_Public=nEmployeesTot_byFirmType/nEmployeesTot if (Public==1)
 
 bysort Year: egen nEmployeesTot_Large = total(nEmployees) if (nEmployees>99)
 gen EmpShare_Large=nEmployeesTot_Large/nEmployeesTot if (nEmployees>99)
 
-bysort Year: egen MarketCap = total(Market_capitalisation_mil) if (Private==0)
+bysort Year: egen MarketCap = total(Market_capitalisation_mil) if (Public==0)
 
 if "${CountryID}" == "FR" {
 	local StartYear=2009
@@ -170,8 +170,8 @@ forvalues t=2009/2016{
 }
 
 * R&D Expenses to Total Revenue
-bysort Year: egen TotRandD = total(RaDExpenses) if (Private==0)
-bysort Year: egen TotRevenue = total(Revenue) if (Private==0)
+bysort Year: egen TotRandD = total(RaDExpenses) if (Public==1)
+bysort Year: egen TotRevenue = total(Revenue) if (Public==1)
 
 gen RaDToRev=TotRandD/TotRevenue
 

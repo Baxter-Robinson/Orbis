@@ -32,11 +32,11 @@ preserve
 	eststo clear
 	** Employment Regressions
 	eststo: reg PropEmployees `YearsInOrder'
-	eststo: reg PropEmployees `YearsInOrder' Private LnEmployees c.LnEmployees#c.LnEmployees i.Year i.Industry_2digit 
+	eststo: reg PropEmployees `YearsInOrder' Public LnEmployees c.LnEmployees#c.LnEmployees i.Year i.Industry_2digit 
 	eststo: reg LnEmployees `YearsInOrder'
-	eststo: reg LnEmployees `YearsInOrder'  Private i.Year i.Industry_2digit 
+	eststo: reg LnEmployees `YearsInOrder'  Public i.Year i.Industry_2digit 
 	eststo: reg EmpGrowth_h  `YearsInOrder'
-	eststo: reg EmpGrowth_h  `YearsInOrder'  Private LnEmployees c.LnEmployees#c.LnEmployees i.Year i.Industry_2digit 
+	eststo: reg EmpGrowth_h  `YearsInOrder'  Public LnEmployees c.LnEmployees#c.LnEmployees i.Year i.Industry_2digit 
 	
 	esttab using "Output/$CountryID/IPO_Reg_Emp.tex", replace se fragment ///
 	indicate("Constant=_cons" "Year FE=*.Year" "Industry FE=*.Industry_2digit") label stats(N, labels(N)) ///
@@ -44,7 +44,7 @@ preserve
 	
 	
 	/*
-	*reg EmpGrowth_h YearIs_* Private LnEmployees c.LnEmployees#c.LnEmployees //i.Year#Industry_2digit 
+	*reg EmpGrowth_h YearIs_* Public LnEmployees c.LnEmployees#c.LnEmployees //i.Year#Industry_2digit 
 	
 	gen BetaEmp_ByIPOYear_ByIPOYear=_b[YearIs_Zero] if (IPO_timescale==0)
 	gen SEEmp_ByIPOYear=_se[YearIs_Zero] if (IPO_timescale==0)

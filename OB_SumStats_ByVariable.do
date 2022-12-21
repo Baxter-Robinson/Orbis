@@ -18,12 +18,12 @@ forval i=1/3{
 		}
 		else if (`i'==2) {
 			file open OutputFile using Output/${CountryID}/OB_SumStats_byVariable_Pri.tex, write replace
-			drop if (Private==0)
+			keep if (Public==0)
 			
 		}
 		else if (`i'==3){
 			file open OutputFile using Output/${CountryID}/OB_SumStats_byVariable_Pub.tex, write replace
-			drop if (Private==1)
+			keep if (Public==1)
 		}
 		
 

@@ -14,7 +14,6 @@ local nYears=5
 		gen PropAssets=Assets/Assets_Mean*100
 		gen PropSalesPerEmp=SalesPerEmployee/SalesPerEmp_Mean*100
 		
-		gen IPO_timescale = Year - IPO_year
 		drop if missing(IPO_timescale)
 
 		

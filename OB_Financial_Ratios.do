@@ -14,7 +14,7 @@
 
 */
 
-		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue Year
+		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Public Stock nShareholders Revenue Year
 
 		
 		rename Market_capitalisation_mil MarketCap
@@ -111,10 +111,10 @@
 
 	preserve
 
-		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue Year
+		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Public Stock nShareholders Revenue Year
 
 		* Public firms
-		keep if Private==0
+		keep if Public==1
 		
 		rename Market_capitalisation_mil MarketCap
 		* Dividing over 1,000,000 to make units visible in the table.
@@ -207,10 +207,10 @@
 
 	preserve
 
-		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Private Stock nShareholders Revenue Year
+		keep Assets EBITDA EverPublic GrossProfits IDNum Market_capitalisation_mil No_of_recorded_shareholders Public Stock nShareholders Revenue Year
 		
 		* Public firms
-		keep if Private==1
+		keep if Public==0
 		
 		rename Market_capitalisation_mil MarketCap
 		* Dividing over 1,000,000 to make units visible in the table.

@@ -1,7 +1,7 @@
 preserve
 
 	gen ORBIS = 1
-	keep if Private==0
+	keep if Public==1
 	append using "Data_Cleaned/${CountryID}_CompustatUnbalanced.dta"
 	gen Compustat = 1
 	replace Compustat = 0 if ORBIS==1
@@ -23,7 +23,7 @@ preserve
 	drop yKeep
 
 
-	keep nEmployees ORBIS Compustat IDNum Private
+	keep nEmployees ORBIS Compustat IDNum Public
 	keep if ~missing(nEmployees)
 	replace nEmployees=25000 if nEmployees>=25000
 

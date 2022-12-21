@@ -139,8 +139,9 @@ replace FirmType=4 if FirmType==. & ~(EverPublic)
 replace FirmType=6 if (EverPublic)
 
 
-gen Private=0
-replace Private = 1 if Main_exchange=="Unlisted" | (Main_exchange=="Delisted")  & (Year >= Delisted_year)
+gen Public=0
+replace Public=1 if Main_exchange !="Unlisted" & (Main_exchange !="Delisted" | (Year< Delisted_year))
+
 
 *----------------------
 * Inclusion Criteria
@@ -155,11 +156,11 @@ drop if missing(nEmployees)
 * Winsorization Employment/Assets/Sales/SalesPerEmp/EmpGrowth 
 * All Winsorizations should be done based on Public vs. Private
 *----------------------
-winsor2 nEmployees, cuts(0.5 99.5) replace by(Private Year)
-winsor2 Assets, cuts(0.5 99.5) replace by(Private Year)
-winsor2 Sales, cuts(0.5 99.5) replace by(Private Year)
-winsor2 SalesPerEmployee, cuts(0.5 99.5) replace by(Private Year)
-winsor2 EmpGrowth_h, cuts(0.5 99.5) replace by(Private Year)
+winsor2 nEmployees, cuts(0.5 99.5) replace by(Public Year)
+winsor2 Assets, cuts(0.5 99.5) replace by(Public Year)
+winsor2 Sales, cuts(0.5 99.5) replace by(Public Year)
+winsor2 SalesPerEmployee, cuts(0.5 99.5) replace by(Public Year)
+winsor2 EmpGrowth_h, cuts(0.5 99.5) replace by(Public Year)
 
 *----------------------
 * Size Categories
