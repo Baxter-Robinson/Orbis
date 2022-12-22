@@ -6,34 +6,34 @@ preserve
 	*drop if (Age>29)
 	collapse (mean) nEmployees Sales COGS WageBill ///
 			EverPublic nShareholders Assets GrossProfits SalesGrowth_h EmpGrowth_h ///
-			(count) nFirms=nEmployees, by(Year Private)
+			(count) nFirms=nEmployees, by(Year Public)
 	* Change units
 	 replace Sales=Sales/1000
 	 
 	 * Employment
-	 graph twoway (connected nEmployees Year if Private==1, ytitle("Number of Employees")) ///
-	 (connected nEmployees Year if Private==0, yaxis(2) ytitle("Number of Employees", axis(2))), ///
+	 graph twoway (connected nEmployees Year if Public==0, ytitle("Number of Employees")) ///
+	 (connected nEmployees Year if Public==1, yaxis(2) ytitle("Number of Employees", axis(2))), ///
 	 legend(label(1 "Private Firms (Left)") label(2 "Public Firms (Right)")) graphregion(color(white))
 	 graph export Output/$CountryID/Lifecycle_Employment_byFirmType.pdf, replace  
 	 
 	 * Employment Growth (Haltiwanger)
-	 graph twoway (connected EmpGrowth_h Year if Private==1) ///
-	 (connected EmpGrowth_h Year if Private==0), ytitle("Growth") ///
+	 graph twoway (connected EmpGrowth_h Year if Public==0) ///
+	 (connected EmpGrowth_h Year if Public==1), ytitle("Growth") ///
 	 legend(label(1 "Private Firms (Left)") label(2 "Public Firms (Right)")) graphregion(color(white))
 	 graph export Output/$CountryID/Lifecycle_EmploymentGrowth_byFirmType.pdf, replace  
-	 graph twoway (connected EmpGrowth_h Year if Private==0), ytitle("Growth") ///
+	 graph twoway (connected EmpGrowth_h Year if Public==1), ytitle("Growth") ///
 	 legend(label(1 "Private Firms (Left)") label(2 "Public Firms (Right)")) graphregion(color(white))
 	 graph export Output/$CountryID/Lifecycle_EmploymentGrowth_Public.pdf, replace  
 	 
 	 * Sales 
-	 graph twoway (connected Sales Year if Private==1, ytitle("Sales (thousands)")) ///
-	 (connected Sales Year if Private==0, yaxis(2) ytitle("Sales (thousands)", axis(2))), ///
+	 graph twoway (connected Sales Year if Public==0, ytitle("Sales (thousands)")) ///
+	 (connected Sales Year if Public==1, yaxis(2) ytitle("Sales (thousands)", axis(2))), ///
 	 legend(label(1 "Private Firms (Left)") label(2 "Public Firms (Right)")) graphregion(color(white))
 	 graph export Output/$CountryID/Lifecycle_Sales_ByFirmType.pdf, replace  
 	 
 	 * Sales Growth (Haltiwanger)
-	 graph twoway (connected SalesGrowth_h Year if Private==1) ///
-	 (connected SalesGrowth_h Year if Private==0), ytitle("Growth") ///
+	 graph twoway (connected SalesGrowth_h Year if Public==0) ///
+	 (connected SalesGrowth_h Year if Public==1), ytitle("Growth") ///
 	 legend(label(1 "Private Firms (Left)") label(2 "Public Firms (Right)")) graphregion(color(white))
 	 graph export Output/$CountryID/Lifecycle_SalesGrowth_ByFirmType.pdf, replace  
 restore
@@ -54,10 +54,10 @@ preserve
 			gen `v'_75_`i' = .
 			su Year
 			forvalues t = `r(min)'/`r(max)' {
-				su `v' if Year == `t' & Private==`i', detail
-				replace `v'_25_`i' = r(p25) if Year == `t' & Private==`i'
-				replace `v'_50_`i' = r(p50) if Year == `t' & Private==`i'
-				replace `v'_75_`i' = r(p75) if Year == `t' & Private==`i'
+				su `v' if Year == `t' & Public==`i', detail
+				replace `v'_25_`i' = r(p25) if Year == `t' & Public==`i'
+				replace `v'_50_`i' = r(p50) if Year == `t' & Public==`i'
+				replace `v'_75_`i' = r(p75) if Year == `t' & Public==`i'
 			}
 		}
 	} 
@@ -65,7 +65,7 @@ preserve
 	SalesGrowth_h_25_0 SalesGrowth_h_50_0 SalesGrowth_h_75_0 SalesGrowth_h_25_1 SalesGrowth_h_50_1 SalesGrowth_h_75_1 ///
 	nEmployees_25_0 nEmployees_50_0 nEmployees_75_0 nEmployees_25_1 nEmployees_50_1 nEmployees_75_1 ///		
 	EmpGrowth_h_25_0 EmpGrowth_h_50_0 EmpGrowth_h_75_0 EmpGrowth_h_25_1 EmpGrowth_h_50_1 EmpGrowth_h_75_1, ///
-	by(Year Private)
+	by(Year Public)
 	
 	drop if Year < 2010
 	

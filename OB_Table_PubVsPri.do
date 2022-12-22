@@ -15,12 +15,12 @@ preserve
 	file write TabPubPri " ${CountryID} "
 		
 	*Public Average Employment
-	su nEmployees if Private==0 // (Listed)
+	su nEmployees if Public==1 // (Listed)
 	local Public=r(mean)
 	file write TabPubPri  " & " %12.1fc (`Public')
 	
 	*Private Average Employment
-	su nEmployees if Private==1 // (FirmType<=3)
+	su nEmployees if Public==0 // (FirmType<=3)
 	local Private=r(mean)
 	file write TabPubPri  " & " %12.1fc (`Private')
 
@@ -32,12 +32,12 @@ preserve
 	* Employment Growth (omit when +/- 1.85)
 	*--------------------------------
 	
-	su EmpGrowth_h if Private==0 & abs(EmpGrowth_h) < 1.85
+	su EmpGrowth_h if Public==1 & abs(EmpGrowth_h) < 1.85
 	local Public=r(mean)
 	local PublicSD=r(sd)
 	file write TabPubPri   " & " %12.2fc (`Public')
 	
-	su EmpGrowth_h if Private==1 & abs(EmpGrowth_h) < 1.85 
+	su EmpGrowth_h if Public==0 & abs(EmpGrowth_h) < 1.85 
 	local Private=r(mean)
 	local PrivateSD=r(sd)
 	file write TabPubPri   " & " %12.2fc (`Private')
@@ -49,12 +49,12 @@ preserve
 	* N Employees
 	*--------------------------------
 	*Public Average Employment
-	su nEmployees if Private==0 
+	su nEmployees if Public==1 
 	local Public=r(N)
 	file write TabPubPri  " & " %12.0fc (`Public')
 	
 	*Private Average Employment
-	su nEmployees if Private==1 
+	su nEmployees if Public==0 
 	local Private=r(N)
 	file write TabPubPri  " & " %12.0fc (`Private')
 
