@@ -6,23 +6,24 @@ Columns: Employment, Sales, Assets, Sales/Employee
 */
 file close _all
 
+local Weights ES No
+
 local i=1
+foreach wgt of local Weights{
 forval i=1/3{
-	
-	
 	preserve
 	
 		if (`i'==1){
-			file open OutputFile using Output/${CountryID}/OB_SumStats_byVariable_All.tex, write replace
+			file open OutputFile using Output/${CountryID}/OB_SumStats_byVariable_`wgt'wgt_All.tex, write replace
 			
 		}
 		else if (`i'==2) {
-			file open OutputFile using Output/${CountryID}/OB_SumStats_byVariable_Pri.tex, write replace
+			file open OutputFile using Output/${CountryID}/OB_SumStats_byVariable_`wgt'wgt_Pri.tex, write replace
 			keep if (Public==0)
 			
 		}
 		else if (`i'==3){
-			file open OutputFile using Output/${CountryID}/OB_SumStats_byVariable_Pub.tex, write replace
+			file open OutputFile using Output/${CountryID}/OB_SumStats_byVariable_`wgt'wgt_Pub.tex, write replace
 			keep if (Public==1)
 		}
 		
@@ -54,6 +55,7 @@ forval i=1/3{
             (mean) LnnEmployees_mean=LnnEmployees LnSales_mean=LnSales  LnAssets_mean=LnAssets LnSalesPerEmployee_mean=LnSalesPerEmployee ///
             (sd) LnnEmployees_sd=LnnEmployees LnSales_sd=LnSales  LnAssets_sd=LnAssets LnSalesPerEmployee_sd=LnSalesPerEmployee ///
 			(count) nEmployees_n=nEmployees Sales_n=Sales  Assets_n=Assets SalesPerEmployee_n=SalesPerEmployee ///
+			[aw=`wgt'Weights] ///
 			, by(Year)
 
 		
@@ -142,4 +144,5 @@ forval i=1/3{
 	file close _all
 
 
+}
 }
