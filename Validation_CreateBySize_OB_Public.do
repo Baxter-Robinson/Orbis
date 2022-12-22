@@ -1,7 +1,7 @@
 
 ** Orbis
 use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
-drop if (Private==1)
+drop if (Public==0)
 
 keep IDNum Year nEmployees 
 

@@ -50,17 +50,6 @@
 \label{sec:To_Discuss}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{itemize}
-    \item Winsorizing at 99.5 \textsuperscript{th} percentile has a big impact
-    \begin{itemize}
-        \item Mean Employment $46 \rightarrow 34$
-        \item Mean Sales $14.1M \rightarrow 9.3M $
-        \item Mean Assets $20.6M \rightarrow 13.1M$
-        \item Mean Sales per Employee $308k \rightarrow 262k $
-    \end{itemize}
-    \item With such a skewed distribution what is the right thing to do?
-\end{itemize}
-
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -84,14 +73,14 @@
  & Employment & Sales & Assets & Sales Per Employee \\  \cline{3-5}
  &  & \multicolumn{3}{c}{(Thousands)}  \\
  All Firms & & & & \\ \cline{1-1}
- \input{../Output/FR/OB_SumStats_byVariable_All.tex} \\\\
+ \input{../Output/FR/OB_SumStats_byVariable_Eswgt_All.tex} \\\\
  Private Firms &&&& \\ \cline{1-1}
- \input{../Output/FR/OB_SumStats_byVariable_Pri.tex} \\\\ 
+ \input{../Output/FR/OB_SumStats_byVariable_Eswgt_Pri.tex} \\\\ 
 Public Firms &&&& \\ \cline{1-1}
- \input{../Output/FR/OB_SumStats_byVariable_Pub.tex} \\
+ \input{../Output/FR/OB_SumStats_byVariable_Eswgt_Pub.tex} \\
  \hline\hline
 \end{tabular}}\tabularnewline \\
-Note these are raw averages across firm-year observations. All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years.
+All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years. Data is reweighted to match distribution of firm sizes in the EuroStat Data.
 \end{table}
 
 
@@ -101,14 +90,17 @@ Note these are raw averages across firm-year observations. All variables are win
 \resizebox{0.95\textwidth}{!}{
 \begin{tabular}{l c ccc c ccc}
 \hline
- Sample & Unique Number & \multicolumn{3}{c}{Employment} & & \multicolumn{3}{c}{Sales (EUR, thousands)} \\ \cline{3-5} \cline{7-9}
+ Sample & Number & \multicolumn{3}{c}{Employment} & & \multicolumn{3}{c}{Sales (EUR, thousands)} \\ \cline{3-5} \cline{7-9}
        & of Firms  & P10 & P50 & P90 &  & P10 & P50 & P90  \\  \hline
- \input{../Output/FR/OB_SumStats_ByCountry_All.tex} \\
- \input{../Output/FR/OB_SumStats_ByCountry_Pri.tex} \\
- \input{../Output/FR/OB_SumStats_ByCountry_Pub.tex}   \\
+ \input{../Output/FR/OB_SumStats_ByCountry_Eswgt_All.tex} \\
+ \input{../Output/FR/OB_SumStats_ByCountry_Eswgt_Pri.tex} \\
+ \input{../Output/FR/OB_SumStats_ByCountry_Eswgt_Pub.tex}   \\ \hline
 \end{tabular}}
-Note these are raw averages across firm-year observations.  All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years.
+
+All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years. Data is reweighted to match distribution of firm sizes in the EuroStat Data.
 \end{table}
+
+
 
 
 \clearpage
@@ -189,7 +181,7 @@ Trimmed takes out: Hong Kong, Luxembourg, Malaysia, Singapore, South Africa, and
         \input{../Output/IT/Table_IPO-Years_Any.tex} \\
         \input{../Output/FR/Table_IPO-Years_Any.tex} \\
         \input{../Output/DE/Table_IPO-Years_Any.tex} \\
-        \input{../Output/NL/Table_IPO-Years_Any.tex} \\
+        \input{../Output/AT/Table_IPO-Years_Any.tex} \\
     \end{tabular}
     }
     \end{center}
@@ -249,7 +241,7 @@ Trimmed takes out: Hong Kong, Luxembourg, Malaysia, Singapore, South Africa, and
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Netherlands}
- \includegraphics[scale=0.6]{../Output/NL/IPO_PropEmployees_5.pdf}
+ \includegraphics[scale=0.6]{../Output/AT/IPO_PropEmployees_5.pdf}
 \end{subfigure}
 \end{figure}
 
@@ -287,7 +279,7 @@ Trimmed takes out: Hong Kong, Luxembourg, Malaysia, Singapore, South Africa, and
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Netherlands}
- \includegraphics[scale=0.6]{../Output/NL/IPO_PropEmployees_5.pdf}
+ \includegraphics[scale=0.6]{../Output/AT/IPO_PropEmployees_5.pdf}
 \end{subfigure}
 \end{figure}
 
@@ -325,7 +317,7 @@ Trimmed takes out: Hong Kong, Luxembourg, Malaysia, Singapore, South Africa, and
 \begin{subfigure}{.49\textwidth}
     \centering
     \subcaption{Netherlands}
- \includegraphics[scale=0.6]{../Output/NL/IPO_PropSalesPerEmp_5.pdf}
+ \includegraphics[scale=0.6]{../Output/AT/IPO_PropSalesPerEmp_5.pdf}
 \end{subfigure}
 \end{figure}
 
@@ -338,8 +330,50 @@ Trimmed takes out: Hong Kong, Luxembourg, Malaysia, Singapore, South Africa, and
 
 \FloatBarrier
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Data Construction} % (fold)
+\label{sec:Data_Construction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+
+\begin{table}[!htpb]
+\caption{Unweighted French Summary Statistics}
+\resizebox{0.95\textwidth}{!}{
+\begin{tabular}{l cccc}
+ \hline\hline
+ & Employment & Sales & Assets & Sales Per Employee \\  \cline{3-5}
+ &  & \multicolumn{3}{c}{(Thousands)}  \\
+ All Firms & & & & \\ \cline{1-1}
+ \input{../Output/FR/OB_SumStats_byVariable_Nowgt_All.tex} \\\\
+ Private Firms &&&& \\ \cline{1-1}
+ \input{../Output/FR/OB_SumStats_byVariable_Nowgt_Pri.tex} \\\\ 
+Public Firms &&&& \\ \cline{1-1}
+ \input{../Output/FR/OB_SumStats_byVariable_Nowgt_Pub.tex} \\
+ \hline\hline
+\end{tabular}}\tabularnewline \\
+All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years. Unweighted data. 
+\end{table}
+
+
+\begin{table}[!htpb]
+\caption{Unweighted French Summary Statistics}
+\resizebox{0.95\textwidth}{!}{
+\begin{tabular}{l c ccc c ccc}
+\hline
+ Sample & Number & \multicolumn{3}{c}{Employment} & & \multicolumn{3}{c}{Sales (EUR, thousands)} \\ \cline{3-5} \cline{7-9}
+       & of Firms  & P10 & P50 & P90 &  & P10 & P50 & P90  \\  \hline
+ \input{../Output/FR/OB_SumStats_ByCountry_Nowgt_All.tex} \\
+ \input{../Output/FR/OB_SumStats_ByCountry_Nowgt_Pri.tex} \\
+ \input{../Output/FR/OB_SumStats_ByCountry_Nowgt_Pub.tex}   \\ \hline
+\end{tabular}} \\
+All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years.
+\end{table}
+
+
+
+\FloatBarrier
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Data Coverage} % (fold)
-\label{sec:Data_Validation}
+\label{sec:Data_Coverage}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \FloatBarrier
 
@@ -412,10 +446,11 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 \end{table}
 
 
-
+\clearpage
 \appendix
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \FloatBarrier
 \section{Additional Cross Country Facts} % (fold)
 \label{sec:additional_cross_country_facts}
@@ -481,7 +516,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
         %\input{../Output/IT/Table_IPO-Years_Cum1Way.tex} \\
         \input{../Output/FR/Table_IPO-Years_Cum1Way.tex} \\
         %\input{../Output/DE/Table_IPO-Years_Cum1Way.tex} \\
-        %\input{../Output/NL/Table_IPO-Years_Cum1Way.tex} \\
+        %\input{../Output/AT/Table_IPO-Years_Cum1Way.tex} \\
     \end{tabular}
     }
     \end{center}
@@ -502,7 +537,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
        % \input{../Output/IT/Table_IPO-Years_Cum2Way.tex} \\
         \input{../Output/FR/Table_IPO-Years_Cum2Way.tex} \\
        % \input{../Output/DE/Table_IPO-Years_Cum2Way.tex} \\
-       % \input{../Output/NL/Table_IPO-Years_Cum2Way.tex} \\
+       % \input{../Output/AT/Table_IPO-Years_Cum2Way.tex} \\
     \end{tabular}
     }
     \end{center}
@@ -742,7 +777,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \input{../Output/ES/OB_Static_Firm.tex}
 % \input{../Output/PT/OB_Static_Firm.tex}
 % \input{../Output/DE/OB_Static_Firm.tex}
-% \input{../Output/NL/OB_Static_Firm.tex}
+% \input{../Output/AT/OB_Static_Firm.tex}
 % \end{tabular}}
 % \end{table}
 
@@ -760,7 +795,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 %         \input{../Output/ES/Table_PubVsPri.tex}
 %         \input{../Output/FR/Table_PubVsPri.tex}
 %   \input{../Output/DE/Table_PubVsPri.tex}
-%   \input{../Output/NL/Table_PubVsPri.tex}
+%   \input{../Output/AT/Table_PubVsPri.tex}
 %     \end{tabular}
 %     }
 % \end{table}
@@ -776,7 +811,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 %         &                   &  Mean             &  Standard Deviation   & Quartile 1   & Median       & Average Employment Growth & Average Employment Growth     &   Sales Share  & Market Depth    \\
 % \hline \hline
 % \input{../Output/FR/OB_Cross_Country_Balanced.tex}
-% \input{../Output/NL/OB_Cross_Country_Balanced.tex}
+% \input{../Output/AT/OB_Cross_Country_Balanced.tex}
 % \input{../Output/DE/OB_Cross_Country_Balanced.tex}
 % \input{../Output/ES/OB_Cross_Country_Balanced.tex}
 % \input{../Output/IT/OB_Cross_Country_Balanced.tex}
@@ -793,7 +828,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 %         &     Avg Employment Growth Rate   &  Std. Dev.  Employment Growth Rate   &   Avg  Employment Growth Rate   &  Std. Dev. Employment Growth Rate   \\
 % \hline \hline
 % \input{../Output/FR/OB_Cross_Country_Employment_Balanced.tex}
-% \input{../Output/NL/OB_Cross_Country_Employment_Balanced.tex}
+% \input{../Output/AT/OB_Cross_Country_Employment_Balanced.tex}
 % \input{../Output/DE/OB_Cross_Country_Employment_Balanced.tex}
 % \input{../Output/ES/OB_Cross_Country_Employment_Balanced.tex}
 % \input{../Output/IT/OB_Cross_Country_Employment_Balanced.tex}
@@ -810,7 +845,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % Country & Sample & Average & Median & Standard Deviation & CoV & $90-10$ Ratio & $90-50$ Ratio \\
 % \hline \hline
 % \input{../Output/FR/OB_Cross_Country_LaborProductivity_Balanced.tex}
-% \input{../Output/NL/OB_Cross_Country_LaborProductivity_Balanced.tex}
+% \input{../Output/AT/OB_Cross_Country_LaborProductivity_Balanced.tex}
 % \input{../Output/DE/OB_Cross_Country_LaborProductivity_Balanced.tex}
 % \input{../Output/ES/OB_Cross_Country_LaborProductivity_Balanced.tex}
 % \input{../Output/IT/OB_Cross_Country_LaborProductivity_Balanced.tex}
@@ -828,7 +863,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 %         &                   &  Mean             &  Standard Deviation   & Quartile 1   & Median       & Average Employment Growth & Average Employment Growth     &   Sales Share  & Market Depth    \\
 % \hline \hline
 % \input{../Output/FR/OB_Cross_Country_Unbalanced.tex}
-% \input{../Output/NL/OB_Cross_Country_Unbalanced.tex}
+% \input{../Output/AT/OB_Cross_Country_Unbalanced.tex}
 % \input{../Output/DE/OB_Cross_Country_Unbalanced.tex}
 % \input{../Output/ES/OB_Cross_Country_Unbalanced.tex}
 % \input{../Output/IT/OB_Cross_Country_Unbalanced.tex}
@@ -843,7 +878,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 %         &     Avg Employment Growth Rate   &  Std. Dev.  Employment Growth Rate   &   Avg  Employment Growth Rate   &  Std. Dev. Employment Growth Rate   \\
 % \hline \hline
 % \input{../Output/FR/OB_Cross_Country_Employment_Unbalanced.tex}
-% \input{../Output/NL/OB_Cross_Country_Employment_Unbalanced.tex}
+% \input{../Output/AT/OB_Cross_Country_Employment_Unbalanced.tex}
 % \input{../Output/DE/OB_Cross_Country_Employment_Unbalanced.tex}
 % \input{../Output/ES/OB_Cross_Country_Employment_Unbalanced.tex}
 % \input{../Output/IT/OB_Cross_Country_Employment_Unbalanced.tex}
@@ -862,7 +897,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % Country & Sample & Average & Median & Standard Deviation & CoV & $90-10$ Ratio & $90-50$ Ratio \\
 % \hline \hline
 % \input{../Output/FR/OB_Cross_Country_LaborProductivity_Unbalanced.tex}
-% \input{../Output/NL/OB_Cross_Country_LaborProductivity_Unbalanced.tex}
+% \input{../Output/AT/OB_Cross_Country_LaborProductivity_Unbalanced.tex}
 % \input{../Output/DE/OB_Cross_Country_LaborProductivity_Unbalanced.tex}
 % \input{../Output/ES/OB_Cross_Country_LaborProductivity_Unbalanced.tex}
 % \input{../Output/IT/OB_Cross_Country_LaborProductivity_Unbalanced.tex}
@@ -978,9 +1013,9 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % % Germany & \input{../Output/DE/OB_Sum_Stats.tex}  
 % % Germany & \input{../Output/DE/OB_Sum_Stats_Private.tex}  
 % % Germany & \input{../Output/DE/OB_Sum_Stats_Public.tex}   \\
-% % Netherlands & \input{../Output/NL/OB_Sum_Stats.tex}  
-% % Netherlands & \input{../Output/NL/OB_Sum_Stats_Private.tex}  
-% % Netherlands & \input{../Output/NL/OB_Sum_Stats_Public.tex}   
+% % Netherlands & \input{../Output/AT/OB_Sum_Stats.tex}  
+% % Netherlands & \input{../Output/AT/OB_Sum_Stats_Private.tex}  
+% % Netherlands & \input{../Output/AT/OB_Sum_Stats_Public.tex}   
 % % \end{tabular}}
 % % \end{table}
 
@@ -1018,7 +1053,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_GrowthRateAvg.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySizeCategory_PubVPrivate_GrowthRateAvg.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1056,7 +1091,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_GrowthRateAvg.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySize_PubVPrivate_GrowthRateAvg.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1092,7 +1127,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1127,7 +1162,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySize_PubVPrivate_GrowthRateStd.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1162,7 +1197,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % % \begin{subfigure}{.49\textwidth}
 % %     \centering
 % %     \subcaption{Netherland}
-% %  \includegraphics[scale=0.6]{../Output/NL/OB_BySizeCat_ShareFirms.pdf}
+% %  \includegraphics[scale=0.6]{../Output/AT/OB_BySizeCat_ShareFirms.pdf}
 % % \end{subfigure}
 % % \end{figure}
 % % \clearpage
@@ -1200,7 +1235,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.6]{../Output/NL/OB_BySizeCat_ShareEmployment.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/OB_BySizeCat_ShareEmployment.pdf}
 % \end{subfigure}
 % \end{figure}
 % \clearpage
@@ -1237,7 +1272,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_SalesEmployeeAvg.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySizeCategory_PubVPrivate_SalesEmployeeAvg.pdf}
 % \end{subfigure}
 % \end{figure}
 % \clearpage
@@ -1272,7 +1307,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_PubVPrivate_SalesEmployeeAvg.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySize_PubVPrivate_SalesEmployeeAvg.pdf}
 % \end{subfigure}
 % \end{figure}
 % \clearpage
@@ -1308,7 +1343,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.6]{../Output/NL/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1343,7 +1378,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.6]{../Output/NL/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/CS_Distribution_EmploymentHaltiwanger-PublicPrivate.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1383,7 +1418,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.6]{../Output/NL/OB_ByAge_Share_nFirms.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/OB_ByAge_Share_nFirms.pdf}
 % \end{subfigure}
 % \end{figure}
 % \clearpage
@@ -1422,7 +1457,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.6]{../Output/NL/OB_ByAge_ShareEmployment.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/OB_ByAge_ShareEmployment.pdf}
 % \end{subfigure}
 % \end{figure}
 % \clearpage
@@ -1460,7 +1495,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_AssetsAvg.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySizeCategory_PubVPrivate_AssetsAvg.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1498,7 +1533,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_AssetsSD.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySizeCategory_PubVPrivate_AssetsSD.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1536,7 +1571,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_SalesEmployeeAvg.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySizeCategory_PubVPrivate_SalesEmployeeAvg.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1575,7 +1610,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_ProfitsEmployeeAvg.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySizeCategory_PubVPrivate_ProfitsEmployeeAvg.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1614,7 +1649,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_RevenuetoAssetsAvg.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySizeCategory_PubVPrivate_RevenuetoAssetsAvg.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1654,7 +1689,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_EBITDAtoAssetsAvg.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySizeCategory_PubVPrivate_EBITDAtoAssetsAvg.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1694,7 +1729,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_ProfitstoAssetsAvg.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySizeCategory_PubVPrivate_ProfitstoAssetsAvg.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1891,7 +1926,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
 % \multicolumn{4}{c}{Netherlands} \\
 % \hline \hline
-% \input{../Output/NL/OB_Emp_growth_regs_NACE.tex}
+% \input{../Output/AT/OB_Emp_growth_regs_NACE.tex}
 % \end{tabular}}
 % \end{table}
 
@@ -1900,7 +1935,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
 % \multicolumn{4}{c}{Netherlands} \\
 % \hline \hline
-% \input{../Output/NL/OB_Emp_growth_regs_SIC.tex}
+% \input{../Output/AT/OB_Emp_growth_regs_SIC.tex}
 % \end{tabular}}
 % \end{table}
 
@@ -1908,7 +1943,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
 % \multicolumn{4}{c}{Netherlands} \\
 % \hline \hline
-% \input{../Output/NL/OB_Emp_growth_regs_SizeCats_NACE.tex}
+% \input{../Output/AT/OB_Emp_growth_regs_SizeCats_NACE.tex}
 % \end{tabular}}
 % \end{table}
 
@@ -1916,7 +1951,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \resizebox{\textwidth}{!}{\begin{tabular}{l*{3}c}
 % \multicolumn{4}{c}{Netherlands} \\
 % \hline \hline
-% \input{../Output/NL/OB_Emp_growth_regs_SizeCats_SIC.tex}
+% \input{../Output/AT/OB_Emp_growth_regs_SizeCats_SIC.tex}
 % \end{tabular}}
 % \end{table}
 
@@ -1954,7 +1989,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_GrowthRateAvg_wYFE.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySizeCategory_PubVPrivate_GrowthRateAvg_wYFE.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -1993,7 +2028,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_GrowthRateAvg_wIFE.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySizeCategory_PubVPrivate_GrowthRateAvg_wIFE.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -2032,7 +2067,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySizeCategory_PubVPrivate_GrowthRateAvg_wYIFE.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySizeCategory_PubVPrivate_GrowthRateAvg_wYIFE.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -2060,7 +2095,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 %         \input{../Output/ES/Table_BySize_EmpShares.tex}
 %         \input{../Output/FR/Table_BySize_EmpShares.tex}
 % 	\input{../Output/DE/Table_BySize_EmpShares.tex}
-% 	\input{../Output/NL/Table_BySize_EmpShares.tex}
+% 	\input{../Output/AT/Table_BySize_EmpShares.tex}
 %     \end{tabular}
 %     }
 % \end{table}
@@ -2077,7 +2112,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \input{../Output/ES/OB_Share_Emp_Size_Category.tex}
 % \input{../Output/FR/OB_Share_Emp_Size_Category.tex}
 % \input{../Output/DE/OB_Share_Emp_Size_Category.tex}
-% \input{../Output/NL/OB_Share_Emp_Size_Category.tex}
+% \input{../Output/AT/OB_Share_Emp_Size_Category.tex}
 
 % \end{tabular}}
 % \end{table}
@@ -2134,7 +2169,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_BySize_EmpShares.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_BySize_EmpShares.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -2208,7 +2243,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Graph_ByYear_PubVPrivate_NumFirms.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Graph_ByYear_PubVPrivate_NumFirms.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -2227,7 +2262,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % 	ES \input{../Output/ES/Table_Missing-Observations.tex}
 % 	PT \input{../Output/PT/Table_Missing-Observations.tex}
 % 	DE \input{../Output/DE/Table_Missing-Observations.tex}
-% 	NL \input{../Output/NL/Table_Missing-Observations.tex}
+% 	NL \input{../Output/AT/Table_Missing-Observations.tex}
 %     \end{tabular}
 %     }
 % \end{table}
@@ -2601,18 +2636,18 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
 %         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
 % \hline \hline
-% Assets & \input{../Output/NL/OB_Financial_Ratios_Assets.tex}
-% EBITDA & \input{../Output/NL/OB_Financial_Ratios_EBITDA.tex}
-% Gross Profits & \input{../Output/NL/OB_Financial_Ratios_GrossProfits.tex}
-% Market Capitalization & \input{../Output/NL/OB_Financial_Ratios_MarketCap.tex}
-% Number of Shares & \input{../Output/NL/OB_Financial_Ratios_Stock.tex}
-% Number of Shareholders & \input{../Output/NL/OB_Financial_Ratios_nShareholders.tex}
-% Revenue & \input{../Output/NL/OB_Financial_Ratios_Revenue.tex}
-% EBITDA to Assets & \input{../Output/NL/OB_Financial_Ratios_ebitdatoassets.tex}
-% Revenue to Assets & \input{../Output/NL/OB_Financial_Ratios_revenuetoassets.tex}
-% Profits to Assets & \input{../Output/NL/OB_Financial_Ratios_profitstoassets.tex}
-% Market Capitalization to Assets &  \input{../Output/NL/OB_Financial_Ratios_mktcaptoassets.tex}
-% %\input{../Output/NL/OB_Financial_Ratios.tex}
+% Assets & \input{../Output/AT/OB_Financial_Ratios_Assets.tex}
+% EBITDA & \input{../Output/AT/OB_Financial_Ratios_EBITDA.tex}
+% Gross Profits & \input{../Output/AT/OB_Financial_Ratios_GrossProfits.tex}
+% Market Capitalization & \input{../Output/AT/OB_Financial_Ratios_MarketCap.tex}
+% Number of Shares & \input{../Output/AT/OB_Financial_Ratios_Stock.tex}
+% Number of Shareholders & \input{../Output/AT/OB_Financial_Ratios_nShareholders.tex}
+% Revenue & \input{../Output/AT/OB_Financial_Ratios_Revenue.tex}
+% EBITDA to Assets & \input{../Output/AT/OB_Financial_Ratios_ebitdatoassets.tex}
+% Revenue to Assets & \input{../Output/AT/OB_Financial_Ratios_revenuetoassets.tex}
+% Profits to Assets & \input{../Output/AT/OB_Financial_Ratios_profitstoassets.tex}
+% Market Capitalization to Assets &  \input{../Output/AT/OB_Financial_Ratios_mktcaptoassets.tex}
+% %\input{../Output/AT/OB_Financial_Ratios.tex}
 % \end{tabular}}
 %  \hrule
 % \end{table}
@@ -2624,17 +2659,17 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
 %         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
 % \hline \hline
-% Assets & \input{../Output/NL/OB_Financial_Ratios_Assets_public.tex}
-% EBITDA & \input{../Output/NL/OB_Financial_Ratios_EBITDA_public.tex}
-% Gross Profits & \input{../Output/NL/OB_Financial_Ratios_GrossProfits_public.tex}
-% Market Capitalization & \input{../Output/NL/OB_Financial_Ratios_MarketCap_public.tex}
-% Number of Shares & \input{../Output/NL/OB_Financial_Ratios_Stock_public.tex}
-% Number of Shareholders & \input{../Output/NL/OB_Financial_Ratios_nShareholders_public.tex}
-% Revenue & \input{../Output/NL/OB_Financial_Ratios_Revenue_public.tex}
-% EBITDA to Assets & \input{../Output/NL/OB_Financial_Ratios_ebitdatoassets_public.tex}
-% Revenue to Assets & \input{../Output/NL/OB_Financial_Ratios_revenuetoassets_public.tex}
-% Profits to Assets & \input{../Output/NL/OB_Financial_Ratios_profitstoassets_public.tex}
-% Market Capitalization to Assets &  \input{../Output/NL/OB_Financial_Ratios_mktcaptoassets_public.tex}
+% Assets & \input{../Output/AT/OB_Financial_Ratios_Assets_public.tex}
+% EBITDA & \input{../Output/AT/OB_Financial_Ratios_EBITDA_public.tex}
+% Gross Profits & \input{../Output/AT/OB_Financial_Ratios_GrossProfits_public.tex}
+% Market Capitalization & \input{../Output/AT/OB_Financial_Ratios_MarketCap_public.tex}
+% Number of Shares & \input{../Output/AT/OB_Financial_Ratios_Stock_public.tex}
+% Number of Shareholders & \input{../Output/AT/OB_Financial_Ratios_nShareholders_public.tex}
+% Revenue & \input{../Output/AT/OB_Financial_Ratios_Revenue_public.tex}
+% EBITDA to Assets & \input{../Output/AT/OB_Financial_Ratios_ebitdatoassets_public.tex}
+% Revenue to Assets & \input{../Output/AT/OB_Financial_Ratios_revenuetoassets_public.tex}
+% Profits to Assets & \input{../Output/AT/OB_Financial_Ratios_profitstoassets_public.tex}
+% Market Capitalization to Assets &  \input{../Output/AT/OB_Financial_Ratios_mktcaptoassets_public.tex}
 % \end{tabular}}
 %  \hrule
 % \end{table}
@@ -2646,18 +2681,18 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % Variable  &  Sample & Firm-Year Obs  & Percentage & Percentage & Average & Min & Max & 25th Percentile &  50th Percentile \\
 %         &  			      &        &	Missing    &  Zeros	 &       &  		&	  & 	& 		   \\
 % \hline \hline
-% Assets & \input{../Output/NL/OB_Financial_Ratios_Assets_private.tex}
-% EBITDA & \input{../Output/NL/OB_Financial_Ratios_EBITDA_private.tex}
-% Gross Profits & \input{../Output/NL/OB_Financial_Ratios_GrossProfits_private.tex}
-% Market Capitalization & \input{../Output/NL/OB_Financial_Ratios_MarketCap_private.tex}
-% Number of Shares & \input{../Output/NL/OB_Financial_Ratios_Stock_private.tex}
-% Number of Shareholders & \input{../Output/NL/OB_Financial_Ratios_nShareholders_private.tex}
-% Revenue & \input{../Output/NL/OB_Financial_Ratios_Revenue_private.tex}
-% EBITDA to Assets & \input{../Output/NL/OB_Financial_Ratios_ebitdatoassets_private.tex}
-% Revenue to Assets & \input{../Output/NL/OB_Financial_Ratios_revenuetoassets_private.tex}
-% Profits to Assets & \input{../Output/NL/OB_Financial_Ratios_profitstoassets_private.tex}
-% Market Capitalization to Assets &  \input{../Output/NL/OB_Financial_Ratios_mktcaptoassets_private.tex}
-% %\input{../Output/NL/OB_Financial_Ratios.tex}
+% Assets & \input{../Output/AT/OB_Financial_Ratios_Assets_private.tex}
+% EBITDA & \input{../Output/AT/OB_Financial_Ratios_EBITDA_private.tex}
+% Gross Profits & \input{../Output/AT/OB_Financial_Ratios_GrossProfits_private.tex}
+% Market Capitalization & \input{../Output/AT/OB_Financial_Ratios_MarketCap_private.tex}
+% Number of Shares & \input{../Output/AT/OB_Financial_Ratios_Stock_private.tex}
+% Number of Shareholders & \input{../Output/AT/OB_Financial_Ratios_nShareholders_private.tex}
+% Revenue & \input{../Output/AT/OB_Financial_Ratios_Revenue_private.tex}
+% EBITDA to Assets & \input{../Output/AT/OB_Financial_Ratios_ebitdatoassets_private.tex}
+% Revenue to Assets & \input{../Output/AT/OB_Financial_Ratios_revenuetoassets_private.tex}
+% Profits to Assets & \input{../Output/AT/OB_Financial_Ratios_profitstoassets_private.tex}
+% Market Capitalization to Assets &  \input{../Output/AT/OB_Financial_Ratios_mktcaptoassets_private.tex}
+% %\input{../Output/AT/OB_Financial_Ratios.tex}
 % \end{tabular}}
 %  \hrule
 % \end{table}
@@ -2675,7 +2710,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \input{../Output/ES/OB_Firms_Earliest_Date.tex}
 % \input{../Output/PT/OB_Firms_Earliest_Date.tex}
 % \input{../Output/DE/OB_Firms_Earliest_Date.tex}
-% \input{../Output/NL/OB_Firms_Earliest_Date.tex}
+% \input{../Output/AT/OB_Firms_Earliest_Date.tex}
 % \end{tabular}
 % \end{table}
 % \clearpage
@@ -2718,7 +2753,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/Distribution_Employment_OrbisVCompustat.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/Distribution_Employment_OrbisVCompustat.pdf}
 % \end{subfigure}
 % \end{figure}
 
@@ -2788,7 +2823,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 %     \scalebox{0.6}{
 %     \begin{tabular}{@{}ccccccccccc@{}}
 %     \toprule
-%         \input{../Output/NL/Table_CompustatOrbis-Comparison.tex}
+%         \input{../Output/AT/Table_CompustatOrbis-Comparison.tex}
 %     \end{tabular}
 %     }
 % \end{table}
@@ -2859,12 +2894,12 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland - Orbis}
-%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Employment_Public_ptile_SameScale}
+%  \includegraphics[scale=0.60]{../Output/AT/Lifecycle_Employment_Public_ptile_SameScale}
 % \end{subfigure}%
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland - Compustat}
-%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Employment_ptile_Compustat}
+%  \includegraphics[scale=0.60]{../Output/AT/Lifecycle_Employment_ptile_Compustat}
 % \end{subfigure}
 % \end{figure}
 % \FloatBarrier
@@ -2931,12 +2966,12 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland - Orbis}
-%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_EmploymentGrowth_Public}
+%  \includegraphics[scale=0.60]{../Output/AT/Lifecycle_EmploymentGrowth_Public}
 % \end{subfigure}%
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland - Compustat}
-%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_EmploymentGrowth_Compustat}
+%  \includegraphics[scale=0.60]{../Output/AT/Lifecycle_EmploymentGrowth_Compustat}
 % \end{subfigure}
 % \end{figure}
 % \FloatBarrier
@@ -3033,7 +3068,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \caption{Haltiwanger growth rate}
 % \resizebox{\textwidth}{!}{\begin{tabular}{l*{8}{c}}
 % \hline\hline
-% \input{../Output/NL/OB_HGR_IPO_regs.tex}
+% \input{../Output/AT/OB_HGR_IPO_regs.tex}
 % \end{tabular}}
 % \end{table}
 
@@ -3053,7 +3088,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 %         \input{../Output/ES/Table_IPOyear_Descriptive-Stats.tex}
 %         \input{../Output/FR/Table_IPOyear_Descriptive-Stats.tex}
 % 	\input{../Output/DE/Table_IPOyear_Descriptive-Stats.tex}
-% 	\input{../Output/NL/Table_IPOyear_Descriptive-Stats.tex}
+% 	\input{../Output/AT/Table_IPOyear_Descriptive-Stats.tex}
 %     \end{tabular}
 %     }
 % \end{table}
@@ -3093,7 +3128,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.60]{../Output/NL/Distribution_EmploymentHaltiwanger-IPOyear.pdf}
+%  \includegraphics[scale=0.60]{../Output/AT/Distribution_EmploymentHaltiwanger-IPOyear.pdf}
 % \end{subfigure}
 % \end{figure}
 % \FloatBarrier
@@ -3157,7 +3192,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.60]{../Output/NL/Distribution_EmploymentHaltiwanger-PublicDelisted.pdf}
+%  \includegraphics[scale=0.60]{../Output/AT/Distribution_EmploymentHaltiwanger-PublicDelisted.pdf}
 % \end{subfigure}
 % \end{figure}
 % \FloatBarrier
@@ -3185,7 +3220,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \input{../Output/ES/OB_Share_Emp_Eurostat_Size_Category.tex}
 % \input{../Output/FR/OB_Share_Emp_Eurostat_Size_Category.tex}
 % \input{../Output/DE/OB_Share_Emp_Eurostat_Size_Category.tex}
-% \input{../Output/NL/OB_Share_Emp_Eurostat_Size_Category.tex}
+% \input{../Output/AT/OB_Share_Emp_Eurostat_Size_Category.tex}
 
 % \end{tabular}}
 % \end{table}
@@ -3204,7 +3239,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \input{../Output/ES/EuroStat_Share_Emp_Eurostat_Size_Category.tex}
 % \input{../Output/FR/EuroStat_Share_Emp_Eurostat_Size_Category.tex}
 % \input{../Output/DE/EuroStat_Share_Emp_Eurostat_Size_Category.tex}
-% \input{../Output/NL/EuroStat_Share_Emp_Eurostat_Size_Category.tex}
+% \input{../Output/AT/EuroStat_Share_Emp_Eurostat_Size_Category.tex}
 
 % \end{tabular}}
 % \end{table}
@@ -3242,7 +3277,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
 % \end{subfigure}
 % \end{figure}
 % \clearpage
@@ -3278,7 +3313,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/OB_EuroStat_BySizeCat_nEmployees.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/OB_EuroStat_BySizeCat_nEmployees.pdf}
 % \end{subfigure}
 % \end{figure}
 % \clearpage
@@ -3315,7 +3350,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/OB_EuroStat_BySizeCat_nFirms.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/OB_EuroStat_BySizeCat_nFirms.pdf}
 % \end{subfigure}
 % \end{figure}
 % \clearpage
@@ -3353,7 +3388,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/NL/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
+%  \includegraphics[scale=0.6]{../Output/AT/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
 % \end{subfigure}
 % \end{figure}
 % \clearpage
@@ -3413,7 +3448,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.55]{../Output/NL/Lifecycle_Employment}
+%  \includegraphics[scale=0.55]{../Output/AT/Lifecycle_Employment}
 % \end{subfigure}
 % \end{figure}
 % \FloatBarrier
@@ -3476,7 +3511,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Employment_byFirmType}
+%  \includegraphics[scale=0.60]{../Output/AT/Lifecycle_Employment_byFirmType}
 % \end{subfigure}
 % \end{figure}
 % \FloatBarrier
@@ -3512,7 +3547,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Employment_Private_ptile}
+%  \includegraphics[scale=0.60]{../Output/AT/Lifecycle_Employment_Private_ptile}
 % \end{subfigure}
 % \end{figure}
 % \FloatBarrier
@@ -3548,7 +3583,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Employment_Public_ptile}
+%  \includegraphics[scale=0.60]{../Output/AT/Lifecycle_Employment_Public_ptile}
 % \end{subfigure}
 % \end{figure}
 % \FloatBarrier
@@ -3617,7 +3652,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_EmploymentGrowth_byFirmType}
+%  \includegraphics[scale=0.60]{../Output/AT/Lifecycle_EmploymentGrowth_byFirmType}
 % \end{subfigure}
 % \end{figure}
 % \FloatBarrier
@@ -3655,7 +3690,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_EmploymentGrowth_Private_ptile}
+%  \includegraphics[scale=0.60]{../Output/AT/Lifecycle_EmploymentGrowth_Private_ptile}
 % \end{subfigure}
 % \end{figure}
 % \FloatBarrier
@@ -3691,7 +3726,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_EmploymentGrowth_Public_ptile}
+%  \includegraphics[scale=0.60]{../Output/AT/Lifecycle_EmploymentGrowth_Public_ptile}
 % \end{subfigure}
 % \end{figure}
 % \FloatBarrier
@@ -3764,7 +3799,7 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \begin{subfigure}{.49\textwidth}
 %     \centering
 %     \subcaption{Netherland}
-%  \includegraphics[scale=0.60]{../Output/NL/Lifecycle_Revenue_Costs}
+%  \includegraphics[scale=0.60]{../Output/AT/Lifecycle_Revenue_Costs}
 % \end{subfigure}
 % \end{figure}
 % \FloatBarrier
