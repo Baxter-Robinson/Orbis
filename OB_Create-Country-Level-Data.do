@@ -114,7 +114,7 @@ gen EmpShare_Public=nEmployeesTot_byFirmType/nEmployeesTot if (Public==1)
 bysort Year: egen nEmployeesTot_Large = total(nEmployees) if (nEmployees>99)
 gen EmpShare_Large=nEmployeesTot_Large/nEmployeesTot if (nEmployees>99)
 
-bysort Year: egen MarketCap = total(Market_capitalisation_mil) if (Public==0)
+bysort Year: egen MarketCap = total(Market_capitalisation_mil) if (Public==1)
 
 if "${CountryID}" == "FR" {
 	local StartYear=2009
