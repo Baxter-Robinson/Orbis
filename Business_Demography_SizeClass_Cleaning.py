@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri Apr  1 20:32:35 2022
+Created on Thu Mar 31 11:25:22 2022
 
 @author: cyberdim
 """
@@ -9,37 +9,36 @@ Created on Fri Apr  1 20:32:35 2022
 
 import pandas as pd
 import numpy as np
+df= pd.read_csv("/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw/Business_Demography_SizeClass.csv")
 
-df = pd.read_csv("/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw/EuroStat_Enterprise_Statistics_RAW.csv")
 
-df = df.fillna(" ")
-
-columns = []
 for col in df.columns:
-    columns.append(col)
+    print(col)
 
 del(col)
 
-df = df[["nace_r2", "indic_sb", "geo", "size_emp", "TIME_PERIOD", "OBS_VALUE"]]
-
+df = df[["geo", "nace_r2", "indic_sb", "sizeclas", "TIME_PERIOD", "OBS_VALUE"]]
 
 nace = sorted(list(set(df.nace_r2)))
 indic = sorted(list(set(df.indic_sb)))
 countries = sorted(list(set(df.geo)))
 years = sorted(list(set(df.TIME_PERIOD)))
-size =  sorted(list(set(df.size_emp)))
+size = sorted(list(set(df.sizeclas)))
 
 
-#Rows are countries x years x nace
-rows = len(nace)*len(countries)*len(years)*len(size)
+# Rows = countries x nace x time x size
+rows = len(countries)*len(nace)*len(years)*len(size)
 
 
-columns = ["Country", "Year", "NACE_Rev2", "Size", "Index"]
-cols = 5
+# Columns
+columns = 4
 
-panel =  pd.DataFrame(data=np.full((rows,cols),0.0), columns = columns)
+panel = pd.DataFrame(data=np.full((rows, columns),0.0), columns = ['Country', \
+                                                                 'NACE',\
+                                                                     'SizeClass',\
+                                                                     'Year'])
 
-
+                
 countries_index = []
 for i in range(0,len(countries)):
     countries_index.append(i)
@@ -55,7 +54,6 @@ for i in range(0,len(years)):
 size_index=[]
 for i in range(0,len(size)):
     size_index.append(i)
-
 
 
 countries_dic = {countries[i]: countries_index[i] for i in range(len(countries))}
@@ -86,15 +84,16 @@ def index_maker(country,nace,year,size):
     return str(c)+"-"+str(n)+"-"+str(y)+"-"+str(s)
 
 
-df["Index"]=np.vectorize(index_maker)(df["geo"],df["nace_r2"],df["TIME_PERIOD"],df["size_emp"] )
-
-
-index_filler = []
+df["Index"]=np.vectorize(index_maker)(df["geo"],df["nace_r2"],df["TIME_PERIOD"],df["sizeclas"] )
+    
+    
+index_filler=[]
 for i in range(0,len(countries)):
-    for j in range(0,len(nace)):
-        for k in range(0,len(years)):
-            for l in range(0,len(size)):
+    for j in range(0,len(size)):
+        for k in range(0,len(nace)):
+            for l in range(0,len(years)):
                 index_filler.append((i,j,k,l))
+
 
 l_country = []
 l_nace = []
@@ -103,9 +102,10 @@ l_size = []
 
 for i in range(0,len(index_filler)):
     l_country.append(index_filler[i][0])
-    l_nace.append(index_filler[i][1]) 
-    l_years.append(index_filler[i][2])
-    l_size.append(index_filler[i][3]) 
+    l_size.append(index_filler[i][1]) 
+    l_nace.append(index_filler[i][2]) 
+    l_years.append(index_filler[i][3])
+    
 
 del(i)
 
@@ -121,6 +121,7 @@ del(l_country, l_nace, l_years, l_size)
 index_df = sorted(list(set(df["Index"])))
 
 
+
 panel["Index2"]=panel["Index"]
 df["Index2"]=df["Index"]
 panel=panel.set_index('Index2')
@@ -134,10 +135,7 @@ for i in range(0,len(indic)):
     panel = pd.concat([panel,mini], axis=1)
     print(i)
 
-
-panel = panel.reset_index(drop=True)
-panel.to_csv('/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw/EuroStat_Enterprise_Statistics_for_StataCleaning.csv')
-#panel.to_csv('/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Cleaned/EuroStat_Structural.csv')  
+panel.to_csv("/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw/Business_Demography_SizeClass.csv")
 
 
 

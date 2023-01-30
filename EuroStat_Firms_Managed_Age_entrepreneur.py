@@ -9,7 +9,9 @@ Created on Wed Mar 30 10:49:46 2022
 import pandas as pd
 import numpy as np
 
-df = pd.read_csv("/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw/EuroStat_Age_entrepreneur_RAW.csv")
+#df = pd.read_csv("/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw/EuroStat_Firms_Managed_Age_entrepreneur_RAW.csv")
+
+df = pd.read_csv("/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw/EuroStat_Firms_Managed_Age_entrepreneur_RAW.csv")
 
 
 for col in df.columns:
@@ -223,4 +225,4 @@ for i in range(0,len(panel)):
         panel.iloc[i,m+4]=mini['OBS_VALUE'].iloc[m]
 
 
-panel.to_csv("Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Cleaned/Panel_Age_Entrepreneur.csv")
+panel.to_csv("/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw/EuroStat_Firms_Managed_Age_entrepreneur.csv")
