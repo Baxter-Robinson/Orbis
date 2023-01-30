@@ -272,6 +272,10 @@ drop if (Year>2018)
 
 drop if missing(nEmployees)
 
+* Drop firms that are never employers
+by IDNum, sort: egen MaxnEmp=max(nEmployees)
+drop if (MaxnEmp<1)
+drop MaxnEmp
 
 *----------------------
 * Winsorization Employment/Assets/Sales/SalesPerEmp/EmpGrowth 
