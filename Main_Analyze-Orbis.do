@@ -38,7 +38,17 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 *cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
 *global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
-*
+*---------------------
+* Sample Options
+*---------------------
+global FirstYear=2009
+global LastYear=2018
+
+*---------------------
+* Clean EuroStat Data
+*---------------------
+do CleanData_EuroStat.do
+
 
 *---------------------
 * Loop over countries 
@@ -71,17 +81,17 @@ local Country="FR"
 	* Compustat
 	*do CS_Clean-Data.do
 	
-	* Orbis
-	*do OB_Clean-Data.do
-	*do OB_Create-Balanced-Panel.do
-	*do OB_Create-Country-Level-Data.do
-
-	
 	* EuroStat
 	* XXX do EuroStat_Enterprise_Statistics.do
 	* XXX do EuroStat_Clean-Data.do
 	*do Validation_CreateBySize_ES.do
 	
+	
+	* Orbis
+	*do OB_Clean-Data.do
+	*do OB_Create-Balanced-Panel.do
+	*do OB_Create-Country-Level-Data.do
+
 	*Create Weights
 	*do CleanData_CreateWeights.do
 	
@@ -176,7 +186,7 @@ local Country="FR"
 	* Orbis vs. EuroStat
 	*do Validation_BySize_ObvsES.do
 	
-	* do OB_Validation_EuroStatOrbis_Comparison.do
+	*do OB_Validation_EuroStatOrbis_Comparison.do
 	*do EuroStat_Enterprise_Statistics.do
 	*XXX TBF XXX do OB_Employment_Firms_EuroStat_Yearly_Comparison.do
 	*XXX TBF XXX use "Data_Cleaned/EuroStat_Enterprise_Statistics.dta",clear
