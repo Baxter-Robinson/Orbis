@@ -14,16 +14,19 @@ forval i=1/3{
 	preserve
 	
 		if (`i'==1){
-			file open OutputFile using Output/${CountryID}/OB_SumStats_byVariable_`wgt'wgt_All.tex, write replace
+			file open FullOutputFile using Output/${CountryID}/OB_FullSumStats_byVariable_`wgt'wgt_All.tex, write replace
+			file open SelectOutputFile using Output/${CountryID}/OB_SelectSumStats_byVariable_`wgt'wgt_All.tex, write replace
 			
 		}
 		else if (`i'==2) {
-			file open OutputFile using Output/${CountryID}/OB_SumStats_byVariable_`wgt'wgt_Pri.tex, write replace
+			file open FullOutputFile using Output/${CountryID}/OB_FullSumStats_byVariable_`wgt'wgt_Pri.tex, write replace
+			file open SelectOutputFile using Output/${CountryID}/OB_SelectSumStats_byVariable_`wgt'wgt_Pri.tex, write replace
 			keep if (Public==0)
 			
 		}
 		else if (`i'==3){
-			file open OutputFile using Output/${CountryID}/OB_SumStats_byVariable_`wgt'wgt_Pub.tex, write replace
+			file open FullOutputFile using Output/${CountryID}/OB_FullSumStats_byVariable_`wgt'wgt_Pub.tex, write replace
+			file open SelectOutputFile using Output/${CountryID}/OB_SelectSumStats_byVariable_`wgt'wgt_Pub.tex, write replace
 			keep if (Public==1)
 		}
 		
@@ -58,95 +61,135 @@ forval i=1/3{
 			(count) nEmployees_n=nEmployees Sales_n=Sales  Assets_n=Assets SalesPerEmployee_n=SalesPerEmployee ///
 			[aw=`wgt'Weights] ///
 			, by(Year)
+	    
+        file write FullOutputFile "Mean " 
+        foreach var of local Variables{
+            sum `var'_mean
+            local Moment: di %12.0fc r(mean)
+            file write FullOutputFile " & `Moment' "
+        }
+        file write FullOutputFile " \\ " _newline
+		
+		file write SelectOutputFile "Mean " 
+        foreach var of local Variables{
+            sum `var'_mean
+            local Moment: di %12.0fc r(mean)
+            file write SelectOutputFile " & `Moment' "
+        }
+        file write SelectOutputFile " \\ " _newline
+        
+        file write FullOutputFile "Std " 
+        foreach var of local Variables{
+            sum `var'_sd
+            local Moment:  di %12.0fc r(mean)
+            file write FullOutputFile " & `Moment' "
+        }
+        file write FullOutputFile " \\ " _newline
+
+        file write FullOutputFile "p10 " 
+        foreach var of local Variables{
+            sum `var'_p10
+            local Moment:  di %12.0fc r(mean)
+            file write FullOutputFile " & `Moment' "
+        }
+        file write FullOutputFile " \\ " _newline
 
 		
-		file write OutputFile "Mean " 
-		foreach var of local Variables{
-			sum `var'_mean
-			local Moment: di %12.0fc r(mean)
-			file write OutputFile " & `Moment' "
-		}
-		file write OutputFile " \\ " _newline
-		
-		file write OutputFile "Std " 
-		foreach var of local Variables{
-			sum `var'_sd
-			local Moment:  di %12.0fc r(mean)
-			file write OutputFile " & `Moment' "
-		}
-		file write OutputFile " \\ " _newline
+	   file write SelectOutputFile "p10 " 
+        foreach var of local Variables{
+            sum `var'_p10
+            local Moment:  di %12.0fc r(mean)
+            file write SelectOutputFile " & `Moment' "
+        }
+        file write SelectOutputFile " \\ " _newline
 
-		file write OutputFile "p10 " 
-		foreach var of local Variables{
-			sum `var'_p10
-			local Moment:  di %12.0fc r(mean)
-			file write OutputFile " & `Moment' "
-		}
-		file write OutputFile " \\ " _newline
-
-		file write OutputFile "p50 " 
-		foreach var of local Variables{
-			sum `var'_p50
-			local Moment:  di %12.0fc r(mean)
-			file write OutputFile " & `Moment' "
-		}
-		file write OutputFile " \\ " _newline
-		
-		file write OutputFile "p90 " 
-		foreach var of local Variables{
-			sum `var'_p90
-			local Moment:  di %12.0fc r(mean)
-			file write OutputFile " & `Moment' "
-		}
-		file write OutputFile " \\ " _newline		
-			
-		file write OutputFile "Avg Growth Rate " 
-		foreach var of local VariablesGrowth{
-			sum `var'_mean
-			local Moment: di %12.2fc r(mean)*100
-			file write OutputFile " & `Moment'\% "
-		}
-		file write OutputFile " \\ " _newline
-		
-		file write OutputFile "Std Growth Rate " 
-		foreach var of local VariablesGrowth{
-			sum `var'_sd
-			local Moment: di %12.2fc r(mean)*100
-			file write OutputFile " & `Moment'\% "
-		}
-		file write OutputFile " \\ " _newline
-				
-		file write OutputFile "Median Growth Rate " 
-		foreach var of local VariablesGrowth{
-			sum `var'_p50
-			local Moment: di %12.2fc r(mean)*100
-			file write OutputFile " & `Moment'\% "
-		}
-		file write OutputFile " \\ " _newline
+        file write FullOutputFile "p50 " 
+        foreach var of local Variables{
+            sum `var'_p50
+            local Moment:  di %12.0fc r(mean)
+            file write FullOutputFile " & `Moment' "
+        }
+        file write FullOutputFile " \\ " _newline
 		
 		
-		file write OutputFile "Mean Log " 
-		foreach var of local VariablesLn{
-			sum `var'_mean
-			local Moment: di %12.2fc r(mean)
-			file write OutputFile " & `Moment' "
-		}
-		file write OutputFile " \\ " _newline
+        file write SelectOutputFile "p50 " 
+        foreach var of local Variables{
+            sum `var'_p50
+            local Moment:  di %12.0fc r(mean)
+            file write SelectOutputFile " & `Moment' "
+        }
+        file write SelectOutputFile " \\ " _newline
+        
+        file write FullOutputFile "p90 " 
+        foreach var of local Variables{
+            sum `var'_p90
+            local Moment:  di %12.0fc r(mean)
+            file write FullOutputFile " & `Moment' "
+        }
+        file write FullOutputFile " \\ " _newline       
 		
-		file write OutputFile "Std Log " 
-		foreach var of local VariablesLn{
-			sum `var'_sd
-			local Moment:  di %12.2fc r(mean)
-			file write OutputFile " & `Moment' "
-		}
-		file write OutputFile " \\ " _newline
+        file write SelectOutputFile "p90 " 
+        foreach var of local Variables{
+            sum `var'_p90
+            local Moment:  di %12.0fc r(mean)
+            file write SelectOutputFile " & `Moment' "
+        }
+        file write SelectOutputFile " \\ " _newline     
+            
+        file write FullOutputFile "Avg Growth Rate " 
+        foreach var of local VariablesGrowth{
+            sum `var'_mean
+            local Moment: di %12.2fc r(mean)*100
+            file write FullOutputFile " & `Moment'\% "
+        }
+        file write FullOutputFile " \\ " _newline
+        
+        file write FullOutputFile "Std Growth Rate " 
+        foreach var of local VariablesGrowth{
+            sum `var'_sd
+            local Moment: di %12.2fc r(mean)*100
+            file write FullOutputFile " & `Moment'\% "
+        }
+        file write FullOutputFile " \\ " _newline
+                
+        file write FullOutputFile "Median Growth Rate " 
+        foreach var of local VariablesGrowth{
+            sum `var'_p50
+            local Moment: di %12.2fc r(mean)*100
+            file write FullOutputFile " & `Moment'\% "
+        }
+        file write FullOutputFile " \\ " _newline
+        
+        
+        file write FullOutputFile "Mean Log " 
+        foreach var of local VariablesLn{
+            sum `var'_mean
+            local Moment: di %12.2fc r(mean)
+            file write FullOutputFile " & `Moment' "
+        }
+        file write FullOutputFile " \\ " _newline
+        
+        file write FullOutputFile "Std Log " 
+        foreach var of local VariablesLn{
+            sum `var'_sd
+            local Moment:  di %12.2fc r(mean)
+            file write FullOutputFile " & `Moment' "
+        }
+        file write FullOutputFile " \\ " _newline
+        
+        file write FullOutputFile "Avg Obs per Year " 
+        foreach var of local Variables{
+            sum `var'_n
+            local Moment: di %12.0fc r(mean)
+            file write FullOutputFile " & `Moment' "
+        }
 		
-		file write OutputFile "Avg Obs per Year " 
-		foreach var of local Variables{
-			sum `var'_n
-			local Moment: di %12.0fc r(mean)
-			file write OutputFile " & `Moment' "
-		}
+		file write SelectOutputFile "Avg Obs per Year " 
+        foreach var of local Variables{
+            sum `var'_n
+            local Moment: di %12.0fc r(mean)
+            file write SelectOutputFile " & `Moment' "
+        }
 	restore
 
 */

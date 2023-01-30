@@ -1,9 +1,4 @@
 \documentclass[12pt,notitlepage]{article}
-%\usepackage[margin=1in]{geometry}
-%	\geometry{
-%	top=20mm,
-%	bottom=20mm,
-%	}
 \usepackage[margin=1in]{geometry}              
 \usepackage{placeins}
 \usepackage{graphicx}
@@ -30,7 +25,6 @@
     linkcolor=blue,
     urlcolor=blue
 }
-\setlength\parindent{0pt}
 
 \DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
 \pagestyle{plain}
@@ -73,14 +67,14 @@
  & Employment & Sales & Assets & Sales Per Employee \\  \cline{3-5}
  &  & \multicolumn{3}{c}{(Thousands)}  \\
  All Firms & & & & \\ \cline{1-1}
- \input{../Output/FR/OB_SumStats_byVariable_Eswgt_All.tex} \\\\
+ \input{../Output/FR/OB_FullSumStats_byVariable_Eswgt_All.tex} \\\\
  Private Firms &&&& \\ \cline{1-1}
- \input{../Output/FR/OB_SumStats_byVariable_Eswgt_Pri.tex} \\\\ 
+ \input{../Output/FR/OB_FullSumStats_byVariable_Eswgt_Pri.tex} \\\\ 
 Public Firms &&&& \\ \cline{1-1}
- \input{../Output/FR/OB_SumStats_byVariable_Eswgt_Pub.tex} \\
+ \input{../Output/FR/OB_FullSumStats_byVariable_Eswgt_Pub.tex} \\
  \hline\hline
 \end{tabular}}\tabularnewline \\
-All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years. Data is reweighted to match distribution of firm sizes in the EuroStat Data.
+All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years. Data on private firms is weighted to match the distribution of firm sizes in EuroStat data.
 \end{table}
 
 
@@ -97,7 +91,7 @@ All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.
  \input{../Output/FR/OB_SumStats_ByCountry_Eswgt_Pub.tex}   \\ \hline
 \end{tabular}}
 
-All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years. Data is reweighted to match distribution of firm sizes in the EuroStat Data.
+All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years. Data on private firms is weighted to match the distribution of firm sizes in EuroStat data.
 \end{table}
 
 
@@ -335,47 +329,58 @@ Trimmed takes out: Hong Kong, Luxembourg, Malaysia, Singapore, South Africa, and
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \FloatBarrier
 
-We build our data set from Orbis, using additional information from both EuroStat and Compustat. 
+We build our data set from Orbis, using additional information from both EuroStat and Compustat. Our sample period goes from 2009 to 2018. The sample is unbalanced as firms enter and exit. We drop firms that are never employers in our sample as well as firm-year observations for which the number of employees is missing. We winsorize all variables below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles within each year. We perform this winsorization separately on public and private firms.
 
 
+Since Orbis does not include the universe of private firms, we weight private firms based on their size in order to match the distribution of firm sizes in Eurostat data. For public firms, we augment the Orbis data with Compustat. Specifically, we match specific public firms in the Orbis data using unique combinations of number of employees and year. For matched firms in Orbis, we use the Compustat employment and sales numbers in order to minimize the number of missing observations. We also remove specific observations with implausibly volatile growth rates.
 
-For public firms, we augment the Orbis data with Compustat. Specifically, we match specific public firms in the Orbis data using unique numbers of observations by year. For matched firms in Orbis, we use the Compustat employment and sales numbers in order to minimize the number of missing observations. We also remove specific observations with implausibly volatile growth rates, particularly 
 
+Tables \ref{tab:selected-sum-stats_ESwgt_FR} and \ref{tab:selected-sum-stats_Nowgt_FR} show the weighted and unweighted summary statistics for our cleaned sample. 
+
+
+\begin{table}[!htpb]
+\caption{Weighted French Summary Statistics}
+\label{tab:selected-sum-stats_ESwgt_FR}
+\resizebox{0.95\textwidth}{!}{
+\begin{tabular}{l rrrr}
+ \hline\hline
+ & Employment & Sales & Assets & $\frac{\text{Sales}}{\text{Employees}}$ \\  \cline{3-5}
+ &  & \multicolumn{3}{c}{(Thousands)}  \\
+ All Firms & & & & \\ \cline{1-1}
+ \input{../Output/FR/OB_SelectSumStats_byVariable_ESwgt_All.tex} \\\\
+ Private Firms &&&& \\ \cline{1-1}
+ \input{../Output/FR/OB_SelectSumStats_byVariable_ESwgt_Pri.tex} \\\\ 
+Public Firms &&&& \\ \cline{1-1}
+ \input{../Output/FR/OB_SelectSumStats_byVariable_ESwgt_Pub.tex} \\
+ \hline\hline
+\end{tabular}}\tabularnewline \\
+All values are averages across sample years. All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. Data on private firms is weighted to match the distribution of firm sizes in Eurostat data.
+\end{table}
 
 
 
 \begin{table}[!htpb]
 \caption{Unweighted French Summary Statistics}
+\label{tab:selected-sum-stats_Nowgt_FR}
 \resizebox{0.95\textwidth}{!}{
-\begin{tabular}{l cccc}
+\begin{tabular}{l rrrr}
  \hline\hline
- & Employment & Sales & Assets & Sales Per Employee \\  \cline{3-5}
+ & Employment & Sales & Assets & $\frac{\text{Sales}}{\text{Employees}}$ \\  \cline{3-5}
  &  & \multicolumn{3}{c}{(Thousands)}  \\
  All Firms & & & & \\ \cline{1-1}
- \input{../Output/FR/OB_SumStats_byVariable_Nowgt_All.tex} \\\\
+ \input{../Output/FR/OB_SelectSumStats_byVariable_Nowgt_All.tex} \\\\
  Private Firms &&&& \\ \cline{1-1}
- \input{../Output/FR/OB_SumStats_byVariable_Nowgt_Pri.tex} \\\\ 
+ \input{../Output/FR/OB_SelectSumStats_byVariable_Nowgt_Pri.tex} \\\\ 
 Public Firms &&&& \\ \cline{1-1}
- \input{../Output/FR/OB_SumStats_byVariable_Nowgt_Pub.tex} \\
+ \input{../Output/FR/OB_SelectSumStats_byVariable_Nowgt_Pub.tex} \\
  \hline\hline
 \end{tabular}}\tabularnewline \\
 All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years. Unweighted data. 
 \end{table}
 
 
-\begin{table}[!htpb]
-\caption{Unweighted French Summary Statistics}
-\resizebox{0.95\textwidth}{!}{
-\begin{tabular}{l c ccc c ccc}
-\hline
- Sample & Number & \multicolumn{3}{c}{Employment} & & \multicolumn{3}{c}{Sales (EUR, thousands)} \\ \cline{3-5} \cline{7-9}
-       & of Firms  & P10 & P50 & P90 &  & P10 & P50 & P90  \\  \hline
- \input{../Output/FR/OB_SumStats_ByCountry_Nowgt_All.tex} \\
- \input{../Output/FR/OB_SumStats_ByCountry_Nowgt_Pri.tex} \\
- \input{../Output/FR/OB_SumStats_ByCountry_Nowgt_Pub.tex}   \\ \hline
-\end{tabular}} \\
-All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years.
-\end{table}
+
+
 
 
 
@@ -453,6 +458,156 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 \end{tabular}}\tabularnewline \\
 
 \end{table}
+
+
+% \subsubsection{Orbis v. EuroStat: Share of Employment by Size Category}
+% \begin{figure}[!htpb]
+% \centering
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.6]{../Output/IT/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Portugal}
+%  \includegraphics[scale=0.6]{../Output/PT/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Spain}
+%  \includegraphics[scale=0.6]{../Output/ES/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.6]{../Output/FR/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Germany}
+%  \includegraphics[scale=0.6]{../Output/DE/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Netherlands}
+%  \includegraphics[scale=0.6]{../Output/AT/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
+% \end{subfigure}
+% \end{figure}
+% \clearpage
+
+% \subsubsection{Orbis v. EuroStat: Number of Employees by Size Category}
+% \begin{figure}[!htpb]
+% \centering
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.6]{../Output/IT/OB_EuroStat_BySizeCat_nEmployees.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Portugal}
+%  \includegraphics[scale=0.6]{../Output/PT/OB_EuroStat_BySizeCat_nEmployees.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Spain}
+%  \includegraphics[scale=0.6]{../Output/ES/OB_EuroStat_BySizeCat_nEmployees.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.6]{../Output/FR/OB_EuroStat_BySizeCat_nEmployees.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Germany}
+%  \includegraphics[scale=0.6]{../Output/DE/OB_EuroStat_BySizeCat_nEmployees.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Netherlands}
+%  \includegraphics[scale=0.6]{../Output/AT/OB_EuroStat_BySizeCat_nEmployees.pdf}
+% \end{subfigure}
+% \end{figure}
+% \clearpage
+
+
+% \subsubsection{Orbis v. EuroStat: Number of Firms by Size Category}
+% \begin{figure}[!htpb]
+% \centering
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.6]{../Output/IT/OB_EuroStat_BySizeCat_nFirms.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Portugal}
+%  \includegraphics[scale=0.6]{../Output/PT/OB_EuroStat_BySizeCat_nFirms.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Spain}
+%  \includegraphics[scale=0.6]{../Output/ES/OB_EuroStat_BySizeCat_nFirms.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.6]{../Output/FR/OB_EuroStat_BySizeCat_nFirms.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Germany}
+%  \includegraphics[scale=0.6]{../Output/DE/OB_EuroStat_BySizeCat_nFirms.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Netherlands}
+%  \includegraphics[scale=0.6]{../Output/AT/OB_EuroStat_BySizeCat_nFirms.pdf}
+% \end{subfigure}
+% \end{figure}
+% \clearpage
+
+
+
+% \subsubsection{Orbis v. EuroStat: Number of Firms by Size Category - Zooming in big firms}
+% \begin{figure}[!htpb]
+% \centering
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Italy}
+%  \includegraphics[scale=0.6]{../Output/IT/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Portugal}
+%  \includegraphics[scale=0.6]{../Output/PT/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Spain}
+%  \includegraphics[scale=0.6]{../Output/ES/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
+% \end{subfigure}%
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{France}
+%  \includegraphics[scale=0.6]{../Output/FR/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Germany}
+%  \includegraphics[scale=0.6]{../Output/DE/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
+% \end{subfigure}
+% \begin{subfigure}{.49\textwidth}
+%     \centering
+%     \subcaption{Netherlands}
+%  \includegraphics[scale=0.6]{../Output/AT/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
+% \end{subfigure}
+% \end{figure}
+% \clearpage
+
+
 
 
 \clearpage
@@ -558,6 +713,52 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 
 
 % section appendix_micro_behaviour_of_firms (end)
+
+
+
+\FloatBarrier
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Data Construction} % (fold)
+\label{sec:Data_Construction_appendix}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\FloatBarrier
+
+
+\begin{table}[!htpb]
+\caption{Unweighted French Summary Statistics}
+\resizebox{0.95\textwidth}{!}{
+\begin{tabular}{l cccc}
+ \hline\hline
+ & Employment & Sales & Assets & Sales Per Employee \\  \cline{3-5}
+ &  & \multicolumn{3}{c}{(Thousands)}  \\
+ All Firms & & & & \\ \cline{1-1}
+ \input{../Output/FR/OB_FullSumStats_byVariable_Nowgt_All.tex} \\\\
+ Private Firms &&&& \\ \cline{1-1}
+ \input{../Output/FR/OB_FullSumStats_byVariable_Nowgt_Pri.tex} \\\\ 
+Public Firms &&&& \\ \cline{1-1}
+ \input{../Output/FR/OB_FullSumStats_byVariable_Nowgt_Pub.tex} \\
+ \hline\hline
+\end{tabular}}\tabularnewline \\
+All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years. Unweighted data. 
+\end{table}
+
+\begin{table}[!htpb]
+\caption{Unweighted French Summary Statistics}
+\resizebox{0.95\textwidth}{!}{
+\begin{tabular}{l c ccc c ccc}
+\hline
+ Sample & Number & \multicolumn{3}{c}{Employment} & & \multicolumn{3}{c}{Sales (EUR, thousands)} \\ \cline{3-5} \cline{7-9}
+       & of Firms  & P10 & P50 & P90 &  & P10 & P50 & P90  \\  \hline
+ \input{../Output/FR/OB_SumStats_ByCountry_Nowgt_All.tex} \\
+ \input{../Output/FR/OB_SumStats_ByCountry_Nowgt_Pri.tex} \\
+ \input{../Output/FR/OB_SumStats_ByCountry_Nowgt_Pub.tex}   \\ \hline
+\end{tabular}} \\
+All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years.
+\end{table}
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
@@ -767,9 +968,6 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 \FloatBarrier
 
 % subsection validation_of_equity_market_depth_numbers (end)
-
-
-
 
 
 
@@ -3254,154 +3452,6 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 % \end{table}
 
 % \clearpage
-
-% \subsubsection{Orbis v. EuroStat: Share of Employment by Size Category}
-% \begin{figure}[!htpb]
-% \centering
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Italy}
-%  \includegraphics[scale=0.6]{../Output/IT/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Portugal}
-%  \includegraphics[scale=0.6]{../Output/PT/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Spain}
-%  \includegraphics[scale=0.6]{../Output/ES/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{France}
-%  \includegraphics[scale=0.6]{../Output/FR/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Germany}
-%  \includegraphics[scale=0.6]{../Output/DE/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/AT/OB_EuroStat_BySizeCat_ShareEmployment.pdf}
-% \end{subfigure}
-% \end{figure}
-% \clearpage
-
-% \subsubsection{Orbis v. EuroStat: Number of Employees by Size Category}
-% \begin{figure}[!htpb]
-% \centering
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Italy}
-%  \includegraphics[scale=0.6]{../Output/IT/OB_EuroStat_BySizeCat_nEmployees.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Portugal}
-%  \includegraphics[scale=0.6]{../Output/PT/OB_EuroStat_BySizeCat_nEmployees.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Spain}
-%  \includegraphics[scale=0.6]{../Output/ES/OB_EuroStat_BySizeCat_nEmployees.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{France}
-%  \includegraphics[scale=0.6]{../Output/FR/OB_EuroStat_BySizeCat_nEmployees.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Germany}
-%  \includegraphics[scale=0.6]{../Output/DE/OB_EuroStat_BySizeCat_nEmployees.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/AT/OB_EuroStat_BySizeCat_nEmployees.pdf}
-% \end{subfigure}
-% \end{figure}
-% \clearpage
-
-
-% \subsubsection{Orbis v. EuroStat: Number of Firms by Size Category}
-% \begin{figure}[!htpb]
-% \centering
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Italy}
-%  \includegraphics[scale=0.6]{../Output/IT/OB_EuroStat_BySizeCat_nFirms.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Portugal}
-%  \includegraphics[scale=0.6]{../Output/PT/OB_EuroStat_BySizeCat_nFirms.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Spain}
-%  \includegraphics[scale=0.6]{../Output/ES/OB_EuroStat_BySizeCat_nFirms.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{France}
-%  \includegraphics[scale=0.6]{../Output/FR/OB_EuroStat_BySizeCat_nFirms.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Germany}
-%  \includegraphics[scale=0.6]{../Output/DE/OB_EuroStat_BySizeCat_nFirms.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/AT/OB_EuroStat_BySizeCat_nFirms.pdf}
-% \end{subfigure}
-% \end{figure}
-% \clearpage
-
-
-
-% \subsubsection{Orbis v. EuroStat: Number of Firms by Size Category - Zooming in big firms}
-% \begin{figure}[!htpb]
-% \centering
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Italy}
-%  \includegraphics[scale=0.6]{../Output/IT/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Portugal}
-%  \includegraphics[scale=0.6]{../Output/PT/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Spain}
-%  \includegraphics[scale=0.6]{../Output/ES/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{France}
-%  \includegraphics[scale=0.6]{../Output/FR/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Germany}
-%  \includegraphics[scale=0.6]{../Output/DE/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Netherlands}
-%  \includegraphics[scale=0.6]{../Output/AT/OB_EuroStat_BySizeCat_nFirms_50Plus.pdf}
-% \end{subfigure}
-% \end{figure}
-% \clearpage
-
 
 
 
