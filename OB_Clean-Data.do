@@ -101,6 +101,7 @@ bysort IDNum: gen AssetGrowth_h = (Assets-L.Assets)/((Assets+L.Assets)/2)
 bysort IDNum: gen SalePerEmpGrowth_h = (SalesPerEmployee-L.SalesPerEmployee)/((SalesPerEmployee+L.SalesPerEmployee)/2)
 
 
+
 *---------------------------
 * IPO Info
 *---------------------------
@@ -109,7 +110,6 @@ bysort IDNum: gen SalePerEmpGrowth_h = (SalesPerEmployee-L.SalesPerEmployee)/((S
 * Convert IPO date from monthly to yearly
 gen IPO_year = year(IPO_date)
 gen Delisted_year = yofd(Delisted_date)
-
 * Generate variable that tells number of years before/after IPO
 gen IPO_timescale = Year - IPO_year
 
@@ -142,6 +142,127 @@ replace FirmType=6 if (EverPublic)
 gen Public=0
 replace Public=1 if Main_exchange !="Unlisted" & (Main_exchange !="Delisted" | (Year< Delisted_year))
 
+
+*-------------------------------------------------
+* For Public Firms Merge In Compustat Data
+*-------------------------------------------------
+gen DataSet="OB"
+append using "Data_Cleaned/${CountryID}_CompustatUnbalanced.dta"
+replace DataSet="CS" if missing(DataSet)
+
+replace Public=1 if DataSet=="CS"
+
+
+* Find unique year-nEmployee Pairs within both datasets 
+gen ones=1 if (Public==1)
+ by DataSet Year nEmployees, sort: gen nObs=sum(ones)
+ by DataSet Year nEmployees, sort: replace nObs=nObs[_N]
+ 
+ gen UniqueInDataSet=0
+ replace UniqueInDataSet=1 if (nObs==1)
+
+ 
+ * Check if these unique year-nEmployee Pairs are matched across datasets
+ by Year nEmployees, sort: gen nDataSetsForYearnEmpCombo=sum(UniqueInDataSet)
+ by Year nEmployees, sort: replace nDataSetsForYearnEmpCombo=nDataSetsForYearnEmpCombo[_N]
+ gen PotentialMatch=1 if (nDataSetsForYearnEmpCombo==2)
+
+  * Figure out Orbis IDNum for the Compustat Firms
+ gen OrbisIDNum=IDNum if (DataSet=="OB") & (PotentialMatch==1)
+ by Year nEmployees, sort: egen OrbisIDNumByMatch=mode(OrbisIDNum)
+ by IDNum DataSet, sort: egen OrbisIDNumByFirm=mode(OrbisIDNumByMatch)
+ 
+
+* If multiple CS firms match the same Orbis firm, keep the OB-CS matches with the highest number of years matched
+by DataSet IDNum OrbisIDNumByMatch, sort: gen nMatchingYears=sum(PotentialMatch)
+by DataSet IDNum OrbisIDNumByMatch, sort: replace nMatchingYears=nMatchingYears[_N]
+
+by DataSet OrbisIDNumByMatch, sort: egen MaxnYearMatch=max(nMatchingYears)
+gen ValidMatch=1 if (PotentialMatch==1) & (nMatchingYears==MaxnYearMatch)
+
+* If multiple CS firms still match the same Orbis firm, keep the OB-CS matches with the largest number of employees
+by DataSet OrbisIDNumByMatch, sort: egen MaxnEmpMatch=max(nEmployees) if (ValidMatch==1)
+by DataSet IDNum OrbisIDNumByMatch, sort: egen MaxnEmpFirmMatch=max(nEmployees) if (ValidMatch==1)
+replace ValidMatch=. if (MaxnEmpFirmMatch<MaxnEmpMatch)
+
+replace OrbisIDNumByMatch=. if missing(ValidMatch)
+drop OrbisIDNumByFirm
+by IDNum DataSet, sort: egen OrbisIDNumByFirm=mode(OrbisIDNumByMatch)
+
+* If multiple CS firms still match the same Orbis firm, drop them
+by DataSet IDNum OrbisIDNumByFirm, sort: gen FirmMatched=_n==1
+by OrbisIDNumByFirm DataSet, sort: gen nFirms=sum(FirmMatched)
+by  OrbisIDNumByFirm DataSet, sort: replace nFirms=nFirms[_N]
+
+drop if (nFirms>1) & (DataSet=="CS")
+
+ 
+sort  DataSet OrbisIDNumByFirm IDNum Year
+br DataSet Year IDNum nEmployees ones nObs UniqueInDataSet nDataSetsForYearnEmpCombo PotentialMatch OrbisIDNum OrbisIDNumByMatch OrbisIDNumByFirm nMatchingYears  MaxnYearMatch ValidMatch MaxnEmpFirmMatch MaxnEmpMatch  FirmMatched nFirms
+
+ * Unmatched Orbis firms
+ replace OrbisIDNumByFirm=IDNum if (DataSet=="OB")
+
+ * Drop unmatched Compustate Firms
+ drop if (DataSet=="CS") & missing(OrbisIDNumByFirm)
+ 
+ 
+ local Variables Revenue Sales COGS Export_revenue Assets Fixed_assets Tangible_fixed_assets Intangible_fixed_assets Working_capital Material_costs Loans Interest_paid RaDExpenses Gross_profit Long_term_debt Shareholders_funds WageBill nEmployees GrossProfits EBITDA Stock Market_capitalisation_mil Type_of_entity Category_of_the_company Main_exchange IPO_date nShareholders NACE_Rev_2_main_section NACE_Rev_2_Core_code_4_digits Industry_4digit NACE_Rev_2_Primary_code_s NACE_Rev_2_SEcondary_code_s US_SIC_Core_code_3_digits US_SIC_Primary_code_s US_SIC_Secondary_code_s BvD_major_sector Age SalesPerEmployee Industry_2digit SalesGrowth_h ProfitGrowth_h AssetGrowth_h SalePerEmpGrowth_h IPO_year Delisted_year IPO_timescale EverPublic FirmType Public
+ 
+ keep `Variables' OrbisIDNumByFirm Year DataSet
+
+
+ reshape wide `Variables', i(OrbisIDNumByFirm Year)  j(DataSet) string
+ 
+ 
+ gen OriginOB=0
+ replace OriginOB=1 if ~missing(nEmployeesOB)
+ replace nEmployeesOB=nEmployeesCS if ~missing(nEmployeesCS)
+ replace OriginOB=0 if ~missing(nEmployeesCS)
+
+rename OrbisIDNumByFirm IDNum
+
+drop *CS
+
+foreach var of local Variables {
+	rename `var'OB `var'
+}
+ 
+ 
+bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
+
+
+*-------------------------------------------------
+* Remove Remaining Outliers
+*-------------------------------------------------
+gen Rise=0
+gen Fall=0
+
+gen Drop=0
+
+
+replace Rise=1 if ~missing(EmpGrowth_h) & (EmpGrowth_h>1.90) & (nEmployees>20) 
+replace Fall=1 if (EmpGrowth_h<-1.90) & (L.nEmployees>20) 
+
+* Before Rises
+replace Drop=1 if (F.Rise==1) & (Fall==0)
+replace Drop=1 if (F2.Rise==1) & (F1.Drop==1) & (Fall==0) & ~missing(nEmployees)
+replace Drop=1 if (F3.Rise==1) & (F1.Drop==1) & (Fall==0) & ~missing(nEmployees)
+replace Drop=1 if (F4.Rise==1) & (F1.Drop==1) & (Fall==0) & ~missing(nEmployees)
+
+
+* After Falls
+replace Drop=1 if (Fall==1) 
+replace Drop=1 if (L.Fall==1) & (Rise==0)  & ~missing(nEmployees)
+replace Drop=1 if (L2.Fall==1) & (L1.Drop==1) & (Rise==0)  & ~missing(nEmployees)
+replace Drop=1 if (L3.Fall==1) & (L2.Drop==1) & (Rise==0)  & ~missing(nEmployees)
+replace Drop=1 if (L4.Fall==1) & (L3.Drop==1) & (Rise==0)  & ~missing(nEmployees)
+
+drop if Drop==1
+
+drop EmpGrowth_h
+bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
+ 
 
 *----------------------
 * Inclusion Criteria

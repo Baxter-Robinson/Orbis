@@ -48,8 +48,8 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 * Size
 global Countries NL AT BE DE FI CZ PT ES FR IT
 
-local Country="NL"
-*local Country="FR"
+*local Country="NL"
+local Country="FR"
 *foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
@@ -67,14 +67,15 @@ local Country="NL"
 	
 	*-------------------------------------------------------
 	* Clean Data
-	*-------------------------------------------------------
+	*-------------------------------------------------------	
+	* Compustat
+	*do CS_Clean-Data.do
+	
 	* Orbis
 	*do OB_Clean-Data.do
 	*do OB_Create-Balanced-Panel.do
 	*do OB_Create-Country-Level-Data.do
-	
-	* Compustat
-	* XXX do CS_Clean-Data.do
+
 	
 	* EuroStat
 	* XXX do EuroStat_Enterprise_Statistics.do
@@ -88,7 +89,7 @@ local Country="NL"
 	*-------------------------------------------------------
 	* Orbis (OB): Unbalanced Panel
 	*-------------------------------------------------------
-	use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
+	*use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
 	
 	
 	**** Summary Statistics
@@ -128,7 +129,6 @@ local Country="NL"
 	* Orbis (OB): Balanced Panel
 	*-------------------------------------------------------
 	*use "Data_Cleaned/`Country'_Balanced.dta",clear
-	*use "Data_Cleaned/`Country'_OnePercent.dta",clear
 	
 	
 	*** Section 3
@@ -170,7 +170,6 @@ local Country="NL"
 	*do Validation_CreateBySize_CS.do
 	*do Validation_BySize_ObvsCS.do
 	
-	
 	*use "Data_Cleaned/`Country'_Unbalanced.dta",clear
 	*do Table_CompustatOrbis-Comparison.do
 	
@@ -194,7 +193,7 @@ local Country="NL"
 *do IMF_CleanData.do
 
 * Penn World Tables
-*do PN_Clean.do
+*do PN_CleanData.do
 
 *do CC_Combine-Data-Sources_All.do
 *do CC_Combine-Data-Sources_Eur.do

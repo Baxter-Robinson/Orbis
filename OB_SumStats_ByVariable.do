@@ -52,6 +52,7 @@ forval i=1/3{
 			(p90) nEmployees_p90=nEmployees Sales_p90=Sales  Assets_p90=Assets SalesPerEmployee_p90=SalesPerEmployee ///
 			(mean) EmpGrowth_h_mean=EmpGrowth_h SalesGrowth_h_mean=SalesGrowth_h AssetGrowth_h_mean=AssetGrowth_h SalePerEmpGrowth_h_mean=SalePerEmpGrowth_h ///
             (sd) EmpGrowth_h_sd=EmpGrowth_h SalesGrowth_h_sd=SalesGrowth_h AssetGrowth_h_sd=AssetGrowth_h SalePerEmpGrowth_h_sd=SalePerEmpGrowth_h ///
+            (p50) EmpGrowth_h_p50=EmpGrowth_h SalesGrowth_h_p50=SalesGrowth_h AssetGrowth_h_p50=AssetGrowth_h SalePerEmpGrowth_h_p50=SalePerEmpGrowth_h ///
             (mean) LnnEmployees_mean=LnnEmployees LnSales_mean=LnSales  LnAssets_mean=LnAssets LnSalesPerEmployee_mean=LnSalesPerEmployee ///
             (sd) LnnEmployees_sd=LnnEmployees LnSales_sd=LnSales  LnAssets_sd=LnAssets LnSalesPerEmployee_sd=LnSalesPerEmployee ///
 			(count) nEmployees_n=nEmployees Sales_n=Sales  Assets_n=Assets SalesPerEmployee_n=SalesPerEmployee ///
@@ -110,6 +111,14 @@ forval i=1/3{
 		file write OutputFile "Std Growth Rate " 
 		foreach var of local VariablesGrowth{
 			sum `var'_sd
+			local Moment: di %12.2fc r(mean)*100
+			file write OutputFile " & `Moment'\% "
+		}
+		file write OutputFile " \\ " _newline
+				
+		file write OutputFile "Median Growth Rate " 
+		foreach var of local VariablesGrowth{
+			sum `var'_p50
 			local Moment: di %12.2fc r(mean)*100
 			file write OutputFile " & `Moment'\% "
 		}

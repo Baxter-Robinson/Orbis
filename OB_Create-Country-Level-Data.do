@@ -180,12 +180,17 @@ gen RaDToRev=TotRandD/TotRevenue
 bysort Year: egen Emp_Std=sd(nEmployees)
 bysort Year: egen LnEmp_Std=sd(ln(nEmployees))
 
+* Years Since IPO
+gen YearsSinceIPO=IPO_timescale if (IPO_timescale>0)
+
+bysort Year: egen AvgYearsSinceIPO=mean(YearsSinceIPO)
+
 
 local AllVars EmpGrowth_All_Avg EmpGrowth_All_Std nFirmsShare_Public ///
   EmpGrowth_PubAll_Avg EmpGrowth_PubAll_Std EmpGrowth_PriAll_Avg EmpGrowth_PriAll_Std ///
   EmpGrowth_PubLarge_Avg EmpGrowth_PubLarge_Std EmpGrowth_PriLarge_Avg EmpGrowth_PriLarge_Std ///
   EmpShare_Public  EmpShare_Large MarketCap EmpShare_Top* ///
-  AssetsPerEmp_* AssetsPerRev_*  RaDToRev Emp_Std LnEmp_Std
+  AssetsPerEmp_* AssetsPerRev_*  RaDToRev Emp_Std LnEmp_Std AvgYearsSinceIPO
   
 collapse (mean) `AllVars', by(Year)
   

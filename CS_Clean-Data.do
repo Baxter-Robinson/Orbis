@@ -1,6 +1,7 @@
 ********************************************
 * Change variable names to match Orbis data
 ********************************************
+use "${DATAPATH}/${CountryID}_Compustat.dta", clear
 
 rename fyear Year
 rename at Assets
