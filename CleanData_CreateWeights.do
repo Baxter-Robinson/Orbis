@@ -23,5 +23,7 @@ merge 1:m Year SizeCategoryES using "Data_Cleaned/${CountryID}_Unbalanced.dta"
 drop if _merge<3
 drop _merge
 
+replace ESWeights=1 if (Public==1)
+
 
 save "Data_Cleaned/${CountryID}_Unbalanced.dta", replace
