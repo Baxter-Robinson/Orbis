@@ -32,7 +32,7 @@ use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
 	rename nEmpCat nEmployees
 	
 	gen Country="${CountryID}"
-	append using "Data_Cleaned/EuroStat_Cleaned.dta"
+	append using "Data_Cleaned/EuroStat_AvgAcrossYears_Cleaned.dta"
 	keep if (Country=="${CountryID}")
 	replace DataSet="ES" if (DataSet!="OB")
 	
