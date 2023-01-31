@@ -42,13 +42,12 @@ global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
 * Sample Options
 *---------------------
 global FirstYear=2009
-global LastYear=2018
+global LastYear=2016
 
 *---------------------
 * Clean EuroStat Data
 *---------------------
 do CleanData_EuroStat.do
-
 
 *---------------------
 * Loop over countries 
@@ -84,8 +83,6 @@ local Country="FR"
 	* EuroStat
 	* XXX do EuroStat_Enterprise_Statistics.do
 	* XXX do EuroStat_Clean-Data.do
-	*do Validation_CreateBySize_ES.do
-	
 	
 	* Orbis
 	*do OB_Clean-Data.do

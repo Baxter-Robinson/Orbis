@@ -16,9 +16,10 @@ use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
 	bysort SizeCategoryES Year : egen nEmpCat1 = total(nEmployees) 
 	bysort SizeCategoryES Year : egen nEmpCat2 = total(nEmployees_ESwgt) 
 
-
-	collapse (mean) nEmpCat* nFirms* , by(SizeCategory)
+	collapse (mean) nEmpCat* nFirms* , by(SizeCategory Year)
 	
+	collapse (mean) nEmpCat* nFirms* , by(SizeCategory)
+
 	reshape long nEmpCat nFirms , i(SizeCategory) j(Weights_temp)
 	
 	gen Weights="ES" if (Weights_temp==2)
@@ -67,5 +68,16 @@ use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
 	xlabel(`Labels') ///
 	xtitle("Size Category")  ytitle("Millions of Firms") graphregion(color(white))
 	graph export Output/$CountryID/Valid_OB-EuroStat_nFirms.pdf, replace 
+	
+	
+		
+	graph twoway (bar nFirms xAxis1 if (DataSet=="ES") & (SizeCategoryES>1) ,barwidth(0.3)) ///
+	 (bar nFirms xAxis2 if (DataSet=="OB") & (Weights=="No") & (SizeCategoryES>1), barwidth(0.3))   ///
+	 (bar nFirms xAxis3 if (DataSet=="OB") & (Weights=="ES") & (SizeCategoryES>1), lcolor(gs12) fcolor(gs12) barwidth(0.3))   ///
+	,legend(label(1 "EuroStat") label( 2 "Orbis (Unweighted)" ) label( 3 "Orbis (Weighted)" ) ) ///
+	ylabel(, format(%3.1fc))  ///
+	xlabel(`Labels') ///
+	xtitle("Size Category")  ytitle("Millions of Firms") graphregion(color(white))
+	graph export Output/$CountryID/Valid_OB-EuroStat_nFirms_Zoomed.pdf, replace 
 	
 	

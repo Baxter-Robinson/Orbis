@@ -27,6 +27,10 @@
 	*Sum over industries
 	collapse (sum) nFirms nEmployees, by(Country  SizeCategory Year)
 	
+	gen DataSet="ES"
+
+	save "Data_Cleaned/EuroStat_ByYear_Cleaned.dta", replace
+
 	* Average over years
 	collapse (mean) nFirms nEmployees , by(Country SizeCategory)
 	
@@ -34,4 +38,4 @@
 	egen TotFirms_EuroStat = total(nFirms)
 	
 		
-save "Data_Cleaned/EuroStat_Cleaned.dta", replace
+	save "Data_Cleaned/EuroStat_AvgAcrossYears_Cleaned.dta", replace

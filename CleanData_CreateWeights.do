@@ -1,7 +1,11 @@
 
 * Open up BySize Data Sets
 use "Data_Cleaned/${CountryID}_Validation_bySize_OB.dta", clear
-append using "Data_Cleaned/${CountryID}_Validation_bySize_ES.dta"
+gen Country="${CountryID}"
+
+append using "Data_Cleaned/EuroStat_ByYear_Cleaned.dta"
+
+keep if Country=="${CountryID}"
 
 * Compute Weights
 gen EuroStatNumbers=nFirms if (DataSet=="ES")
