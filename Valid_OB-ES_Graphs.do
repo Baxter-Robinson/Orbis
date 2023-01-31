@@ -70,7 +70,8 @@ use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
 	graph export Output/$CountryID/Valid_OB-EuroStat_nFirms.pdf, replace 
 	
 	
-		
+
+	local Labels  2 "10-19"  3 "20-49" 4 "50-249" 5 "250+" 
 	graph twoway (bar nFirms xAxis1 if (DataSet=="ES") & (SizeCategoryES>1) ,barwidth(0.3)) ///
 	 (bar nFirms xAxis2 if (DataSet=="OB") & (Weights=="No") & (SizeCategoryES>1), barwidth(0.3))   ///
 	 (bar nFirms xAxis3 if (DataSet=="OB") & (Weights=="ES") & (SizeCategoryES>1), lcolor(gs12) fcolor(gs12) barwidth(0.3))   ///
