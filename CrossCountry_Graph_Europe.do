@@ -19,11 +19,12 @@ graph twoway (lfit tfp EquityMktDepth_WB, lcolor(maroon) ) ///
 , xtitle("Equity Market Depth") ytitle("Total Factor Productivity") graphregion(color(white)) legend(off)
 graph export Output/Cross-Country/EquityMktDepth_TFP.pdf, replace
 
-
+* Employment Share of Public Firms
 graph twoway (lfit tfp EmpShare_Public, lcolor(maroon) ) ///
 (scatter tfp EmpShare_Public, mlabel(CountryCode_2Digit) color(navy)  mlabcolor(navy)) ///
 , xtitle("Employment Share of Public Firms") ytitle("Total Factor Productivity") graphregion(color(white)) legend(off)
 graph export Output/Cross-Country/EmpSharePublic_TFP.pdf, replace
+
 
 
 * Output Per Capita
@@ -39,6 +40,7 @@ graph export Output/Cross-Country/EquityMktDepth_CapitalToLabor.pdf, replace
 graph twoway (lfit CapitalToOutput EquityMktDepth_WB, lcolor(maroon) ) ///
 (scatter CapitalToOutput EquityMktDepth_WB, mlabel(CountryCode_2Digit) color(navy)  mlabcolor(navy) ) ///
 , xtitle("Equity Market Depth") ytitle("Capital To Output ratio") graphregion(color(white))  legend(off)
+graph export Output/Cross-Country/EquityMktDepth_CapitalToOutput.pdf, replace
 
 
 *----------------------------------

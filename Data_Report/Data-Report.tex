@@ -114,16 +114,7 @@ All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.
 \begin{figure}[!htpb]
 \centering
 \caption{Total Factor Productivity (European Countries)}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{World Bank}
- \includegraphics[scale=0.6]{../Output/Cross-Country/TFP_EquityMktDepth_WB.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Orbis}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/TFP_EquityMktDepth_OB.pdf}
-\end{subfigure}
+ \includegraphics[scale=1]{../Output/Cross-Country/EquityMktDepth_TFP.pdf}
 \end{figure}
 \FloatBarrier
 
@@ -690,36 +681,138 @@ XXX This Eurostat data does not contain all the 250+ firms. That is why we are g
 
 \begin{figure}[!htpb]
 \centering
-\caption{Share of Employment in Public Firms}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{World Bank}
- \includegraphics[scale=0.6]{../Output/Cross-Country/empSharePublic_EquityMktDepth_WB.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Orbis}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/empSharePublic_EquityMktDepth_OB.pdf}
-\end{subfigure}
+\caption{Comparison of Equity Market Depth: World Bank vs. Orbis}
+ \includegraphics[scale=0.8]{../Output/Cross-Country/EquityMktDepth_OBvsWB.pdf}
 \end{figure}
-\FloatBarrier
 
 
 \begin{figure}[!htpb]
 \centering
-\caption{Share of Employment in Large Firms}
+\caption{Share of Employment in Public Firms}
+ \includegraphics[scale=0.8]{../Output/Cross-Country/EmpSharePublic_TFP.pdf}
+
+\end{figure}
+
+
+
+
+\begin{figure}[!htpb]
+\centering
+\caption{Output Per Capita}
+ \includegraphics[scale=0.8]{../Output/Cross-Country/EquityMktDepth_OutputPerCap.pdf}
+\end{figure}
+
+
+
+\begin{figure}[!htpb]
+\centering
+\caption{Capital Labour Ratio}
+ \includegraphics[scale=0.8]{../Output/Cross-Country/EquityMktDepth_CapitalToLabor.pdf}
+\end{figure}
+
+\begin{figure}[!htpb]
+\centering
+\caption{Capital Output Ratio}
+ \includegraphics[scale=0.8]{../Output/Cross-Country/EquityMktDepth_CapitalToOutput.pdf}
+
+\end{figure}
+
+
+
+\begin{center}
+\begin{figure}[htbp]
+
+\centering
+\caption{Private Average Growth Rates By Equity Market Depth}
+ \includegraphics[scale=0.8]{../Output/Cross-Country/EquityMktDepth_AvgEmpGrowth_PriAll.pdf}
+
+
+\end{figure}
+\end{center}
+
+
+
+\begin{center}
+\begin{figure}[htbp]
+
+\centering
+\caption{Public Average Growth Rates By Equity Market Depth}
+ \includegraphics[scale=0.8]{../Output/Cross-Country/EquityMktDepth_AvgEmpGrowth_PubAll.pdf}
+
+
+\end{figure}
+\end{center}
+
+
+
+\begin{center}
+\begin{figure}[htbp]
+
+\centering
+\caption{Public vs. Private Average Growth Rates By Equity Market Depth}
+ \includegraphics[scale=0.8]{../Output/Cross-Country/EquityMktDepth_AvgEmpGrowth_PrivsPubAll.pdf}
+
+
+\end{figure}
+\end{center}
+
+
+\begin{center}
+\begin{figure}[htbp]
+
+\centering
+\caption{Public vs. Private Average Growth Rates By Equity Market Depth}
+ \includegraphics[scale=0.8]{../Output/Cross-Country/EquityMktDepth_AvgEmpGrowth_PrivsPubAll-Diff.pdf}
+
+
+\end{figure}
+\end{center}
+
+
+\begin{center}
+\begin{figure}[htbp]
+
+\centering
+\caption{Public vs. Private Std of Growth Rates By Equity Market Depth}
+ \includegraphics[scale=0.8]{../Output/Cross-Country/EquityMktDepth_SDEmpGrowth_PriVsPubAll.pdf}
+
+
+\end{figure}
+\end{center}
+
+\FloatBarrier
+\subsection{Additional Financial Development Variables}
+\FloatBarrier
+
+
+
+\begin{figure}[!htpb]
+ \caption{Total Factor Productivity and Financial Development Variables}
+\centering
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{World Bank}
- \includegraphics[scale=0.6]{../Output/Cross-Country/empShareLargeFirms_EquityMktDepth_WB.pdf}
+    \subcaption{Domestic Credit to Private Sector by Banks}
+ \includegraphics[scale=0.5]{../Output/Cross-Country/EquityMktDepth_DomCredit-Banks_WB.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Private Debt}
+ \includegraphics[scale=0.5]{../Output/Cross-Country/EquityMktDepth_PrivateDebtAll_IMF.pdf}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
     \centering
-    \subcaption{Orbis}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/empShareLargeFirms_EquityMktDepth_OB.pdf}
+    \subcaption{Household Debt}
+ \includegraphics[scale=0.5]{../Output/Cross-Country/EquityMktDepth_HHDebtAll_IMF.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{NonFinancial Corporate Debt}
+ \includegraphics[scale=0.5]{../Output/Cross-Country/EquityMktDepth_NonFinancialDebt_IMF.pdf}
 \end{subfigure}
 \end{figure}
-\FloatBarrier
+
+
+
 
 % section cross_country_facts (end)
 
@@ -843,198 +936,6 @@ All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.
 
 
 
-\begin{center}
-\begin{figure}[htbp]
-
-\centering
-\caption{Public vs. Private Average Growth Rates By Equity Market Depth}
- \includegraphics[scale=0.8]{../Output/Cross-Country/avgEmpGrowthPubVsPri_EquityMktDepth_WB.pdf}
-
-
-\end{figure}
-\end{center}
-
-
-\begin{center}
-\begin{figure}[htbp]
-
-\centering
-\caption{Public vs. Private Std of Growth Rates By Equity Market Depth}
- \includegraphics[scale=0.8]{../Output/Cross-Country/varEmpGrowthPubVsPri_EquityMktDepth_WB.pdf}
-
-
-\end{figure}
-\end{center}
-
-
-
-
-
-
-
-
-
-
-\newpage
-%------------------------------------------------------------------------------
-\FloatBarrier
-\section{Cross-Country} % (fold)
-\label{sec:cross-country}
-\FloatBarrier
-%------------------------------------------------------------------------------
-
-
-
-\subsection{Non-useful Facts}
-
-
-\subsubsection{Output Per Capita}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{World Bank}
- \includegraphics[scale=0.6]{../Output/Cross-Country/OutputPerCapita_EquityMktDepth_WB.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Orbis}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/OutputPerCapita_EquityMktDepth_OB.pdf}
-\end{subfigure}
-\end{figure}
-\FloatBarrier
-
-
-
-\subsubsection{Capital to Labor ratio}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{World Bank}
- \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToLabor_EquityMktDepth_WB.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Orbis}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToLabor_EquityMktDepth_OB.pdf}
-\end{subfigure}
-\end{figure}
-\FloatBarrier
-\clearpage
-
-\subsubsection{Capital to Output ratio}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{World Bank}
- \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToOutput_EquityMktDepth_WB.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Orbis}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/CapitalToOutput_EquityMktDepth_OB.pdf}
-\end{subfigure}
-\end{figure}
-\FloatBarrier
-
-
-
-
-\subsubsection{Average Employment Growth Rate - Private Firms}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{World Bank}
- \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPrivate_EquityMktDepth_WB.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Orbis}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPrivate_EquityMktDepth_OB.pdf}
-\end{subfigure}
-\end{figure}
-\FloatBarrier
-
-\subsubsection{Average Employment Growth Rate - Public Firms}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{World Bank}
- \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_WB.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Orbis}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/avgEmpGrowthPublic_EquityMktDepth_OB.pdf}
-\end{subfigure}
-\end{figure}
-\FloatBarrier
-
-\subsubsection{Variance of Employment Growth Rate - Private Firms}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{World Bank}
- \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPrivate_EquityMktDepth_WB.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Orbis}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPrivate_EquityMktDepth_OB.pdf}
-\end{subfigure}
-\end{figure}
-\FloatBarrier
-\clearpage
-
-\subsubsection{Variance of Employment Growth Rate - Public Firms}
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{World Bank}
- \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_WB.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Orbis}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/varEmpGrowthPublic_EquityMktDepth_OB.pdf}
-\end{subfigure}
-\end{figure}
-\FloatBarrier
-
-
-\clearpage
-
-\subsection{Validation of Equity Market Depth Numbers} % (fold)
-\label{sec:validation_of_equity_market_depth_numbers}
-
-\subsubsection{World Bank Equity Market Depth vs. }
-\begin{figure}[!htpb]
-\centering
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Orbis}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/EquityMktDepth_OBvsWB.pdf}
-\end{subfigure}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Compustat - Average Dec 31}
- \includegraphics[scale=0.6]{../Output/Cross-Country/EquityMktDepth_CSyearendvsWB.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Compustat - Yearly average}
-  \includegraphics[scale=0.6]{../Output/Cross-Country/EquityMktDepth_CSAnnualvsWB.pdf}
-\end{subfigure}
-\end{figure}
-\FloatBarrier
-
-% subsection validation_of_equity_market_depth_numbers (end)
 
 
 
@@ -1179,32 +1080,6 @@ All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.
 % \end{tabular}}
 % \end{table}
 
-% \subsubsection{Additional Financial Development Variables}
-
-% \begin{figure}[!htpb]
-%  \caption{Equity Market Depth (WB) and Financial Development Variables}
-% \centering
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Domestic Credit to Private Sector by Banks}
-%  \includegraphics[scale=0.6]{../Output/Cross-Country/WB_DomCreditBanks_EquityMktDepth.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Private Credit (all instruments)}
-%  \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_PrivateDebtAll_EquityMktDepth.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Household Debt (all instruments)}
-%  \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_HHDebtAll_EquityMktDepth.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{NonFinancial Corporate Debt (all instruments)}
-%  \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_NonFinancialDebtAll_EquityMktDepth.pdf}
-% \end{subfigure}
-% \end{figure}
 
 % \paragraph{Definitions}
 % \begin{small}
@@ -1215,41 +1090,6 @@ All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.
 %       \item NonFinancial Corporate Debt (all instruments): Total stock of debt liabilities issued by nonfinancial corporations, including all debt instruments, as a share of GDP. Source: IMF Global Debt Database.\\~\
 %   \end{itemize}
 % \end{small}
-
-% \begin{figure}[!htpb]
-%  \caption{Total Factor Productivity and Financial Development Variables}
-% \centering
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Domestic Credit to Private Sector by Banks}
-%  \includegraphics[scale=0.6]{../Output/Cross-Country/WB_DomCreditBanks_TFP.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Private Debt (all instruments)}
-%  \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_PrivateDebtAll_TFP.pdf}
-% \end{subfigure}
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{Household Debt (all instruments)}
-%  \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_HHDebtAll_TFP.pdf}
-% \end{subfigure}%
-% \begin{subfigure}{.49\textwidth}
-%     \centering
-%     \subcaption{NonFinancial Corporate Debt (all instruments)}
-%  \includegraphics[scale=0.6]{../Output/Cross-Country/IMF_NonFinancialDebtAll_TFP.pdf}
-% \end{subfigure}
-% \end{figure}
-
-
-% Note: The Equity Market Depth variable is taken from the WB data.  The TFP measure is taken from the Penn World Tables.  In order for the graphs in figure 25 and 26 to have the same number of countries,  I restricted them to both have Equity Market Depth and TFP measures jointly,  so the Czech Republic and Finland do not appear due to not having Equity Market Depth Data from the World Bank.
-
-
-% \begin{figure}[!htpb]
-%   \caption{Correlation Financial Development Variables}
-%   \centering
-%   \includegraphics[scale=0.9]{../Output/Cross-Country/WB_IMF_Measure_Comparison.pdf}
-% \end{figure}
 
 
 % \clearpage
