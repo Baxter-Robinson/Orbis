@@ -47,7 +47,7 @@ global LastYear=2016
 *---------------------
 * Clean EuroStat Data
 *---------------------
-do CleanData_EuroStat.do
+*do CleanData_EuroStat.do
 
 *---------------------
 * Loop over countries 
@@ -62,8 +62,6 @@ local Country="FR"
 *foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
-	global FirstYear="2009"
-	global LastYear="2016"
 	
 	*-------------------------------------------------------
 	* Raw Data
@@ -104,7 +102,7 @@ local Country="FR"
 	*do OB_SumStats_ByVariable.do
 	*do OB_Graph_BySize_PubVPrivate.do
 	*do OB_Share_Graphs.do 
-	*do OB_Graph_HaltiGrowth_Employment-Dist.do 
+	*do OB_Dist-EmpGrowth.do 
 	*do OB_gEmp_Regressions.do
 	
 	
