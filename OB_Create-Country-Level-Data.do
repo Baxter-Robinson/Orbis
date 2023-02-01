@@ -109,10 +109,10 @@ gen AssetsPerRev_PriLarge=`TotAss'/`TotRev'
 * Employment shares by Firm Type
 bysort Year: egen nEmployeesTot = total(nEmployees)
 bysort Year Public: egen nEmployeesTot_byFirmType = total(nEmployees)
-gen EmpShare_Public=nEmployeesTot_byFirmType/nEmployeesTot if (Public==1)
+gen EmpShare_Public=nEmployeesTot_byFirmType/nEmployeesTot*100 if (Public==1)
 
 bysort Year: egen nEmployeesTot_Large = total(nEmployees) if (nEmployees>99)
-gen EmpShare_Large=nEmployeesTot_Large/nEmployeesTot if (nEmployees>99)
+gen EmpShare_Large=nEmployeesTot_Large/nEmployeesTot*100 if (nEmployees>99)
 
 bysort Year: egen MarketCap = total(Market_capitalisation_mil) if (Public==1)
 
