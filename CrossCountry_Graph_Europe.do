@@ -59,13 +59,14 @@ graph export Output/Cross-Country/EquityMktDepth_AvgEmpGrowth_PubAll.pdf, replac
 * Both
 graph twoway (scatter EmpGrowth_PubAll_Avg EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///
  (scatter EmpGrowth_PriAll_Avg EquityMktDepth_WB, mlabel(CountryCode_2Digit) msymbol(D)) ///
- , xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white))
+ , xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) ///
+ legend(label(1 "Public") label( 2 "Private"))
 graph export Output/Cross-Country/EquityMktDepth_AvgEmpGrowth_PrivsPubAll.pdf, replace
-
+*/
 * Difference
-gen DiffEmpGrowth=EmpGrowth_PriAll_Avg-EmpGrowth_PubAll_Avg
+gen DiffEmpGrowth=EmpGrowth_PubAll_Avg-EmpGrowth_PriAll_Avg
 graph twoway (scatter DiffEmpGrowth EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///
- , xtitle("Equity Market Depth") ytitle("Average Employment Growth of Private minus Public ") graphregion(color(white))
+ , xtitle("Equity Market Depth") ytitle("Difference in Average Employment Growth") graphregion(color(white))
 graph export Output/Cross-Country/EquityMktDepth_AvgEmpGrowth_PrivsPubAll-Diff.pdf, replace
 
 *----------------------------------
@@ -76,6 +77,12 @@ graph twoway (scatter EmpGrowth_PubAll_Std EquityMktDepth_WB, mlabel(CountryCode
  (scatter EmpGrowth_PriAll_Std EquityMktDepth_WB, mlabel(CountryCode_2Digit)  msymbol(D)) ///
  , xtitle("Equity Market Depth") ytitle("Standard Deviation of Employment Growth") graphregion(color(white))  legend(label(1 "Public") label( 2 "Private"))
 graph export Output/Cross-Country/EquityMktDepth_SDEmpGrowth_PriVsPubAll.pdf, replace
+
+* Difference
+gen DiffStdEmpGrowth=EmpGrowth_PubAll_Std-EmpGrowth_PriAll_Std
+graph twoway (scatter DiffStdEmpGrowth EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///
+ , xtitle("Equity Market Depth") ytitle("Difference in Standard Deviation of Employment Growth") graphregion(color(white))  
+graph export Output/Cross-Country/EquityMktDepth_SDEmpGrowth_PriVsPubAll-Diff.pdf, replace
 
 
 graph twoway (scatter EmpGrowth_PubLarge_Std EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///

@@ -39,10 +39,10 @@
 \listoffigures
 \FloatBarrier
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{To Discuss} % (fold)
-\label{sec:To_Discuss}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{To Discuss} % (fold)
+% \label{sec:To_Discuss}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
@@ -61,7 +61,7 @@
 
 \begin{table}[!htpb]
 \caption{French Summary Statistics}
-\resizebox{0.95\textwidth}{!}{
+\resizebox{0.90\textwidth}{!}{
 \begin{tabular}{l cccc}
  \hline\hline
  & Employment & Sales & Assets & Sales Per Employee \\  \cline{3-5}
@@ -81,7 +81,7 @@ All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.
 
 \begin{table}[!htpb]
 \caption{French Summary Statistics}
-\resizebox{0.95\textwidth}{!}{
+\resizebox{0.90\textwidth}{!}{
 \begin{tabular}{l c ccc c ccc}
 \hline
  Sample & Number & \multicolumn{3}{c}{Employment} & & \multicolumn{3}{c}{Sales (EUR, thousands)} \\ \cline{3-5} \cline{7-9}
@@ -144,11 +144,29 @@ Trimmed takes out: Hong Kong, Luxembourg, Malaysia, Singapore, South Africa, and
 
 \centering
 \caption{Difference in Average Growth Rate between Private and Public Firms}
+ \includegraphics[scale=0.8]{../Output/Cross-Country/EquityMktDepth_AvgEmpGrowth_PrivsPubAll.pdf}
+
+
+\end{figure}
+\end{center}
+
+
+
+
+\begin{center}
+\begin{figure}[htbp]
+
+\centering
+\caption{Difference in Average Growth Rate between Private and Public Firms}
  \includegraphics[scale=0.8]{../Output/Cross-Country/EquityMktDepth_AvgEmpGrowth_PrivsPubAll-Diff.pdf}
 
 
 \end{figure}
 \end{center}
+
+
+
+
 
 \begin{center}
 \begin{figure}[htbp]
@@ -162,6 +180,17 @@ Trimmed takes out: Hong Kong, Luxembourg, Malaysia, Singapore, South Africa, and
 \end{center}
 
 
+
+\begin{center}
+\begin{figure}[htbp]
+
+\centering
+\caption{Standard Deviation of Employment Growth Rates}
+ \includegraphics[scale=0.8]{../Output/Cross-Country/EquityMktDepth_SDEmpGrowth_PriVsPubAll-Diff.pdf}
+
+
+\end{figure}
+\end{center}
 
 
 % subsection cross_country_facts (end)
@@ -392,13 +421,45 @@ Trimmed takes out: Hong Kong, Luxembourg, Malaysia, Singapore, South Africa, and
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \FloatBarrier
 
-We build our data set from Orbis, using additional information from both EuroStat and Compustat. Our sample period goes from 2009 to 2018. The sample is unbalanced as firms enter and exit. We drop firms that are never employers in our sample as well as firm-year observations for which the number of employees is missing. We winsorize all variables below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles within each year. We perform this winsorization separately on public and private firms.
 
 
-Since Orbis does not include the universe of private firms, we weight private firms based on their size in order to match the distribution of firm sizes in Eurostat data. For public firms, we augment the Orbis data with Compustat. Specifically, we match specific public firms in the Orbis data using unique combinations of number of employees and year. For matched firms in Orbis, we use the Compustat employment and sales numbers in order to minimize the number of missing observations. We also remove specific observations with implausibly volatile growth rates.
+\textbf{Appendix:}
 
 
-Tables \ref{tab:selected-sum-stats_ESwgt_FR} and \ref{tab:selected-sum-stats_Nowgt_FR} show the weighted and unweighted summary statistics for our cleaned sample. 
+We construct our panel data using the Orbis data set. We restrict our attention to ten European countries, Austria, Belgium, Czech Republic, Finland, France, Germany, Italy, the Netherlands, Portugal, and Spain, over the period 2009-2016. The sample is unbalanced as firms enter and exit. Within each country, we make the following data modifications. We drop firms that are never employers in our sample. In addition, we drop firm-year observations that are missing information about employment or sales. 
+
+
+We compute employment growth rates as in \cite{Davis_Haltiwanger_et_al_1996_SBE} using: 
+
+$$\text{Employment Growth}_t= \frac{N_t-N_{t-1}}{(N_t+N_{t-1})/2}$$ 
+
+After computing these growth rates, we winsorize them at the 99.5 and 0.5 quantiles. We perform this winsorization separately on public and private firms. Summary statistics for French firms are provides in table\ref{tab:selected-sum-stats_Nowgt_FR}. 
+
+%We construct the age of each firm as the difference between the current year and the minimum of the first year the firm appears in the data, the date of incorporation, and the IPO date. 
+
+
+\begin{table}[!htpb]
+\caption{French Summary Statistics}
+\label{tab:selected-sum-stats_Nowgt_FR}
+\resizebox{0.95\textwidth}{!}{
+\begin{tabular}{l rrrr}
+ \hline\hline
+ & Employment & Sales & Assets & $\frac{\text{Sales}}{\text{Employees}}$ \\  \cline{3-5}
+ &  & \multicolumn{3}{c}{(Thousands)}  \\
+ All Firms & & & & \\ \cline{1-1}
+ \input{../Output/FR/OB_SelectSumStats_byVariable_Nowgt_All.tex} \\\\
+ Private Firms &&&& \\ \cline{1-1}
+ \input{../Output/FR/OB_SelectSumStats_byVariable_Nowgt_Pri.tex} \\\\ 
+Public Firms &&&& \\ \cline{1-1}
+ \input{../Output/FR/OB_SelectSumStats_byVariable_Nowgt_Pub.tex} \\
+ \hline\hline
+\end{tabular}}\tabularnewline \\
+All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years. Unweighted data. 
+\end{table}
+
+
+While Orbis includes substantial coverage of private firms, it does not contain the universe of private firms. In order to ensure our firm-size distribution reflects the aggregate numbers, we weight private firms based on their size in order to match the distribution of firm sizes in Eurostat data. Table\ref{tab:selected-sum-stats_Nowgt_FR} shows weighted summary statistics. Figure \ref{fig:FR-Data-Coverage} illustrates that Orbis has excellent coverage of large private firms, but suffers from a lower coverage of small private firms. 
+
 
 
 \begin{table}[!htpb]
@@ -422,24 +483,28 @@ All values are averages across sample years. All variables are winsorized below 
 
 
 
-\begin{table}[!htpb]
-\caption{Unweighted French Summary Statistics}
-\label{tab:selected-sum-stats_Nowgt_FR}
-\resizebox{0.95\textwidth}{!}{
-\begin{tabular}{l rrrr}
- \hline\hline
- & Employment & Sales & Assets & $\frac{\text{Sales}}{\text{Employees}}$ \\  \cline{3-5}
- &  & \multicolumn{3}{c}{(Thousands)}  \\
- All Firms & & & & \\ \cline{1-1}
- \input{../Output/FR/OB_SelectSumStats_byVariable_Nowgt_All.tex} \\\\
- Private Firms &&&& \\ \cline{1-1}
- \input{../Output/FR/OB_SelectSumStats_byVariable_Nowgt_Pri.tex} \\\\ 
-Public Firms &&&& \\ \cline{1-1}
- \input{../Output/FR/OB_SelectSumStats_byVariable_Nowgt_Pub.tex} \\
- \hline\hline
-\end{tabular}}\tabularnewline \\
-All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.5\textsuperscript{th} percentiles. All values are averages across sample years. Unweighted data. 
-\end{table}
+
+\begin{figure}[!htpb]
+\centering
+\caption{France Data Coverage}
+\label{fig:FR-Data-Coverage}
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Number of Employees}
+ \includegraphics[scale=0.6]{../Output/FR/Valid_OB-EuroStat_nEmployees.pdf}
+\end{subfigure}%
+\begin{subfigure}{.49\textwidth}
+    \centering
+    \subcaption{Number of Firms}
+ \includegraphics[scale=0.6]{../Output/FR/Valid_OB-EuroStat_nFirms.pdf}
+\end{subfigure}%
+
+
+\end{figure}
+
+
+Since there are so few public firms relative to private firms, it is important to minimize the number of missing public firm-year observations. To this aim, we augment the Orbis data for public firms with Compustat. Specifically, we match specific public firms in the Orbis data using unique combinations of number of employees and year. For firms that we are able to match, we use the Compustat employment and sales numbers in order to minimize the number of missing observations. %We also remove specific observations with implausibly volatile growth rates.
+
 
 
 
@@ -455,22 +520,6 @@ All variables are winsorized below the 0.5\textsuperscript{th} and above the 99.
 \FloatBarrier
 
 \FloatBarrier
-\begin{figure}[!htpb]
-\centering
-\caption{France Data Coverage}
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Number of Employees}
- \includegraphics[scale=0.6]{../Output/FR/Valid_OB-EuroStat_nEmployees.pdf}
-\end{subfigure}%
-\begin{subfigure}{.49\textwidth}
-    \centering
-    \subcaption{Number of Firms}
- \includegraphics[scale=0.6]{../Output/FR/Valid_OB-EuroStat_nFirms.pdf}
-\end{subfigure}%
-
-
-\end{figure}
 
 
 
