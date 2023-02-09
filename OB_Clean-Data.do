@@ -267,8 +267,8 @@ bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmploy
 *----------------------
 * Inclusion Criteria
 *----------------------
-drop if (Year<2009)
-drop if (Year>2018)
+drop if (Year<$FirstYear)
+drop if (Year>$LastYear)
 
 drop if missing(nEmployees)
 

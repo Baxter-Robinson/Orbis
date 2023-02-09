@@ -55,8 +55,9 @@ forval i=1/3{
 
 	gen `VariableLabel'_WB=0
 	gen nYears=0
+	
 
-	forval year=2009/2016{
+	forval year=$FirstYear/$LastYear{
 		replace `VariableLabel'_WB=`VariableLabel'_WB+`VariableLabel'`year' if (~missing(`VariableLabel'`year'))
 		replace nYears=nYears+1 if  (~missing(`VariableLabel'`year'))
 		
