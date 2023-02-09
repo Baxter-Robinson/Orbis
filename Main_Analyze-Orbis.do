@@ -43,7 +43,6 @@ local Country="FR"
 	*-------------------------------------------------------
 	
 	*** Section 4
-	*do OB_Table_Missing-Observations.do
 	*do OB_RAW_By_Year_NumFirms_PubVPrivate.do
 	
 	

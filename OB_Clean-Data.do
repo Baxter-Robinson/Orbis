@@ -15,6 +15,18 @@ drop FirstYear
 
 
 *------------------
+* Log
+*------------------
+file close _all
+file open TabMissingObs using Output/${CountryID}/Table_Missing-Observations.tex, write replace
+*file write TabMissingObs  " & nFirm-Year Obs &  \\ \midrule"_n
+quietly sum Year if (Year>=$FirstYear) & (Year<=$LastYear)
+local nFirmYears_Raw=r(N)
+local moment: di %12.0fc `nFirmYears_Raw'
+file write TabMissingObs "Raw Data & `moment' & 100 \%  \\ \hline"_n
+
+
+*------------------
 * Set Panel Structure
 *------------------
 egen IDNum=group(BvD_ID_Number)
@@ -51,6 +63,13 @@ replace Sales = 0 if Sales == 0.5
 drop minE minS maxE maxS tagMaxE tagMaxS tagMinE tagMinS
 
 xtset IDNum Year
+
+quietly sum Year if (Year>=$FirstYear) & (Year<=$LastYear)
+local nFirmYears=r(N)
+local moment: di %12.0fc `nFirmYears'-`nFirmYears_Raw'
+local percent: di %12.1fc (`nFirmYears'-`nFirmYears_Raw')/`nFirmYears_Raw'*100
+file write TabMissingObs "Remove Duplicates & `moment' & `percent' \%  \\"_n
+local nFirmYears_Saved=`nFirmYears'
 
 *---------------------------
 * Financials
@@ -232,6 +251,14 @@ foreach var of local Variables {
 bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
 
 
+quietly sum Year if (Year>=$FirstYear) & (Year<=$LastYear)
+local nFirmYears=r(N)
+local moment: di %12.0fc `nFirmYears'-`nFirmYears_Saved'
+local percent: di %12.1fc `moment'/`nFirmYears_Raw'*100
+file write TabMissingObs "Merge in Compustat & `moment' & +`percent' \%  \\"_n
+local nFirmYears_Saved=`nFirmYears'
+
+
 *-------------------------------------------------
 * Remove Remaining Outliers
 *-------------------------------------------------
@@ -263,6 +290,12 @@ drop if Drop==1
 drop EmpGrowth_h
 bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmployees)/2)
  
+quietly sum Year if (Year>=$FirstYear) & (Year<=$LastYear)
+local nFirmYears=r(N)
+local moment: di %12.0fc `nFirmYears'-`nFirmYears_Saved'
+local percent: di %12.1fc `moment'/`nFirmYears_Raw'*100
+file write TabMissingObs "Dropping Falls and Rises & `moment' & `percent' \%  \\"_n
+local nFirmYears_Saved=`nFirmYears'
 
 *----------------------
 * Inclusion Criteria
@@ -270,10 +303,23 @@ bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmploy
 drop if (Year<$FirstYear)
 drop if (Year>$LastYear)
 
+count if missing(nEmployees)
+local moment: di %12.0fc -r(N)
+local percent: di %12.1fc -r(N)/`nFirmYears_Raw'*100
+file write TabMissingObs "Missing Employees & `moment' & `percent' \%  \\"_n
+local nFirmYears_Saved=`nFirmYears'
+
 drop if missing(nEmployees)
 
 * Drop firms that are never employers
 by IDNum, sort: egen MaxnEmp=max(nEmployees)
+
+count if (MaxnEmp<1)
+local moment: di %12.0fc -r(N)
+local percent: di %12.1fc `moment'/`nFirmYears_Raw'*100
+file write TabMissingObs "Non Employers & `moment' & `percent' \%  \\ \hline"_n
+local nFirmYears_Saved=`nFirmYears'
+
 drop if (MaxnEmp<1)
 drop MaxnEmp
 
@@ -316,6 +362,16 @@ replace SizeCategoryES = 4 if (groups==50) | (groups==249)
 replace SizeCategoryES = 5 if (groups==250) | (groups==`max')
 drop groups 
 
+*----------------------
+* Count Final Sample
+*----------------------
+quietly sum Year if (Year>=$FirstYear) & (Year<=$LastYear)
+local nFirmYears=r(N)
+local moment: di %12.0fc `nFirmYears'
+local percent: di %12.1fc `nFirmYears'/`nFirmYears_Raw'*100
+file write TabMissingObs "Clean Sample & `moment' & `percent' \%"_n
+
+file close _all
 *----------------------
 * Save unbalanced panel
 *----------------------
