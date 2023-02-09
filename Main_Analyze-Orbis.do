@@ -59,7 +59,6 @@ local Country="FR"
 	
 	* Orbis
 	*do OB_Clean-Data.do
-	*do OB_Create-Balanced-Panel.do
 	*do OB_Create-Country-Level-Data.do
 
 	*Create Weights
@@ -67,7 +66,7 @@ local Country="FR"
 	
 	
 	*-------------------------------------------------------
-	* Orbis (OB): Unbalanced Panel
+	* Orbis (OB):
 	*-------------------------------------------------------
 	*use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
 	
@@ -103,25 +102,15 @@ local Country="FR"
 	*do OB_Graph_IPOyear-Dist.do
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do
 	
-
 	
-	*-------------------------------------------------------
-	* Orbis (OB): Balanced Panel
-	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_Balanced.dta",clear
-	
-	
-	*** Section 3
+	** Section 7
 	*do OB_Static_Firm_Share.do
 	*do OB_Table_PubVsPri.do
-	*XXX TBF XXX do OB_CrossCountry_Moments_Balanced.do
-	
-	
-	*** Section 5
 	*do OB_Graph_Lifecycle-ByFirmType.do
-	
+
+
 	*-------------------------------------------------------
-	* Compustat (CS): Unbalanced Panel
+	* Compustat (CS):
 	*-------------------------------------------------------
 	*use "Data_Cleaned/`Country'_CompustatUnbalanced.dta",clear
 	
@@ -130,15 +119,9 @@ local Country="FR"
 	*do CS_Graph_Employment.do
 	*do CS_Table_IPOyear_Descriptive-Stats.do
 	*do CS_Agg_Employment_HGR.do 
-	
-	*-------------------------------------------------------
-	* Compustat (CS): Balanced Panel
-	*-------------------------------------------------------
-	*use "Data_Cleaned/`Country'_CompustatBalanced.dta",clear
-	
-	*do CS_Graph_Employment.do
 	*XXX TBF XXX do CS_Graph_HaltiGrowth_Employment-Dist.do
 	*do CS_Graph_Lifecycle-ByFirmType.do	
+
 
 	
 	*-------------------------------------------------------

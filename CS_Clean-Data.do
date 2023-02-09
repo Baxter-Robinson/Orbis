@@ -133,45 +133,10 @@ bysort IDNum: gen Assets_h = (Assets  - L.Assets )/((Assets  + L.Assets )/2)
 
 save "Data_Cleaned/${CountryID}_CompustatUnbalanced.dta", replace
 
-*------------------
-* Balanced Panel
-*------------------
 
-* Narrower year range for France
-if "${CountryID}" == "FR"{
-	drop if (Year<2010)	
-	drop if (Year>2014)
-	drop if Sales == .
-	drop if nEmployees == .
-	sort IDNum Year
-	*by IDNum: drop if (missing(nEmployees)| missing(Sales))
-	egen nyear = total(inrange(Year, 2010, 2014)), by(IDNum)
-	keep if nyear == 5
-	drop nyear
-}
-* Regular year range for other countries
-else {
-	drop if (Year<2009)
-	drop if (Year>2018)
-	drop if Sales == .
-	drop if nEmployees == .
-	sort IDNum Year
-	*by IDNum: drop if (missing(nEmployees)| missing(Sales))
-	egen nyear = total(inrange(Year, 2009, 2018)), by(IDNum)
-	keep if nyear == 10
-	drop nyear
-}
-
-* Making sure it is strongly balanced 
-xtset IDNum Year 
-
-*--------------------
-* Save balanced panel
-*--------------------
-
-save "Data_Cleaned/${CountryID}_CompustatBalanced.dta", replace
-
-
+**************************
+* Convert currency to USD
+**************************
 use "${DATAPATH}/${CountryID}_StockPrice.dta", clear
 
 
@@ -187,11 +152,6 @@ rename prccd StockPrice
 replace cshoc = cshoc/1000000
 
 
-
-
-**************************
-* Convert currency to USD
-**************************
 
 merge m:1 Year using "${DATAPATH}/Exchange_rate.dta"
 
