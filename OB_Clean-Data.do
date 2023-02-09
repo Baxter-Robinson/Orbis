@@ -293,7 +293,7 @@ bysort IDNum: gen EmpGrowth_h = (nEmployees-L.nEmployees)/((nEmployees+L.nEmploy
 quietly sum Year if (Year>=$FirstYear) & (Year<=$LastYear)
 local nFirmYears=r(N)
 local moment: di %12.0fc `nFirmYears'-`nFirmYears_Saved'
-local percent: di %12.1fc `moment'/`nFirmYears_Raw'*100
+local percent: di %12.1fc (`nFirmYears'-`nFirmYears_Saved')/`nFirmYears_Raw'*100
 file write TabMissingObs "Dropping Falls and Rises & `moment' & `percent' \%  \\"_n
 local nFirmYears_Saved=`nFirmYears'
 
