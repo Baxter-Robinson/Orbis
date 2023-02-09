@@ -7,36 +7,14 @@
 *----------------
 cls
 clear all
-*version 13
-*set maxvar 10000
 set type double
 set more off
-*set trace on
 
 * Baxter PATH
 *if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
 if `"`c(os)'"' == "Windows"   global   stem  `"D:/Dropbox/"'
 cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
 global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
-
-
-* Emmanuel PATH
-* Desktop
-*cd "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
-*global DATAPATH =  "D:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
-* Laptop
-*cd "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis"
-*global DATAPATH =  "C:/Users/Emmanuel/Dropbox/Shared-Folder_Baxter-Emmanuel/RA-Work/Orbis/Data_Raw"
-
-
-* Javier PATH
-* Laptop
-*cd "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Volumes/EHDD1/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
-
-* HOME
-*cd "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis"
-*global DATAPATH "/Users/cyberdim/Dropbox/Shared-Folder_Baxter-Javier/Orbis/Data_Raw"
 
 *---------------------
 * Sample Options
@@ -52,10 +30,7 @@ global LastYear=2016
 *---------------------
 * Loop over countries 
 *---------------------
-* Alphabetical:
-*global Countries AT BE CZ DE ES FI FR NL IT PT  // HU US GB
-* Size
-global Countries NL AT BE DE FI CZ PT ES FR IT
+global Countries NL AT BE DE FI CZ PT ES FR IT  // HU US GB
 
 *local Country="NL"
 local Country="FR"
