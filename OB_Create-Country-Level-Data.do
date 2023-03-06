@@ -106,13 +106,8 @@ gen AssetsPerRev_PriLarge=`TotAss'/`TotRev'
 
 
 
-* Employment shares by Firm Type
+* Employment
 bysort Year: egen nEmployeesTot = total(nEmployees)
-bysort Year Public: egen nEmployeesTot_byFirmType = total(nEmployees)
-gen EmpShare_Public=nEmployeesTot_byFirmType/nEmployeesTot*100 if (Public==1)
-
-bysort Year: egen nEmployeesTot_Large = total(nEmployees) if (nEmployees>99)
-gen EmpShare_Large=nEmployeesTot_Large/nEmployeesTot*100 if (nEmployees>99)
 
 bysort Year: egen MarketCap = total(Market_capitalisation_mil) if (Public==1)
 
@@ -189,7 +184,7 @@ bysort Year: egen AvgYearsSinceIPO=mean(YearsSinceIPO)
 local AllVars EmpGrowth_All_Avg EmpGrowth_All_Std nFirmsShare_Public ///
   EmpGrowth_PubAll_Avg EmpGrowth_PubAll_Std EmpGrowth_PriAll_Avg EmpGrowth_PriAll_Std ///
   EmpGrowth_PubLarge_Avg EmpGrowth_PubLarge_Std EmpGrowth_PriLarge_Avg EmpGrowth_PriLarge_Std ///
-  EmpShare_Public  EmpShare_Large MarketCap EmpShare_Top* ///
+  MarketCap EmpShare_Top* ///
   AssetsPerEmp_* AssetsPerRev_*  RaDToRev Emp_Std LnEmp_Std AvgYearsSinceIPO
   
 collapse (mean) `AllVars', by(Year)

@@ -2,6 +2,7 @@
 
 use  "Data_Cleaned/CrossCountry_Dataset_Euro.dta", clear
 
+
 *----------------------------------
 * Equity Market Depth
 *----------------------------------
@@ -19,9 +20,10 @@ graph twoway (lfit tfp EquityMktDepth_WB, lcolor(maroon) ) ///
 , xtitle("Equity Market Depth") ytitle("Total Factor Productivity") graphregion(color(white)) legend(off)
 graph export Output/Cross-Country/EquityMktDepth_TFP.pdf, replace
 
+
 * Employment Share of Public Firms
-graph twoway (lfit tfp EmpShare_Public, lcolor(maroon) ) ///
-(scatter tfp EmpShare_Public, mlabel(CountryCode_2Digit) color(navy)  mlabcolor(navy)) ///
+graph twoway (lfit tfp PubEmpShare, lcolor(maroon) ) ///
+(scatter tfp PubEmpShare, mlabel(CountryCode_2Digit) color(navy)  mlabcolor(navy)) ///
 , xtitle("Employment Share of Public Firms") ytitle("Total Factor Productivity") graphregion(color(white)) legend(off)
 graph export Output/Cross-Country/EmpSharePublic_TFP.pdf, replace
 
@@ -62,7 +64,7 @@ graph twoway (scatter EmpGrowth_PubAll_Avg EquityMktDepth_WB, mlabel(CountryCode
  , xtitle("Equity Market Depth") ytitle("Average Employment Growth") graphregion(color(white)) ///
  legend(label(1 "Public") label( 2 "Private"))
 graph export Output/Cross-Country/EquityMktDepth_AvgEmpGrowth_PrivsPubAll.pdf, replace
-*/
+
 * Difference
 gen DiffEmpGrowth=EmpGrowth_PubAll_Avg-EmpGrowth_PriAll_Avg
 graph twoway (scatter DiffEmpGrowth EquityMktDepth_WB, mlabel(CountryCode_2Digit)) ///

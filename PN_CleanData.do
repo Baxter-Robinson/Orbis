@@ -7,7 +7,7 @@ rename countrycode CountryCode_3Digit
 rename cgdpo gdpo
 rename cgdpe gdpe
 * TFP
-rename ctfp tfp
+rename ctfp tfpPWT
 * Output per Capita
 gen OutputPerCapita = gdpo/pop
 * Capital to Labor ratio
@@ -17,13 +17,18 @@ gen CapitalToLabor = cn/LaborSpending
 * Capital to Output ratio
 gen CapitalToOutput = CapitalStock/gdpo
 
+
+gen nEmp_PWT=emp*1000000
+
+drop if (inlist(CountryCode_3Digit,"EGY"))
+
 * Aggregate
-keep CountryCode_3Digit year gdpo gdpe tfp OutputPerCapita CapitalToLabor CapitalToOutput
+keep CountryCode_3Digit year gdpo gdpe tfp OutputPerCapita CapitalToLabor CapitalToOutput nEmp_PWT
 drop if year < 2010
 drop if year > 2018
 if "${CountryID}" == "FR" {
 	drop if year > 2014
 }
-collapse (mean) gdpo gdpe tfp OutputPerCapita CapitalToLabor CapitalToOutput, by(CountryCode_3Digit)
+collapse (mean) gdpo gdpe tfp OutputPerCapita CapitalToLabor CapitalToOutput nEmp_PWT, by(CountryCode_3Digit)
 
 save "Data_Cleaned/PennWorldIndicators.dta", replace

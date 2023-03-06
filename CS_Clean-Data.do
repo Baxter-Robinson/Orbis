@@ -233,8 +233,10 @@ replace mve_annual2 = mve_annual if mve_annual2 == . & mve_yearend != .
 *replace mve_yearend = mve_annual if mve_yearend == . & mve_annual != .
 replace mve_yearend = mve_annual2 if mve_yearend == . & mve_annual != .
 
-collapse (sum) mve_yearend mve_annual mve_annual2 cshoc cshoi, by(Year)
-collapse (mean) mve_yearend mve_annual mve_annual2 cshoc cshoi
+rename nEmployees nPubEmp_CS
+
+collapse (sum) mve_yearend mve_annual mve_annual2 cshoc cshoi nPubEmp_CS, by(Year)
+collapse (mean) mve_yearend mve_annual mve_annual2 cshoc cshoi nPubEmp_CS
 lab var mve_yearend "Market Value of Equity - Millions (Compustat Global - Security Daily)"  // mve_yearend is generated before merging
 lab var mve_annual "Market Value of Equity - Millions (Compustat Global - Security Daily)"  // mve_annual is generated before merging
 lab var mve_annual2 "Market Value of Equity - Millions (Compustat Global - Annual)" // mve_annual2 is generated after the merge

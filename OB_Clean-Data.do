@@ -297,31 +297,6 @@ local percent: di %12.1fc (`nFirmYears'-`nFirmYears_Saved')/`nFirmYears_Raw'*100
 file write TabMissingObs "Dropping Falls and Rises & `moment' & `percent' \%  \\"_n
 local nFirmYears_Saved=`nFirmYears'
 
-*----------------------
-* Inclusion Criteria
-*----------------------
-drop if (Year<$FirstYear)
-drop if (Year>$LastYear)
-
-count if missing(nEmployees)
-local moment: di %12.0fc -r(N)
-local percent: di %12.1fc -r(N)/`nFirmYears_Raw'*100
-file write TabMissingObs "Missing Employees & `moment' & `percent' \%  \\"_n
-local nFirmYears_Saved=`nFirmYears'
-
-drop if missing(nEmployees)
-
-* Drop firms that are never employers
-by IDNum, sort: egen MaxnEmp=max(nEmployees)
-
-count if (MaxnEmp<1)
-local moment: di %12.0fc -r(N)
-local percent: di %12.1fc `moment'/`nFirmYears_Raw'*100
-file write TabMissingObs "Non Employers & `moment' & `percent' \%  \\ \hline"_n
-local nFirmYears_Saved=`nFirmYears'
-
-drop if (MaxnEmp<1)
-drop MaxnEmp
 
 *----------------------
 * Winsorization Employment/Assets/Sales/SalesPerEmp/EmpGrowth 
@@ -361,6 +336,45 @@ replace SizeCategoryES = 3 if (groups==20) | (groups==49)
 replace SizeCategoryES = 4 if (groups==50) | (groups==249)
 replace SizeCategoryES = 5 if (groups==250) | (groups==`max')
 drop groups 
+
+
+*----------------------
+* Inclusion Criteria
+*----------------------
+
+count if missing(nEmployees)
+local moment: di %12.0fc -r(N)
+local percent: di %12.1fc -r(N)/`nFirmYears_Raw'*100
+file write TabMissingObs "Missing Employees & `moment' & `percent' \%  \\"_n
+local nFirmYears_Saved=`nFirmYears'
+
+drop if missing(nEmployees)
+
+* Drop firms that are never employers
+by IDNum, sort: egen MaxnEmp=max(nEmployees)
+
+count if (MaxnEmp<1)
+local moment: di %12.0fc -r(N)
+local percent: di %12.1fc `moment'/`nFirmYears_Raw'*100
+file write TabMissingObs "Non Employers & `moment' & `percent' \%  \\ \hline"_n
+local nFirmYears_Saved=`nFirmYears'
+
+drop if (MaxnEmp<1)
+drop MaxnEmp
+
+*----------------------
+* Save panel over all years
+*----------------------
+
+save "Data_Cleaned/${CountryID}_AllYears.dta", replace
+
+
+*----------------------
+* Save panel over all years
+*----------------------
+drop if (Year<$FirstYear)
+drop if (Year>$LastYear)
+
 
 *----------------------
 * Count Final Sample

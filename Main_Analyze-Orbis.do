@@ -32,8 +32,8 @@ global LastYear=2016
 *---------------------
 global Countries NL AT BE DE FI CZ PT ES FR IT  // HU US GB
 
-*local Country="NL"
-local Country="FR"
+local Country="NL"
+*local Country="FR"
 *foreach Country of global Countries {
 	clear all
 	global CountryID="`Country'"
@@ -65,9 +65,9 @@ local Country="FR"
 	
 	
 	*-------------------------------------------------------
-	* Orbis (OB):
+	* Orbis (OB): Focus Years
 	*-------------------------------------------------------
-	*use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
+	*use "Data_Cleaned/${CountryID}_FocusYears.dta",clear
 	
 	
 	**** Summary Statistics
@@ -91,7 +91,18 @@ local Country="FR"
 	
 	**** Section 5
 	*do OB_CS_Dist_Employment.do
+
+	** Section 7
+	*do OB_Static_Firm_Share.do
+	*do OB_Table_PubVsPri.do
+	*do OB_Graph_Lifecycle-ByFirmType.do
+
 	
+	*-------------------------------------------------------
+	* Orbis (OB): All Years for IPO Stuff
+	*-------------------------------------------------------
+	*use "Data_Cleaned/${CountryID}_AllYears.dta",clear
+
 	**** Section 6
 	*do OB_IPO_YearsTable.do
 	*do OB_IPO_Graphs.do
@@ -100,13 +111,6 @@ local Country="FR"
 	*do OB_Table_IPOyear_Descriptive-Stats.do
 	*do OB_Graph_IPOyear-Dist.do
 	*do OB_Graph_HaltiGrowth_Employment-Dist.do
-	
-	
-	** Section 7
-	*do OB_Static_Firm_Share.do
-	*do OB_Table_PubVsPri.do
-	*do OB_Graph_Lifecycle-ByFirmType.do
-
 
 	*-------------------------------------------------------
 	* Compustat (CS):
@@ -172,6 +176,7 @@ local Country="FR"
 *** Section 3
 *do CrossCountry_Graph_Europe.do
 *do CrossCountry_Graph_All.do
+*do CrossCountry_Regressions.do
 
 
 ** Model
