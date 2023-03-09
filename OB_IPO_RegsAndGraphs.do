@@ -60,12 +60,16 @@ local form="Ln"
 
 foreach var of local DepVars{
 	eststo clear
+	local AllModels
 	foreach form of local Formats{
 		preserve
 		
 		disp "`form'`var'"
 		
-		eststo: reghdfe `form'`var' `YearsInOrder', absorb(Year Industry_2digit)
+		reghdfe `form'`var' `YearsInOrder', absorb(Year Industry_2digit)
+		estimates store Model`form'
+		
+		local AllModels `AllModels' Model`form'
 		
 		gen BetaEmp_ByIPOYear_ByIPOYear=_b[YearIs_Zero] if (IPO_timescale==0)
 		gen SEEmp_ByIPOYear=_se[YearIs_Zero] if (IPO_timescale==0)
@@ -97,6 +101,9 @@ foreach var of local DepVars{
 		preserve
 			
 		reghdfe `form'`var' `YearsInOrder', absorb(Year IDNum)
+		estimates store Model`form'FFE
+		local AllModels `AllModels' Model`form'FFE
+		
 		gen BetaEmp_ByIPOYear_ByIPOYear=_b[YearIs_Zero] if (IPO_timescale==0)
 		gen SEEmp_ByIPOYear=_se[YearIs_Zero] if (IPO_timescale==0)
 		
@@ -129,11 +136,14 @@ foreach var of local DepVars{
 	}
 	
 
+		estfe `AllModels', labels( Year "Year FE"  Industry_2digit "Industry FE" IDNum "Firm FE")
+		return list
+		
 
 		
 		
-	esttab using "Output/$CountryID/IPO_Reg_`var'.tex", replace se fragment ///
-	label stats(N, labels(N)) ///
+	esttab `AllModels' using "Output/$CountryID/IPO_Reg_`var'.tex", replace se fragment ///
+	indicate( `r(indicate_fe)' ) label stats(N, labels(N)) ///
 	mlabels("Levels" "Logs" "Prop" )
 	
 }
