@@ -11,7 +11,7 @@ local Weights ES No
 
 local i=1
 foreach wgt of local Weights{
-forval i=1/3{
+forval i=1/4{
 	
 	
 preserve
@@ -34,7 +34,20 @@ preserve
             keep if (Public==1)
             file write OutputFile " Public Firms & " 
         }
-                
+		else if (`i'==4){
+			gen EmpPercentile=.
+			local t=2009
+			forvalues t=$FirstYear/$LastYear{
+				xtile EmpPercentile_`t'=nEmployees if (Public==0) &(Year==`t'), nquantiles(100)
+				replace EmpPercentile=EmpPercentile_`t' if ~missing(EmpPercentile_`t')
+				*drop EmpPercentile_`t'
+			}
+			
+			drop if (EmpPercentile<100) | (Public==1)
+            file open OutputFile using Output/${CountryID}/OB_SumStats_byCountry_`wgt'wgt_LarPri.tex, write replace
+            file write OutputFile " Largest 1\% of Private Firms & " 
+        }
+                        
 				
 						
 	collapse (p10) nEmployees_p10=nEmployees Sales_p10=Sales  ///
