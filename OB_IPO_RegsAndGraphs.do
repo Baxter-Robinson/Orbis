@@ -144,7 +144,7 @@ foreach var of local DepVars{
 		
 	esttab `AllModels' using "Output/$CountryID/IPO_Reg_`var'.tex", replace se fragment ///
 	indicate( `r(indicate_fe)' ) label stats(N, labels(N)) ///
-	mlabels("Levels" "Logs" "Prop" )
+	mlabels("Levels" "Levels" "Logs"  "Logs"  "Prop" "Prop" )
 	
 }
 
