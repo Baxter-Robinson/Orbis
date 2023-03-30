@@ -11,7 +11,6 @@ set type double
 set more off
 
 * Baxter PATH
-*if `"`c(os)'"' == "MacOSX"   global   stem    `"/Users/Baxter/Dropbox/"'
 if `"`c(os)'"' == "Windows"   global   stem  `"D:/Dropbox/"'
 cd "${stem}Shared-Folder_Baxter-Stephen/Data/Code/BR"
 global DATAPATH "${stem}Shared-Folder_Baxter-Stephen/Data/Orbis"
@@ -67,7 +66,7 @@ local Country="NL"
 	*-------------------------------------------------------
 	* Orbis (OB): Focus Years
 	*-------------------------------------------------------
-	*use "Data_Cleaned/${CountryID}_FocusYears.dta",clear
+	*use "Data_Cleaned/${CountryID}_Unbalanced.dta",clear
 	
 	
 	**** Summary Statistics
@@ -181,6 +180,7 @@ local Country="NL"
 
 ** Model
 *do Table_Model-Moments.do
+*do ModelComp_Graphs.do		
 		
 **** Section 3
 * XXX TBF XXX do OB_CrossCountry_Moments_Unbalanced.do
