@@ -130,7 +130,6 @@ bysort IDNum: gen COGS_h = (cshoi -L.cshoi )/((cshoi +L.cshoi )/2)
 * Assets (Haltiwanger)
 bysort IDNum: gen Assets_h = (Assets  - L.Assets )/((Assets  + L.Assets )/2)
 
-
 save "Data_Cleaned/${CountryID}_CompustatUnbalanced.dta", replace
 
 
@@ -209,23 +208,21 @@ save Data_Cleaned/${CountryID}_StockPrice.dta,replace
 
 merge 1:1 gvkey Year using "Data_Cleaned/${CountryID}_CompustatUnbalanced"
 
-
 drop _merge
 
-drop if Year < 2009
-drop if Year > 2016
+drop if Year < $FirstYear
+drop if Year > $LastYear
 
 /*
 if "${CountryID}" =="FR" {
 	drop if Year > 2014
 }
 */
-
 *gen mve_annual = StockPrice*cshoi
 gen mve_annual2 = StockPrice*cshoi 
 label var mve_annual2 "Market value - annual (from merged data)"
 
-drop if (mve_annual==.) & (mve_yearend==.) & (mve_annual2==.)
+*drop if (mve_annual==.) & (mve_yearend==.) & (mve_annual2==.)
 
 *replace mve_annual = mve_yearend if mve_annual == . & mve_yearend != .
 replace mve_annual2 = mve_annual if mve_annual2 == . & mve_yearend != .

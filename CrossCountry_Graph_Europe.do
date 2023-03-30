@@ -20,19 +20,9 @@ graph twoway (lfit tfp EquityMktDepth_WB, lcolor(maroon) ) ///
 , xtitle("Equity Market Depth") ytitle("Total Factor Productivity") graphregion(color(white)) legend(off)
 graph export Output/Cross-Country/EquityMktDepth_TFP.pdf, replace
 
-
-* Employment Share of Public Firms
-graph twoway (lfit tfp PubEmpShare, lcolor(maroon) ) ///
-(scatter tfp PubEmpShare, mlabel(CountryCode_2Digit) color(navy)  mlabcolor(navy)) ///
-, xtitle("Employment Share of Public Firms") ytitle("Total Factor Productivity") graphregion(color(white)) legend(off)
-graph export Output/Cross-Country/EmpSharePublic_TFP.pdf, replace
-
-
-
 * Output Per Capita
 scatter OutputPerCapita EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Output Per Capita (Thousands of US Dollars)") graphregion(color(white)) mlabel(CountryCode_2Digit)
 graph export Output/Cross-Country/EquityMktDepth_OutputPerCap.pdf, replace
-
 
 * Capital to Labor ratio
 scatter CapitalToLabor EquityMktDepth_WB, xtitle("Equity Market Depth") ytitle("Capital To Labor ratio") graphregion(color(white)) mlabel(CountryCode_2Digit)
@@ -43,6 +33,22 @@ graph twoway (lfit CapitalToOutput EquityMktDepth_WB, lcolor(maroon) ) ///
 (scatter CapitalToOutput EquityMktDepth_WB, mlabel(CountryCode_2Digit) color(navy)  mlabcolor(navy) ) ///
 , xtitle("Equity Market Depth") ytitle("Capital To Output ratio") graphregion(color(white))  legend(off)
 graph export Output/Cross-Country/EquityMktDepth_CapitalToOutput.pdf, replace
+
+
+*----------------------------------
+* Public Employment Share
+*----------------------------------
+
+* TFP
+graph twoway (lfit tfp PubEmpShare, lcolor(maroon) ) ///
+(scatter tfp PubEmpShare, mlabel(CountryCode_2Digit) color(navy)  mlabcolor(navy)) ///
+, xtitle("Employment Share of Public Firms") ytitle("Total Factor Productivity") graphregion(color(white)) legend(off)
+graph export Output/Cross-Country/PubEmpShare_TFP.pdf, replace
+
+
+* Output Per Capita
+scatter OutputPerCapita PubEmpShare, xtitle("Employment Share of Public Firms") ytitle("Output Per Capita (Thousands of US Dollars)") graphregion(color(white)) mlabel(CountryCode_2Digit)
+graph export Output/Cross-Country/PubEmpShare_OutputPerCap.pdf, replace
 
 
 *----------------------------------
